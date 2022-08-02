@@ -49,8 +49,6 @@ public class SoundManager : MonoBehaviour
 
         _audioSOList = Resources.LoadAll<AudioSO>(AUDIOSO_PATH).ToList(); //음원 에셋 로드
 
-        print(_audioSOList.Count);
-
         for (int i = 0; i < _audioSOList.Count; i++)
         {
             _audioDic.Add(_audioSOList[i].audioName, _audioSOList[i]); //soundName을 키로, SO를 밸류로 등록
