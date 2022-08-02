@@ -46,9 +46,16 @@ public class SoundHandler : Handler
         {
             _audioDic.Add(_audioSOList[i].audioName, _audioSOList[i]); //soundName을 키로, SO를 밸류로 등록
         }
+
+        CreateAudioSource();
     }
 
     public override void OnStart()
+    {
+        
+    }
+
+    private void CreateAudioSource()
     {
         CreateAudioSource(AudioType.BGM); //bgm 재생기 생성
 
