@@ -6,6 +6,9 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
+    private static SoundManager _instance;
+    public static SoundManager Instance => _instance;
+
     private const string MASTER_NAME = "Master";
     private const string BGM_NAME = "BGM";
     private const string SFX_NAME = "SFX";
@@ -29,6 +32,12 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        if(_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+
         _sfxSourceList = new List<AudioSource>(); //메모리 할당
         _audioDic = new Dictionary<string, AudioSO>();
 
