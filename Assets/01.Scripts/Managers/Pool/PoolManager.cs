@@ -1,101 +1,174 @@
-using UnityEngine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using System;
 
-public enum PoolObjectType
+/// <summary>
+/// Code by ForestJ (https://forestj.tistory.com)
+/// PoolManager는 프래팹의 이름으로 구분한다.
+/// 각 프리팹의 이름을 유니크하게 설정하여 사용하면 중복되지 않는다.
+/// </summary>
+public class PoolManager : IDisposable
 {
-    HitEffect,
-}
+    Transform Recycled_Object_Container;
 
-[Serializable]
-public class PoolInfo
-{
-    public PoolObjectType type;
-    public int amount = 0;
-    public GameObject prefab;
-    public GameObject container;
+    /// <summary>
+    /// 매번 같은 프리팹 리소스를 불러 오는 것이 아니라 한번 가져왔던 prefab 리소스는 저장해 두었다가,
+    /// 재사용 요청시 해당 prefab 리소스를 재사용 한다.
+    /// </summary>
+    GameObject Object_Prefab;
 
-    [HideInInspector]
-    public List<GameObject> pool = new List<GameObject>();
-}
+    /// <summary>
+    /// 재사용할 게임 오브젝트를 담아두는 곳
+    /// </summary>
+    Stack<GameObject> Recycled_Objects = new Stack<GameObject>();
 
-public class PoolManager : MonoBehaviour
-{
-    private static PoolManager m_Instance;
-    public static PoolManager Instance
+    /// <summary>
+    /// 비활성시 필요에 따라 해당 GameObject의 위치를 화면 밖으로 이동시킨다.
+    /// </summary>
+    Vector2 Remove_Position = new Vector2(-100000, -100000);
+
+    private bool disposed = false;
+
+    public void Dispose()
     {
-        get
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
         {
-            if (m_Instance == null) m_Instance = FindObjectOfType<PoolManager>();
-            return m_Instance;
+            if (disposing)
+            {
+                //  관리되는 자원 해제
+                Clear();
+            }
+            disposed = true;
         }
     }
 
-    [SerializeField]
-    List<PoolInfo> listOfPool;
-
-    private Vector3 defaultPos = new Vector3(-100, -100, -100);
-
-    void Start()
+    public PoolManager(Transform recycled_container)
     {
-        for (int i = 0; i < listOfPool.Count; i++)
+        this.Recycled_Object_Container = recycled_container;
+    }
+    /// <summary>
+    /// GameObject 를 찾아서 반환.
+    /// 해당 GameObject가 없을 경우 생성하여 반환한다.
+    /// Object_Prefab 도 재사용 가능하도록 추가한다.
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="parent"></param>
+    /// <returns></returns>
+    public GameObject Pop(string path, Transform parent)
+    {
+        string name = System.IO.Path.GetFileNameWithoutExtension(path);
+        GameObject item = null;
+        if (Recycled_Objects.Count > 0)
         {
-            FillPool(listOfPool[i]);
+            item = Recycled_Objects.Pop();
+            item.gameObject.SetActive(true);
+            item.transform.SetParent(parent);
         }
+
+        if (item == null)
+        {
+            if (Object_Prefab == null)
+            {
+                Object_Prefab = Resources.Load<GameObject>(path);
+            }
+
+            item = GameObject.Instantiate<GameObject>(Object_Prefab, parent);
+            if (!string.IsNullOrEmpty(name))
+            {
+                item.name = name;
+            }
+        }
+
+        var component = item.GetComponent<PoolableComponent>();
+        if (component != null)
+        {
+            component.Spawned();
+        }
+
+        return item;
     }
 
-    void FillPool(PoolInfo info)
+    public void PreLoad(string path)
     {
-        for (int i = 0; i < info.amount; i++)
+        string name = System.IO.Path.GetFileNameWithoutExtension(path);
+        GameObject item = null;
+        //  prefab info 가 null 이면 새로 생성. 재사용 위해
+        if (Object_Prefab == null)
         {
-            GameObject obInstance = null;
-            obInstance = Instantiate(info.prefab, info.container.transform);
-            obInstance.gameObject.SetActive(false);
-            obInstance.transform.position = defaultPos;
-            info.pool.Add(obInstance);
+            Object_Prefab = Resources.Load<GameObject>(path);
         }
+        //  신규 생성
+        item = GameObject.Instantiate<GameObject>(Object_Prefab, Recycled_Object_Container);
+        //  GameObject 이름 변경
+        if (!string.IsNullOrEmpty(name))
+        {
+            item.name = name;
+        }
+        //  재사용 리스트에 등록
+        Recycled_Objects.Push(item);
     }
 
-    public GameObject GetPoolObject(PoolObjectType type)
+    /// <summary>
+    /// 사용하지 않는 GameObject를 반환한다.
+    /// </summary>
+    /// <param name="obj">반환할 GameObject</param>
+    /// <param name="is_out_move">반환시 화면 밖으로 이동 시킬지 여부</param>
+    public void Push(GameObject obj, bool is_out_move)
     {
-        PoolInfo selected = GetPoolByType(type);
-        List<GameObject> pool = selected.pool;
-
-        GameObject obInstance = null;
-        if(pool.Count>0)
+        if (object.ReferenceEquals(obj.transform.parent, Recycled_Object_Container))
         {
-            obInstance = pool[pool.Count - 1];
-            pool.Remove(obInstance);
+            //  already in pool
+            return;
         }
-        else
+        var component = obj.GetComponent<PoolableComponent>();
+        if (component != null)
         {
-            obInstance = Instantiate(selected.prefab, selected.container.transform);
+            component.Despawned();
         }
-
-        return obInstance;
+        obj.transform.SetParent(Recycled_Object_Container);
+        if (is_out_move)
+        {
+            obj.transform.position = Remove_Position;
+        }
+        obj.gameObject.SetActive(false);
+        Recycled_Objects.Push(obj);
     }
 
-    public void CoolObject(GameObject ob, PoolObjectType type)
+
+    /// <summary>
+    /// 모든 GameObject 삭제
+    /// Prefab Object도 null 처리해준다.
+    /// </summary>
+    void Clear()
     {
-        ob.SetActive(false);
-        ob.transform.position = defaultPos;
+        //  모두 클리어
+        //while (Recycled_Objects.Count > 0)
+        //{
+        //    var obj = Recycled_Objects.Pop();
+        //    GameObject.DestroyImmediate(obj);
+        //}
+        Recycled_Objects.Clear();
 
-        PoolInfo seleted = GetPoolByType(type);
-        List<GameObject> pool = seleted.pool;
-
-        if (!pool.Contains(ob))
-            pool.Add(ob);
+        Object_Prefab = null;
     }
 
-    public PoolInfo GetPoolByType(PoolObjectType type)
+    public override string ToString()
     {
-        for (int i = 0; i < listOfPool.Count; i++)
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        sb.AppendFormat("PoolManager : [{0}]", Recycled_Objects.Count).AppendLine();
+
+        foreach (var item in Recycled_Objects)
         {
-            if (type == listOfPool[i].type)
-                return listOfPool[i];
+            sb.AppendFormat("[{0}]", item.name).AppendLine();
         }
 
-        return null;
+        return sb.ToString();
     }
 }
