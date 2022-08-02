@@ -99,10 +99,14 @@ public class SoundHandler : Handler
                 sfxSource.clip = audioSO.clip;
                 sfxSource.Play();
             }
+            else
+            {
+                Debug.LogError($"{audioName}의 AudioType을 확인해주세요");
+            }
         }
         else
         {
-            Debug.LogError("AudioName이 존재하지 않습니다");
+            Debug.LogError($"{audioName}이 존재하지 않습니다");
         }
     }
 
