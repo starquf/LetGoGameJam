@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // ½Ì±ÛÅæ (½ÇÁúÀûÀÎ Awake ÇÔ¼ö ¾È¿¡ ÀÖÀ½)
+    // ì‹±ê¸€í†¤ (ì‹¤ì§ˆì ì¸ Awake í•¨ìˆ˜ ì•ˆì— ìˆìŒ)
     #region SingleTon
     private static GameManager _instance;
     public static GameManager Instance 
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
 
                 if (_instance == null)
                 {
-                    Debug.LogError("°ÔÀÓ¸Å´ÏÀú°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù!!");
+                    Debug.LogError("ê²Œì„ë§¤ë‹ˆì €ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤!!");
                 }
             }
 
@@ -51,19 +52,21 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    // ¾î¿şÀÌÅ© ´ë½Å ÀÌ°Å ¾²¼À
+    // ì–´ì›¨ì´í¬ ëŒ€ì‹  ì´ê±° ì“°ì…ˆ
     private void OnAwake()
     {
-        
+
     }
 
-    // ¿©±â¿¡´Â ´Ù¸¥°÷¿¡¼­ ÂüÁ¶ÇØ¾ßµÇ´Â ÇÚµé·¯µé ³Ö±â
+    // ì—¬ê¸°ì—ëŠ” ë‹¤ë¥¸ê³³ì—ì„œ ì°¸ì¡°í•´ì•¼ë˜ëŠ” í•¸ë“¤ëŸ¬ë“¤ ë„£ê¸°
     #region GameUtils
 
+    [HideInInspector]
+    public SoundHandler soundHandler;
 
     #endregion
 
-    // ¾À ÀÌµ¿ ½Ã ¹İµå½Ã ÇØ¾ßÇÏ´Â °Å
+    // ì”¬ ì´ë™ ì‹œ ë°˜ë“œì‹œ í•´ì•¼í•˜ëŠ” ê±°
     public void ResetOnSceneChanged()
     {
         ResetEvents();

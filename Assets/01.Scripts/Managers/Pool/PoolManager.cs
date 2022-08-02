@@ -45,7 +45,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    void FillPool(PoolInfo info)
+    private void FillPool(PoolInfo info)
     {
         for (int i = 0; i < info.amount; i++)
         {
