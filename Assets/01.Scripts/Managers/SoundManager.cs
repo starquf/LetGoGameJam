@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     private const string BGM_NAME = "BGM";
     private const string SFX_NAME = "SFX";
 
-    private const string AUDIOMIXER_PATH = "AudioMixer";
+    private const string AUDIOMIXER_PATH = "AudioMixer/AudioMixer";
     private const string AUDIOSO_PATH = "AudioSO";
 
     private List<AudioSO> _audioSOList; //관리할 모든 음원 정보 리스트
