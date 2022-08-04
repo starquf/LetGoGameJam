@@ -133,5 +133,7 @@ MonoBehaviour:
   collectionRate: 50
   isAuto: 0
   isPlayer: 0
+  offset: 0.3
   weaponType: 0
   shootPos: {fileID: 5743299078215040150}
+  sr: {fileID: 0}

@@ -10,14 +10,13 @@ public class Weapon_AWM : Weapon
     {
         print("슛");
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
 
-        bullet.transform.position = shootPos.position;
+
+        bulletObj.transform.position = shootPos.position;
 
         float coll = collectionRate / 2f;
 
-        bullet.ChangeDir(shootDir.normalized);
-        bullet.RotateAngle(Random.Range(-coll, coll));
+       
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
