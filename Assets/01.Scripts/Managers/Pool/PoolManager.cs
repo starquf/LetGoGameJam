@@ -86,7 +86,7 @@ public class PoolManager : IDisposable
             }
         }
 
-        var component = item.GetComponent<PoolableComponent>();
+        var component = item.GetComponent<IPoolableComponent>();
         if (component != null)
         {
             component.Spawned();
@@ -127,7 +127,7 @@ public class PoolManager : IDisposable
             //  already in pool
             return;
         }
-        var component = obj.GetComponent<PoolableComponent>();
+        var component = obj.GetComponent<IPoolableComponent>();
         if (component != null)
         {
             component.Despawned();

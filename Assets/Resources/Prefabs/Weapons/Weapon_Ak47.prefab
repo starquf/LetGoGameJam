@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbe7a24fe62c8b4bb8474640853946d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSFXName: AKShot
   damage: 5
   maxBullet: 5
   fireRate: 1

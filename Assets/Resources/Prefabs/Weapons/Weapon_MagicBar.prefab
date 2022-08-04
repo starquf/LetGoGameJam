@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f7c6bc02d89ca4f9522e624c699830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSFXName: RPGShot
   damage: 5
   maxBullet: 5
   fireRate: 2

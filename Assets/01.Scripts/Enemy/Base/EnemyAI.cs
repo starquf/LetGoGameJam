@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
     Enemy myLivingEntity;
     Animator myAnim;
 
-    public Transform playerTrm;
+    private Transform playerTrm;
 
     EnemyState curState;
 
@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     {
         myLivingEntity = this.GetComponent<Enemy>();
         myAnim = this.GetComponent<Animator>();
+        playerTrm = myLivingEntity.playerTrm;
 
         curState = new PursueAndAttack(this.gameObject, myLivingEntity, myAnim, playerTrm);
     }

@@ -7,12 +7,10 @@ public class PlayerAttack : AttackBase
     protected int currentBullet;
 
     public PlayerInput playerInput;
-    private SpriteRenderer weaponRenderer;
 
     public override void Init(Weapon baseWeapon)
     {
         base.Init(baseWeapon);
-        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
         baseWeapon.isPlayer = true;
     }
 

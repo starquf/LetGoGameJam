@@ -10,11 +10,18 @@ public class Weapon_AWM : Weapon
     {
         print("슛");
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
 
-        bulletObj.transform.position = shootPos.position;
+        bullet.transform.position = shootPos.position;
 
-        bulletObj.GetComponent<Bullet>().ChangeDir(shootDir.normalized);
+        float coll = collectionRate / 2f;
 
-        //print($"총알 발싸 히히히히히 데미지 : {damage} ");
+        bullet.ChangeDir(shootDir.normalized);
+        bullet.RotateAngle(Random.Range(-coll, coll));
+        bullet.ChangeSpeed(Random.Range(10f, 13f));
+
+        print($"총알 발싸 히히히히히 데미지 : {damage} ");
+
+        GameManager.Instance.soundHandler.Play(shotSFXName);
     }
 }

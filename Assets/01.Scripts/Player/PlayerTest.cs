@@ -23,13 +23,9 @@ public class PlayerTest : MonoBehaviour
         pa = GetComponentInChildren<PlayerAttack>();
         pa.Init(baseWeapon);
     }
-
  
     private void Update()
     {
-
-
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeBaseWeapon(AWM_PATH);
@@ -58,9 +54,6 @@ public class PlayerTest : MonoBehaviour
         {
             ChangeBaseWeapon(RAZERPISTOL_PATH);
         }
-
-       
-
     }
 
 
