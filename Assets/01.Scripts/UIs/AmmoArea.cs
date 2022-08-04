@@ -10,6 +10,8 @@ public class AmmoArea : UIBase
     [SerializeField]
     private Text expendBulletsText;
 
+    private readonly string AMMO_PARTICLE = "Prefabs/Effect/AmmoEffect";
+
     public override void Init()
     {
         mydataType = UIDataType.Ammo;
@@ -27,6 +29,11 @@ public class AmmoArea : UIBase
                 bullet.gameObject.SetActive(true);
             }
             expendBulletsText.text = (bulletCount - 5).ToString();
+
+            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, null);
+            Vector2 pos = bullets[bullets.Count - 1].transform.position;
+
+            particle.transform.position = pos;
         }
         else
         {
@@ -39,6 +46,14 @@ public class AmmoArea : UIBase
             {
                 bullets[i].gameObject.SetActive(true);
             }
+
+            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, null);
+
+            int idx = Mathf.Clamp(bulletCount - 1, 0, 4);
+
+            Vector2 pos = bullets[idx].transform.position;
+
+            particle.transform.position = pos;
 
             expendBulletsText.text = "";
         }
