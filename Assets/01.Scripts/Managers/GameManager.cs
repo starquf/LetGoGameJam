@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
     public SoundHandler soundHandler;
     [HideInInspector]
     public InGameUIHandler inGameUIHandler;
+    [HideInInspector]
+    public OptionHandler optionHandler;
 
     #endregion
 

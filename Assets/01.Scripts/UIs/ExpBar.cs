@@ -20,6 +20,9 @@ public class ExpBar : UIBase
 
     public override void SetData(string data)
     {
+        DOTween.Kill(expSlider);
+        DOTween.Kill(realFill);
+
         expSlider.DOValue(float.Parse(data.Trim()),.2f).OnComplete(()=>
         {
             realFill.DOSizeDelta(new Vector2(fill.rect.width, realFill.rect.height), .5f).SetEase(Ease.InQuart);

@@ -29,7 +29,7 @@ public class OptionHandler : Handler
 
     public override void OnAwake()
     {
-
+        GameManager.Instance.optionHandler = this;
     }
 
     public override void OnStart()
@@ -152,7 +152,7 @@ public class OptionHandler : Handler
             time += (Time.unscaledDeltaTime - time) * .1f;
             GUIStyle style = new GUIStyle(GUI.skin.label);
             style.alignment = TextAnchor.LowerLeft;
-            style.fontSize = 30;
+            style.fontSize = 25;
             style.normal.textColor = Color.green;
 
             float ms = time * 1000f;
