@@ -14,6 +14,7 @@ public class Effect : MonoBehaviour, IPoolableComponent
     public void Play(Vector2 pos)
     {
         transform.position = pos;
+        _particleSystem.Play();
     }
 
     public void Despawned()
@@ -29,5 +30,10 @@ public class Effect : MonoBehaviour, IPoolableComponent
     public void SetDisable()
     {
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+    }
+
+    private void OnParticleSystemStopped()
+    {
+        SetDisable();
     }
 }
