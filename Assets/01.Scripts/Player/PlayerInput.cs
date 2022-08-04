@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     public PlayerState playerState;
 
+    public Vector3 mousePos;
     public Vector2 moveDir;
 
     public bool isAttack;
@@ -21,6 +22,8 @@ public class PlayerInput : MonoBehaviour
             isAttack = false;
             return;
         }
+
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         switch (playerState)
         {
