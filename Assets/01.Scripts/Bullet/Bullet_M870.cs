@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_AWM : Bullet
+public class Bullet_M870 : Bullet
 {
     private Collider2D bulletCol;
-
-    private readonly string Shot_SFX_NAME = "SniperShot";
 
     protected void Start()
     {
@@ -22,7 +20,7 @@ public class Bullet_AWM : Bullet
 
     public override void Spawned()
     {
-        curSpeed = bulletSpeed;
+        currSpeed = bulletSpeed;
 
         StartCoroutine(BulletLifetime());
     }
@@ -38,7 +36,6 @@ public class Bullet_AWM : Bullet
     public void ColliderOn()
     {
         bulletCol.enabled = true;
-        GameManager.Instance.soundHandler.Play(Shot_SFX_NAME);
     }
 
 

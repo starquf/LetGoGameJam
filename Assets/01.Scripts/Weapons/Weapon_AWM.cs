@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon_AWM : Weapon
 {
     private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_AWM";
+ 
 
     public override void Shoot(Vector3 shootDir)
     {

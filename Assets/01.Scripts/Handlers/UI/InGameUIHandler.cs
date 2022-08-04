@@ -10,14 +10,16 @@ public class InGameUIHandler : Handler
     public override void OnAwake()
     {
         GameManager.Instance.inGameUIHandler = this;
+
+        foreach (var ui in uiItems)
+        {
+            ui.Init();
+        }
     }
 
     public override void OnStart()
     { 
-        foreach(var ui in uiItems)
-        {
-            ui.Init();
-        }
+
     }
 
     public void SendData(UIDataType dataType, string data)
