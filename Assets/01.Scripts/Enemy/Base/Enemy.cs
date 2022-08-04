@@ -13,10 +13,12 @@ public class Enemy : LivingEntity
 
     [SerializeField]private EnemyAttack enemyAttack;
     [HideInInspector]public Rigidbody2D rigid;
+    [HideInInspector] public SpriteRenderer sr;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void SetWeapon(Weapon weapon)
