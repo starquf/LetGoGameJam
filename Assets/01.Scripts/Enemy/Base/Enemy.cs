@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : LivingEntity, IPoolableComponent
 {
     private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
+    private const string RIP_PREFAB_PATH = "Prefabs/Object/RIP";
 
     public Color identityColor1;
     public Color identityColor2;
@@ -82,6 +83,8 @@ public class Enemy : LivingEntity, IPoolableComponent
         effect.Play();
 
         GameManager.Instance.soundHandler.Play("EnemyDead");
+
+        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
 
         GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
