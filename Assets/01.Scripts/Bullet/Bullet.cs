@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : PoolableComponent
+public class Bullet : MonoBehaviour, IPoolableComponent
 {
     private Rigidbody2D rb = null;
 
@@ -26,12 +26,12 @@ public class Bullet : PoolableComponent
         currSpeed = bulletSpeed;
     }
 
-    public override void Despawned()
+    public void Despawned()
     {
         ChangeState(BulletState.MoveForward);
     }
 
-    public override void Spawned()
+    public void Spawned()
     {
         currSpeed = bulletSpeed;
 
@@ -163,7 +163,5 @@ public class Bullet : PoolableComponent
     public void SetDisable()
     {
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
-
-        gameObject.SetActive(false);
     }
 }

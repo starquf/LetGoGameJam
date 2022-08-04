@@ -95,14 +95,22 @@ public class PursueAndAttack : EnemyState
 
     public override void Update()
     {
-        // 추적 로직
-        //LookPlayer();
-        PurseMove();
-
-        if (CanAttackPlayer())
+        if(myLivingEntity.IsDie)
         {
-            nextState = new Attack(myObj, myLivingEntity, myAnim, playerTrm);
+            nextState = new Dead(myObj, myLivingEntity, myAnim, playerTrm);
             curEvent = eEvent.EXIT;
+        }
+        else
+        {
+            // 추적 로직
+            //LookPlayer();
+            PurseMove();
+
+            if (CanAttackPlayer())
+            {
+                nextState = new Attack(myObj, myLivingEntity, myAnim, playerTrm);
+                curEvent = eEvent.EXIT;
+            }
         }
     }
 
@@ -144,9 +152,17 @@ public class Attack : EnemyState
 
     public override void Update()
     {
-        // 내 각도를 플레이어 방향으로 틀어줘야 함(feat. 스무스하게 돌려줘)
-        //LookPlayer();
-        AttackMove();
+        if (myLivingEntity.IsDie)
+        {
+            nextState = new Dead(myObj, myLivingEntity, myAnim, playerTrm);
+            curEvent = eEvent.EXIT;
+        }
+        else
+        {
+            // 내 각도를 플레이어 방향으로 틀어줘야 함(feat. 스무스하게 돌려줘)
+            //LookPlayer();
+            AttackMove();
+        }
     }
 
     private void AttackMove()
@@ -165,12 +181,12 @@ public class Attack : EnemyState
                 if (Random.Range(0, 5) > 0)
                 {
                     dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-                    Debug.Log(dir + "tlqkf");
+                    //Debug.Log(dir + "tlqkf");
                 }
                 else
                 {
                     dir = Vector2.zero;
-                    Debug.Log(dir + "tl");
+                    //Debug.Log(dir + "tl");
                 }
             }
             moveStartTime = Time.time;
@@ -204,6 +220,7 @@ public class Dead : EnemyState
         //myAnim.SetTrigger("isShooting");
         //shootEff.Play();
         base.Enter();
+        GameObjectPoolManager.Instance.UnusedGameObject(myLivingEntity.gameObject);
     }
     public override void Update()
     {

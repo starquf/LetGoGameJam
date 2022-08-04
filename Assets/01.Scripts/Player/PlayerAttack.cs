@@ -7,13 +7,10 @@ public class PlayerAttack : AttackBase
     protected int currentBullet;
 
     public PlayerInput playerInput;
-    private SpriteRenderer weaponRenderer;
 
     public override void Init(Weapon baseWeapon)
     {
         base.Init(baseWeapon);
-
-        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
         baseWeapon.isPlayer = true;
     }
 
@@ -22,20 +19,6 @@ public class PlayerAttack : AttackBase
         base.ChangeWeapon(weapon);
 
         weapon.isPlayer = true;
-    }
-
-    public override void LookDirection(Vector3 pos)
-    {
-        base.LookDirection(pos);
-
-        if(lookAngle > 90f || lookAngle < -90f)
-        {
-            weaponRenderer.flipY = true;
-        }
-        else
-        {
-            weaponRenderer.flipY = false;
-        }
     }
 
     private void Update()
