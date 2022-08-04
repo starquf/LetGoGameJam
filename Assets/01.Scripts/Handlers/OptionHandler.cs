@@ -8,21 +8,24 @@ public class OptionHandler : Handler
 {
     [SerializeField]
     private Dropdown resolutionDropDown;
-
     [SerializeField]
     private Dropdown screenDropDown;
-
     [SerializeField]
     private Toggle isShow;
-
     [SerializeField]
     private Slider masterSoundSlider;
     [SerializeField]
     private Slider bgmSlider;
     [SerializeField]
     private Slider sfxSlider;
+    [SerializeField]
+    private Button exitButton;
+
 
     private float time;
+
+    private bool isIngame = true;
+
 
     public override void OnAwake()
     {
@@ -106,6 +109,18 @@ public class OptionHandler : Handler
         sfxSlider.onValueChanged.AddListener((value) =>
         {
             GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, value);
+        });
+
+        exitButton.onClick.AddListener(() =>
+        {
+            if(isIngame)
+            {
+                //타이틀로
+            }
+            else
+            {
+                Application.Quit();
+            }
         });
 
 
