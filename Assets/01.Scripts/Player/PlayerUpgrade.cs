@@ -33,6 +33,8 @@ public class PlayerUpgrade : MonoBehaviour
             exp.SetDisable();
 
             AddExp(exp.expPoint);
+
+            GameManager.Instance.soundHandler.Play("GetExp");
         }
     }
 
