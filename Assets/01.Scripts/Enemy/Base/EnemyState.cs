@@ -220,10 +220,17 @@ public class Dead : EnemyState
         //myAnim.SetTrigger("isShooting");
         //shootEff.Play();
         base.Enter();
-        GameObjectPoolManager.Instance.UnusedGameObject(myLivingEntity.gameObject);
+        curEvent = eEvent.EXIT;
     }
     public override void Update()
     {
 
+    }
+    public override void Exit()
+    {
+        //myAnim.ResetTrigger("isShooting");
+        //shootEff.Stop();
+        base.Exit();
+        myLivingEntity.SetDisable();
     }
 }

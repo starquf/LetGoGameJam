@@ -15,34 +15,44 @@ public class Enemy : LivingEntity, IPoolableComponent
     [HideInInspector]public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
+    private EnemyAI enemyAI = null;
     private Weapon weapon = null;
     private SpriteRenderer weaponSr = null;
 
     public void Despawned()
     {
-
+        enemyAI.SetActive(false);
     }
 
-    public void Spawned()
+    public virtual void Spawned()
     {
+        Init();
         playerTrm = GameManager.Instance.playerTrm;
-        rigid = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        if (rigid == null)
+            rigid = GetComponent<Rigidbody2D>();
+        if (sr == null)
+            sr = GetComponent<SpriteRenderer>();
         enemyAttack.targetPos = playerTrm;
 
         weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
             canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
             enemyAttack.transform).GetComponent<Weapon>();
 
-        weaponSr = weapon.GetComponent<SpriteRenderer>();
+        if (weaponSr == null)
+            weaponSr = weapon.GetComponent<SpriteRenderer>();
         weapon.transform.SetParent(enemyAttack.transform);
         weapon.transform.localPosition = Vector3.right;
+        if(enemyAI == null)
+            enemyAI = GetComponent<EnemyAI>();
+        enemyAI.InitAI(this);
+
         SetWeapon(weapon);
         AttackStop();
     }
 
     public void SetWeapon(Weapon weapon)
     {
+        weapon.isPlayer = false;
         enemyAttack.Init(weapon);
     }
 
@@ -66,5 +76,18 @@ public class Enemy : LivingEntity, IPoolableComponent
     public void SetDisable()
     {
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        {
+            Bullet b = collision.GetComponent<Bullet>();
+            if(!b.isEnemyBullet)
+            {
+                GetDamage(b.bulletDamage);
+                if(--b.bulletPenetrate <= 0)
+                    b.SetDisable();
+            }
+        }
     }
 }

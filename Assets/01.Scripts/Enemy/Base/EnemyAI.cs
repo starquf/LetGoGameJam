@@ -8,12 +8,14 @@ public class EnemyAI : MonoBehaviour
     Animator myAnim;
 
     private Transform playerTrm;
+    private bool isActive = false;
 
     EnemyState curState;
 
-    private void Start()
+    public void InitAI(Enemy livingEntity)
     {
-        myLivingEntity = this.GetComponent<Enemy>();
+        isActive = true;
+        myLivingEntity = livingEntity;
         myAnim = this.GetComponent<Animator>();
         playerTrm = myLivingEntity.playerTrm;
 
@@ -22,6 +24,12 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        curState = this.curState.Process();
+        if(isActive)
+            curState = this.curState.Process();
+    }
+
+    public void SetActive(bool enable)
+    {
+        isActive = enable;
     }
 }
