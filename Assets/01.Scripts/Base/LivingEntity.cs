@@ -10,7 +10,8 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     [SerializeField] protected float hp;
     [SerializeField] protected float attackPower;
-    [SerializeField] protected float speed;
+    public float speed;
+    public float attakMoveSpeed;
 
     public float AttackPower
     {
