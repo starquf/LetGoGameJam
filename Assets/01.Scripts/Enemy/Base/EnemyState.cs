@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using Random = UnityEngine.Random;
 
 public class EnemyState
 {
@@ -27,7 +28,6 @@ public class EnemyState
 
     protected EnemyState nextState;  // 다음 상태를 나타냄
 
-    float attackDist = 7.0f;
     float rotationSpeed = 2.0f;
 
     public EnemyState(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
@@ -62,7 +62,7 @@ public class EnemyState
     public bool CanAttackPlayer()
     {
         float dist = Vector2.Distance(playerTrm.position, myObj.transform.position);
-        if (dist < attackDist)
+        if (dist < myLivingEntity.attackRange)
         {
             return true;
         }
@@ -90,7 +90,6 @@ public class PursueAndAttack : EnemyState
     public override void Enter()
     {
         //myAnim.SetTrigger("isRunning");
-        myLivingEntity.AttackStart();
         base.Enter();
     }
 
@@ -110,6 +109,8 @@ public class PursueAndAttack : EnemyState
     private void PurseMove()
     {
         Vector2 dir = (playerTrm.position - myObj.transform.position).normalized;
+        myLivingEntity.rigid.velocity = dir * myLivingEntity.speed;
+        myLivingEntity.sr.flipX = playerTrm.position.x - myObj.transform.position.x < 0;
 
         //Debug.LogWarning("움직임 구현좀");
     }
@@ -117,15 +118,14 @@ public class PursueAndAttack : EnemyState
     public override void Exit()
     {
         //myAnim.ResetTrigger("isRunning");
-        myLivingEntity.AttackStop();
         base.Exit();
     }
 }
 
 public class Attack : EnemyState
 {
-    float startTime;
-    //AudioSource shootEff;
+    float moveStartTime = 0;
+    Vector2 dir = Vector2.zero;
 
     public Attack(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
               : base(obj, livingEntity, anim, targetTrm)
@@ -147,25 +147,37 @@ public class Attack : EnemyState
         // 내 각도를 플레이어 방향으로 틀어줘야 함(feat. 스무스하게 돌려줘)
         //LookPlayer();
         AttackMove();
-
-        float shootStartTime = Time.time;
-        float stopStartTime = Time.time;
-        float curTime = Time.time;
-        if(stopStartTime>curTime - startTime)
-        {
-
-        }
-
-        // 공격범위 밖으로 나갈 시 다시 추격으로 전환
-        if (!CanAttackPlayer())
-        {
-            nextState = new PursueAndAttack(myObj, myLivingEntity, myAnim, playerTrm);
-            curEvent = eEvent.EXIT;
-        }
     }
 
     private void AttackMove()
     {
+        float curTime = Time.time;
+        if (!(Random.Range(1f, 3f) > curTime - moveStartTime))
+        {
+            // 공격범위 밖으로 나갈 시 다시 추격으로 전환
+            if (!CanAttackPlayer())
+            {
+                nextState = new PursueAndAttack(myObj, myLivingEntity, myAnim, playerTrm);
+                curEvent = eEvent.EXIT;
+            }
+            else
+            {
+                if (Random.Range(0, 5) > 0)
+                {
+                    dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                    Debug.Log(dir + "tlqkf");
+                }
+                else
+                {
+                    dir = Vector2.zero;
+                    Debug.Log(dir + "tl");
+                }
+            }
+            moveStartTime = Time.time;
+        }
+        myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+
+        myLivingEntity.sr.flipX = playerTrm.position.x - myObj.transform.position.x < 0;
         //Debug.LogWarning("움직임 구현좀");
     }
 

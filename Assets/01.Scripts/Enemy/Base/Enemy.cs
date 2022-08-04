@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Enemy : LivingEntity
 {
+    public float attackRange = 10f;
+
     public Vector2 expRange = Vector2.zero;
     public Vector2 enterScoreRange = Vector2.zero;
 
     public List<Weapon> canHaveWeapon = new List<Weapon>();
 
-    private EnemyAttack enemyAttack;
+    [SerializeField]private EnemyAttack enemyAttack;
+    [HideInInspector]public Rigidbody2D rigid;
+    [HideInInspector] public SpriteRenderer sr;
 
-    private void Start()
+    private void Awake()
     {
-        enemyAttack = GetComponent<EnemyAttack>();
+        rigid = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void SetWeapon(Weapon weapon)
