@@ -165,12 +165,12 @@ public class Attack : EnemyState
                 if (Random.Range(0, 5) > 0)
                 {
                     dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-                    Debug.Log(dir + "tlqkf");
+                    //Debug.Log(dir + "tlqkf");
                 }
                 else
                 {
                     dir = Vector2.zero;
-                    Debug.Log(dir + "tl");
+                    //Debug.Log(dir + "tl");
                 }
             }
             moveStartTime = Time.time;

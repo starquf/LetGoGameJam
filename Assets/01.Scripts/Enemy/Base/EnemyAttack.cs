@@ -13,6 +13,13 @@ public class EnemyAttack : AttackBase
     public float waitAttackDuration = 10f;
 
     private WaitForSeconds enemyShootWait = new WaitForSeconds(1f);
+    [HideInInspector]public Transform targetPos = null;
+
+    private void Update()
+    {
+        if(targetPos != null)
+            LookDirection(targetPos.position);
+    }
 
     public override void Init(Weapon baseWeapon)
     {
@@ -22,7 +29,6 @@ public class EnemyAttack : AttackBase
 
     protected override IEnumerator Shooting()
     {
-        bool isShootOnce = true;
 
         while (true)
         {
@@ -36,30 +42,16 @@ public class EnemyAttack : AttackBase
                 float curTime = Time.time;
                 if(attackDuration > curTime - shootStartTime)
                 {
-                    if (currentWeapon.isAuto)
-                    {
-                        currentWeapon.Shoot(transform.up);
+                    Vector3 dir = targetPos.position - transform.position;
+                    currentWeapon.Shoot(dir);
 
-                        yield return weaponShootWait;
-                    }
-                    else if (isShootOnce)
-                    {
-                        isShootOnce = false;
-
-                        currentWeapon.Shoot(transform.up);
-
-                        yield return weaponShootWait;
-                    }
+                    yield return weaponShootWait;
                 }
                 else
                 {
                     yield return enemyShootWait;
                     shootStartTime = Time.time;
                 }
-            }
-            else
-            {
-                isShootOnce = true;
             }
         }
     }

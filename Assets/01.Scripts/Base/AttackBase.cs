@@ -7,12 +7,14 @@ public abstract class AttackBase : MonoBehaviour
     protected Weapon baseWeapon;
     public Weapon currentWeapon;
 
+    protected SpriteRenderer weaponRenderer;
     protected float lookAngle;
 
     protected WaitForSeconds weaponShootWait = new WaitForSeconds(1f);
 
     public virtual void Init(Weapon baseWeapon)
     {
+        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
         this.baseWeapon = baseWeapon;
         currentWeapon = baseWeapon;
 
@@ -36,6 +38,15 @@ public abstract class AttackBase : MonoBehaviour
         lookAngle = angle;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (lookAngle > 90f || lookAngle < -90f)
+        {
+            weaponRenderer.flipY = true;
+        }
+        else
+        {
+            weaponRenderer.flipY = false;
+        }
     }
 
     protected abstract IEnumerator Shooting();

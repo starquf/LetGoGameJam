@@ -9,9 +9,10 @@ public class Enemy : LivingEntity
     public Vector2 expRange = Vector2.zero;
     public Vector2 enterScoreRange = Vector2.zero;
 
-    public List<Weapon> canHaveWeapon = new List<Weapon>();
+    public List<Weapon> canHaveWeaponList = new List<Weapon>();
 
-    [SerializeField]private EnemyAttack enemyAttack;
+    public Transform playerTrm;
+    [SerializeField]protected EnemyAttack enemyAttack;
     [HideInInspector]public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
@@ -19,6 +20,11 @@ public class Enemy : LivingEntity
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        enemyAttack.targetPos = playerTrm;
+        Weapon wp = Instantiate(canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)]);
+        wp.transform.SetParent(enemyAttack.transform);
+        wp.transform.localPosition = Vector3.right;
+        SetWeapon(wp);
     }
 
     public void SetWeapon(Weapon weapon)
