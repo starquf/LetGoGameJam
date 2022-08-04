@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 5778209891132143876}
   - component: {fileID: 5778209891132143875}
   - component: {fileID: 421259228023400012}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AirShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,9 +176,12 @@ MonoBehaviour:
   attakMoveSpeed: 1.5
   identityColor1: {r: 0.45490196, g: 0.6039216, b: 0.45882353, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
-  attackRange: 5
-  expRange: {x: 5, y: 10}
-  canHaveWeaponList: 0500000003000000
+  attackRange: 15
+  enterExpRange: {x: 0, y: 0}
+  dropExpInfo:
+    amount: 1
+    type: 0
+  canHaveWeaponList: 0100000003000000
   enemyAttack: {fileID: 5778209890832976753}
   playerTrm: {fileID: 0}
   rigid: {fileID: 0}
@@ -252,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6553850379410714471}
   - component: {fileID: 3395649180861863859}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
