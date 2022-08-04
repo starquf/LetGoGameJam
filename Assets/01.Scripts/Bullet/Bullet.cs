@@ -194,5 +194,11 @@ public class Bullet : MonoBehaviour, IPoolableComponent
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
             Hit(livingEntity);
         }
+
+        if (isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Player")))
+        {
+            LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
+            Hit(livingEntity);
+        }
     }
 }
