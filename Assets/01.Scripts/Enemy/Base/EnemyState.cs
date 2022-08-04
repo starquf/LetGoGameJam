@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class State
+public class EnemyState
 {
     public enum eState  // 가질 수 있는 상태 나열
     {
@@ -24,11 +24,11 @@ public class State
     protected Animator myAnim;
     protected Transform playerTrm;  // 타겟팅 할 플레이어의 트랜스폼
 
-    protected State nextState;  // 다음 상태를 나타냄
+    protected EnemyState nextState;  // 다음 상태를 나타냄
 
     float attackDist = 7.0f;
 
-    public State(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
+    public EnemyState(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
     {
         myObj = obj;
         myLivingEntity = livingEntity;
@@ -43,7 +43,7 @@ public class State
     public virtual void Update() { curEvent = eEvent.UPDATE; }
     public virtual void Exit() { curEvent = eEvent.EXIT; }
 
-    public State Process()
+    public EnemyState Process()
     {
         if (curEvent == eEvent.ENTER) Enter();
         if (curEvent == eEvent.UPDATE) Update();
@@ -69,7 +69,7 @@ public class State
     }
 }
 
-public class PursueAndAttack : State
+public class PursueAndAttack : EnemyState
 {
     public PursueAndAttack(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
               : base(obj, livingEntity, anim, targetTrm)
@@ -102,7 +102,7 @@ public class PursueAndAttack : State
     }
 }
 
-public class Attack : State
+public class Attack : EnemyState
 {
     float rotationSpeed = 2.0f;
     //AudioSource shootEff;

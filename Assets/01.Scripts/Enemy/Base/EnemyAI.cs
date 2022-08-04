@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     public Transform playerTrm;
 
-    State curState;
+    EnemyState curState;
 
     private void Start()
     {
