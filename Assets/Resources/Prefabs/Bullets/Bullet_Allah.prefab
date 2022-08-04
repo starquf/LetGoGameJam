@@ -101,7 +101,7 @@ MonoBehaviour:
   enemyBulletSpr: {fileID: -5293777052587525329, guid: aa15fbead65c7954b8d3ce6357d0927c, type: 3}
   bulletDamage: 5
   bulletPenetrate: 1
-  bulletSpeed: 5
+  bulletSpeed: 8
   curSpeed: 5
   lifeTime: 2
   isEnemyBullet: 0
