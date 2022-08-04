@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : PoolableComponent
 {
     private Rigidbody2D rb = null;
 
@@ -20,16 +20,18 @@ public class Bullet : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    protected void OnEnable()
-    {
         currSpeed = bulletSpeed;
     }
 
-    protected void OnDisable()
+    public override void Despawned()
     {
         ChangeState(BulletState.MoveForward);
+    }
+
+    public override void Spawned()
+    {
+        currSpeed = bulletSpeed;
     }
 
     protected void FixedUpdate()
