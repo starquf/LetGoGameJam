@@ -103,8 +103,10 @@ MonoBehaviour:
   collectionRate: 1
   isAuto: 0
   isPlayer: 1
+  offset: 0.5
   weaponType: 3
   shootPos: {fileID: 1621244696751091155}
+  sr: {fileID: 0}
 --- !u!1 &1621244696751091156
 GameObject:
   m_ObjectHideFlags: 0
