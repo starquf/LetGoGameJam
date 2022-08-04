@@ -71,6 +71,7 @@ public class RIP : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
+        seq.Kill();
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
 }
