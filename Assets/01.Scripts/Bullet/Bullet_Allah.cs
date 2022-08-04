@@ -12,7 +12,7 @@ public class Bullet_Allah : Bullet
 
     public override void Spawned()
     {
-        currSpeed = bulletSpeed;
+        curSpeed = bulletSpeed;
 
         StartCoroutine(BulletLifetime());
     }

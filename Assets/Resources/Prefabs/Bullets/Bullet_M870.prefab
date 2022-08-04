@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBulletSpr: {fileID: -7056839204641673906, guid: fb6f24026cbaf244b96e16f31b053360, type: 3}
-  EnemyBulletSpr: {fileID: 8665336741224742418, guid: fb6f24026cbaf244b96e16f31b053360, type: 3}
+  enemyBulletSpr: {fileID: -7075827890854612580, guid: fb6f24026cbaf244b96e16f31b053360, type: 3}
   bulletDamage: 1
+  bulletPenetrate: 1
   bulletSpeed: 0
   lifeTime: 3
   isEnemyBullet: 0

@@ -6,17 +6,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IPoolableComponent
 {
     private Rigidbody2D rb = null;
+    private SpriteRenderer sr = null;
 
     private BulletState currentState = BulletState.MoveForward;
 
     public Sprite playerBulletSpr;
-    public Sprite EnemyBulletSpr;
+    public Sprite enemyBulletSpr;
 
     public float bulletDamage = 1f;
 
     public int bulletPenetrate = 1;
     public float bulletSpeed = 30f;
-    protected float currSpeed = 0f;
+    protected float curSpeed = 0f;
 
     public float lifeTime = 3f;
 
@@ -26,18 +27,28 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
-        currSpeed = bulletSpeed;
+        //curSpeed = bulletSpeed;
+    }
+
+    public virtual void SetOwner(bool isEnemy)
+    {
+        print("tlqkaaaaaa");
+        isEnemyBullet = isEnemy;
+        sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
+        curSpeed = isEnemyBullet ? bulletSpeed * 0.7f : bulletSpeed;
+        ChangeState(BulletState.MoveForward);
     }
 
     public virtual void Despawned()
     {
-        ChangeState(BulletState.MoveForward);
+        ChangeState(BulletState.Stop);
     }
 
     public virtual void Spawned()
     {
-        currSpeed = bulletSpeed;
+        curSpeed = bulletSpeed;
 
         StartCoroutine(BulletLifetime());
     }
@@ -50,7 +61,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected virtual void BulletMove()
     {
-        rb.velocity = transform.right * currSpeed;
+        rb.velocity = transform.right * curSpeed;
     }
 
     protected virtual void CheckTransform()     // 화면 밖으로 나갔는가?
@@ -139,22 +150,22 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public virtual void ChangeSpeed(float value)
     {
-        currSpeed = value;
+        curSpeed = value;
     }
 
     public virtual void ChangeSpeed(float value, float t)
     {
-        StartCoroutine(Timer(() => currSpeed = value, t));
+        StartCoroutine(Timer(() => curSpeed = value, t));
     }
 
     public virtual void PlusSpeed(float value)
     {
-        currSpeed += value;
+        curSpeed += value;
     }
 
     public virtual void PlusSpeed(float value, float t)
     {
-        StartCoroutine(Timer(() => currSpeed += value, t));
+        StartCoroutine(Timer(() => curSpeed += value, t));
     }
     #endregion
 

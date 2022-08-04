@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBulletSpr: {fileID: 1044693652573367632, guid: aa15fbead65c7954b8d3ce6357d0927c, type: 3}
-  EnemyBulletSpr: {fileID: -5293777052587525329, guid: aa15fbead65c7954b8d3ce6357d0927c, type: 3}
+  enemyBulletSpr: {fileID: -5293777052587525329, guid: aa15fbead65c7954b8d3ce6357d0927c, type: 3}
   bulletDamage: 5
-  bulletSpeed: 5
+  bulletPenetrate: 1
+  bulletSpeed: 0
   lifeTime: 2
   isEnemyBullet: 0
 --- !u!50 &2141344756290157540

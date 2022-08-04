@@ -10,7 +10,7 @@ public class Weapon_MP7 : Weapon
     {
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.isEnemyBullet = !isPlayer;
+        bullet.SetOwner(!isPlayer);
 
         bulletObj.transform.position = shootPos.position;
         bullet.ChangeDir(shootDir.normalized);

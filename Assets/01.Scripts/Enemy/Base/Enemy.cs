@@ -17,7 +17,6 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     private EnemyAI enemyAI = null;
     private Weapon weapon = null;
-    private SpriteRenderer weaponSr = null;
 
     public void Despawned()
     {
@@ -37,9 +36,6 @@ public class Enemy : LivingEntity, IPoolableComponent
         weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
             canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
             enemyAttack.transform).GetComponent<Weapon>();
-
-        if (weaponSr == null)
-            weaponSr = weapon.GetComponent<SpriteRenderer>();
         weapon.transform.SetParent(enemyAttack.transform);
         weapon.transform.localPosition = Vector3.right;
         if(enemyAI == null)
@@ -58,14 +54,12 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public virtual void AttackStart()
     {
-        weaponSr.color = Color.white;
         enemyAttack.isAttacking = true;
         enemyAttack.shootStartTime = Time.time;
     }
     public virtual void AttackStop()
     {
         enemyAttack.isAttacking = false;
-        weaponSr.color = Color.clear;
     }
 
     public override void SetHPUI()
@@ -75,6 +69,7 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
+        GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
