@@ -4,26 +4,19 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField]
-    protected float damage;
-    [SerializeField]
-    protected int maxBullet;
+    public float damage = 1f;
+    public int maxBullet = 5;
 
-    [SerializeField]
-    protected float fireInterval;
-    [SerializeField]
-    protected float collectionRate;
+    public float fireRate = 0f;
+    public float collectionRate = 0f;
 
-    [SerializeField]
-    protected bool isAuto = false;
+    public bool isAuto = false;
 
-    [SerializeField]
-    protected bool isPlayer = false;
+    public bool isPlayer = false;
 
-    public void Init(bool isPlayer)
-    {
-        this.isPlayer = isPlayer;
-    }
+    public WeaponType weaponType;
 
-    public abstract void Shoot();
+    public Transform shootPos;
+
+    public abstract void Shoot(Vector2 shootDir);
 }

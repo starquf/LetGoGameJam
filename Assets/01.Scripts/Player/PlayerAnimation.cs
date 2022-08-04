@@ -23,11 +23,16 @@ public class PlayerAnimation : MonoBehaviour
 
     private void UpdatePlayerAnimation()
     {
-        moveVec = playerInput.moveDir.normalized;
-        anim.SetFloat("AnimMoveX", moveVec.x);
-        anim.SetFloat("AnimMoveY", moveVec.y);
-        anim.SetFloat("AnimMoveMagnitude", moveVec.magnitude);
+        if (playerInput.isDie)
+        {
+            anim.SetTrigger("onDie");
+            return;
+        }
 
+        moveVec = playerInput.moveDir.normalized;
+        anim.SetFloat("MoveX", moveVec.x);
+        anim.SetFloat("MoveY", moveVec.y);
+        anim.SetBool("isAttack", playerInput.isAttack);
         if (playerInput.mousePos.x < 0)
         {
             myRenderer.flipX = true;
@@ -36,5 +41,6 @@ public class PlayerAnimation : MonoBehaviour
         {
             myRenderer.flipX = false;
         }
+
     }
 }
