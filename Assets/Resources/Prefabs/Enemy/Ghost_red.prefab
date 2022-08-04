@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7608200981193411229}
   - component: {fileID: -3405511271640284883}
   - component: {fileID: -1708233009549276007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,10 @@ MonoBehaviour:
   identityColor1: {r: 0.53333336, g: 0.20784314, b: 0.19215687, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 5
-  expRange: {x: 5, y: 10}
+  enterExpRange: {x: 0, y: 0}
+  dropExpInfo:
+    amount: 1
+    type: 0
   canHaveWeaponList: 00000000
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}
@@ -242,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 77251270535195362}
   - component: {fileID: 7867310526047021821}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

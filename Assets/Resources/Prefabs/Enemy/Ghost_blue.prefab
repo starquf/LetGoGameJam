@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5230106457222432728}
   - component: {fileID: -8681191681699453030}
   - component: {fileID: -1027126243953919984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,10 @@ MonoBehaviour:
   identityColor1: {r: 0.42352942, g: 0.7137255, b: 0.8117647, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 5
-  expRange: {x: 5, y: 10}
+  enterExpRange: {x: 0, y: 0}
+  dropExpInfo:
+    amount: 1
+    type: 0
   canHaveWeaponList: 00000000
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}
@@ -242,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5225493788354928042}
   - component: {fileID: 3868283508590248381}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

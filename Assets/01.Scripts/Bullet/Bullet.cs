@@ -180,4 +180,19 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         StopAllCoroutines();
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
+
+    protected virtual void Hit(LivingEntity hitEntity)
+    {
+        hitEntity.GetDamage(bulletDamage);
+
+        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+    }
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((!isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Enemy")))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
+        {
+            LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
+            Hit(livingEntity);
+        }
+    }
 }
