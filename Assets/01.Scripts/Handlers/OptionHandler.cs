@@ -93,12 +93,40 @@ public class OptionHandler : Handler
             Screen.SetResolution(Screen.width, Screen.height, isfull);
         });
 
+        masterSoundSlider.onValueChanged.AddListener((value) =>
+        {
+            GameManager.Instance.soundHandler.VolumeControl(AudioType.MASTER, value);
+        });
+
+        bgmSlider.onValueChanged.AddListener((value) =>
+        {
+            GameManager.Instance.soundHandler.VolumeControl(AudioType.BGM, value);
+        });
+
+        sfxSlider.onValueChanged.AddListener((value) =>
+        {
+            GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, value);
+        });
+
 
         isShow.isOn = false;
+
         resolutionDropDown.value = 4;
+
         screenDropDown.value = 0;
+
+        QualitySettings.vSyncCount = 0;
+
         Screen.SetResolution(1920, 1080, true);
+
         Application.targetFrameRate = 60;
+
+        masterSoundSlider.value = -20f;
+        bgmSlider.value = -20f;
+        sfxSlider.value = -20f;
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.MASTER, -20f);
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.BGM, -20f);
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, -20f);
     }
 
 
