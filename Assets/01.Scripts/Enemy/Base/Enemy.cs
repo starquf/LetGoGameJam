@@ -83,6 +83,7 @@ public class Enemy : LivingEntity, IPoolableComponent
 
         GameManager.Instance.soundHandler.Play("EnemyDead");
 
+        GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
