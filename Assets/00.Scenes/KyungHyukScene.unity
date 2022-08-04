@@ -1615,6 +1615,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af024d0b26330d4d8453e80545d3764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavePlusEnemyAmount: 3
+  defaultwaveEnemyAmount: 5
+  waveTimer: 10
+  spawnWaitTimerRange: {x: 0.1, y: 0.3}
   enemyInfos:
   - enterMinScore: 0
     enterMaxScore: 1000
@@ -1631,6 +1635,9 @@ MonoBehaviour:
   - enterMinScore: 0
     enterMaxScore: 1000
     enemyList: 07000000
+  - enterMinScore: 0
+    enterMaxScore: 1000
+    enemyList: 08000000
   spawnPositionTransformList:
   - {fileID: 392284464}
   - {fileID: 890577807}

@@ -10,6 +10,7 @@ public enum enemyType
     Poo,
     MagnetBoomber,
     WaddleDee,
+    AirShip,
 }
 
 [System.Serializable]
