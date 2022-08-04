@@ -9,10 +9,12 @@ public class Weapon_RazerPistol : Weapon
     public override void Shoot(Vector3 shootDir)
     {
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.isEnemyBullet = !isPlayer;
 
         bulletObj.transform.position = shootPos.position;
 
-        bulletObj.GetComponent<Bullet>().ChangeDir(shootDir.normalized);
+        bullet.ChangeDir(shootDir.normalized);
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
 

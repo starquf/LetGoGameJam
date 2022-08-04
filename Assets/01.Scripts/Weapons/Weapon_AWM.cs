@@ -11,6 +11,7 @@ public class Weapon_AWM : Weapon
         print("슛");
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.isEnemyBullet = !isPlayer;
 
         bullet.transform.position = shootPos.position;
 
