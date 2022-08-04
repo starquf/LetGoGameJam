@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Weapon_AWM : Weapon
 {
-    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet";
+    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_AWM";
 
     public override void Shoot(Vector3 shootDir)
     {
+        print("슛");
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 

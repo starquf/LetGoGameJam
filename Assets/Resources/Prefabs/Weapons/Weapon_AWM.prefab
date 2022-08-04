@@ -99,7 +99,7 @@ MonoBehaviour:
   shotSFXName: SniperShot
   damage: 5
   maxBullet: 5
-  fireRate: 0
+  fireRate: 1
   collectionRate: 1
   isAuto: 0
   isPlayer: 1

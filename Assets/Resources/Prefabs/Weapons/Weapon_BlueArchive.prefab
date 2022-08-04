@@ -99,8 +99,8 @@ MonoBehaviour:
   shotSFXName: ShotgunShot
   damage: 5
   maxBullet: 5
-  fireRate: 0
-  collectionRate: 0.5
+  fireRate: 1
+  collectionRate: 1
   isAuto: 0
   isPlayer: 0
   weaponType: 4

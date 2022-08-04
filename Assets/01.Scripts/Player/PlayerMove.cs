@@ -10,6 +10,11 @@ public class PlayerMove : MonoBehaviour
 
     public float moveSpeed = 5f;
 
+    private void Awake()
+    {
+        GameManager.Instance.playerTrm = transform;
+    }
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
