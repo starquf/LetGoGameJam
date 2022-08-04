@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class HpArea : UIBase
 {
@@ -12,6 +13,11 @@ public class HpArea : UIBase
     {
         mydataType = UIDataType.Hp;
         hearts = GetComponentsInChildren<Image>().ToList();
+
+        foreach(var heart in hearts)
+        {
+            heart.transform.DOScale(new Vector3(1.3f, 1.3f, 0), .5f).SetEase(Ease.OutBounce).SetLoops(-1, LoopType.Yoyo);
+        }
     }
 
     public override void SetData(string data)
