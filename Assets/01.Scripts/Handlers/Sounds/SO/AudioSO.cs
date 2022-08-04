@@ -7,6 +7,7 @@ public enum AudioType
     MASTER,
     BGM,
     SFX,
+    LOOPSFX,
     MaxCount
 }
 

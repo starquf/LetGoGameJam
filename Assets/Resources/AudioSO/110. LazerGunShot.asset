@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aef36e4abc666749ac327be972a8df1, type: 3}
-  m_Name: RPGShot
+  m_Name: 110
   m_EditorClassIdentifier: 
-  audioName: RPGShot
+  audioName: LazerGunShot
   audioType: 2
-  clip: {fileID: 8300000, guid: 6cd34241eb52a744c96a064a6f61f6f9, type: 3}
+  clip: {fileID: 8300000, guid: 6b128f2a72d188a4e8369a0e55f43d00, type: 3}
