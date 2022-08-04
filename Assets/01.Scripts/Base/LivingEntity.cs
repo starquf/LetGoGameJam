@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public abstract class LivingEntity : MonoBehaviour, IDamageable
 {
@@ -10,8 +11,11 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     [SerializeField] protected float hp;
     [SerializeField] protected float attackPower;
+    [HideInInspector] public Rigidbody2D rigid;
     public float speed;
     public float attakMoveSpeed;
+
+
 
     public float AttackPower
     {
@@ -82,6 +86,8 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         SetHPUI();
     }
 
+
+
     public virtual void Heal(int value) //value 만큼 회복합니다.
     {
         hp += value;
@@ -100,5 +106,6 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
     {
         hp = 0;
         isDie = true;
+        StopAllCoroutines();
     }
 }

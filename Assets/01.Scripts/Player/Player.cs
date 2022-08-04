@@ -5,9 +5,17 @@ using UnityEngine;
 public class Player : LivingEntity
 {
 
+    private const string RIP_PREFAB_PATH = "Prefabs/Object/RIP";
+
     [HideInInspector] public PlayerInput playerInput;
-    [HideInInspector] public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
+
+    private readonly Color color_Trans = new Color(1f, 1f, 1f, 0.3f);
+    private readonly WaitForSeconds colorWait = new WaitForSeconds(0.2f);
+
+    private float hitCool = 0.5f;
+    private float lastHitTime = 0f;
+    private bool isHitted = false;
 
     private void Start()
     {
@@ -21,6 +29,14 @@ public class Player : LivingEntity
             playerInput = GetComponent<PlayerInput>();
     }
 
+    private void Update()
+    {
+        if(Time.time - lastHitTime > hitCool)
+        {
+            isHitted = false;
+        } 
+    }
+
     public override void SetHPUI()
     {
         print(hp);
@@ -29,24 +45,51 @@ public class Player : LivingEntity
 
     public override void GetDamage(float damage)
     {
-        if (isDie) //이미 죽었거나 무적 상태라면
+        if (isDie || isHitted) //이미 죽었거나 무적 상태라면
         {
             return;
         }
+        
+        isHitted = true;
+        lastHitTime = Time.time;
 
         hp -= 1f;
 
+        StartCoroutine(Blinking());
         if (hp <= 0)
         {
             Die();
         }
-
         SetHPUI();
     }
+
+    private IEnumerator Blinking()
+    {
+        while (true)
+        {
+
+            if (isHitted == false)
+            {
+                yield break;
+            }
+
+            yield return colorWait;
+            sr.color = color_Trans;
+            yield return colorWait;
+            sr.color = Color.white;
+
+
+        }
+    }
+
+ 
 
     protected override void Die()
     {
         base.Die();
+        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
+        gameObject.SetActive(false);
+
 
         //playerInput.isDie = true;
     }

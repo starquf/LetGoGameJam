@@ -184,7 +184,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     protected virtual void Hit(LivingEntity hitEntity)
     {
         hitEntity.GetDamage(bulletDamage);
-
+        print(rb.velocity);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)

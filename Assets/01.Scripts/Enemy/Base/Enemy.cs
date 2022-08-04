@@ -22,7 +22,6 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     [SerializeField]protected EnemyAttack enemyAttack;
     [HideInInspector] public Transform playerTrm;
-    [HideInInspector]public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
     private EnemyAI enemyAI = null;
