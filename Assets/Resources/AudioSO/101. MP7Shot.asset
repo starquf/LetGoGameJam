@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aef36e4abc666749ac327be972a8df1, type: 3}
-  m_Name: GetWeapon
+  m_Name: 101
   m_EditorClassIdentifier: 
-  audioName: GetWeapon
+  audioName: MP7Shot
   audioType: 2
-  clip: {fileID: 8300000, guid: cf1fe840a086dde43b705568c1f7459f, type: 3}
+  clip: {fileID: 8300000, guid: cfa7dc30fc8a2f8449e096473435cd7c, type: 3}

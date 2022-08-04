@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aef36e4abc666749ac327be972a8df1, type: 3}
-  m_Name: DropWeapon
+  m_Name: 100
   m_EditorClassIdentifier: 
-  audioName: DropWeapon
+  audioName: PistolShot
   audioType: 2
-  clip: {fileID: 8300000, guid: 6b30769b138d45b418e98720c3387219, type: 3}
+  clip: {fileID: 8300000, guid: 6ca4e09bedd9ba74880cbc7e623a13ee, type: 3}
