@@ -99,7 +99,7 @@ MonoBehaviour:
   shotSFXName: RazerPistolShot
   damage: 5
   maxBullet: 5
-  fireRate: 0
+  fireRate: 2
   collectionRate: 0.15
   isAuto: 0
   isPlayer: 1
