@@ -170,7 +170,7 @@ MonoBehaviour:
   maxBullet: 0
   fireRate: 0.5
   collectionRate: 0
-  isAuto: 1
+  isAuto: 0
   isPlayer: 1
   weaponType: 0
 --- !u!1 &409571240
@@ -298,9 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
+  mousePos: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0}
-  isAttackDown: 0
-  isAttackUp: 0
+  isAttack: 0
   isSwitchWeapon: 0
   isDie: 0
 --- !u!1 &562623365

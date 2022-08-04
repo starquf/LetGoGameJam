@@ -29,15 +29,11 @@ public class PlayerInput : MonoBehaviour
         {
             case PlayerState.Idle:
             case PlayerState.Move:
-                moveDir.x = Input.GetAxisRaw("Horizontal");
-                moveDir.y = Input.GetAxisRaw("Vertical");
-                isSwitchWeapon = Input.GetButtonDown("Switching");
-                isAttack = Input.GetButtonDown("Fire1");
-                break;
             case PlayerState.Attack:
                 moveDir.x = Input.GetAxisRaw("Horizontal");
                 moveDir.y = Input.GetAxisRaw("Vertical");
                 isSwitchWeapon = Input.GetButtonDown("Switching");
+                isAttack = Input.GetButton("Fire1");
                 break;
             case PlayerState.Die:
                 break;

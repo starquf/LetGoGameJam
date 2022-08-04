@@ -29,7 +29,7 @@ public class PlayerAttack : AttackBase
 
     protected override IEnumerator Shooting()
     {
-        bool isShoot = true;
+        bool isShootOnce = true;
 
         while (true)
         {
@@ -38,22 +38,24 @@ public class PlayerAttack : AttackBase
             if (currentWeapon == null)
                 continue;
 
-            if (playerInput.isAttack && isShoot)
+            if (playerInput.isAttack)
             {
-                print("마우스 누름");
-
-                currentWeapon.Shoot(playerInput.mousePos);
-
                 if (currentWeapon.isAuto)
                 {
-                    isShoot = true;
-                }
-                else
-                {
-                    isShoot = false;
-                }
+                    currentWeapon.Shoot(playerInput.mousePos);
 
-                yield return weaponShootWait;
+                    yield return weaponShootWait;
+                }
+                else if(isShootOnce)
+                {
+                    isShootOnce = false;
+
+                    currentWeapon.Shoot(playerInput.mousePos);
+                }
+            }
+            else
+            {
+                isShootOnce = true;
             }
         }
     }
