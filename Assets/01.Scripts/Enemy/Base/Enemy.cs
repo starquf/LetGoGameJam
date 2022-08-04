@@ -7,12 +7,11 @@ public class Enemy : LivingEntity, IPoolableComponent
     public float attackRange = 10f;
 
     public Vector2 expRange = Vector2.zero;
-    public Vector2 enterScoreRange = Vector2.zero;
 
-    public List<Weapon> canHaveWeaponList = new List<Weapon>();
+    public List<WeaponType> canHaveWeaponList = new List<WeaponType>();
 
-    public Transform playerTrm;
     [SerializeField]protected EnemyAttack enemyAttack;
+    [HideInInspector] public Transform playerTrm;
     [HideInInspector]public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
@@ -26,15 +25,20 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void Spawned()
     {
+        playerTrm = GameManager.Instance.playerTrm;
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         enemyAttack.targetPos = playerTrm;
-        weapon = Instantiate(canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)]);
+
+        weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
+            canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
+            enemyAttack.transform).GetComponent<Weapon>();
+
         weaponSr = weapon.GetComponent<SpriteRenderer>();
         weapon.transform.SetParent(enemyAttack.transform);
         weapon.transform.localPosition = Vector3.right;
-        AttackStop();
         SetWeapon(weapon);
+        AttackStop();
     }
 
     public void SetWeapon(Weapon weapon)

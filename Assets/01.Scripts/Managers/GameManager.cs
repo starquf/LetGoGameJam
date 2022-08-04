@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    [HideInInspector]
+    public Transform playerTrm;
+    [HideInInspector]
+    public int Score => score;
+    private int score;
+
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
     {

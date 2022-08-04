@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4126387410553631648}
   - component: {fileID: 4126387410553631651}
   - component: {fileID: 4721018777564721556}
-  - component: {fileID: -3778304594927849507}
-  - component: {fileID: 4365297035605969141}
-  - component: {fileID: 1831896743781937413}
+  - component: {fileID: -5230106457222432728}
+  - component: {fileID: -8681191681699453030}
+  - component: {fileID: -1027126243953919984}
   m_Layer: 0
-  m_Name: Ghost_pink
+  m_Name: Ghost_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2205440430153107873, guid: ff2cc59e3a6c5bc4d9e707eba05467de, type: 3}
+  m_Sprite: {fileID: -5899927303015767666, guid: ff2cc59e3a6c5bc4d9e707eba05467de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 4126387410553631650}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 653bb79323a82574f8b3d2c7dfc16294, type: 2}
+  m_Controller: {fileID: 9100000, guid: 594664c0b33dad24ea30b1b2056005a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -127,10 +127,12 @@ MonoBehaviour:
   attackRange: 5
   expRange: {x: 5, y: 10}
   enterScoreRange: {x: 0, y: 10000}
-  canHaveWeapon: []
+  canHaveWeaponList: 00000000
   enemyAttack: {fileID: 5323490665515464845}
+  playerTrm: {fileID: 0}
   rigid: {fileID: 0}
---- !u!114 &-3778304594927849507
+  sr: {fileID: 0}
+--- !u!114 &-5230106457222432728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,8 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db7e92c3a98c5429151c4b08dcdc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTrm: {fileID: 0}
---- !u!50 &4365297035605969141
+--- !u!50 &-8681191681699453030
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1831896743781937413
+--- !u!58 &-1027126243953919984
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +175,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -228,3 +229,4 @@ MonoBehaviour:
   shootStartTime: 0
   attackDuration: 5
   waitAttackDuration: 10
+  targetPos: {fileID: 0}
