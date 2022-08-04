@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         playerAxis = playerInput.moveDir.normalized;
         playerInput.playerState = PlayerState.Move;

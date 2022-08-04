@@ -16,10 +16,7 @@ public abstract class Weapon : MonoBehaviour
 
     public WeaponType weaponType;
 
-    public void Init(bool isPlayer)
-    {
-        this.isPlayer = isPlayer;
-    }
+    public Transform shootPos;
 
     public abstract void Shoot(Vector2 shootDir);
 }
