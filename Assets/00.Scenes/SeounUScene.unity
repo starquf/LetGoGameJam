@@ -723,6 +723,7 @@ MonoBehaviour:
   playerTrm: {fileID: 0}
   soundHandler: {fileID: 0}
   inGameUIHandler: {fileID: 0}
+  optionHandler: {fileID: 0}
 --- !u!4 &679759812
 Transform:
   m_ObjectHideFlags: 0

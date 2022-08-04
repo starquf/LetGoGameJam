@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class RIP : LivingEntity
 {
+    private const string DUST_PATH = "Prefabs/Effect/RIPDustEffect";
+
     private const float DROP_CORRECTION = 1f;
     private const float TWEEN_DURATION = 0.3f;
 
@@ -33,7 +35,11 @@ public class RIP : LivingEntity
 
         transform.position = new Vector2(pos.x, pos.y + DROP_CORRECTION);
 
-        if(seq != null)
+        RIPDustEffect effect = GameObjectPoolManager.Instance.GetGameObject(DUST_PATH, null).GetComponent<RIPDustEffect>();
+        effect.SetPosition(pos);
+        effect.Play();
+
+        if (seq != null)
         {
             seq.Kill();
         }
@@ -43,6 +49,7 @@ public class RIP : LivingEntity
         seq.Append(transform.DOMoveY(pos.y, TWEEN_DURATION).SetEase(Ease.InExpo));
         seq.AppendCallback(() => {
             sr.sprite = ripSprite;
+
             GameManager.Instance.soundHandler.Play("RIPDrop");
         });
     }

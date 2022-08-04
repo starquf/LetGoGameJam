@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public virtual void SetOwner(bool isEnemy)
     {
-        print("tlqkaaaaaa");
+        //print("tlqkaaaaaa");
         isEnemyBullet = isEnemy;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
         curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
