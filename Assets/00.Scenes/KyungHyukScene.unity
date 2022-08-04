@@ -383,22 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26dc8d007cef88e4eb6c1f709002b61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyInfos:
-  - enterMinScore: 0
-    enterMaxScore: 0
-    enemyList: 00000000010000000200000003000000
-  - enterMinScore: 0
-    enterMaxScore: 0
-    enemyList: 04000000
-  - enterMinScore: 0
-    enterMaxScore: 0
-    enemyList: 05000000
-  - enterMinScore: 0
-    enterMaxScore: 0
-    enemyList: 06000000
-  - enterMinScore: 0
-    enterMaxScore: 0
-    enemyList: 07000000
 --- !u!1 &392284463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1644,7 @@ MonoBehaviour:
   - {fileID: 969622013}
   - {fileID: 614812366}
   - {fileID: 1768097406}
-  nextWaveSpawnPositionTransform: {fileID: 0}
+  nextWaveSpawnPositionTransform: {fileID: 392284464}
 --- !u!1 &1768097405
 GameObject:
   m_ObjectHideFlags: 0

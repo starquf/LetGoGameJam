@@ -16,6 +16,11 @@ public class StageHandler : MonoBehaviour
     }
     private eWaveState state;
 
+    public int wavePlusEnemyAmount = 3;
+    public int defaultwaveEnemyAmount = 5;
+    public float waveTimer = 10f;
+    public Vector2 spawnWaitTimerRange = new Vector2(0.1f, 0.3f);
+
 
     // 2 웨이브 넘버에 따른 관련 변수들
     private int waveNumber; // 웨이브 숫자는 시간이 갈 수록 증가함
@@ -100,7 +105,7 @@ public class StageHandler : MonoBehaviour
                             // spawnPosition = spawnPositionTransform.position;
                             //SetRandomSpawnPos();
 
-                            nextWaveSpawnTimer = 10f;   // 이런값들은 외부시트로 관리
+                            nextWaveSpawnTimer = waveTimer;   // 이런값들은 외부시트로 관리
                         }
                     }
                 }
@@ -126,7 +131,7 @@ public class StageHandler : MonoBehaviour
     private void SpawnWave()
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
-        remainingEnemySpawnAmount = 5 + 3 * waveNumber;     // 이런값들은 외부시트로 관리
+        remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber;     // 이런값들은 외부시트로 관리
 
         state = eWaveState.SpawningWave;
         waveNumber++;
