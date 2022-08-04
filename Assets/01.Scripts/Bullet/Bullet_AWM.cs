@@ -7,9 +7,8 @@ public class Bullet_AWM : Bullet
 {
     private Collider2D bulletCol;
 
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
         bulletCol = GetComponent<Collider2D>();
     }
 

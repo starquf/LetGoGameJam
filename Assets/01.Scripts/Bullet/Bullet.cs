@@ -26,12 +26,12 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         currSpeed = bulletSpeed;
     }
 
-    public void Despawned()
+    public virtual void Despawned()
     {
         ChangeState(BulletState.MoveForward);
     }
 
-    public void Spawned()
+    public virtual void Spawned()
     {
         currSpeed = bulletSpeed;
 
