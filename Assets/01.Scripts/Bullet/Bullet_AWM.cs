@@ -7,6 +7,8 @@ public class Bullet_AWM : Bullet
 {
     private Collider2D bulletCol;
 
+    private readonly string Shot_SFX_NAME = "SniperShot";
+
     protected void Start()
     {
         bulletCol = GetComponent<Collider2D>();
@@ -36,6 +38,7 @@ public class Bullet_AWM : Bullet
     public void ColliderOn()
     {
         bulletCol.enabled = true;
+        GameManager.Instance.soundHandler.Play(Shot_SFX_NAME);
     }
 
 
