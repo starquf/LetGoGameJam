@@ -200,9 +200,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   maxBullet: 0
-  fireRate: 0.15
+  fireRate: 0.01
   collectionRate: 10
-  isAuto: 1
+  isAuto: 0
   isPlayer: 1
   weaponType: 0
   shootPos: {fileID: 19126917}

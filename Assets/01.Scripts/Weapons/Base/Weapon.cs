@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : PoolableComponent
+public abstract class Weapon : MonoBehaviour, IPoolableComponent
 {
     public float damage = 1f;
     public int maxBullet = 5;
@@ -20,12 +20,12 @@ public abstract class Weapon : PoolableComponent
 
     public abstract void Shoot(Vector3 shootDir);
 
-    public override void Despawned()
+    public void Despawned()
     { 
 
     }
 
-    public override void Spawned()
+    public void Spawned()
     {
         
     }
