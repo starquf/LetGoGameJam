@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6394027437846549927}
   - component: {fileID: 3763910054141863913}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7092682248562420488}
   - component: {fileID: 5945489448282485946}
   - component: {fileID: 7802335114767032453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EggMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,10 @@ MonoBehaviour:
   identityColor1: {r: 0.68235296, g: 0.39215687, b: 0.34117648, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 5
-  expRange: {x: 5, y: 10}
+  enterExpRange: {x: 0, y: 0}
+  dropExpInfo:
+    amount: 1
+    type: 0
   canHaveWeaponList: 0200000002000000
   enemyAttack: {fileID: 2081929116133075885}
   playerTrm: {fileID: 0}

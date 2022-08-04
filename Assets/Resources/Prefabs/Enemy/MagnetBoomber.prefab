@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1176119642298675025}
   - component: {fileID: 1176119642298675024}
   - component: {fileID: 1176119642298675027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MagnetBoomber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,10 @@ MonoBehaviour:
   identityColor1: {r: 0.49019608, g: 0.7058824, b: 0.8, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 5
-  expRange: {x: 5, y: 10}
+  enterExpRange: {x: 0, y: 0}
+  dropExpInfo:
+    amount: 1
+    type: 0
   canHaveWeaponList: 00000000
   enemyAttack: {fileID: 1176119642591867087}
   playerTrm: {fileID: 0}
@@ -242,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4989678122130510534}
   - component: {fileID: 5783795124524367499}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

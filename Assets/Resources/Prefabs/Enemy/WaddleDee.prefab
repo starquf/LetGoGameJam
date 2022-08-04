@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3854653728872644480}
   - component: {fileID: 9071499282938534697}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5778209891132143876}
   - component: {fileID: 5778209891132143875}
   - component: {fileID: 5778209891132143874}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WaddleDee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,10 @@ MonoBehaviour:
   identityColor1: {r: 1, g: 0.4, b: 0.13333334, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 5
-  expRange: {x: 5, y: 10}
+  enterExpRange: {x: 0, y: 0}
+  dropExpInfo:
+    amount: 1
+    type: 0
   canHaveWeaponList: 00000000
   enemyAttack: {fileID: 5778209890832976753}
   playerTrm: {fileID: 0}

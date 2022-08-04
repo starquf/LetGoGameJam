@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : LivingEntity, IPoolableComponent
 {
+
     private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
 
     public Color identityColor1;
@@ -11,7 +12,9 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public float attackRange = 10f;
 
-    public Vector2 expRange = Vector2.zero;
+    public Vector2 enterExpRange = Vector2.zero;
+
+    public ExpInfo dropExpInfo = null;
 
     public List<WeaponType> canHaveWeaponList = new List<WeaponType>();
 
@@ -83,20 +86,26 @@ public class Enemy : LivingEntity, IPoolableComponent
 
         GameManager.Instance.soundHandler.Play("EnemyDead");
 
+        for (int i = 0; i < dropExpInfo.amount; i++)
+        {
+            ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_" + dropExpInfo.type.ToString(), null).GetComponent<ExpBall>();
+            expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+        }
+
         GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        {
-            Bullet b = collision.GetComponent<Bullet>();
-            if(!b.isEnemyBullet)
-            {
-                GetDamage(b.bulletDamage);
-                if(--b.bulletPenetrate <= 0)
-                    b.SetDisable();
-            }
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+    //    {
+    //        Bullet b = collision.GetComponent<Bullet>();
+    //        if(!b.isEnemyBullet)
+    //        {
+    //            GetDamage(b.bulletDamage);
+    //            if(--b.bulletPenetrate <= 0)
+    //                b.SetDisable();
+    //        }
+    //    }
+    //}
 }
