@@ -23,6 +23,12 @@ public class PlayerAnimation : MonoBehaviour
 
     private void UpdatePlayerAnimation()
     {
+        if (playerInput.isDie)
+        {
+            anim.SetTrigger("onDie");
+            return;
+        }
+
         moveVec = playerInput.moveDir.normalized;
         anim.SetFloat("MoveX", moveVec.x);
         anim.SetFloat("MoveY", moveVec.y);
