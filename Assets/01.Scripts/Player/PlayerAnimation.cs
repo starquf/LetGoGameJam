@@ -33,7 +33,10 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetFloat("MoveX", moveVec.x);
         anim.SetFloat("MoveY", moveVec.y);
         anim.SetBool("isAttack", playerInput.isAttack);
-        if (playerInput.mousePos.x < 0)
+
+        Vector3 dir = playerInput.mousePos - transform.position;
+
+        if (dir.x < 0)
         {
             myRenderer.flipX = true;
         }
