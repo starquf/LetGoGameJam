@@ -9,8 +9,12 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     private BulletState currentState = BulletState.MoveForward;
 
+    public Sprite playerBulletSpr;
+    public Sprite EnemyBulletSpr;
+
     public float bulletDamage = 1f;
 
+    public int bulletPenetrate = 1;
     public float bulletSpeed = 30f;
     protected float currSpeed = 0f;
 
@@ -162,6 +166,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public void SetDisable()
     {
+        StopAllCoroutines();
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 }

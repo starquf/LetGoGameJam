@@ -129,9 +129,11 @@ MonoBehaviour:
   shotSFXName: AKShot
   damage: 5
   maxBullet: 5
-  fireRate: 1
-  collectionRate: 1
-  isAuto: 0
+  fireRate: 0.1
+  collectionRate: 10
+  isAuto: 1
   isPlayer: 1
+  offset: 0.5
   weaponType: 1
   shootPos: {fileID: 5743299078215040150}
+  sr: {fileID: 0}

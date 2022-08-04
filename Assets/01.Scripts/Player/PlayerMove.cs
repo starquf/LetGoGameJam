@@ -31,6 +31,15 @@ public class PlayerMove : MonoBehaviour
             playerAxis = Vector2.zero;
         }
 
+        if (transform.position.x >= 40.5f && playerAxis.x > 0f || transform.position.x <= -8.5f && playerAxis.x < 0f)
+        {
+            playerAxis.x = 0f;
+        }
+
+        if (transform.position.y >= 4f && playerAxis.y > 0f || transform.position.y <= -24.5f && playerAxis.y < 0f)
+        {
+            playerAxis.y = 0f;
+        }
         OnMove(playerAxis, moveSpeed);
     }
 

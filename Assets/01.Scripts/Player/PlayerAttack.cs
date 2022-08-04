@@ -50,7 +50,7 @@ public class PlayerAttack : AttackBase
 
                     currentWeapon.Shoot(dir);
 
-                    print("오또");
+                    //print("오또");
                     yield return weaponShootWait;
                 }
                 else if(isShootOnce)
@@ -58,7 +58,8 @@ public class PlayerAttack : AttackBase
                     isShootOnce = false;
 
                     Vector3 dir = playerInput.mousePos - transform.position;
-                    print("원스");
+
+                    //print("원스");
                     currentWeapon.Shoot(dir);
 
                     yield return weaponShootWait;
