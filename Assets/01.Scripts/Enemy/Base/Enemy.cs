@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : LivingEntity
+public class Enemy : LivingEntity, IPoolableComponent
 {
     public float attackRange = 10f;
 
@@ -16,15 +16,25 @@ public class Enemy : LivingEntity
     [HideInInspector]public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
-    private void Awake()
+    private Weapon weapon = null;
+    private SpriteRenderer weaponSr = null;
+
+    public void Despawned()
+    {
+
+    }
+
+    public void Spawned()
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         enemyAttack.targetPos = playerTrm;
-        Weapon wp = Instantiate(canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)]);
-        wp.transform.SetParent(enemyAttack.transform);
-        wp.transform.localPosition = Vector3.right;
-        SetWeapon(wp);
+        weapon = Instantiate(canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)]);
+        weaponSr = weapon.GetComponent<SpriteRenderer>();
+        weapon.transform.SetParent(enemyAttack.transform);
+        weapon.transform.localPosition = Vector3.right;
+        AttackStop();
+        SetWeapon(weapon);
     }
 
     public void SetWeapon(Weapon weapon)
@@ -34,12 +44,14 @@ public class Enemy : LivingEntity
 
     public virtual void AttackStart()
     {
+        weaponSr.color = Color.white;
         enemyAttack.isAttacking = true;
         enemyAttack.shootStartTime = Time.time;
     }
     public virtual void AttackStop()
     {
         enemyAttack.isAttacking = false;
+        weaponSr.color = Color.clear;
     }
 
     public override void SetHPUI()
