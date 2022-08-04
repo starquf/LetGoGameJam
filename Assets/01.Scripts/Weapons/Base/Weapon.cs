@@ -16,6 +16,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public bool isPlayer = false;
 
+    public float offset = 1f;
+
     public WeaponType weaponType;
 
     public Transform shootPos;
