@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_Ddak : Weapon
+public class Weapon_MP7 : Weapon
 {
     private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet";
 
