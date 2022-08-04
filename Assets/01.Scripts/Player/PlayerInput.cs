@@ -7,7 +7,9 @@ public class PlayerInput : MonoBehaviour
     public PlayerState playerState;
 
     public Vector2 moveDir;
+
     public bool isAttack;
+
     public bool isSwitchWeapon;
     public bool isDie;
 
