@@ -39,6 +39,7 @@ public class EnemyAttack : AttackBase
 
             if (isAttacking)
             {
+                weaponRenderer.color = Color.white;
                 float curTime = Time.time;
                 if(attackDuration > curTime - shootStartTime)
                 {
@@ -52,6 +53,10 @@ public class EnemyAttack : AttackBase
                     yield return enemyShootWait;
                     shootStartTime = Time.time;
                 }
+            }
+            else
+            {
+                weaponRenderer.color = Color.clear;
             }
         }
     }

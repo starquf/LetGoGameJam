@@ -20,7 +20,7 @@ public class Bullet_M870 : Bullet
 
     public override void Spawned()
     {
-        currSpeed = bulletSpeed;
+        curSpeed = bulletSpeed;
 
         StartCoroutine(BulletLifetime());
     }

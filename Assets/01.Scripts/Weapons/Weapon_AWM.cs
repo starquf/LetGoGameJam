@@ -13,7 +13,7 @@ public class Weapon_AWM : Weapon
 
 
         Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.isEnemyBullet = !isPlayer;
+        bullet.SetOwner(!isPlayer);
 
         bulletObj.transform.position = shootPos.position;
 
