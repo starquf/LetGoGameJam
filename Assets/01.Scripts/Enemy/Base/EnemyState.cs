@@ -71,6 +71,8 @@ public class EnemyState
 
 public class PursueAndAttack : EnemyState
 {
+    float rotationSpeed = 2.0f;
+
     public PursueAndAttack(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
               : base(obj, livingEntity, anim, targetTrm)
     {
@@ -86,13 +88,29 @@ public class PursueAndAttack : EnemyState
     public override void Update()
     {
         // 추적 로직
-        Vector2 dir = (playerTrm.position - myObj.transform.position).normalized;
+        LookPlayer();
+        PurseMove();
 
         if (CanAttackPlayer())
         {
             nextState = new Attack(myObj, myLivingEntity, myAnim, playerTrm);
             curEvent = eEvent.EXIT;
         }
+    }
+
+    private void LookPlayer()
+    {
+        float angle = Mathf.Atan2(playerTrm.position.y - myObj.transform.position.y, playerTrm.position.x - myObj.transform.position.x) * Mathf.Rad2Deg;
+        myObj.transform.rotation = Quaternion.Slerp(myObj.transform.rotation,
+                Quaternion.AngleAxis(angle - 90, Vector3.forward),
+                Time.deltaTime * rotationSpeed);
+    }
+
+    private void PurseMove()
+    {
+        Vector2 dir = (playerTrm.position - myObj.transform.position).normalized;
+
+        Debug.LogWarning("움직임 구현좀");
     }
 
     public override void Exit()
@@ -124,13 +142,9 @@ public class Attack : EnemyState
     public override void Update()
     {
         // 내 각도를 플레이어 방향으로 틀어줘야 함(feat. 스무스하게 돌려줘)
-        Vector3 dir = playerTrm.position - myObj.transform.position;
-        float angle = Vector3.Angle(dir, myObj.transform.forward);
-        dir.y = 0;
+        LookPlayer();
 
-        myObj.transform.rotation = Quaternion.Slerp(myObj.transform.rotation,
-                                                    Quaternion.LookRotation(dir),
-                                                    Time.deltaTime * rotationSpeed);
+        AttackMove();
 
         // 공격범위 밖으로 나갈 시 다시 추격으로 전환
         if (!CanAttackPlayer())
@@ -140,9 +154,22 @@ public class Attack : EnemyState
         }
     }
 
+    private void LookPlayer()
+    {
+        float angle = Mathf.Atan2(playerTrm.position.y - myObj.transform.position.y, playerTrm.position.x - myObj.transform.position.x) * Mathf.Rad2Deg;
+        myObj.transform.rotation = Quaternion.Slerp(myObj.transform.rotation,
+                Quaternion.AngleAxis(angle - 90, Vector3.forward),
+                Time.deltaTime * rotationSpeed);
+    }
+
+    private void AttackMove()
+    {
+        Debug.LogWarning("움직임 구현좀");
+    }
+
     public override void Exit()
     {
-        myAnim.ResetTrigger("isShooting");
+        //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         base.Exit();
     }
