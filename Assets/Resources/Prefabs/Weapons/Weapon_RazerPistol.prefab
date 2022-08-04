@@ -99,12 +99,14 @@ MonoBehaviour:
   shotSFXName: LazerPistolShot
   damage: 5
   maxBullet: 5
-  fireRate: 2
-  collectionRate: 0.15
-  isAuto: 0
+  fireRate: 1
+  collectionRate: 0
+  isAuto: 1
   isPlayer: 1
+  offset: 0.9
   weaponType: 6
   shootPos: {fileID: 1621244696751091155}
+  sr: {fileID: 0}
 --- !u!1 &1621244696751091156
 GameObject:
   m_ObjectHideFlags: 0

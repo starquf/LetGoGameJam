@@ -15,6 +15,11 @@ public class Weapon_BlueArchive : Weapon
         bulletObj.transform.position = shootPos.position;
 
         bullet.ChangeDir(shootDir.normalized);
+        float coll = collectionRate / 2f;
+
+        bullet.ChangeDir(shootDir.normalized);
+        bullet.RotateAngle(Random.Range(-coll, coll));
+        bullet.ChangeSpeed(Random.Range(13f, 15f));
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
 

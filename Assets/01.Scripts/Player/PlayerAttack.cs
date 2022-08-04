@@ -58,6 +58,7 @@ public class PlayerAttack : AttackBase
                     isShootOnce = false;
 
                     Vector3 dir = playerInput.mousePos - transform.position;
+
                     //print("원스");
                     currentWeapon.Shoot(dir);
 
