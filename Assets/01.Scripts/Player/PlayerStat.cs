@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    public float atk;
+    public int atk;
     public float moveSpeed;
-    //public float 
+    public int bulletIronclad;
+    public float atkRate;
+    public int bonusExp;
+    public int bonusScore;
 }

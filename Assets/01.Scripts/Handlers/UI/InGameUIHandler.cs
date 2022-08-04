@@ -32,8 +32,6 @@ public class InGameUIHandler : Handler
             }
         }
     }
-
-
 }
 
 [System.Serializable]

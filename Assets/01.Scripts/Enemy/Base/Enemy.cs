@@ -6,6 +6,7 @@ public class Enemy : LivingEntity, IPoolableComponent
 {
 
     private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
+    private const string RIP_PREFAB_PATH = "Prefabs/Object/RIP";
 
     public Color identityColor1;
     public Color identityColor2;
@@ -91,21 +92,9 @@ public class Enemy : LivingEntity, IPoolableComponent
             ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_" + dropExpInfo.type.ToString(), null).GetComponent<ExpBall>();
             expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
         }
+        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
 
         GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-    //    {
-    //        Bullet b = collision.GetComponent<Bullet>();
-    //        if(!b.isEnemyBullet)
-    //        {
-    //            GetDamage(b.bulletDamage);
-    //            if(--b.bulletPenetrate <= 0)
-    //                b.SetDisable();
-    //        }
-    //    }
-    //}
 }
