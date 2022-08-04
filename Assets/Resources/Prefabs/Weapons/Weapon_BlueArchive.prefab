@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa90347be654a840b377cef27893dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSFXName: ShotgunShot
+  shotSFXName: LazerGunShot
   damage: 5
   maxBullet: 5
   fireRate: 1
