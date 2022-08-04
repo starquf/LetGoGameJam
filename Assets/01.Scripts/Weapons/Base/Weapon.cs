@@ -18,5 +18,5 @@ public abstract class Weapon : MonoBehaviour
 
     public Transform shootPos;
 
-    public abstract void Shoot(Vector2 shootDir);
+    public abstract void Shoot(Vector3 shootDir);
 }

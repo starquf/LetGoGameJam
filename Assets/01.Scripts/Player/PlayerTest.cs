@@ -10,7 +10,7 @@ public class PlayerTest : MonoBehaviour
 
     private void Start()
     {
-        pa = GetComponent<PlayerAttack>();
+        pa = GetComponentInChildren<PlayerAttack>();
         pa.Init(baseWeapon);
     }
 }

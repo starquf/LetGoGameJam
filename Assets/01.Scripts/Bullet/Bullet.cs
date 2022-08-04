@@ -42,7 +42,7 @@ public class Bullet : PoolableComponent
 
     protected virtual void BulletMove()
     {
-        rb.velocity = Vector3.right * currSpeed;
+        rb.velocity = transform.right * currSpeed;
     }
 
     protected virtual void CheckTransform()     // 화면 밖으로 나갔는가?
