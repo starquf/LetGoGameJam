@@ -201,7 +201,7 @@ MonoBehaviour:
   damage: 5
   maxBullet: 0
   fireRate: 0.01
-  collectionRate: 0
+  collectionRate: 15
   isAuto: 1
   isPlayer: 1
   weaponType: 0
@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAxis: {x: 0, y: 0}
+  moveSpeed: 5
 --- !u!95 &409571249
 Animator:
   serializedVersion: 3
