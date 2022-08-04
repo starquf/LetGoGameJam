@@ -14,6 +14,8 @@ public class Bullet : PoolableComponent
     public float bulletSpeed = 30f;
     private float currSpeed = 0f;
 
+    public float lifeTime = 3f;
+
     // 적의 총알인가?
     public bool isEnemyBullet = true;
 
@@ -32,6 +34,8 @@ public class Bullet : PoolableComponent
     public override void Spawned()
     {
         currSpeed = bulletSpeed;
+
+        StartCoroutine(BulletLifetime());
     }
 
     protected void FixedUpdate()
@@ -77,6 +81,13 @@ public class Bullet : PoolableComponent
 
                 break;
         }
+    }
+
+    protected IEnumerator BulletLifetime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+
+        SetDisable();
     }
 
     #region ChangeDirections
@@ -151,6 +162,8 @@ public class Bullet : PoolableComponent
 
     public void SetDisable()
     {
+        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+
         gameObject.SetActive(false);
     }
 }
