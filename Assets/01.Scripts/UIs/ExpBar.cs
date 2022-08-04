@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ExpBar : UIBase
 {
+    [SerializeField]
+    private RectTransform realFill;
+    [SerializeField]
+    private RectTransform fill;
     private Slider expSlider;
 
     public override void Init()
@@ -15,7 +20,10 @@ public class ExpBar : UIBase
 
     public override void SetData(string data)
     {
-        expSlider.value = float.Parse(data.Trim());
+        expSlider.DOValue(float.Parse(data.Trim()),.2f).OnComplete(()=>
+        {
+            realFill.DOSizeDelta(new Vector2(fill.rect.width, realFill.rect.height), .5f).SetEase(Ease.InQuart);
+        });
     }
 }
 

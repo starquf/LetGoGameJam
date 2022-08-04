@@ -11,10 +11,13 @@ public class TestScripts : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(.1f);
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, "5");
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Level, "154");
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Score, "154154164");
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, ".5");
+
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Score, "5");
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Score, "154");
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Score, "154123");
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Score, "23455233");
     }
 }
