@@ -7,6 +7,8 @@ public abstract class AttackBase : MonoBehaviour
     protected Weapon baseWeapon;
     public Weapon currentWeapon;
 
+    protected float lookAngle;
+
     protected WaitForSeconds weaponShootWait = new WaitForSeconds(1f);
 
     public virtual void Init(Weapon baseWeapon)
@@ -31,6 +33,7 @@ public abstract class AttackBase : MonoBehaviour
         Vector3 dir = (pos - transform.position).normalized;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        lookAngle = angle;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
