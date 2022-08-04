@@ -12,6 +12,7 @@ public class PlayerAttack : AttackBase
     public override void Init(Weapon baseWeapon)
     {
         base.Init(baseWeapon);
+
         weaponRenderer = GetComponentInChildren<SpriteRenderer>();
         baseWeapon.isPlayer = true;
     }
@@ -35,8 +36,6 @@ public class PlayerAttack : AttackBase
         {
             weaponRenderer.flipY = false;
         }
-
-        print(lookAngle);
     }
 
     private void Update()

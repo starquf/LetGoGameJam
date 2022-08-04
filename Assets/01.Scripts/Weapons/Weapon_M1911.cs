@@ -9,10 +9,15 @@ public class Weapon_M1911 : Weapon
     public override void Shoot(Vector3 shootDir)
     {
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
 
         bulletObj.transform.position = shootPos.position;
 
-        bulletObj.GetComponent<Bullet>().ChangeDir(shootDir.normalized);
+        float coll = collectionRate / 2f;
+
+        bullet.ChangeDir(shootDir.normalized);
+        bullet.RotateAngle(Random.Range(-coll, coll));
+        bullet.ChangeSpeed(Random.Range(13f, 23f));
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
     }

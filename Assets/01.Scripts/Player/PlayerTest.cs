@@ -23,13 +23,9 @@ public class PlayerTest : MonoBehaviour
         pa = GetComponentInChildren<PlayerAttack>();
         pa.Init(baseWeapon);
     }
-
  
     private void Update()
     {
-
-
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ClearBaseWeapon();
@@ -65,9 +61,6 @@ public class PlayerTest : MonoBehaviour
             ClearBaseWeapon();
             baseWeapon = GameObjectPoolManager.Instance.GetGameObject(RAZERPISTOL_PATH, pa.transform).GetComponent<Weapon>();
         }
-
-        pa.Init(baseWeapon);
-
     }
 
     public void ClearBaseWeapon()
