@@ -19,9 +19,12 @@ public class RIP : LivingEntity, IPoolableComponent
     [SerializeField]
     private Sprite ripSprite;
 
+    private Collider2D coll;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
     }
 
     public override void SetHPUI()
@@ -50,6 +53,7 @@ public class RIP : LivingEntity, IPoolableComponent
         seq.AppendCallback(() => {
             sr.sprite = ripSprite;
 
+            coll.enabled = true;
             GameManager.Instance.soundHandler.Play("RIPDrop");
         });
     }
@@ -67,6 +71,8 @@ public class RIP : LivingEntity, IPoolableComponent
     public void Spawned()
     {
         Init();
+
+        coll.enabled = false;
     }
 
     public void SetDisable()

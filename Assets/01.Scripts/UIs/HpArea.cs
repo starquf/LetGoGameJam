@@ -16,7 +16,7 @@ public class HpArea : UIBase
 
         foreach(var heart in hearts)
         {
-            heart.transform.DOScale(new Vector3(1.3f, 1.3f, 0), .5f).SetEase(Ease.OutBounce).SetLoops(-1, LoopType.Yoyo);
+            heart.transform.DOScale(new Vector3(1.1f, 1.1f, 0), .5f).SetEase(Ease.OutBounce).SetLoops(-1, LoopType.Yoyo);
         }
     }
 
