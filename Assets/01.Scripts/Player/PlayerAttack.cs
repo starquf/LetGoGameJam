@@ -51,6 +51,8 @@ public class PlayerAttack : AttackBase
                     isShootOnce = false;
 
                     currentWeapon.Shoot(playerInput.mousePos);
+
+                    yield return weaponShootWait;
                 }
             }
             else
