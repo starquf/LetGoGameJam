@@ -18,6 +18,11 @@ public class PlayerUpgrade : MonoBehaviour
         maxLevel = needExpToUpgrade.Count;
     }
 
+    private void Start()
+    {
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, "0");
+    }
+
     private void OnTriggerEnter2D(Collider2D coll)
     {
         ExpBall exp = coll.GetComponent<ExpBall>();
@@ -43,17 +48,23 @@ public class PlayerUpgrade : MonoBehaviour
 
         currentExp += exp;
 
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, (currentExp / (float)needExpToUpgrade[currentLevel]).ToString());
+
         print($"점수 먹음 !! {exp}");
 
         // 레벨업
         if (currentExp >= needExpToUpgrade[currentLevel])
         {
             currentExp -= needExpToUpgrade[currentLevel];
-            currentLevel++;
 
             print("업그레이드 함!!");
 
+            currentLevel++;
+            GameManager.Instance.inGameUIHandler.SendData(UIDataType.Level, currentLevel.ToString());
+
             // TODO : 업그레이드 선택
+
+
         }
     }
 }
