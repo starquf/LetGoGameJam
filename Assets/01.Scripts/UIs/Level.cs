@@ -15,6 +15,6 @@ public class Level : UIBase
 
     public override void SetData(string data)
     {
-        levelText.text = data.Trim();
+        levelText.text = "Lv."+data.Trim();
     }
 }

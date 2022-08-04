@@ -20,13 +20,13 @@ public class AmmoArea : UIBase
     {
         int bulletCount = int.Parse(data.Trim());
 
-        if(bulletCount > 10)
+        if(bulletCount > 5)
         {
             foreach(var bullet in bullets)
             {
                 bullet.gameObject.SetActive(true);
             }
-            expendBulletsText.text = (bulletCount - 10).ToString();
+            expendBulletsText.text = (bulletCount - 5).ToString();
         }
         else
         {
