@@ -254,11 +254,13 @@ MonoBehaviour:
   maxHp: 2
   hp: 0
   attackPower: 1
-  speed: 3
+  speed: 2
   attakMoveSpeed: 1.5
+  identityColor1: {r: 1, g: 1, b: 1, a: 1}
+  identityColor2: {r: 1, g: 1, b: 1, a: 1}
   attackRange: 5
   expRange: {x: 5, y: 10}
-  canHaveWeaponList: 00000000
+  canHaveWeaponList: 0200000002000000
   enemyAttack: {fileID: 2081929116133075885}
   playerTrm: {fileID: 0}
   rigid: {fileID: 0}

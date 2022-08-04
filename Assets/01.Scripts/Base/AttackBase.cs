@@ -17,6 +17,7 @@ public abstract class AttackBase : MonoBehaviour
 
         baseWeapon.transform.SetParent(this.transform);
         baseWeapon.transform.localPosition = Vector3.right * baseWeapon.offset;
+        baseWeapon.transform.localRotation = Quaternion.identity;
 
         currentWeapon = baseWeapon;
 

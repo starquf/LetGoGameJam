@@ -22,7 +22,7 @@ public class Bullet_AWM : Bullet
 
     public override void Spawned()
     {
-        currSpeed = bulletSpeed;
+        curSpeed = bulletSpeed;
 
         StartCoroutine(BulletLifetime());
     }

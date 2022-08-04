@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class AudioTest : MonoBehaviour
 {
+    string path = "Prefabs/Effect/DeadEffect";
+
     private void Start()
     {
-        StartCoroutine(Test());
+        Invoke("Test", 5.0f);
     }
 
-    private IEnumerator Test()
+    private void Test()
     {
-        yield return new WaitForSeconds(1.0f);
+        GameObject obj = GameObjectPoolManager.Instance.GetGameObject(path, null);
 
-        for (int i = 0; i < 10; i++)
-        {
-            GameManager.Instance.soundHandler.Play("LazerPistolShot");
-            yield return new WaitForSeconds(0.1f);
-        }
+        DeadEffect deadEffect = obj.GetComponent<DeadEffect>();
+
+        deadEffect.SetColor(Color.red, Color.blue);
+        deadEffect.Play();
     }
 }

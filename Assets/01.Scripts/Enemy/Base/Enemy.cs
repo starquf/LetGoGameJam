@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy : LivingEntity, IPoolableComponent
 {
+    private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
+
+    public Color identityColor1;
+    public Color identityColor2;
+
     public float attackRange = 10f;
 
     public Vector2 expRange = Vector2.zero;
@@ -17,7 +22,6 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     private EnemyAI enemyAI = null;
     private Weapon weapon = null;
-    private SpriteRenderer weaponSr = null;
 
     public void Despawned()
     {
@@ -37,9 +41,6 @@ public class Enemy : LivingEntity, IPoolableComponent
         weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
             canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
             enemyAttack.transform).GetComponent<Weapon>();
-
-        if (weaponSr == null)
-            weaponSr = weapon.GetComponent<SpriteRenderer>();
         weapon.transform.SetParent(enemyAttack.transform);
         weapon.transform.localPosition = Vector3.right;
         if(enemyAI == null)
@@ -58,14 +59,12 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public virtual void AttackStart()
     {
-        weaponSr.color = Color.white;
         enemyAttack.isAttacking = true;
         enemyAttack.shootStartTime = Time.time;
     }
     public virtual void AttackStop()
     {
         enemyAttack.isAttacking = false;
-        weaponSr.color = Color.clear;
     }
 
     public override void SetHPUI()
@@ -75,6 +74,15 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
+        DeadEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<DeadEffect>();
+
+        effect.SetPosition(transform.position);
+        effect.SetColor(identityColor1, identityColor2);
+
+        effect.Play();
+
+        GameManager.Instance.soundHandler.Play("EnemyDead");
+
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
