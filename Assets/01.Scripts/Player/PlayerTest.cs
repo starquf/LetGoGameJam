@@ -6,9 +6,6 @@ public class PlayerTest : MonoBehaviour
 {
     private PlayerAttack pa;
 
-    public Weapon baseWeapon;
-
-
     private readonly string AWM_PATH = "Prefabs/Weapons/Weapon_AWM";
     private readonly string MP7_PATH = "Prefabs/Weapons/Weapon_MP7";
     private readonly string AK47_PATH = "Prefabs/Weapons/Weapon_Ak47";
@@ -22,53 +19,51 @@ public class PlayerTest : MonoBehaviour
     private void Start()
     {
         pa = GetComponentInChildren<PlayerAttack>();
-        pa.Init(baseWeapon);
+        pa.Init(GameObjectPoolManager.Instance.GetGameObject(M1911_PATH, pa.transform).GetComponent<Weapon>());
     }
  
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeBaseWeapon(AWM_PATH);
+            ChangeWeapon(AWM_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeBaseWeapon(MP7_PATH);
+            ChangeWeapon(MP7_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeBaseWeapon(AK47_PATH);
+            ChangeWeapon(AK47_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            ChangeBaseWeapon(M1911_PATH);
+            ChangeWeapon(M1911_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            ChangeBaseWeapon(MAGICBAR_PATH);
+            ChangeWeapon(MAGICBAR_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            ChangeBaseWeapon(BLUEARCHIVE_PATH);
+            ChangeWeapon(BLUEARCHIVE_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            ChangeBaseWeapon(RAZERPISTOL_PATH);
+            ChangeWeapon(RAZERPISTOL_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            ChangeBaseWeapon(M870_PATH);
+            ChangeWeapon(M870_PATH);
         }
     }
 
 
-    public void ChangeBaseWeapon(string path)
+    public void ChangeWeapon(string path)
     {
-        GameObjectPoolManager.Instance.UnusedGameObject(baseWeapon.gameObject);
-        baseWeapon.gameObject.SetActive(false);
-        baseWeapon = GameObjectPoolManager.Instance.GetGameObject(path, pa.transform).GetComponent<Weapon>();
-        baseWeapon.transform.position = transform.position;
-        pa.ChangeWeapon(baseWeapon);
+        Weapon weapon = GameObjectPoolManager.Instance.GetGameObject(path, pa.transform).GetComponent<Weapon>();
+        weapon.transform.position = transform.position;
+        pa.ChangeWeapon(weapon);
     }
 
 }

@@ -20,15 +20,27 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public Transform shootPos;
 
+    public SpriteRenderer sr;
+
+    protected virtual void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     public abstract void Shoot(Vector3 shootDir);
 
     public void Despawned()
     { 
-
+        
     }
 
     public void Spawned()
     {
-        
+        transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
+    }
+
+    public void SetDisable()
+    {
+        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 }

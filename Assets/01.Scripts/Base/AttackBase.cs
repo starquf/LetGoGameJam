@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class AttackBase : MonoBehaviour
 {
-    protected Weapon baseWeapon;
     public Weapon currentWeapon;
 
     protected SpriteRenderer weaponRenderer;
@@ -14,10 +13,14 @@ public abstract class AttackBase : MonoBehaviour
 
     public virtual void Init(Weapon baseWeapon)
     {
-        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
-        this.baseWeapon = baseWeapon;
+        baseWeapon.isPlayer = false;
+
+        baseWeapon.transform.SetParent(this.transform);
+        baseWeapon.transform.localPosition = Vector3.right;
+
         currentWeapon = baseWeapon;
 
+        weaponRenderer = baseWeapon.sr;
         weaponShootWait = new WaitForSeconds(baseWeapon.fireRate);
 
         StartCoroutine(Shooting());
@@ -25,8 +28,17 @@ public abstract class AttackBase : MonoBehaviour
 
     public virtual void ChangeWeapon(Weapon weapon)
     {
+        currentWeapon.SetDisable();
+
         currentWeapon = weapon;
 
+        weapon.transform.SetParent(this.transform);
+        weapon.transform.localPosition = Vector3.right;
+        weapon.transform.localRotation = Quaternion.identity;
+
+        weapon.isPlayer = false;
+
+        weaponRenderer = weapon.sr;
         weaponShootWait = new WaitForSeconds(weapon.fireRate);
     }
 

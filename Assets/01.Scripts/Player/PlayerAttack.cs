@@ -24,20 +24,6 @@ public class PlayerAttack : AttackBase
     public override void LookDirection(Vector3 pos)
     {
         base.LookDirection(pos);
-
-        if(weaponRenderer == null)
-        {
-            return;
-        }
-
-        if(lookAngle > 90f || lookAngle < -90f)
-        {
-            weaponRenderer.flipY = true;
-        }
-        else
-        {
-            weaponRenderer.flipY = false;
-        }
     }
 
     private void Update()

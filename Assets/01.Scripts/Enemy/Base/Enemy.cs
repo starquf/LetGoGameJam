@@ -62,4 +62,9 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
 
     }
+
+    public void SetDisable()
+    {
+        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+    }
 }
