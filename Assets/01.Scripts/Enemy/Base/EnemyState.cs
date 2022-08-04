@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class EnemyState
 {
     public enum eState  // 가질 수 있는 상태 나열
     {
-        IDLE, PATROL, PURSUE, ATTACK, DEAD, RUNAWAY
+        PURSUE, ATTACK, DEAD
     };
 
     public enum eEvent  // 이벤트 나열
@@ -27,6 +28,7 @@ public class EnemyState
     protected EnemyState nextState;  // 다음 상태를 나타냄
 
     float attackDist = 7.0f;
+    float rotationSpeed = 2.0f;
 
     public EnemyState(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
     {
@@ -67,12 +69,18 @@ public class EnemyState
 
         return false;
     }
+
+    public void LookPlayer()
+    {
+        float angle = Mathf.Atan2(playerTrm.position.y - myObj.transform.position.y, playerTrm.position.x - myObj.transform.position.x) * Mathf.Rad2Deg;
+        myObj.transform.rotation = Quaternion.Slerp(myObj.transform.rotation,
+                Quaternion.AngleAxis(angle - 90, Vector3.forward),
+                Time.deltaTime * rotationSpeed);
+    }
 }
 
 public class PursueAndAttack : EnemyState
 {
-    float rotationSpeed = 2.0f;
-
     public PursueAndAttack(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
               : base(obj, livingEntity, anim, targetTrm)
     {
@@ -81,14 +89,15 @@ public class PursueAndAttack : EnemyState
 
     public override void Enter()
     {
-        myAnim.SetTrigger("isRunning");
+        //myAnim.SetTrigger("isRunning");
+        myLivingEntity.AttackStart();
         base.Enter();
     }
 
     public override void Update()
     {
         // 추적 로직
-        LookPlayer();
+        //LookPlayer();
         PurseMove();
 
         if (CanAttackPlayer())
@@ -98,31 +107,24 @@ public class PursueAndAttack : EnemyState
         }
     }
 
-    private void LookPlayer()
-    {
-        float angle = Mathf.Atan2(playerTrm.position.y - myObj.transform.position.y, playerTrm.position.x - myObj.transform.position.x) * Mathf.Rad2Deg;
-        myObj.transform.rotation = Quaternion.Slerp(myObj.transform.rotation,
-                Quaternion.AngleAxis(angle - 90, Vector3.forward),
-                Time.deltaTime * rotationSpeed);
-    }
-
     private void PurseMove()
     {
         Vector2 dir = (playerTrm.position - myObj.transform.position).normalized;
 
-        Debug.LogWarning("움직임 구현좀");
+        //Debug.LogWarning("움직임 구현좀");
     }
 
     public override void Exit()
     {
-        myAnim.ResetTrigger("isRunning");
+        //myAnim.ResetTrigger("isRunning");
+        myLivingEntity.AttackStop();
         base.Exit();
     }
 }
 
 public class Attack : EnemyState
 {
-    float rotationSpeed = 2.0f;
+    float startTime;
     //AudioSource shootEff;
 
     public Attack(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
@@ -137,14 +139,22 @@ public class Attack : EnemyState
         //myAnim.SetTrigger("isShooting");
         //shootEff.Play();
         base.Enter();
+        myLivingEntity.AttackStart();
     }
 
     public override void Update()
     {
         // 내 각도를 플레이어 방향으로 틀어줘야 함(feat. 스무스하게 돌려줘)
-        LookPlayer();
-
+        //LookPlayer();
         AttackMove();
+
+        float shootStartTime = Time.time;
+        float stopStartTime = Time.time;
+        float curTime = Time.time;
+        if(stopStartTime>curTime - startTime)
+        {
+
+        }
 
         // 공격범위 밖으로 나갈 시 다시 추격으로 전환
         if (!CanAttackPlayer())
@@ -154,23 +164,37 @@ public class Attack : EnemyState
         }
     }
 
-    private void LookPlayer()
-    {
-        float angle = Mathf.Atan2(playerTrm.position.y - myObj.transform.position.y, playerTrm.position.x - myObj.transform.position.x) * Mathf.Rad2Deg;
-        myObj.transform.rotation = Quaternion.Slerp(myObj.transform.rotation,
-                Quaternion.AngleAxis(angle - 90, Vector3.forward),
-                Time.deltaTime * rotationSpeed);
-    }
-
     private void AttackMove()
     {
-        Debug.LogWarning("움직임 구현좀");
+        //Debug.LogWarning("움직임 구현좀");
     }
 
     public override void Exit()
     {
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
+        myLivingEntity.AttackStop();
         base.Exit();
+    }
+}
+
+public class Dead : EnemyState
+{
+    public Dead(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
+              : base(obj, livingEntity, anim, targetTrm)
+    {
+        stateName = eState.DEAD;
+        //shootEff = obj.GetComponent<AudioSource>();
+    }
+
+    public override void Enter()
+    {
+        //myAnim.SetTrigger("isShooting");
+        //shootEff.Play();
+        base.Enter();
+    }
+    public override void Update()
+    {
+
     }
 }
