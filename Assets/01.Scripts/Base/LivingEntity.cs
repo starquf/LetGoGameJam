@@ -9,13 +9,14 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
     public float curHp => hp; // 현재 체력에 쉴드 더한값
 
     [SerializeField] protected float hp;
-    [SerializeField] protected int attackPower;
+    [SerializeField] protected float attackPower;
+    [SerializeField] protected float speed;
 
-    public int AttackPower
+    public float AttackPower
     {
         get
         {
-            int atkPower = 0;
+            float atkPower = 0;
             atkPower = attackPower;// + weponAttackPower;
 
             return atkPower;
