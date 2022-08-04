@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     public Vector2 playerAxis;
     private Rigidbody2D rigid;
 
+    public float moveSpeed = 5f;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -24,7 +26,7 @@ public class PlayerMove : MonoBehaviour
             playerAxis = Vector2.zero;
         }
 
-        OnMove(playerAxis, 5f);
+        OnMove(playerAxis, moveSpeed);
     }
 
     public void OnMove(Vector2 dir, float speed)

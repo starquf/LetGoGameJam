@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  bulletSpeed: 5
+  bulletSpeed: 10
   isEnemyBullet: 0
 --- !u!50 &2141344756290157540
 Rigidbody2D:

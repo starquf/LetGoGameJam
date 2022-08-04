@@ -12,9 +12,4 @@ public abstract class PoolableComponent : MonoBehaviour
     public abstract void Despawned();
 
     public abstract void Spawned();
-
-    private void OnDisable()
-    {
-        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
-    }
 }
