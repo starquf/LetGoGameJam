@@ -9,11 +9,11 @@ public class Weapon_MP7 : Weapon
     public override void Shoot(Vector3 shootDir)
     {
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
-
         Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.isEnemyBullet = !isPlayer;
 
         bulletObj.transform.position = shootPos.position;
-
+        bullet.ChangeDir(shootDir.normalized);
         float coll = collectionRate / 2f;
 
         bullet.ChangeDir(shootDir.normalized);

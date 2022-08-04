@@ -14,6 +14,7 @@ public class Weapon_M870 : Weapon
 
             bulletObj.transform.position = shootPos.position;
             Bullet bullet = bulletObj.GetComponent<Bullet>();
+            bullet.isEnemyBullet = !isPlayer;
             float coll = collectionRate / 2f;
 
             bullet.ChangeDir(shootDir.normalized);

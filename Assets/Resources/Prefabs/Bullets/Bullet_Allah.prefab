@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 377823471202449233}
   - component: {fileID: 2141344756290157540}
   - component: {fileID: 2141344756290157539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet_Allah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047ead93bfb30d3418c4841fa845bad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBulletSpr: {fileID: 1044693652573367632, guid: aa15fbead65c7954b8d3ce6357d0927c, type: 3}
+  EnemyBulletSpr: {fileID: -5293777052587525329, guid: aa15fbead65c7954b8d3ce6357d0927c, type: 3}
   bulletDamage: 5
   bulletSpeed: 5
   lifeTime: 2
