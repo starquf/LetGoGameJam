@@ -189,7 +189,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((!isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Enemy")))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
+        if ((!isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("RIP") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
             Hit(livingEntity);

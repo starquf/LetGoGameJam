@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5457588744844629739}
   - component: {fileID: 2631831366210325482}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: minimapicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

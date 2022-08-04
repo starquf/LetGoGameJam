@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class RIP : LivingEntity
+public class RIP : LivingEntity, IPoolableComponent
 {
     private const string DUST_PATH = "Prefabs/Effect/RIPDustEffect";
 
@@ -52,5 +52,25 @@ public class RIP : LivingEntity
 
             GameManager.Instance.soundHandler.Play("RIPDrop");
         });
+    }
+    protected override void Die()
+    {
+        base.Die();
+        SetDisable();
+    }
+
+    public void Despawned()
+    {
+
+    }
+
+    public void Spawned()
+    {
+        Init();
+    }
+
+    public void SetDisable()
+    {
+        GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
 }
