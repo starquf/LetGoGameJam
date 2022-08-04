@@ -110,6 +110,7 @@ public class PursueAndAttack : EnemyState
     {
         Vector2 dir = (playerTrm.position - myObj.transform.position).normalized;
         myLivingEntity.rigid.velocity = dir * myLivingEntity.speed;
+        myLivingEntity.sr.flipX = playerTrm.position.x - myObj.transform.position.x < 0;
 
         //Debug.LogWarning("움직임 구현좀");
     }
@@ -175,6 +176,8 @@ public class Attack : EnemyState
             moveStartTime = Time.time;
         }
         myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+
+        myLivingEntity.sr.flipX = playerTrm.position.x - myObj.transform.position.x < 0;
         //Debug.LogWarning("움직임 구현좀");
     }
 

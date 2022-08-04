@@ -1,5 +1,10 @@
 public enum WeaponType
 {
-    Ddak,
-    Test
+    M1911,
+    Ak47,
+    MagicBar,
+    AWM,
+    BlueArchive,
+    MP7,
+    RazerPistol
 }
