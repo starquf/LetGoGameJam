@@ -285,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4817,4 +4817,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d8345d4e74fe94fb2bacf9c805d587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectName: DeadEffect
