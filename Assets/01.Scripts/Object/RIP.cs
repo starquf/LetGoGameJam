@@ -80,4 +80,12 @@ public class RIP : LivingEntity, IPoolableComponent
         seq.Kill();
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
+        {
+            SetDisable();
+        }
+    }
 }

@@ -9,7 +9,7 @@ public class EnemyState
 {
     public enum eState  // 가질 수 있는 상태 나열
     {
-        PURSUE, ATTACK, DEAD
+        PURSUE, ATTACK, DEAD, AVOID
     };
 
     public enum eEvent  // 이벤트 나열
@@ -69,6 +69,16 @@ public class EnemyState
 
         return false;
     }
+    public bool PlayerAvoidInRange()
+    {
+        float dist = Vector2.Distance(playerTrm.position, myObj.transform.position);
+        if (dist < myLivingEntity.avoidRange)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     public void LookPlayer()
     {
@@ -105,8 +115,12 @@ public class PursueAndAttack : EnemyState
             // 추적 로직
             //LookPlayer();
             PurseMove();
-
-            if (CanAttackPlayer())
+            if(PlayerAvoidInRange())
+            {
+                nextState = new Avoid(myObj, myLivingEntity, myAnim, playerTrm);
+                curEvent = eEvent.EXIT;
+            }
+            else if (CanAttackPlayer())
             {
                 nextState = new Attack(myObj, myLivingEntity, myAnim, playerTrm);
                 curEvent = eEvent.EXIT;
@@ -176,6 +190,11 @@ public class Attack : EnemyState
                 nextState = new PursueAndAttack(myObj, myLivingEntity, myAnim, playerTrm);
                 curEvent = eEvent.EXIT;
             }
+            else if(PlayerAvoidInRange())
+            {
+                nextState = new Avoid(myObj, myLivingEntity, myAnim, playerTrm);
+                curEvent = eEvent.EXIT;
+            }
             else
             {
                 if (Random.Range(0, 5) > 0)
@@ -191,7 +210,7 @@ public class Attack : EnemyState
             }
             moveStartTime = Time.time;
         }
-        myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+        myLivingEntity.rigid.velocity = dir * myLivingEntity.speed;
 
         myLivingEntity.sr.flipX = playerTrm.position.x - myObj.transform.position.x < 0;
         //Debug.LogWarning("움직임 구현좀");
@@ -202,6 +221,49 @@ public class Attack : EnemyState
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         myLivingEntity.AttackStop();
+        base.Exit();
+    }
+}
+
+public class Avoid : EnemyState
+{
+    public Avoid(GameObject obj, Enemy livingEntity, Animator anim, Transform targetTrm)
+              : base(obj, livingEntity, anim, targetTrm)
+    {
+        stateName = eState.AVOID;
+        //shootEff = obj.GetComponent<AudioSource>();
+    }
+    public override void Enter()
+    {
+        //myAnim.SetTrigger("isShooting");
+        //shootEff.Play();
+        base.Enter();
+    }
+    public override void Update()
+    {
+        if(!PlayerAvoidInRange())
+        {
+            if(CanAttackPlayer())
+            {
+                nextState = new Attack(myObj, myLivingEntity, myAnim, playerTrm);
+                curEvent = eEvent.EXIT;
+            }
+            else
+            {
+                nextState = new PursueAndAttack(myObj, myLivingEntity, myAnim, playerTrm);
+                curEvent = eEvent.EXIT;
+            }
+        }
+        else
+        {
+            Vector2 dir = (myObj.transform.position - playerTrm.position).normalized;
+            myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+        }
+    }
+    public override void Exit()
+    {
+        //myAnim.ResetTrigger("isShooting");
+        //shootEff.Stop();
         base.Exit();
     }
 }

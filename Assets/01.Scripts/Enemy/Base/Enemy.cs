@@ -12,6 +12,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     public Color identityColor2;
 
     public float attackRange = 10f;
+    public float avoidRange = 3f;
 
     public Vector2 enterExpRange = Vector2.zero;
 
@@ -64,7 +65,6 @@ public class Enemy : LivingEntity, IPoolableComponent
     public virtual void AttackStart()
     {
         enemyAttack.isAttacking = true;
-        enemyAttack.shootStartTime = Time.time;
     }
     public virtual void AttackStop()
     {
