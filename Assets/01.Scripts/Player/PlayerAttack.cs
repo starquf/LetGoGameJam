@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : Attack
+public class PlayerAttack : AttackBase
 {
     protected int currentBullet;
 
@@ -29,7 +29,7 @@ public class PlayerAttack : Attack
 
     protected override IEnumerator Shooting()
     {
-        bool isShoot = false;
+        bool isShoot = true;
 
         while (true)
         {
@@ -38,11 +38,11 @@ public class PlayerAttack : Attack
             if (currentWeapon == null)
                 continue;
 
-            if (playerInput.isAttack || autoFire)
+            if (playerInput.isAttack && isShoot)
             {
                 print("마우스 누름");
 
-                currentWeapon.Shoot(Input.mousePosition);
+                currentWeapon.Shoot(playerInput.mousePos);
 
                 if (currentWeapon.isAuto)
                 {
@@ -50,16 +50,10 @@ public class PlayerAttack : Attack
                 }
                 else
                 {
-                    autoFire = false;
+                    isShoot = false;
                 }
 
                 yield return weaponShootWait;
-            }
-
-            if (playerInput.isAttack)
-            {
-                print("마우스 떔");
-                autoFire = false;
             }
         }
     }
