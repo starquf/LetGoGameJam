@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy : LivingEntity, IPoolableComponent
 {
+    private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
+
+    public Color identityColor1;
+    public Color identityColor2;
+
     public float attackRange = 10f;
 
     public Vector2 expRange = Vector2.zero;
@@ -69,7 +74,15 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
-        GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+        DeadEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<DeadEffect>();
+
+        effect.SetPosition(transform.position);
+        effect.SetColor(identityColor1, identityColor2);
+
+        effect.Play();
+
+        GameManager.Instance.soundHandler.Play("EnemyDead");
+
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)

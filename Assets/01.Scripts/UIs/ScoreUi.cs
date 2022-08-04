@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,11 @@ public class ScoreUi : UIBase
 
     public override void SetData(string data)
     {
-        scoreText.text = data;
+        scoreText.transform.DOScale(new Vector3(1.3f, 1.3f, 0), .4f).OnComplete(()=>
+        {
+            scoreText.transform.DOScale(new Vector3(1f, 1f, 0), .4f).SetEase(Ease.OutQuart);
+        });
+
+        scoreText.DOText(data,.8f,true,ScrambleMode.Numerals);
     }
 }

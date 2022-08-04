@@ -256,6 +256,8 @@ MonoBehaviour:
   attackPower: 1
   speed: 2
   attakMoveSpeed: 1.5
+  identityColor1: {r: 1, g: 1, b: 1, a: 1}
+  identityColor2: {r: 1, g: 1, b: 1, a: 1}
   attackRange: 5
   expRange: {x: 5, y: 10}
   canHaveWeaponList: 00000000
