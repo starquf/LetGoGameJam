@@ -60,7 +60,7 @@ public class PlayerUpgrade : MonoBehaviour
             print("업그레이드 함!!");
 
             currentLevel++;
-            GameManager.Instance.inGameUIHandler.SendData(UIDataType.Level, currentLevel.ToString());
+            GameManager.Instance.inGameUIHandler.SendData(UIDataType.Level, (currentLevel + 1).ToString());
 
             // TODO : 업그레이드 선택
 
