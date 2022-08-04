@@ -16,6 +16,7 @@ public class PlayerTest : MonoBehaviour
     private readonly string MAGICBAR_PATH = "Prefabs/Weapons/Weapon_MagicBar";
     private readonly string BLUEARCHIVE_PATH = "Prefabs/Weapons/Weapon_BlueArchive";
     private readonly string RAZERPISTOL_PATH = "Prefabs/Weapons/Weapon_RazerPistol";
+    private readonly string M870_PATH = "Prefabs/Weapons/Weapon_M870";
 
 
     private void Start()
@@ -53,6 +54,10 @@ public class PlayerTest : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             ChangeBaseWeapon(RAZERPISTOL_PATH);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            ChangeBaseWeapon(M870_PATH);
         }
     }
 
