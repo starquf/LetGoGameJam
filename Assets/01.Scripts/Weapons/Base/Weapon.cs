@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour, IPoolableComponent
 {
+    public string shotSFXName;
+
     public float damage = 1f;
     public int maxBullet = 5;
 
