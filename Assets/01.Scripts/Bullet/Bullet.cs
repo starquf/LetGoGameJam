@@ -12,7 +12,7 @@ public class Bullet : PoolableComponent
     public float bulletDamage = 1f;
 
     public float bulletSpeed = 30f;
-    private float currSpeed = 0f;
+    protected float currSpeed = 0f;
 
     public float lifeTime = 3f;
 

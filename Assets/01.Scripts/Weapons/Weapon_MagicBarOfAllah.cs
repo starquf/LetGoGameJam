@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon_MagicBarOfAllah : Weapon
 {
-    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet";
+    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_Allah";
 
     public override void Shoot(Vector3 shootDir)
     {

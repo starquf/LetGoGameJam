@@ -32,47 +32,45 @@ public class PlayerTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(AWM_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(AWM_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(MP7_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(MP7_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(AK47_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(AK47_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(M1911_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(M1911_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(MAGICBAR_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(MAGICBAR_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(BLUEARCHIVE_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(BLUEARCHIVE_PATH);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            ClearBaseWeapon();
-            baseWeapon = GameObjectPoolManager.Instance.GetGameObject(RAZERPISTOL_PATH, pa.transform).GetComponent<Weapon>();
+            ChangeBaseWeapon(RAZERPISTOL_PATH);
         }
 
-        pa.Init(baseWeapon);
+       
 
     }
 
-    public void ClearBaseWeapon()
+
+    public void ChangeBaseWeapon(string path)
     {
         GameObjectPoolManager.Instance.UnusedGameObject(baseWeapon.gameObject);
+        baseWeapon.gameObject.SetActive(false);
+        baseWeapon = GameObjectPoolManager.Instance.GetGameObject(path, pa.transform).GetComponent<Weapon>();
+        baseWeapon.transform.position = transform.position;
+        pa.ChangeWeapon(baseWeapon);
     }
 
 }
