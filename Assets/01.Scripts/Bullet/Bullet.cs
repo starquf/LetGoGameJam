@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public int bulletPenetrate = 1;
     public float bulletSpeed = 30f;
-    protected float curSpeed = 0f;
+    public float curSpeed = 0f;
 
     public float lifeTime = 3f;
 
@@ -37,13 +37,13 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         print("tlqkaaaaaa");
         isEnemyBullet = isEnemy;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
-        curSpeed = isEnemyBullet ? bulletSpeed * 0.7f : bulletSpeed;
+        curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
         ChangeState(BulletState.MoveForward);
     }
 
     public virtual void Despawned()
     {
-        ChangeState(BulletState.Stop);
+        ChangeState(BulletState.MoveForward);
     }
 
     public virtual void Spawned()

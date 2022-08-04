@@ -103,6 +103,7 @@ MonoBehaviour:
   bulletDamage: 1
   bulletPenetrate: 1
   bulletSpeed: 0
+  curSpeed: 0
   lifeTime: 3
   isEnemyBullet: 0
 --- !u!50 &2141344756290157540

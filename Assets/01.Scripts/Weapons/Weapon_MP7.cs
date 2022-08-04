@@ -10,7 +10,6 @@ public class Weapon_MP7 : Weapon
     {
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.SetOwner(!isPlayer);
 
         bulletObj.transform.position = shootPos.position;
         bullet.ChangeDir(shootDir.normalized);
@@ -19,6 +18,7 @@ public class Weapon_MP7 : Weapon
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));
+        bullet.SetOwner(!isPlayer);
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
