@@ -19,6 +19,8 @@ public class SoundHandler : Handler
     private AudioSource _bgmSource; //BGM 재생기
     private List<AudioSource> _sfxSourceList; //SFX 재생기 리스트 (한번에 여러효과음 나올수도 있으니까 List)
 
+    private Dictionary<string, AudioSource> _loopSFXSourceDic; //반복되는 SFX를 위한 Dictionary (루프되는 효과음은 한 종류만 실행될 수 있게)
+
     [SerializeField]
     [Header("초기 SFX재생기 갯수")]
     private int _sfxSourceCount;
@@ -33,6 +35,7 @@ public class SoundHandler : Handler
 
         _sfxSourceList = new List<AudioSource>(); //메모리 할당
         _audioDic = new Dictionary<string, AudioSO>();
+        _loopSFXSourceDic = new Dictionary<string, AudioSource>();
 
         _audioMixer = Resources.Load<AudioMixer>(AUDIOMIXER_PATH); //믹서 로드해주고
         AudioMixerGroup[] audioMixerGroups = _audioMixer.FindMatchingGroups(MASTER_NAME); //믹서 그룹 배열로 가져온다
@@ -73,36 +76,56 @@ public class SoundHandler : Handler
     {
         if(_audioDic.TryGetValue(audioName, out AudioSO audioSO)) //만약 일치하는 음원이 있다면
         {
-            if(audioSO.audioType == AudioType.BGM) //bgm이면 음원을 갈아끼고 재생해준다
+            if (audioSO.audioType == AudioType.SFX) //sfx라면
+            {
+                AudioSource sfxSource = FindEmptySFXSource();
+
+                sfxSource.loop = false;
+                sfxSource.clip = audioSO.clip;
+                sfxSource.Play();
+            }
+            else if (audioSO.audioType == AudioType.BGM) //bgm이면 음원을 갈아끼고 재생해준다
             {
                 _bgmSource.clip = audioSO.clip;
                 _bgmSource.Play();
             }
-            else if(audioSO.audioType == AudioType.SFX) //sfx라면
+            else if (audioSO.audioType == AudioType.LOOPSFX) //루프 되는 놈이면
             {
-                AudioSource sfxSource = null;
-
-                for (int i = 0; i < _sfxSourceList.Count; i++) //일단 재생중이 아닌 재생기부터 찾는다
-                {
-                    if(!_sfxSourceList[i].isPlaying)
-                    {
-                        sfxSource = _sfxSourceList[i];
-                        break;
-                    }
-                }
-
-                if(sfxSource == null) //없으면 새로 하나 만든다
-                {
-                    sfxSource = CreateAudioSource(AudioType.SFX);
-                }
-
-                sfxSource.clip = audioSO.clip;
-                sfxSource.Play();
+                
             }
             else
             {
                 Debug.LogError($"{audioName}의 AudioType을 확인해주세요");
             }
+        }
+        else
+        {
+            Debug.LogError($"{audioName}이 존재하지 않습니다");
+        }
+    }
+
+    /// <summary>
+    /// 반복되는 SFX 음원을 재생하는 함수
+    /// </summary>
+    /// <param name="audioName">음원의 이름(SO의 audioName)</param>
+    /// <param name="key">Stop 할때 사용할 Key</param>
+    public void PlayLoopSFX(string audioName, string key)
+    {
+        if (_audioDic.TryGetValue(audioName, out AudioSO audioSO)) //만약 일치하는 음원이 있다면
+        {
+            if (_loopSFXSourceDic.ContainsKey(audioName))
+            {
+                Debug.LogWarning("중복된 key 값이 사용되었습니다");
+                return;
+            }
+
+            AudioSource sfxSource = FindEmptySFXSource();
+
+            _loopSFXSourceDic.Add(key, sfxSource);
+
+            sfxSource.loop = true;
+            sfxSource.clip = audioSO.clip;
+            sfxSource.Play();
         }
         else
         {
@@ -143,6 +166,19 @@ public class SoundHandler : Handler
         for (int i = 0; i < _sfxSourceList.Count; i++)
         {
             _sfxSourceList[i].Stop();
+        }
+    }
+
+    /// <summary>
+    /// 특정 반복되는 SFX 음원을 멈추는 함수
+    /// </summary>
+    /// <param name="audioName">Play때 등록한 Key</param>
+    public void StopLoopSFX(string key)
+    {
+        if(_loopSFXSourceDic.TryGetValue(key, out AudioSource sfxSource))
+        {
+            sfxSource.Stop();
+            _loopSFXSourceDic.Remove(key);
         }
     }
 
@@ -203,5 +239,30 @@ public class SoundHandler : Handler
         }
 
         return audioSource; //sfx가 아니면 null 리턴
+    }
+
+    /// <summary>
+    /// 비어있는 SFX 재생기를 찾거나 없으면 만드는 함수
+    /// </summary>
+    /// <returns></returns>
+    private AudioSource FindEmptySFXSource()
+    {
+        AudioSource sfxSource = null;
+
+        for (int i = 0; i < _sfxSourceList.Count; i++) //일단 재생중이 아닌 재생기부터 찾는다
+        {
+            if (!_sfxSourceList[i].isPlaying)
+            {
+                sfxSource = _sfxSourceList[i];
+                break;
+            }
+        }
+
+        if (sfxSource == null) //없으면 새로 하나 만든다
+        {
+            sfxSource = CreateAudioSource(AudioType.SFX);
+        }
+
+        return sfxSource;
     }
 }

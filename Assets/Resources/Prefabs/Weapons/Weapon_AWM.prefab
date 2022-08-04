@@ -96,9 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f846c49c741a54cbfa675cf7c92129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSFXName: SniperShot
   damage: 5
   maxBullet: 5
-  fireRate: 0
+  fireRate: 1
   collectionRate: 1
   isAuto: 0
   isPlayer: 1

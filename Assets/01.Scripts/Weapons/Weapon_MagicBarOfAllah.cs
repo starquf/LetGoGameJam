@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon_MagicBarOfAllah : Weapon
 {
-    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet";
+    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_Allah";
 
     public override void Shoot(Vector3 shootDir)
     {
@@ -15,5 +15,7 @@ public class Weapon_MagicBarOfAllah : Weapon
         bulletObj.GetComponent<Bullet>().ChangeDir(shootDir.normalized);
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
+
+        GameManager.Instance.soundHandler.Play(shotSFXName);
     }
 }

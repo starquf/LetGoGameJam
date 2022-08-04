@@ -96,9 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446594c19e514a84ab64d07828713a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSFXName: MP7Shot
   damage: 5
   maxBullet: 5
-  fireRate: 0
+  fireRate: 2
   collectionRate: 0.2
   isAuto: 0
   isPlayer: 1

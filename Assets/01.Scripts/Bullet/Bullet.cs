@@ -12,26 +12,26 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public float bulletDamage = 1f;
 
     public float bulletSpeed = 30f;
-    private float currSpeed = 0f;
+    protected float currSpeed = 0f;
 
     public float lifeTime = 3f;
 
     // 적의 총알인가?
     public bool isEnemyBullet = true;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
 
         currSpeed = bulletSpeed;
     }
 
-    public void Despawned()
+    public virtual void Despawned()
     {
         ChangeState(BulletState.MoveForward);
     }
 
-    public void Spawned()
+    public virtual void Spawned()
     {
         currSpeed = bulletSpeed;
 
