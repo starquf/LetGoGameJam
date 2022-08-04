@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public SoundHandler soundHandler;
+    [HideInInspector]
+    public InGameUIHandler inGameUIHandler;
 
     #endregion
 
