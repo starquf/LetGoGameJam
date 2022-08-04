@@ -8,11 +8,16 @@ public class AudioTest : MonoBehaviour
 
     private void Start()
     {
-        GameObject obj = GameObjectPoolManager.Instance.GetGameObject(path, transform);
+        Invoke("Test", 5.0f);
+    }
+
+    private void Test()
+    {
+        GameObject obj = GameObjectPoolManager.Instance.GetGameObject(path, null);
 
         DeadEffect deadEffect = obj.GetComponent<DeadEffect>();
 
         deadEffect.SetColor(Color.red, Color.blue);
-        deadEffect.Play(Vector2.zero);
+        deadEffect.Play();
     }
 }

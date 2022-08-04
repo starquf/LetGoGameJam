@@ -11,9 +11,13 @@ public class Effect : MonoBehaviour, IPoolableComponent
         _particleSystem = GetComponent<ParticleSystem>();
     }
 
-    public void Play(Vector2 pos)
+    public void SetPosition(Vector2 pos)
     {
-        transform.position = pos;
+        transform.position = new Vector3(pos.x, pos.y, -10);
+    }
+
+    public void Play()
+    {
         _particleSystem.Play();
     }
 
