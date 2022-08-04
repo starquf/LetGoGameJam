@@ -6,7 +6,7 @@ public class PlayerAttack : AttackBase
 {
     protected int currentBullet;
 
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     public override void Init(Weapon baseWeapon)
     {
@@ -22,9 +22,9 @@ public class PlayerAttack : AttackBase
         weapon.isPlayer = true;
     }
 
-    private void Awake()
+    private void Update()
     {
-        playerInput = GetComponent<PlayerInput>();
+        LookDirection(playerInput.mousePos);
     }
 
     protected override IEnumerator Shooting()
@@ -42,7 +42,9 @@ public class PlayerAttack : AttackBase
             {
                 if (currentWeapon.isAuto)
                 {
-                    currentWeapon.Shoot(playerInput.mousePos);
+                    Vector3 dir = playerInput.mousePos - transform.position;
+
+                    currentWeapon.Shoot(dir);
 
                     yield return weaponShootWait;
                 }
@@ -50,7 +52,9 @@ public class PlayerAttack : AttackBase
                 {
                     isShootOnce = false;
 
-                    currentWeapon.Shoot(playerInput.mousePos);
+                    Vector3 dir = playerInput.mousePos - transform.position;
+
+                    currentWeapon.Shoot(dir);
 
                     yield return weaponShootWait;
                 }

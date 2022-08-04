@@ -26,5 +26,14 @@ public abstract class AttackBase : MonoBehaviour
         weaponShootWait = new WaitForSeconds(weapon.fireRate);
     }
 
+    public virtual void LookDirection(Vector3 pos)
+    {
+        Vector3 dir = (pos - transform.position).normalized;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
     protected abstract IEnumerator Shooting();
 }
