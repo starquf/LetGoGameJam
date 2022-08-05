@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: RPGShot
   damage: 9
-  maxBullet: 5
+  maxBullet: 6
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 2
   collectionRate: 0
   isAuto: 0
@@ -110,6 +111,7 @@ MonoBehaviour:
   shootPos: {fileID: 1621244696751091155}
   bulletData: {fileID: 11400000, guid: 2b685f2e7c481254c8fa15ffc807bb40, type: 2}
   sr: {fileID: 0}
+  isNoShakeWeapon: 0
 --- !u!61 &6167803305822638830
 BoxCollider2D:
   m_ObjectHideFlags: 0
