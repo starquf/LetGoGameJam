@@ -20,5 +20,6 @@ public class Weapon_MagicBarOfAllah : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayBounceEffect();
     }
 }
