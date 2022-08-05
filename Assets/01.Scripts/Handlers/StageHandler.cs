@@ -51,6 +51,8 @@ public class StageHandler : MonoBehaviour
         //{
         //    spawnPositionTransformList.Add(this.transform.GetChild(i));
         //}
+
+        GameManager.Instance.stageHandler = this;
     }
 
     private void Start()
@@ -123,7 +125,7 @@ public class StageHandler : MonoBehaviour
             enemyInfo = enemyInfos[rand];
         } while (enemyInfo.enterMinScore > GameManager.Instance.Score);
 
-        GameObject go = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/"+enemyInfos[rand].enemyList[Random.Range(0, enemyInfos[rand].enemyList.Count)].ToString(), transform);
+        GameObject go = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + enemyInfos[rand].enemyList[Random.Range(0, enemyInfos[rand].enemyList.Count)].ToString(), transform);
 
         return go.GetComponent<Enemy>();
     }
@@ -158,5 +160,10 @@ public class StageHandler : MonoBehaviour
     public Vector3 GetSpawnPosition()
     {
         return spawnPosition;
+    }
+
+    public Vector3 GetRandomSpawnPosition()
+    {
+        return spawnPositionTransformList[Random.Range(0, spawnPositionTransformList.Count)].position;
     }
 }

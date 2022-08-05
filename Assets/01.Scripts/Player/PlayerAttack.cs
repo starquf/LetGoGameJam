@@ -152,7 +152,10 @@ public class PlayerAttack : AttackBase
     protected void UseBullet()
     {
         if (currentWeapon.isInfiniteBullet)
+        {
+            GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, "inf");
             return;
+        }
 
         currentBullet--;
 
