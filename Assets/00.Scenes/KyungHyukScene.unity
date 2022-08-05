@@ -197,13 +197,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavePlusEnemyAmount: 0
-  defaultwaveEnemyAmount: 1
+  defaultwaveEnemyAmount: 10
   waveTimer: 100
   spawnWaitTimerRange: {x: 0.1, y: 0.3}
   enemyInfos:
   - enterMinScore: 0
     enterMaxScore: 1000
+    enemyList: 00000000010000000200000003000000
+  - enterMinScore: 0
+    enterMaxScore: 1000
+    enemyList: 04000000
+  - enterMinScore: 0
+    enterMaxScore: 1000
     enemyList: 05000000
+  - enterMinScore: 0
+    enterMaxScore: 1000
+    enemyList: 06000000
+  - enterMinScore: 0
+    enterMaxScore: 1000
+    enemyList: 07000000
+  - enterMinScore: 0
+    enterMaxScore: 1000
+    enemyList: 08000000
   spawnPositionTransformList:
   - {fileID: 416854877}
   - {fileID: 492756877}
@@ -406,6 +421,7 @@ MonoBehaviour:
   isAttack: 0
   isSwitchWeapon: 0
   isDie: 0
+  isKnockBack: 0
 --- !u!58 &409571246
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1340,6 +1356,8 @@ MonoBehaviour:
   soundHandler: {fileID: 0}
   inGameUIHandler: {fileID: 0}
   optionHandler: {fileID: 0}
+  upgradeHandler: {fileID: 0}
+  upgradeUIHandler: {fileID: 0}
 --- !u!114 &1272592880
 MonoBehaviour:
   m_ObjectHideFlags: 0

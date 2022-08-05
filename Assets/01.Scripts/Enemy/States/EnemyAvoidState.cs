@@ -18,25 +18,33 @@ public class EnemyAvoidState : EnemyState
     }
     public override void Update()
     {
-        if (!PlayerAvoidInRange())
+        if (myLivingEntity.IsDie)
         {
-            if (CanAttackPlayer())
-            {
-                nextState = GetAttackEnemyState(myLivingEntity.enemyAttackType);
-                curEvent = eEvent.EXIT;
-            }
-            else
-            {
-                nextState = new EnemyPurseState(myObj, myLivingEntity, myAnim, playerTrm);
-                curEvent = eEvent.EXIT;
-            }
+            nextState = new Dead(myObj, myLivingEntity, myAnim, playerTrm);
+            curEvent = eEvent.EXIT;
         }
         else
         {
-            Vector2 dir = (myObj.transform.position - playerTrm.position).normalized;
-            myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+            if (!PlayerAvoidInRange())
+            {
+                if (CanAttackPlayer())
+                {
+                    nextState = GetAttackEnemyState(myLivingEntity.enemyAttackType);
+                    curEvent = eEvent.EXIT;
+                }
+                else
+                {
+                    nextState = new EnemyPurseState(myObj, myLivingEntity, myAnim, playerTrm);
+                    curEvent = eEvent.EXIT;
+                }
+            }
+            else
+            {
+                Vector2 dir = (myObj.transform.position - playerTrm.position).normalized;
+                myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
 
-            myLivingEntity.sr.flipX = dir.x > 0;
+                myLivingEntity.sr.flipX = dir.x > 0;
+            }
         }
     }
     public override void Exit()
