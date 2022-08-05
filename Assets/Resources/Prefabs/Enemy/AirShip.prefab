@@ -266,7 +266,7 @@ MonoBehaviour:
   avoidRange: 6
   enterExpRange: {x: 0, y: 0}
   dropExpInfo:
-    dropPersent: 40
+    dropPersent: 70
     amount: 1
     type: 0
   enemyAttackType: 1
@@ -278,7 +278,7 @@ MonoBehaviour:
     dropPersent: 5
   - type: 1
     dropPersent: 20
-  dropGunPersent: 25
+  dropGunPersent: 30
   enemyAttack: {fileID: 5778209890832976753}
   playerTrm: {fileID: 0}
   sr: {fileID: 0}
