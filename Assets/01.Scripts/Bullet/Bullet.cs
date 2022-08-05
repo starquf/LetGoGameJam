@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     private const string HIT_EFFECT_PATH = "Prefabs/Effect/HitEffect";
 
     protected Rigidbody2D rb = null;
-    private SpriteRenderer sr = null;
+    protected SpriteRenderer sr = null;
 
     private BulletState currentState = BulletState.MoveForward;
 
