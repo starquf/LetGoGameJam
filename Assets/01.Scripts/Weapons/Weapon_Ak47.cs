@@ -26,5 +26,6 @@ public class Weapon_Ak47 : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayBounceEffect();
     }
 }

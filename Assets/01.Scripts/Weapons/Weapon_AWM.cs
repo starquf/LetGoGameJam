@@ -29,5 +29,7 @@ public class Weapon_AWM : Weapon
         //print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
+
+        PlayBounceEffect();
     }
 }

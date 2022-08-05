@@ -81,6 +81,8 @@ public class Weapon_BlueArchive : Weapon
 
 
             GameManager.Instance.soundHandler.Play(shotSFXName);
+
+            PlayBounceEffect();
         }
     }
 

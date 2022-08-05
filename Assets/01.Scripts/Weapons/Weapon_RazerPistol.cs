@@ -36,5 +36,7 @@ public class Weapon_RazerPistol : Weapon
 
         curIndex++;
         GameManager.Instance.soundHandler.Play(shotSFXName);
+
+        PlayBounceEffect();
     }
 }

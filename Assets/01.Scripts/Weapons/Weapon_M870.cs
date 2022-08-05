@@ -28,5 +28,6 @@ public class Weapon_M870 : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayBounceEffect();
     }
 }

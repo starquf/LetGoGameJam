@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public abstract class Weapon : MonoBehaviour, IPoolableComponent
 {
@@ -89,6 +90,11 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
                 switchEffect.SetDisable();
             switchEffect = null;
         }
+    }
+
+    protected void PlayBounceEffect()
+    {
+        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal,sr);
     }
 
     protected void PlayMuzzleEffect()
