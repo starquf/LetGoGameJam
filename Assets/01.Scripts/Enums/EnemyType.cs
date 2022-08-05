@@ -21,6 +21,5 @@ public enum enemyAttackType   // 적 종류 근접, 원거리 같은거
 public class enemyInfo
 {
     public int enterMinScore;
-    public int enterMaxScore;
     public List<enemyType> enemyList = new List<enemyType>();
 }

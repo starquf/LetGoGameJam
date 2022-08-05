@@ -13,6 +13,7 @@ public class WeaponInfo
 
 public class Enemy : LivingEntity, IPoolableComponent
 {
+    public List<int> maxHPForPlayerLevel = new List<int>();
 
     private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
     private const string RIP_PREFAB_PATH = "Prefabs/Object/RIP";
@@ -44,6 +45,14 @@ public class Enemy : LivingEntity, IPoolableComponent
     public void Despawned()
     {
         enemyAI.SetActive(false);
+    }
+    public override void Init()
+    {
+        isDie = false;
+
+        hp = maxHPForPlayerLevel[GameManager.Instance.playerTrm.GetComponent<PlayerUpgrade>().CurrentLevel / 10];
+
+        SetHPUI();
     }
 
     public virtual void Spawned()
