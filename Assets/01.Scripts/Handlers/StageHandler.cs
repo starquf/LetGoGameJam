@@ -228,11 +228,13 @@ public class StageHandler : MonoBehaviour
         Enemy enemy = null;
         int rand = 0;
         enemyInfo enemyInfo = null;
+        bool roop = false;
         do
         {
             rand = Random.Range(0, enemyInfos.Count);
             enemyInfo = enemyInfos[rand];
-        } while (enemyInfo.enterMinScore > GameManager.Instance.Score || !CanSpawnEnemy(enemyInfo, ref enemy));
+            roop = enemyInfo.enterMinScore > GameManager.Instance.Score || !CanSpawnEnemy(enemyInfo, ref enemy);
+        } while (roop);
         amountEnemy++;
 
         return enemy;
