@@ -60,7 +60,7 @@ public class Bullet_AWM : Bullet
     {
         PlayHitEffect(hitEntity, true);
 
-        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.GetDamage(bulletDamage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }

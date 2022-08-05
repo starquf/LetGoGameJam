@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSFXName: SniperCharge
-  damage: 6
+  damage: 9
   maxBullet: 15
   bulletIron: 0
   isInfiniteBullet: 0

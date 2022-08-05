@@ -17,7 +17,7 @@ public class EnemyAttack : AttackBase
     public float waitAttackDurationFirst = 5f;
 
     private Vector3 attackDir = Vector3.zero;
-
+    private bool isBlue = false;
     private WaitForSeconds enemyShootWait = new WaitForSeconds(1f);
     [HideInInspector]public Transform targetPos = null;
 
@@ -31,6 +31,9 @@ public class EnemyAttack : AttackBase
     {
         enemyShootWait = new WaitForSeconds(waitAttackDuration);
         base.Init(baseWeapon);
+
+        Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
+        isBlue = blue != null;
     }
     public void Init()
     {
@@ -38,11 +41,14 @@ public class EnemyAttack : AttackBase
         timer = waitAttackDurationFirst;
         isAttacking = true;
 
-        Vector3 dir = attackDir.normalized;
+        if(!isBlue)
+        {
+            Vector3 dir = attackDir.normalized;
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        lookAngle = angle;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            lookAngle = angle;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     public override void LookDirection(Vector3 pos)
@@ -54,7 +60,7 @@ public class EnemyAttack : AttackBase
 
         transform.rotation = Quaternion.Slerp(transform.rotation,
             Quaternion.AngleAxis(angle, Vector3.forward),
-            Time.deltaTime * 5);
+            Time.deltaTime * (isBlue ? 2 : 5));
 
         if (lookAngle > 90f || lookAngle < -90f)
         {
@@ -90,15 +96,14 @@ public class EnemyAttack : AttackBase
                 }
                 else
                 {
-                    Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
-                    if (blue != null)
+                    if (isBlue)
                     {
-                        currentWeapon.Shoot(attackDir);
+                        currentWeapon.Shoot(transform.right*attackDir.magnitude);
                         yield return new WaitForSeconds(0.005f);
                     }
                     else
                     {
-                        currentWeapon.Shoot(attackDir);
+                        currentWeapon.Shoot(transform.right);
                         if (!currentWeapon.isNoShakeWeapon)
                         {
                             GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
@@ -115,6 +120,11 @@ public class EnemyAttack : AttackBase
             }
             else
             {
+                if (isBlue)
+                {
+                    Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
+                    blue.EnemyShootStop();
+                }
                 weaponRenderer.color = Color.clear;
             }
         }

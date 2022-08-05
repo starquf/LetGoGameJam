@@ -16,6 +16,8 @@ public class Bullet_BlueArchive : Bullet
     protected Camera m_Camera;
     protected List<Vector2> m_Points;
 
+    private Vector2 targetPos = Vector2.zero;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,7 +32,7 @@ public class Bullet_BlueArchive : Bullet
     public override void SetOwner(bool isEnemy)
     {
         isEnemyBullet = isEnemy;
-        curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
+        curSpeed = isEnemyBullet ? curSpeed * 0.5f : curSpeed;
         ChangeState(BulletState.MoveForward);
     }
 
@@ -50,6 +52,11 @@ public class Bullet_BlueArchive : Bullet
         base.OnTriggerEnter2D(collision);
     }
 
+    public void SetTarget(Vector2 position)
+    {
+        targetPos = position;
+    }
+
     public void SetRenderer(Vector3 position)
     {
         m_Points.Clear();
@@ -58,7 +65,11 @@ public class Bullet_BlueArchive : Bullet
         position.Set(position.x, position.y, 0);
         m_Points.Add(position);
         m_LineRenderer.SetPosition(0, position);
-        position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        position = targetPos;
+        //if (!targetPos.Equals(Vector2.zero))
+        //{
+        //    position = targetPos;
+        //}
         m_Points.Add(position);
         position.Set(position.x, position.y, 0);
         m_LineRenderer.SetPosition(1, position);
@@ -107,7 +118,7 @@ public class Bullet_BlueArchive : Bullet
     {
         PlayHitEffect(hitEntity);
 
-        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.GetDamage(bulletDamage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
     }
 
