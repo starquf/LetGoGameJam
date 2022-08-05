@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
 
 public class PlayerParrying : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerParrying : MonoBehaviour
     private bool isEffectStart = false;
 
     private bool canParrying = true;
+
+    public bool isReflectMode = false;
 
     public void Start()
     {
@@ -38,10 +41,23 @@ public class PlayerParrying : MonoBehaviour
         {
             GameManager.Instance.soundHandler.Play("Parring");
             StartCoroutine(StartAnimation());
-            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .5f, .2f).SetEase(Ease.InQuint).OnComplete(()=>
+
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .3f, .1f).SetEase(Ease.InQuint).OnComplete(()=>
             {
-                DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, .2f);
+                DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, .5f);
             });
+
+            if (isReflectMode)
+            {
+                CinemachineVirtualCamera cam = GameManager.Instance.cmPerlinObject;
+
+                float originSize = cam.m_Lens.OrthographicSize;
+
+                DOTween.To(() => cam.m_Lens.OrthographicSize, x => cam.m_Lens.OrthographicSize = x, originSize - 2.0f, .4f).SetEase(Ease.OutQuad).OnComplete(() =>
+                {
+                    DOTween.To(() => cam.m_Lens.OrthographicSize, x => cam.m_Lens.OrthographicSize = x, originSize, .2f).SetUpdate(true);
+                }).SetUpdate(true);
+            }
         }
 
         IEnumerator StartAnimation()
@@ -50,6 +66,18 @@ public class PlayerParrying : MonoBehaviour
             effectAnimator.SetBool("IsParrying", true);
             yield return new WaitForSeconds(.5f);
             effectAnimator.SetBool("IsParrying", false);
+        }
+
+        if (isReflectMode)
+        {
+            Vector2 moveDir = bullet.rb.velocity.normalized;
+
+            bullet.ChangeDir(-moveDir);
+            bullet.SetOwner(false);
+        }
+        else
+        {
+            bullet.SetDisable();
         }
     }
 

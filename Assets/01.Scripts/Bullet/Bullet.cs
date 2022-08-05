@@ -7,7 +7,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 {
     private const string HIT_EFFECT_PATH = "Prefabs/Effect/HitEffect";
 
-    protected Rigidbody2D rb = null;
+    [HideInInspector]
+    public Rigidbody2D rb = null;
     protected SpriteRenderer sr = null;
 
     [SerializeField]
@@ -268,7 +269,6 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         {
             GameManager.Instance.soundHandler.Play("MeleeAttackHit");
             GameManager.Instance.playerTrm.GetComponentInChildren<PlayerParrying>().StartParryingEffect(this);
-            SetDisable();
         }
 
         if (isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Player")))
