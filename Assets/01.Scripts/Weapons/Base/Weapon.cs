@@ -22,6 +22,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public Transform shootPos;
 
+    public BulletSO bulletData;
+
     public SpriteRenderer sr;
 
     protected virtual void Awake()

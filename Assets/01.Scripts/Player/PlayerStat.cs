@@ -7,6 +7,7 @@ public class PlayerStat : MonoBehaviour
     public int atk;
     public float moveSpeed;
     public int bulletIronclad;
+    public float bulletCapacity;
     public float atkRate;
     public int bonusExp;
     public int bonusScore;
