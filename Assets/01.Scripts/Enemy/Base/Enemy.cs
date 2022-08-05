@@ -114,7 +114,7 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public virtual void AttackStart()
     {
-        enemyAttack.isAttacking = true;
+        enemyAttack.Init();
     }
     public virtual void AttackStop()
     {
