@@ -47,17 +47,19 @@ public class PlayerTest : MonoBehaviour
     {
         if(nearWeaponList.Count>0)
         {
-            Weapon nearWeapon = nearWeaponList[0];
-            float curDist = Vector2.Distance(transform.position, nearWeaponList[0].transform.position);
-            for (int i = 1; i < nearWeaponList.Count; i++)
+
+            Weapon nearWeapon = null;
+            float curDist = 1000;
+            for (int i = 0; i < nearWeaponList.Count; i++)
             {
-                nearWeapon = nearWeaponList[i];
-                float dist = Vector2.Distance(transform.position, nearWeapon.transform.position);
+                float dist = Vector2.Distance(transform.position, nearWeaponList[i].transform.position);
                 if (dist < curDist)
                 {
+                    nearWeapon = nearWeaponList[i];
                     curDist = dist;
                 }
             }
+
 
             return nearWeapon;
         }
@@ -74,7 +76,8 @@ public class PlayerTest : MonoBehaviour
             Weapon wp = collision.GetComponent<Weapon>();
             if (wp.isGround)
             {
-                nearWeaponList.Add(wp);
+                if(!nearWeaponList.Contains(wp))
+                    nearWeaponList.Add(wp);
             }
         }
     }
