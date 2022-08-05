@@ -8,7 +8,10 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     private const string HIT_EFFECT_PATH = "Prefabs/Effect/HitEffect";
 
     protected Rigidbody2D rb = null;
-    private SpriteRenderer sr = null;
+    protected SpriteRenderer sr = null;
+
+    [SerializeField]
+    private TrailRenderer tr;
 
     private BulletState currentState = BulletState.MoveForward;
 
@@ -32,10 +35,13 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     // 적의 총알인가?
     public bool isEnemyBullet = true;
 
+    private GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        tr = GetComponent<TrailRenderer>();
 
         //curSpeed = bulletSpeed;
     }
@@ -46,6 +52,14 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         isEnemyBullet = isEnemy;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
         curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
+        if(tr != null)
+        {
+            alphaKey[0].alpha = isEnemyBullet ? 0.7f : 1f;
+            alphaKey[0].time = 0f;
+            alphaKey[1].alpha = isEnemyBullet ? 0.7f : 1f;
+            alphaKey[1].time = 1f;
+            tr.colorGradient.SetKeys(tr.colorGradient.colorKeys, alphaKey);
+        }
         ChangeState(BulletState.MoveForward);
         
     }
@@ -53,6 +67,10 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public virtual void Despawned()
     {
         ChangeState(BulletState.MoveForward);
+        if(tr != null)
+        {
+            tr.Clear();
+        }
     }
 
     public virtual void Spawned()

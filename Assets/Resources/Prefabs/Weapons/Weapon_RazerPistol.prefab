@@ -99,9 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: LazerPistolShot
   damage: 2
-  maxBullet: 5
+  maxBullet: 14
   bulletIron: 0
-  fireRate: 1
+  isInfiniteBullet: 0
+  fireRate: 0.2
   collectionRate: 5
   isAuto: 1
   isPlayer: 1
@@ -112,6 +113,7 @@ MonoBehaviour:
   bulletData: {fileID: 11400000, guid: eec48639b39031a45af77ee3f3250121, type: 2}
   sr: {fileID: 0}
   isNoShakeWeapon: 0
+  curIndex: 0
 --- !u!61 &-6644993816362239579
 BoxCollider2D:
   m_ObjectHideFlags: 0

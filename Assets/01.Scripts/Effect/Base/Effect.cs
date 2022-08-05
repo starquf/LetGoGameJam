@@ -23,6 +23,9 @@ public class Effect : MonoBehaviour, IPoolableComponent
 
     public void Play()
     {
+        if(_particleSystem == null)
+            _particleSystem = GetComponent<ParticleSystem>();
+
         _particleSystem.Play();
     }
 

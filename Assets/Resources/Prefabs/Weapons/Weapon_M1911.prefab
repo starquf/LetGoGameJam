@@ -62,6 +62,8 @@ MonoBehaviour:
   bulletData: {fileID: 11400000, guid: 7932c9aef5efda946849c02210a74b4b, type: 2}
   sr: {fileID: 5127478851551941706}
   isNoShakeWeapon: 0
+  muzzleFlashEffect: {fileID: 2641307986888209182}
+  muzzleFlashTime: 0.05
 --- !u!61 &5732763431240696748
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,9 +114,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621244696751091156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.497, y: 0, z: 0}
+  m_LocalPosition: {x: 0.55, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5170398558991986101}
   m_Father: {fileID: 1621244696532514840}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
