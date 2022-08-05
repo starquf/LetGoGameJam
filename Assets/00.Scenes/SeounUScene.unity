@@ -2111,28 +2111,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choices:
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
-  - merit: {fileID: 0}
-    demerit: {fileID: 0}
+  - merit: {fileID: 155399473}
+    demerit: {fileID: 424261924}
+  - merit: {fileID: 155399473}
+    demerit: {fileID: 1772817263}
+  - merit: {fileID: 1270668446}
+    demerit: {fileID: 424261924}
+  - merit: {fileID: 1270668446}
+    demerit: {fileID: 1625043855}
+  - merit: {fileID: 857909532}
+    demerit: {fileID: 424261924}
+  - merit: {fileID: 857909532}
+    demerit: {fileID: 49768456}
+  - merit: {fileID: 2112492102}
+    demerit: {fileID: 49768456}
+  - merit: {fileID: 2112492102}
+    demerit: {fileID: 424261924}
+  - merit: {fileID: 845208960}
+    demerit: {fileID: 1625043855}
+  - merit: {fileID: 845208960}
+    demerit: {fileID: 1772817263}
+  - merit: {fileID: 1007549951}
+    demerit: {fileID: 424261924}
+  - merit: {fileID: 1007549951}
+    demerit: {fileID: 49768456}
+  - merit: {fileID: 1376084752}
+    demerit: {fileID: 49768456}
+  - merit: {fileID: 1376084752}
+    demerit: {fileID: 1772817263}
   playerStat: {fileID: 0}
 --- !u!1 &1270668444
 GameObject:
