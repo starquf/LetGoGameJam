@@ -55,6 +55,7 @@ public class PlayerUpgrade : MonoBehaviour
         currentExp += exp;
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, (currentExp / (float)needExpToUpgrade[currentLevel]).ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Score, "250");
 
         // 레벨업
         if (currentExp >= needExpToUpgrade[currentLevel])
