@@ -32,9 +32,9 @@ AnimationClip:
     - time: 0.41666666
       value: {fileID: 9114516721940676531, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
     - time: 0.5
-      value: {fileID: 9114516721940676531, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
+      value: {fileID: -5284842727790848897, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
     attribute: m_Sprite
-    path: 
+    path: Enemy_Image
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -45,7 +45,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 408597151
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -58,7 +58,7 @@ AnimationClip:
     - {fileID: 7290773656661203683, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
     - {fileID: 5773522811093701495, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
     - {fileID: 9114516721940676531, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
-    - {fileID: 9114516721940676531, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
+    - {fileID: -5284842727790848897, guid: 233b80fb9a3a06d4392746f4edc51ecd, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

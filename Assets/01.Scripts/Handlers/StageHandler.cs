@@ -4,11 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+[Serializable]
+public class LimitAmountWeapon
+{
+    public int maxEnemy;
+    public List<AmountWeapon> maxWeaponType;
+}
+
 [Serializable]
 public class AmountWeapon
 {
     public WeaponType type;
     public int amount;
+}
+
+
+[Serializable]
+public class EliteWave
+{
+    public enemyType elite;
+    public int waveIdx;
+    public int resetWaveEnemyAcount;
 }
 
 public class StageHandler : MonoBehaviour
@@ -35,6 +52,7 @@ public class StageHandler : MonoBehaviour
     private float nextEnemySpawnTimer;  // 적 스폰시 동시에 여러마리 스폰을 방지하기 위한 타이머
     private int remainingEnemySpawnAmount;  // 한 웨이브에 몇마리의 적을 생성할 것인지?
 
+    public List<EliteWave> eliteWaves = new List<EliteWave>();
 
     public List<enemyInfo> enemyInfos = new List<enemyInfo>();
 
@@ -43,8 +61,7 @@ public class StageHandler : MonoBehaviour
     [HideInInspector]
     public Dictionary<WeaponType, int> amountWeaponType = new Dictionary<WeaponType, int>();
 
-    public int maxEnemy = 0;
-    public List<AmountWeapon> maxWeaponType = new List<AmountWeapon>();
+    public List<LimitAmountWeapon> maxLimit = new List<LimitAmountWeapon>();
 
     // 3 스폰 지점을 리스트로 생성
     //[SerializeField] private Transform spawnPositionTransform;
@@ -58,11 +75,6 @@ public class StageHandler : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.stageHandler = this;
-        amountWeaponType = new Dictionary<WeaponType, int>();
-        for (int i = 0; i < maxWeaponType.Count; i++)
-        {
-            amountWeaponType.Add(maxWeaponType[i].type, 0);
-        }
         //// 자식으로 적 스폰 위치가 존재한다면 리스트에 넣어줌
         //if (spawnPositionTransformList != null && spawnPositionTransformList.Count > 0)
         //    spawnPositionTransformList.Clear();
@@ -76,7 +88,11 @@ public class StageHandler : MonoBehaviour
 
     private void Start()
     {
-        print(CanGetWeapon(WeaponType.M1911));
+        amountWeaponType = new Dictionary<WeaponType, int>();
+        for (int i = 0; i < maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType.Count; i++)
+        {
+            amountWeaponType.Add(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[i].type, 0);
+        }
         // 최소 스폰 시작 전 세팅
         state = eWaveState.WaitingToSpawnNextWave;
 
@@ -107,8 +123,14 @@ public class StageHandler : MonoBehaviour
                 if (remainingEnemySpawnAmount > 0)
                 {
                     nextEnemySpawnTimer -= Time.deltaTime;
-                    if (nextEnemySpawnTimer < 0f && maxEnemy > amountEnemy)
+                    if (nextEnemySpawnTimer < 0f)
                     {
+                        if (!(maxLimit[GetLimitIdxForPlayerLevel()].maxEnemy > amountEnemy))
+                        {
+                            state = eWaveState.WaitingToSpawnNextWave;
+                            nextWaveSpawnTimer = waveTimer;
+                            return;
+                        }
                         nextEnemySpawnTimer = UnityEngine.Random.Range(0f, .2f);
 
                         // 실제 적 생성 후 remainingEnemySpawnAmount 하나씩 감소
@@ -135,36 +157,57 @@ public class StageHandler : MonoBehaviour
         }
     }
 
+    private int GetLimitIdxForPlayerLevel()
+    {
+        int level = GameManager.Instance.playerTrm.GetComponent<PlayerUpgrade>().CurrentLevel;
+        if(level < 5)
+        {
+            return 0;
+        }
+        else if(level < 10)
+        {
+            return 1;
+        }
+        else if(level <15)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+
     private bool CanSpawnEnemy(enemyInfo enemyInfo, ref Enemy enemy)
     {
-        for (int i = 0; i < enemyInfo.enemyList.Count; i++)
-        {
-            enemyType eType = enemyInfo.enemyList[i];
-            enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eType.ToString(), transform).GetComponent<Enemy>();
+        int rand = Random.Range(0, enemyInfo.enemyList.Count);
+        enemyType eType = enemyInfo.enemyList[rand];
+        enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eType.ToString(), transform).GetComponent<Enemy>();
 
-            for (int j = 0; j < enemy.canHaveWeaponList.Count; j++)
+        for (int j = 0; j < enemy.canHaveWeaponList.Count; j++)
+        {
+            WeaponType weaponType = enemy.canHaveWeaponList[j].type;
+            for (int k = 0; k < maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType.Count; k++)
             {
-                WeaponType weaponType = enemy.canHaveWeaponList[j].type;
-                for (int k = 0; k < maxWeaponType.Count; k++)
+                if(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[k].type == weaponType)
                 {
-                    if(maxWeaponType[k].type == weaponType)
+                    //print(weaponType.ToString());
+                    if(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[k].amount > amountWeaponType[weaponType])
                     {
-                        //print(weaponType.ToString());
-                        if(maxWeaponType[k].amount > amountWeaponType[weaponType])
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
         }
+        GameObjectPoolManager.Instance.UnusedGameObject(enemy.gameObject);
+        enemy = null;
         return false;
     }
     public bool CanGetWeapon(WeaponType weaponType)
     {
-        for (int i = 0; i < maxWeaponType.Count; i++)
+        for (int i = 0; i < maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType.Count; i++)
         {
-            AmountWeapon maxAmountWeapon = maxWeaponType[i];
+            AmountWeapon maxAmountWeapon = maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[i];
             if (maxAmountWeapon.type == weaponType)
             {
                 if (maxAmountWeapon.amount > amountWeaponType[weaponType])
@@ -198,11 +241,30 @@ public class StageHandler : MonoBehaviour
     private void SpawnWave()
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
-        remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber;     // 이런값들은 외부시트로 관리
+        if(waveNumber > 4 + eliteWaves.Count * 7)
+        {
+            remainingEnemySpawnAmount = eliteWaves[eliteWaves.Count - 1].resetWaveEnemyAcount;
+        }
+        else
+        {
+            remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * (waveNumber > 11 ? (waveNumber - 5) % 7 : waveNumber);     // 이런값들은 외부시트로 관리
+
+            print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
+            if ((waveNumber - 4) % 7 == 0 && waveNumber > 4)
+            {
+                int eliteWaveIdx = (waveNumber - 4) / 7 -1;
+                print("엘리트 출격"+ eliteWaveIdx);
+                Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteWaves[eliteWaveIdx].elite.ToString(), transform).GetComponent<Enemy>();
+                enemy.transform.position = spawnPosition;
+
+                amountEnemy += 5;
+
+                defaultwaveEnemyAmount = eliteWaves[eliteWaveIdx].resetWaveEnemyAcount;
+            }
+        }
 
         state = eWaveState.SpawningWave;
         waveNumber++;
-
         //OnWaveNumberChanged?.Invoke();
     }
 
