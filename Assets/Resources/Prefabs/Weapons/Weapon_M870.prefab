@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: ShotGunShot
   damage: 1
-  maxBullet: 12
+  maxBullet: 10
   bulletIron: 0
   isInfiniteBullet: 0
   fireRate: 1

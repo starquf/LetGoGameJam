@@ -118,7 +118,7 @@ public class Bullet_BlueArchive : Bullet
     {
         PlayHitEffect(hitEntity);
 
-        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.GetDamage(bulletDamage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
     }
 

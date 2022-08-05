@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ScoreUi : UIBase
 {
     private Text scoreText;
+    private int scoreint = 0;
 
     public override void Init()
     {
@@ -17,11 +18,23 @@ public class ScoreUi : UIBase
 
     public override void SetData(string data)
     {
-        scoreText.transform.DOScale(new Vector3(1.3f, 1.3f, 0), .4f).OnComplete(()=>
-        {
-            scoreText.transform.DOScale(new Vector3(1f, 1f, 0), .4f).SetEase(Ease.OutQuart);
-        });
+        GameObject a;
+        scoreint += int.Parse(data.Trim());
 
-        scoreText.DOText(data, .8f,true,ScrambleMode.Numerals);
+        a = GameObjectPoolManager.Instance.GetGameObject("PreFabs/UI/Score+",transform);
+
+        a.GetComponent<ScorePlus>().SetText(data);
+        StartCoroutine(TimeWait());
+
+        IEnumerator TimeWait()
+        {
+            yield return new WaitForSeconds(.4f);
+            scoreText.transform.DOScale(new Vector3(1.3f, 1.3f, 0), .4f).OnComplete(() =>
+            {
+                scoreText.transform.DOScale(new Vector3(1f, 1f, 0), .4f).SetEase(Ease.OutQuart);
+            });
+
+            scoreText.DOText(scoreint.ToString(), .8f, true, ScrambleMode.Numerals);
+        }
     }
 }

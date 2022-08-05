@@ -82,7 +82,7 @@ public class Weapon_BlueArchive : Weapon
             {
                 bullet = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null).GetComponent<Bullet_BlueArchive>();
                 bullet.bulletData = bulletData;
-
+                bullet.SetDamage(damage);
             }
 
             bullet.SetRenderer(shootPos.position);

@@ -6,8 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Bullet/BulletSO")]
 public class BulletSO : ScriptableObject
 {
-    public float damage = 1;
-
     public float shakeAmount = 0.5f;
     public float shakeTime = 0.5f;
 

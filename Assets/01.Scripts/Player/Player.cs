@@ -16,6 +16,11 @@ public class Player : LivingEntity
     private float lastHitTime = 0f;
     private bool isHitted = false;
 
+    [SerializeField]
+    private HeartInfo heartInfo;
+
+    public override float curHp => heartInfo.heart + heartInfo.extraHeart;
+
     private void Start()
     {
         Init();
@@ -28,6 +33,15 @@ public class Player : LivingEntity
             playerInput = GetComponent<PlayerInput>();
     }
 
+    public override void Init()
+    {
+        heartInfo.maxHeartCnt = 3;
+        heartInfo.heart = heartInfo.maxHeartCnt;
+        heartInfo.maxExtraHeartCnt = 2;
+        heartInfo.extraHeart = 0;
+        base.Init();
+    }
+
     private void Update()
     {
         if(Time.time - lastHitTime > hitCool)
@@ -38,7 +52,28 @@ public class Player : LivingEntity
 
     public override void SetHPUI()
     {
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Hp, hp.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Hp, JsonUtility.ToJson(heartInfo));
+    }
+
+    public void AddMaxHp()
+    {
+        heartInfo.AddMaxHeartCnt();
+        heartInfo.AddHeart();
+        SetHPUI();
+    }
+
+    public void AddHP(bool isExtra = false)
+    {
+        if(isExtra)
+        {
+            heartInfo.AddExtraHeart();
+        }
+        else
+        {
+            heartInfo.AddHeart();
+        }
+
+        SetHPUI();
     }
 
     public override void GetDamage(float damage)
@@ -53,9 +88,10 @@ public class Player : LivingEntity
 
         GameManager.Instance.soundHandler.Play("PlayerHit");
 
-        hp -= 1f;
+        heartInfo.RemoveHeart();
+
         StartCoroutine(Blinking());
-        if (hp <= 0)
+        if (curHp <= 0)
         {
             Die();
         }
@@ -97,8 +133,6 @@ public class Player : LivingEntity
         }
     }
 
- 
-
     protected override void Die()
     {
         base.Die();
@@ -109,7 +143,6 @@ public class Player : LivingEntity
 
         playerInput.isDie = true;
     }
-
 
     IEnumerator DieRoutine()
     {
@@ -133,10 +166,6 @@ public class Player : LivingEntity
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, a);
             yield return new WaitForSeconds(0.01f);
         }
-
-
     }
-
-
 
 }

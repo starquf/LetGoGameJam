@@ -32,12 +32,16 @@ public class PlayerParrying : MonoBehaviour
         EventManager<string>.AddEvent("LevelUp",() => SetCanParrying(true));
     }
 
-    public void StartParryingEffect()
+    public void StartParryingEffect(Bullet bullet)
     {
         if(!isEffectStart)
         {
             GameManager.Instance.soundHandler.Play("Parring");
             StartCoroutine(StartAnimation());
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .5f, .2f).SetEase(Ease.InQuint).OnComplete(()=>
+            {
+                DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, .2f);
+            });
         }
 
         IEnumerator StartAnimation()
@@ -93,7 +97,6 @@ public class PlayerParrying : MonoBehaviour
                     parryingCol.transform.DORotate(new Vector3(0, 0, 0), .2f);
                     parryingCol.GetComponent<SpriteRenderer>().DOFade(0f, .2f);
                     parryingCol.enabled = false;
-
                 }
             }
             else
