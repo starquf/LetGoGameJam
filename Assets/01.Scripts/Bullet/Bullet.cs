@@ -267,7 +267,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         if(isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Parrying")))
         {
             GameManager.Instance.soundHandler.Play("MeleeAttackHit");
-            GameManager.Instance.playerTrm.GetComponentInChildren<PlayerParrying>().StartParryingEffect();
+            GameManager.Instance.playerTrm.GetComponentInChildren<PlayerParrying>().StartParryingEffect(this);
             SetDisable();
         }
 
