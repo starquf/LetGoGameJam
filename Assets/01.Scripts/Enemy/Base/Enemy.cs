@@ -35,14 +35,14 @@ public class Enemy : LivingEntity, IPoolableComponent
     public List<WeaponInfo> canHaveWeaponList = new List<WeaponInfo>();
     public float dropGunPersent = 25f;
 
-    [SerializeField]protected EnemyAttack enemyAttack;
+    public EnemyAttack enemyAttack;
     [HideInInspector] public Transform playerTrm;
 
 
     public SpriteRenderer sr;
 
     private EnemyAI enemyAI = null;
-    private Weapon weapon = null;
+    [HideInInspector] public Weapon weapon = null;
 
     public void Despawned()
     {
@@ -70,20 +70,38 @@ public class Enemy : LivingEntity, IPoolableComponent
         {
             StageHandler stageHandler = GameManager.Instance.stageHandler;
             int idx = 0;
-            do
+            List<int> canRand = new List<int>();
+            for (int i = 0; i < canHaveWeaponList.Count; i++)
             {
-                int rand = Random.Range(0, 100);
-                for (int i = 0; i < canHaveWeaponList.Count; i++)
+                if(stageHandler.CanGetWeapon(canHaveWeaponList[i].type))
                 {
-                    idx += canHaveWeaponList[i].dropPersent;
+                    canRand.Add(i);
+                }
+            }
+
+            if (canRand.Count != 0)
+            {
+                idx = 0;
+                int count = 0;
+                for (int i = 0; i < canRand.Count; i++)
+                {
+                    count += canHaveWeaponList[canRand[i]].dropPersent;
+                }
+                int rand = Random.Range(0, count);
+                for (int i = 0; i < canRand.Count; i++)
+                {
+                    idx += canHaveWeaponList[canRand[i]].dropPersent;
                     if (rand < idx)
                     {
                         idx = i;
                         break;
                     }
                 }
-            } while (!stageHandler.CanGetWeapon(canHaveWeaponList[idx].type));
-            stageHandler.amountWeaponType[canHaveWeaponList[idx].type]++;
+            }
+            else
+            {
+                idx = 0;
+            }
             weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
                 canHaveWeaponList[idx].type.ToString(),
                 enemyAttack.transform).GetComponent<Weapon>();
@@ -96,8 +114,8 @@ public class Enemy : LivingEntity, IPoolableComponent
             enemyAI.InitAI(this);
 
             SetWeapon(weapon);
-            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce,sr);
-            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang,sr);
+            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce, sr);
+            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang, sr);
             AttackStop();
         }
         else
