@@ -51,6 +51,8 @@ public class Bullet_AWM : Bullet
     public void ColliderOn()
     {
         bulletCol.enabled = true;
+
+        GameManager.Instance.vCamScript.Shake(bulletData);
         GameManager.Instance.soundHandler.Play(Shot_SFX_NAME);
     }
 

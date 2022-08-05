@@ -17,7 +17,7 @@ public class PlayerAttack : AttackBase
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
     }
 
-    private Tween camTween = null;
+
 
     public override void Init(Weapon baseWeapon)
     {
@@ -81,7 +81,10 @@ public class PlayerAttack : AttackBase
                     Vector3 dir = playerInput.mousePos - transform.position;
 
                     currentWeapon.Shoot(dir);
-                    Shake(currentWeapon.bulletData);
+                    if (!currentWeapon.isNoShakeWeapon)
+                    {
+                        GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                    }
 
                     //print("오또");
                     yield return weaponShootWait;
@@ -94,7 +97,10 @@ public class PlayerAttack : AttackBase
 
                     //print("원스");
                     currentWeapon.Shoot(dir);
-                    Shake(currentWeapon.bulletData);
+                    if (!currentWeapon.isNoShakeWeapon)
+                    {
+                        GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                    }
 
                     yield return weaponShootWait;
                 }
@@ -106,23 +112,6 @@ public class PlayerAttack : AttackBase
         }
     }
 
-    public void Shake(BulletSO bulletData)
-    {
-        if (camTween != null)
-            camTween.Kill();
-
-        CinemachineBasicMultiChannelPerlin perlin = GameManager.Instance.cmPerlinObject.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        if (perlin != null)
-        {
-            perlin.m_AmplitudeGain = bulletData.shakeAmount;
-
-            camTween = DOTween.To(() => perlin.m_AmplitudeGain, value => perlin.m_AmplitudeGain = value, 0, bulletData.shakeTime);
-        }
-    }
-
-    public void KillShake()
-    {
-        camTween.Kill();
-    }
+ 
 
 }
