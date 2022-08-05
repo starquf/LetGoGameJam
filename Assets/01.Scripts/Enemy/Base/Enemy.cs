@@ -115,6 +115,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     public void SetDisable()
     {
         ColorEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<ColorEffect>();
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Killcount, "1");
 
         effect.SetPosition(transform.position);
         effect.SetRotation(new Vector3(-90f, 0, 0));
@@ -148,5 +149,10 @@ public class Enemy : LivingEntity, IPoolableComponent
         if (enemyAttackType.Equals(enemyAttackType.RANGED))
             GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+    }
+    protected override void Die()
+    {
+        base.Die();
+        Debug.Log("나죽음");
     }
 }
