@@ -207,6 +207,10 @@ public class SoundHandler : Handler
         {
             _audioMixer.SetFloat(BGM_NAME, value);
         }
+        else if(audioType == AudioType.GUN)
+        {
+            _audioMixer.SetFloat(GUN_NAME, value);
+        }
         else if(audioType == AudioType.SFX)
         {
             _audioMixer.SetFloat(SFX_NAME, value);

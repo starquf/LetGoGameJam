@@ -56,6 +56,24 @@ public class Weapon_BlueArchive : Weapon
         }
     }
 
+    public void EnemyShootStop()
+    {
+        if (bullet != null)
+        {
+            //print(3);
+            bullet.SetDisable();
+            bullet = null;
+
+        }
+        if (effectObj != null)
+        {
+            //print(4);
+            GameObjectPoolManager.Instance.UnusedGameObject(effectObj);
+            effectObj.SetActive(false);
+            effectObj = null;
+        }
+    }
+
     public override void Shoot(Vector3 shootDir)
     {
         if (isPlayer)
@@ -69,6 +87,7 @@ public class Weapon_BlueArchive : Weapon
 
             bullet.SetRenderer(shootPos.position);
             bullet.SetOwner(!isPlayer);
+            bullet.SetTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
             if (effectObj == null)
             {
@@ -77,6 +96,33 @@ public class Weapon_BlueArchive : Weapon
             }
 
             effectObj.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+
+
+            GameManager.Instance.soundHandler.Play(shotSFXName);
+
+            PlayBounceEffect();
+        }
+        else
+        {
+            if (bullet == null)
+            {
+                bullet = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null).GetComponent<Bullet_BlueArchive>();
+                bullet.bulletData = bulletData;
+
+            }
+
+            bullet.SetOwner(!isPlayer);
+            bullet.SetTarget(transform.position+ shootDir);
+            bullet.SetRenderer(shootPos.position);
+
+            if (effectObj == null)
+            {
+                effectObj = GameObjectPoolManager.Instance.GetGameObject(EFFECT_PATH, null);
+                effectObj.GetComponent<ParticleSystem>().Play();
+            }
+
+            effectObj.transform.position = transform.position+ shootDir;
 
 
 
