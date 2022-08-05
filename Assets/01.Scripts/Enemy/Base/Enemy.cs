@@ -1,6 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+[Serializable]
+public class WeaponInfo
+{
+    public WeaponType type;
+    public int dropPersent;
+}
 
 public class Enemy : LivingEntity, IPoolableComponent
 {
@@ -22,7 +31,8 @@ public class Enemy : LivingEntity, IPoolableComponent
     [DrawIf("enemyAttackType", enemyAttackType.MELEE)]
     public float rushSpeed = 10f;
 
-    public List<WeaponType> canHaveWeaponList = new List<WeaponType>();
+    public List<WeaponInfo> canHaveWeaponList = new List<WeaponInfo>();
+    public float dropGunPersent = 25f;
 
     [SerializeField]protected EnemyAttack enemyAttack;
     [HideInInspector] public Transform playerTrm;
@@ -47,22 +57,39 @@ public class Enemy : LivingEntity, IPoolableComponent
         enemyAttack.targetPos = playerTrm;
         if(enemyAttackType.Equals(enemyAttackType.RANGED))
         {
+            int idx = 0;
+            int rand = Random.Range(0, 100);
+            for (int i = 0; i < canHaveWeaponList.Count; i++)
+            {
+                idx += canHaveWeaponList[i].dropPersent;
+                if (rand < idx)
+                {
+                    idx = i;
+                    break;
+                }
+            }
             weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
-                canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
+                canHaveWeaponList[idx].type.ToString(),
                 enemyAttack.transform).GetComponent<Weapon>();
+            print(canHaveWeaponList[idx].type.ToString());
             weapon.transform.SetParent(enemyAttack.transform);
             weapon.transform.localPosition = Vector3.right;
+
+            if (enemyAI == null)
+                enemyAI = GetComponent<EnemyAI>();
+            enemyAI.InitAI(this);
 
             SetWeapon(weapon);
             AttackStop();
         }
         else
         {
+            if (enemyAI == null)
+                enemyAI = GetComponent<EnemyAI>();
+            enemyAI.InitAI(this);
+
             enemyAttack.enabled = false;
         }
-        if(enemyAI == null)
-            enemyAI = GetComponent<EnemyAI>();
-        enemyAI.InitAI(this);
     }
 
     public void SetWeapon(Weapon weapon)
@@ -98,8 +125,11 @@ public class Enemy : LivingEntity, IPoolableComponent
 
         for (int i = 0; i < dropExpInfo.amount; i++)
         {
-            ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_" + dropExpInfo.type.ToString(), null).GetComponent<ExpBall>();
-            expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+            if(dropExpInfo.dropPersent > Random.Range(0, 100))
+            {
+                ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_" + dropExpInfo.type.ToString(), null).GetComponent<ExpBall>();
+                expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+            }
         }
         GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
 

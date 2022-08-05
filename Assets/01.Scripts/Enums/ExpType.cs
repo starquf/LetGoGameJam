@@ -7,6 +7,7 @@ public enum expType
 [System.Serializable]
 public class ExpInfo
 {
+    public float dropPersent;
     public int amount;
     public expType type;
 }
