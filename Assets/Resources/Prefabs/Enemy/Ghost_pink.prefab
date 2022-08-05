@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4126387410553631649}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6957734239968412947
 SpriteRenderer:
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &4126387410553631650
+--- !u!1 &3410906979013529699
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,44 +90,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4126387410553631649}
-  - component: {fileID: 4126387410553631648}
-  - component: {fileID: 4126387410553631651}
-  - component: {fileID: 4721018777564721556}
-  - component: {fileID: -3778304594927849507}
-  - component: {fileID: 4365297035605969141}
-  - component: {fileID: 1831896743781937413}
-  m_Layer: 7
-  m_Name: Ghost_pink
+  - component: {fileID: 7052511800012001279}
+  - component: {fileID: 5002564547969924789}
+  m_Layer: 0
+  m_Name: Enemy_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4126387410553631649
+--- !u!4 &7052511800012001279
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126387410553631650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 3410906979013529699}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2087390049485174836}
-  - {fileID: 5457588744844629739}
-  - {fileID: 5925307110808372664}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 4126387410553631649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4126387410553631648
+--- !u!212 &5002564547969924789
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126387410553631650}
+  m_GameObject: {fileID: 3410906979013529699}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -172,6 +164,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4126387410553631650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4126387410553631649}
+  - component: {fileID: 4126387410553631651}
+  - component: {fileID: 4721018777564721556}
+  - component: {fileID: -3778304594927849507}
+  - component: {fileID: 4365297035605969141}
+  - component: {fileID: 1831896743781937413}
+  m_Layer: 7
+  m_Name: Ghost_pink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4126387410553631649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126387410553631650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7052511800012001279}
+  - {fileID: 2087390049485174836}
+  - {fileID: 5457588744844629739}
+  - {fileID: 5925307110808372664}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4126387410553631651
 Animator:
   serializedVersion: 3
@@ -233,7 +264,7 @@ MonoBehaviour:
   dropGunPersent: 30
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}
-  sr: {fileID: 0}
+  sr: {fileID: 5002564547969924789}
 --- !u!114 &-3778304594927849507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +343,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4126387410553631649}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5323490665515464845
 MonoBehaviour:
@@ -363,7 +394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4126387410553631649}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2631831366210325482
 SpriteRenderer:

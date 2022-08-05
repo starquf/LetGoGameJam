@@ -180,27 +180,27 @@ public class StageHandler : MonoBehaviour
 
     private bool CanSpawnEnemy(enemyInfo enemyInfo, ref Enemy enemy)
     {
-        for (int i = 0; i < enemyInfo.enemyList.Count; i++)
-        {
-            enemyType eType = enemyInfo.enemyList[i];
-            enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eType.ToString(), transform).GetComponent<Enemy>();
+        int rand = Random.Range(0, enemyInfo.enemyList.Count);
+        enemyType eType = enemyInfo.enemyList[rand];
+        enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eType.ToString(), transform).GetComponent<Enemy>();
 
-            for (int j = 0; j < enemy.canHaveWeaponList.Count; j++)
+        for (int j = 0; j < enemy.canHaveWeaponList.Count; j++)
+        {
+            WeaponType weaponType = enemy.canHaveWeaponList[j].type;
+            for (int k = 0; k < maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType.Count; k++)
             {
-                WeaponType weaponType = enemy.canHaveWeaponList[j].type;
-                for (int k = 0; k < maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType.Count; k++)
+                if(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[k].type == weaponType)
                 {
-                    if(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[k].type == weaponType)
+                    //print(weaponType.ToString());
+                    if(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[k].amount > amountWeaponType[weaponType])
                     {
-                        //print(weaponType.ToString());
-                        if(maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[k].amount > amountWeaponType[weaponType])
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
         }
+        GameObjectPoolManager.Instance.UnusedGameObject(enemy.gameObject);
+        enemy = null;
         return false;
     }
     public bool CanGetWeapon(WeaponType weaponType)

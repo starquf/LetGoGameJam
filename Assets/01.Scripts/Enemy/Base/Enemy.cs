@@ -37,7 +37,9 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     [SerializeField]protected EnemyAttack enemyAttack;
     [HideInInspector] public Transform playerTrm;
-    [HideInInspector] public SpriteRenderer sr;
+
+
+    public SpriteRenderer sr;
 
     private EnemyAI enemyAI = null;
     private Weapon weapon = null;
@@ -61,8 +63,8 @@ public class Enemy : LivingEntity, IPoolableComponent
         playerTrm = GameManager.Instance.playerTrm;
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-        if (sr == null)
-            sr = GetComponent<SpriteRenderer>();
+        /*if (sr == null)
+            sr = GetComponent<SpriteRenderer>();*/
         enemyAttack.targetPos = playerTrm;
         if(enemyAttackType.Equals(enemyAttackType.RANGED))
         {
@@ -94,6 +96,8 @@ public class Enemy : LivingEntity, IPoolableComponent
             enemyAI.InitAI(this);
 
             SetWeapon(weapon);
+            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce,sr);
+            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang,sr);
             AttackStop();
         }
         else
