@@ -62,10 +62,6 @@ public class RIP : LivingEntity, IPoolableComponent
     {
         base.Die();
 
-        Effect ripExplosionEffect = GameObjectPoolManager.Instance.GetGameObject(DESTROY_PATH, null).GetComponent<Effect>();
-        ripExplosionEffect.SetPosition(new Vector2(transform.position.x, transform.position.y));
-        ripExplosionEffect.SetRotation(new Vector3(-90f, 0, 0));
-        ripExplosionEffect.Play();
 
         SetDisable();
     }
@@ -85,6 +81,10 @@ public class RIP : LivingEntity, IPoolableComponent
     public void SetDisable()
     {
         seq.Kill();
+        Effect ripExplosionEffect = GameObjectPoolManager.Instance.GetGameObject(DESTROY_PATH, null).GetComponent<Effect>();
+        ripExplosionEffect.SetPosition(new Vector2(transform.position.x, transform.position.y));
+        ripExplosionEffect.SetRotation(new Vector3(-90f, 0, 0));
+        ripExplosionEffect.Play();
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
 
@@ -92,7 +92,7 @@ public class RIP : LivingEntity, IPoolableComponent
     {
         if(collision.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
-            Die();
+            SetDisable();
         }
     }
 }
