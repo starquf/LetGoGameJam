@@ -22,6 +22,16 @@ public class AmmoArea : UIBase
     {
         int bulletCount = int.Parse(data.Trim());
 
+        if(data.Trim().Contains("inf"))
+        {
+            foreach (var bullet in bullets)
+            {
+                bullet.gameObject.SetActive(true);
+            }
+            expendBulletsText.text = "inf.";
+            return;
+        }
+
         if(bulletCount > 5)
         {
             foreach(var bullet in bullets)
