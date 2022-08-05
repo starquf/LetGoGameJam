@@ -26,6 +26,7 @@ public class Weapon_M870 : Weapon
 
             bullet.ChangeSpeed(Random.Range(13f, 15f));
             bullet.ChangeDir(dir);
+            bullet.bulletData = bulletData;
         }
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
