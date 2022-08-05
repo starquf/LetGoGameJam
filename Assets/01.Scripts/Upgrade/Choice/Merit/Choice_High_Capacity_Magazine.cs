@@ -6,7 +6,7 @@ public class Choice_High_Capacity_Magazine : ChoiceInfo
 {
     public override void SetChoice()
     {
-        uh.playerStat.bulletCapacity += 10f;
+        uh.playerStat.bulletCapacity += 0.1f;
 
         choiceData.level++;
     }
