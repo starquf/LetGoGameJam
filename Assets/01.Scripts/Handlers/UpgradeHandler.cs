@@ -8,6 +8,11 @@ public class UpgradeHandler : MonoBehaviour
 
     public PlayerStat playerStat;
 
+    private void Awake()
+    {
+        GameManager.Instance.upgradeHandler = this;
+    }
+
     private void Start()
     {
         playerStat = GameManager.Instance.playerTrm.GetComponent<PlayerStat>();

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7519143329815781733, guid: 8a5a582a85cbc6447a54725cb1fc2ea0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   bulletPenetrate: 1
   bulletSpeed: 8
   curSpeed: 5
-  lifeTime: 2
+  lifeTime: 3
   isEnemyBullet: 0
   explosionRange: 3
 --- !u!50 &2141344756290157540

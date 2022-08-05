@@ -25,14 +25,13 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (playerInput.isDie)
         {
-            anim.SetTrigger("onDie");
+            anim.SetBool("isDie", playerInput.isDie);
             return;
         }
 
         moveVec = playerInput.moveDir.normalized;
         anim.SetFloat("MoveX", moveVec.x);
         anim.SetFloat("MoveY", moveVec.y);
-        anim.SetBool("isAttack", playerInput.isAttack);
 
         Vector3 dir = playerInput.mousePos - transform.position;
 

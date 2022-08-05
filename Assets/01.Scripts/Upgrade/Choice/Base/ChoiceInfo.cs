@@ -7,6 +7,8 @@ public abstract class ChoiceInfo : MonoBehaviour
     public ChoiceData choiceData;
 
     public int maxLevel;
+
+    [HideInInspector]
     public UpgradeHandler uh;
 
     public virtual bool CanChoice()

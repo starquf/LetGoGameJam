@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IPoolableComponent
 {
-    private Rigidbody2D rb = null;
+    protected Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
 
     private BulletState currentState = BulletState.MoveForward;
@@ -20,6 +20,10 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public float curSpeed = 0f;
 
     public float lifeTime = 3f;
+
+    public BulletSO bulletData;
+
+    public Vector3 bulletDir;
 
     // 적의 총알인가?
     public bool isEnemyBullet = true;
@@ -39,6 +43,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
         curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
         ChangeState(BulletState.MoveForward);
+        
     }
 
     public virtual void Despawned()
@@ -49,7 +54,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public virtual void Spawned()
     {
         curSpeed = bulletSpeed;
-
+        
         StartCoroutine(BulletLifetime());
     }
 
@@ -108,6 +113,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     #region ChangeDirections
     public virtual void ChangeDir(Vector3 dir)      // dir방향으로 회전
     {
+        bulletDir = dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
@@ -183,13 +189,19 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected virtual void Hit(LivingEntity hitEntity)
     {
-        hitEntity.GetDamage(bulletDamage);
-
+        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if ((!isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("RIP") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
+        {
+            LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
+            Hit(livingEntity);
+        }
+
+        if (isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
             Hit(livingEntity);

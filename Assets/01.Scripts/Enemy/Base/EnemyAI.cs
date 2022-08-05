@@ -19,12 +19,12 @@ public class EnemyAI : MonoBehaviour
         myAnim = this.GetComponent<Animator>();
         playerTrm = myLivingEntity.playerTrm;
 
-        curState = new PursueAndAttack(this.gameObject, myLivingEntity, myAnim, playerTrm);
+        curState = new EnemyPurseState(this.gameObject, myLivingEntity, myAnim, playerTrm);
     }
 
     private void Update()
     {
-        if(isActive)
+        if(isActive && !myLivingEntity.isKnockBack)
             curState = this.curState.Process();
     }
 

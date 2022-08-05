@@ -12,6 +12,10 @@ public enum enemyType
     WaddleDee,
     AirShip,
 }
+public enum enemyAttackType   // 적 종류 근접, 원거리 같은거
+{
+    MELEE, RANGED,
+}
 
 [System.Serializable]
 public class enemyInfo

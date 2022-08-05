@@ -102,7 +102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5ba22572d23b3b84c9d57c11dee69d63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -136,4 +136,5 @@ MonoBehaviour:
   offset: 0.5
   weaponType: 1
   shootPos: {fileID: 5743299078215040150}
+  bulletData: {fileID: 11400000, guid: 367d9ca2301c0bb42be840f2174911b5, type: 2}
   sr: {fileID: 0}

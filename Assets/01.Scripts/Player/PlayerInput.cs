@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool isSwitchWeapon;
     public bool isDie;
+    public bool isKnockBack;
 
     private void Update()
     {

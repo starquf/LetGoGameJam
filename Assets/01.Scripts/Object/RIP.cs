@@ -6,6 +6,7 @@ using DG.Tweening;
 public class RIP : LivingEntity, IPoolableComponent
 {
     private const string DUST_PATH = "Prefabs/Effect/RIPDustEffect";
+    private const string DESTROY_PATH = "Prefabs/Effect/RIPDestroyEffect";
 
     private const float DROP_CORRECTION = 1f;
     private const float TWEEN_DURATION = 0.3f;
@@ -19,9 +20,12 @@ public class RIP : LivingEntity, IPoolableComponent
     [SerializeField]
     private Sprite ripSprite;
 
+    private Collider2D coll;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
     }
 
     public override void SetHPUI()
@@ -35,9 +39,9 @@ public class RIP : LivingEntity, IPoolableComponent
 
         transform.position = new Vector2(pos.x, pos.y + DROP_CORRECTION);
 
-        RIPDustEffect effect = GameObjectPoolManager.Instance.GetGameObject(DUST_PATH, null).GetComponent<RIPDustEffect>();
-        effect.SetPosition(pos);
-        effect.Play();
+        Effect ripDustEffect = GameObjectPoolManager.Instance.GetGameObject(DUST_PATH, null).GetComponent<Effect>();
+        ripDustEffect.SetPosition(pos);
+        ripDustEffect.Play();
 
         if (seq != null)
         {
@@ -50,12 +54,18 @@ public class RIP : LivingEntity, IPoolableComponent
         seq.AppendCallback(() => {
             sr.sprite = ripSprite;
 
+            coll.enabled = true;
             GameManager.Instance.soundHandler.Play("RIPDrop");
         });
     }
     protected override void Die()
     {
         base.Die();
+
+        Effect ripExplosionEffect = GameObjectPoolManager.Instance.GetGameObject(DESTROY_PATH, null).GetComponent<Effect>();
+        ripExplosionEffect.SetPosition(transform.position);
+        ripExplosionEffect.Play();
+
         SetDisable();
     }
 
@@ -67,10 +77,21 @@ public class RIP : LivingEntity, IPoolableComponent
     public void Spawned()
     {
         Init();
+
+        coll.enabled = false;
     }
 
     public void SetDisable()
     {
+        seq.Kill();
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
+        {
+            SetDisable();
+        }
     }
 }
