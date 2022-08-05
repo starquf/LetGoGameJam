@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public Sprite playerBulletSpr;
     public Sprite enemyBulletSpr;
 
-    public float bulletDamage = 1f;
+    protected float bulletDamage = 1f;
 
     public float bulletSpeed = 30f;
     public float curSpeed = 0f;
@@ -139,6 +139,11 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         bulletIron += value;
     }
 
+    public void SetDamage(float value)
+    {
+        bulletDamage = value;
+    }
+
     #region ChangeDirections
     public virtual void ChangeDir(Vector3 dir)      // dir방향으로 회전
     {
@@ -220,7 +225,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     {
         PlayHitEffect(hitEntity);
 
-        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.GetDamage(bulletDamage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
 
         if (bulletIron <= 0)

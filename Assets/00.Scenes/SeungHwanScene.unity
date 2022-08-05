@@ -1795,6 +1795,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1956752469310799445, guid: 62e2f00092c473645bd9aee3648fea77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956752469310799445, guid: 62e2f00092c473645bd9aee3648fea77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.725
+      objectReference: {fileID: 0}
     - target: {fileID: 3304434902841564772, guid: 62e2f00092c473645bd9aee3648fea77, type: 3}
       propertyPath: m_IsTrigger
       value: 1

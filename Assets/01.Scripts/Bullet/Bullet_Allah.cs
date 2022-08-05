@@ -48,7 +48,7 @@ public class Bullet_Allah : Bullet
         for (int i = 0; i < collider2Ds.Length; i++)
         {
             PlayHitEffect(collider2Ds[i].GetComponent<LivingEntity>(), true);
-            collider2Ds[i].GetComponent<LivingEntity>().GetDamage(bulletData.damage);
+            collider2Ds[i].GetComponent<LivingEntity>().GetDamage(bulletDamage);
             collider2Ds[i].GetComponent<LivingEntity>().KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         }
         Effect explosionEffect = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Effect/ExplosionEffect", null).GetComponent<Effect>();

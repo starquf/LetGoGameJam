@@ -14,6 +14,7 @@ public class Weapon_MagicBarOfAllah : Weapon
         bulletObj.transform.position = shootPos.position;
         bullet.bulletData = bulletData;
         bullet.ChangeDir(shootDir.normalized);
+        bullet.SetDamage(damage);
 
         //print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
