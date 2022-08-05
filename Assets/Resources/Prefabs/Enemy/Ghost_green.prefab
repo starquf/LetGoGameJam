@@ -445,5 +445,5 @@ MonoBehaviour:
   isFirst: 1
   attackDuration: 1
   waitAttackDuration: 3
-  waitAttackDurationFirst: 5
+  waitAttackDurationFirst: 1
   targetPos: {fileID: 0}
