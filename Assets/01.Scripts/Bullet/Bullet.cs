@@ -206,12 +206,12 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
         if (bulletIron <= 0)
         {
-            print("수명 끝남");
+            //print("수명 끝남");
             GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
         }
         else 
         {
-            print("관통함");
+            //print("관통함");
             bulletIron--;
         }
     }

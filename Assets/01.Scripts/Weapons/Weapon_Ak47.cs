@@ -21,7 +21,7 @@ public class Weapon_Ak47 : Weapon
         bullet.SetOwner(!isPlayer);
         bullet.AddBulletIron(bulletIron);
 
-        print($"총알 발싸 히히히히히 데미지 : {damage} ");
+        //print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
     }

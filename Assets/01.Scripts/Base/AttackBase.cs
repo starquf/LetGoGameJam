@@ -13,6 +13,7 @@ public abstract class AttackBase : MonoBehaviour
 
     public virtual void Init(Weapon baseWeapon)
     {
+        baseWeapon.isGround = false;
         baseWeapon.isPlayer = false;
 
         baseWeapon.transform.SetParent(this.transform);
@@ -38,6 +39,7 @@ public abstract class AttackBase : MonoBehaviour
         weapon.transform.localRotation = Quaternion.identity;
 
         weapon.isPlayer = false;
+        weapon.isGround = false;
 
         weaponRenderer = weapon.sr;
         weaponShootWait = new WaitForSeconds(weapon.fireRate);

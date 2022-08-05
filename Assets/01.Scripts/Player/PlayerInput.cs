@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
             case PlayerState.Attack:
                 moveDir.x = Input.GetAxisRaw("Horizontal");
                 moveDir.y = Input.GetAxisRaw("Vertical");
-                isSwitchWeapon = Input.GetButtonDown("Switching");
+                isSwitchWeapon = Input.GetButton("Switching");
                 isAttack = Input.GetButton("Fire1");
                 isParrying = Input.GetButton("Fire2");
                 break;
