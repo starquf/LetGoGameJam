@@ -8,6 +8,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public float damage = 1f;
     public int maxBullet = 5;
+    public int bulletIron = 0;
 
     public float fireRate = 0f;
     public float collectionRate = 0f;
@@ -41,6 +42,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     public void Spawned()
     {
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
+        bulletIron = 0;
     }
 
     public void SetDisable()

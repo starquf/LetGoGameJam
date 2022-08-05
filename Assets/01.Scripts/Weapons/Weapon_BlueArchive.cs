@@ -20,6 +20,8 @@ public class Weapon_BlueArchive : Weapon
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));
         bullet.SetOwner(!isPlayer);
+        bullet.AddBulletIron(bulletIron);
+
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         GameManager.Instance.soundHandler.Play(shotSFXName);

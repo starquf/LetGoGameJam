@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class SelectUIPanel : MonoBehaviour
 
     [HideInInspector]
     public Button btn;
+
+    private Tween bounceTween;
+    private Tween highlightTween;
 
     private void Awake()
     {
@@ -27,6 +31,20 @@ public class SelectUIPanel : MonoBehaviour
         demeritPanel.name.text = demerit.name;
         demeritPanel.des.text = demerit.des;
         demeritPanel.level.text = $"레벨 : {demerit.level.ToString()}";
+    }
+
+    public void ShowHighligt()
+    {
+        highlightTween.Kill();
+        bounceTween.Kill();
+
+        highlightTween = transform.DOScale(Vector3.one, 0.3f).From(Vector3.one * 0.5f)
+            .OnComplete(() => 
+            {
+                bounceTween = transform.DOScale(Vector3.one * 1.04f, 0.7f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetUpdate(true);
+            })
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
     }
 }
 

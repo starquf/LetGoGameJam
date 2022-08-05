@@ -17,9 +17,11 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public float bulletDamage = 1f;
 
-    public int bulletPenetrate = 1;
     public float bulletSpeed = 30f;
     public float curSpeed = 0f;
+
+    protected int bulletIron = 0;
+    public int originBulletIron = 0;
 
     public float lifeTime = 3f;
 
@@ -56,6 +58,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public virtual void Spawned()
     {
         curSpeed = bulletSpeed;
+        bulletIron = originBulletIron;
         
         StartCoroutine(BulletLifetime());
     }
@@ -110,6 +113,11 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         yield return new WaitForSeconds(lifeTime);
 
         SetDisable();
+    }
+
+    public void AddBulletIron(int value)
+    {
+        bulletIron += value;
     }
 
     #region ChangeDirections
@@ -195,7 +203,17 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
         hitEntity.GetDamage(bulletData.damage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
-        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+
+        if (bulletIron <= 0)
+        {
+            print("수명 끝남");
+            GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+        }
+        else 
+        {
+            print("관통함");
+            bulletIron--;
+        }
     }
 
     protected void PlayHitEffect(LivingEntity hitEntity, bool isCenterPlay = false)

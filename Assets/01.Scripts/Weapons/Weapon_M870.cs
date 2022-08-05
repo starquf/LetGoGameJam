@@ -8,7 +8,7 @@ public class Weapon_M870 : Weapon
 
     public override void Shoot(Vector3 shootDir)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
 
@@ -20,7 +20,7 @@ public class Weapon_M870 : Weapon
             bullet.RotateAngle(Random.Range(-coll, coll));
             bullet.ChangeSpeed(Random.Range(13f, 15f));
             bullet.SetOwner(!isPlayer);
-
+            bullet.AddBulletIron(bulletIron);
         }
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");
