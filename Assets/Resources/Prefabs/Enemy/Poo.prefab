@@ -382,7 +382,7 @@ MonoBehaviour:
   avoidRange: 4
   enterExpRange: {x: 0, y: 0}
   dropExpInfo:
-    dropPersent: 60
+    dropPersent: 70
     amount: 1
     type: 0
   enemyAttackType: 1
