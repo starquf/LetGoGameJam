@@ -212,8 +212,8 @@ MonoBehaviour:
   isKnockBack: 0
   identityColor1: {r: 0.49019608, g: 0.7058824, b: 0.8, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
-  attackRange: 6
-  avoidRange: 4
+  attackRange: 7
+  avoidRange: 5
   enterExpRange: {x: 0, y: 0}
   dropExpInfo:
     dropPersent: 50
