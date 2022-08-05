@@ -17,29 +17,34 @@ public class EffectHandler : Handler
         sequence = DOTween.Sequence();
     }
 
-    public void SetEffect(EffectType type,SpriteRenderer sprite)
+    public void SetEffect(EffectType type,SpriteRenderer sprite,bool isPlayer)
     {
        
         switch (type)
         {
             case EffectType.BounceHorizontal:
-                EffectHorizontal(sprite);
+                EffectHorizontal(sprite,isPlayer);
                 break;
             case EffectType.BounceVertical:
                 break;
         }
     }
 
-    private void EffectHorizontal(SpriteRenderer sprite)
+    private void EffectHorizontal(SpriteRenderer sprite,bool isPlayer)
     {
         sprite.transform.DOScaleX(.7f, .2f).SetEase(Ease.OutQuint).OnComplete(() =>
         {
             sprite.transform.DOScaleX(1f, .2f);
         });
-        sprite.DOColor(Color.red, .2f).OnComplete(() =>
+
+
+        if(!isPlayer)
         {
-            sprite.DOColor(Color.white, .3f);
-        });
+            sprite.DOColor(Color.red, .2f).OnComplete(() =>
+            {
+                sprite.DOColor(Color.white, .3f);
+            });
+        }
     }
 }
 

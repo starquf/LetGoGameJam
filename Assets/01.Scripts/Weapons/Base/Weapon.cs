@@ -46,7 +46,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected virtual void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+       // sr = GetComponent<SpriteRenderer>();
 
         muzzleFlashEffect.SetActive(false);
 
@@ -94,7 +94,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected void PlayBounceEffect()
     {
-        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal,sr);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal,sr,isPlayer);
     }
 
     protected void PlayMuzzleEffect()

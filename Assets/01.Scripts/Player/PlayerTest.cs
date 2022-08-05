@@ -8,7 +8,7 @@ public class PlayerTest : MonoBehaviour
     private PlayerAttack pa;
 
     private readonly string MP7_PATH = "Prefabs/Weapons/Weapon_BlueArchive";
-    private readonly string M870_PATH = "Prefabs/Weapons/Weapon_M870";
+    private readonly string M870_PATH = "Prefabs/Weapons/Weapon_AK47";
     private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_M1911";
 
     private List<Weapon> nearWeaponList = new List<Weapon>();
