@@ -27,7 +27,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public SpriteRenderer sr;
 
-
+    public bool isNoShakeWeapon = false;
 
     protected virtual void Awake()
     {

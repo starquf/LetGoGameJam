@@ -99,6 +99,7 @@ MonoBehaviour:
   shotSFXName: SniperCharge
   damage: 10
   maxBullet: 5
+  bulletIron: 0
   fireRate: 2
   collectionRate: 0
   isAuto: 0
@@ -108,6 +109,7 @@ MonoBehaviour:
   shootPos: {fileID: 1621244696751091155}
   bulletData: {fileID: 11400000, guid: 9daf623a0b26b3343b6ded74dd7b42dc, type: 2}
   sr: {fileID: 0}
+  isNoShakeWeapon: 1
 --- !u!1 &1621244696751091156
 GameObject:
   m_ObjectHideFlags: 0
