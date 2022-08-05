@@ -15,7 +15,7 @@ public class Weapon_MagicBarOfAllah : Weapon
         bullet.bulletData = bulletData;
         bullet.ChangeDir(shootDir.normalized);
 
-        print($"총알 발싸 히히히히히 데미지 : {damage} ");
+        //print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
     }
