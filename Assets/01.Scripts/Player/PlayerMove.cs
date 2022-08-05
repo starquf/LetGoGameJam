@@ -26,6 +26,10 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (playerInput.isDie || playerInput.isKnockBack)
+        {
+            return;
+        }
         playerAxis = playerInput.moveDir.normalized;
         playerInput.playerState = PlayerState.Move;
         if (playerInput.moveDir == Vector2.zero)

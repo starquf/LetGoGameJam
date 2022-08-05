@@ -21,7 +21,6 @@ public class Weapon_M870 : Weapon
             bullet.ChangeSpeed(Random.Range(13f, 15f));
             bullet.SetOwner(!isPlayer);
 
-
         }
 
         print($"총알 발싸 히히히히히 데미지 : {damage} ");

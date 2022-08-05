@@ -17,6 +17,10 @@ public class Enemy : LivingEntity, IPoolableComponent
     public Vector2 enterExpRange = Vector2.zero;
 
     public ExpInfo dropExpInfo = null;
+    public enemyAttackType enemyAttackType = enemyAttackType.RANGED;
+
+    [DrawIf("enemyAttackType", enemyAttackType.MELEE)]
+    public float rushSpeed = 10f;
 
     public List<WeaponType> canHaveWeaponList = new List<WeaponType>();
 
@@ -41,18 +45,24 @@ public class Enemy : LivingEntity, IPoolableComponent
         if (sr == null)
             sr = GetComponent<SpriteRenderer>();
         enemyAttack.targetPos = playerTrm;
+        if(enemyAttackType.Equals(enemyAttackType.RANGED))
+        {
+            weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
+                canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
+                enemyAttack.transform).GetComponent<Weapon>();
+            weapon.transform.SetParent(enemyAttack.transform);
+            weapon.transform.localPosition = Vector3.right;
 
-        weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
-            canHaveWeaponList[Random.Range(0, canHaveWeaponList.Count)].ToString(),
-            enemyAttack.transform).GetComponent<Weapon>();
-        weapon.transform.SetParent(enemyAttack.transform);
-        weapon.transform.localPosition = Vector3.right;
+            SetWeapon(weapon);
+            AttackStop();
+        }
+        else
+        {
+            enemyAttack.enabled = false;
+        }
         if(enemyAI == null)
             enemyAI = GetComponent<EnemyAI>();
         enemyAI.InitAI(this);
-
-        SetWeapon(weapon);
-        AttackStop();
     }
 
     public void SetWeapon(Weapon weapon)
@@ -93,7 +103,8 @@ public class Enemy : LivingEntity, IPoolableComponent
         }
         GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
 
-        GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+        if(enemyAttackType.Equals(enemyAttackType.RANGED))
+            GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 }

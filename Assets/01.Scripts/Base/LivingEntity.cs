@@ -16,6 +16,10 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
     public float attakMoveSpeed;
 
 
+    public bool isKnockBack = false;
+
+    protected Coroutine knockBackCo = null;
+
 
     public float AttackPower
     {
@@ -86,6 +90,32 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         SetHPUI();
     }
 
+
+    public virtual void KnockBack(Vector2 direction, float power, float duration)
+    {
+        if (isDie)
+        {
+            return;
+        }
+        if (!isKnockBack)
+        {
+            isKnockBack = true;
+            knockBackCo = StartCoroutine(KnockBackCoroutine(direction, power, duration));
+        }
+    }
+
+    protected IEnumerator KnockBackCoroutine(Vector2 direction, float power, float duration)
+    {
+        rigid.velocity = direction.normalized * power;
+        yield return new WaitForSeconds(duration);
+        ResetKnockBackParam();
+    }
+
+    protected virtual void ResetKnockBackParam()
+    {
+        rigid.velocity = Vector2.zero;
+        isKnockBack = false;
+    }
 
 
     public virtual void Heal(int value) //value 만큼 회복합니다.

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IPoolableComponent
 {
-    private Rigidbody2D rb = null;
+    protected Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
 
     private BulletState currentState = BulletState.MoveForward;
@@ -20,6 +20,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public float curSpeed = 0f;
 
     public float lifeTime = 3f;
+
+    public Vector3 bulletDir;
 
     // 적의 총알인가?
     public bool isEnemyBullet = true;
@@ -108,6 +110,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     #region ChangeDirections
     public virtual void ChangeDir(Vector3 dir)      // dir방향으로 회전
     {
+        bulletDir = dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
@@ -184,7 +187,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     protected virtual void Hit(LivingEntity hitEntity)
     {
         hitEntity.GetDamage(bulletDamage);
-        print(rb.velocity);
+        //hitEntity.KnockBack(bulletDir, 20f, 0.1f);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)

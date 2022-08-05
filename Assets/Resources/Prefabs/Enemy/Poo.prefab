@@ -347,6 +347,7 @@ MonoBehaviour:
   dropExpInfo:
     amount: 1
     type: 0
+  enemyAttackType: 0
   canHaveWeaponList: 00000000
   enemyAttack: {fileID: 2081929116133075885}
   playerTrm: {fileID: 0}
