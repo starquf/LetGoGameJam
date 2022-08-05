@@ -48,7 +48,7 @@ public class Bullet_Allah : Bullet
         {
             collider2Ds[i].GetComponent<LivingEntity>().GetDamage(bulletDamage);
         }
-        ExplosionEffect explosionEffect = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Effect/ExplosionEffect", null).GetComponent<ExplosionEffect>();
+        Effect explosionEffect = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Effect/ExplosionEffect", null).GetComponent<Effect>();
         explosionEffect.SetPosition(transform.position);
         explosionEffect.Play();
         GameManager.Instance.soundHandler.Play("RPGExplosion");
