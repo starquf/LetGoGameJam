@@ -19,6 +19,8 @@ public class OptionHandler : Handler
     [SerializeField]
     private Slider sfxSlider;
     [SerializeField]
+    private Slider gunSlider;
+    [SerializeField]
     private Button exitButton;
 
 
@@ -109,6 +111,11 @@ public class OptionHandler : Handler
         sfxSlider.onValueChanged.AddListener((value) =>
         {
             GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, value);
+        });
+
+        gunSlider.onValueChanged.AddListener(value =>
+        {
+            GameManager.Instance.soundHandler.VolumeControl(AudioType.GUN, value);
         });
 
         exitButton.onClick.AddListener(() =>
