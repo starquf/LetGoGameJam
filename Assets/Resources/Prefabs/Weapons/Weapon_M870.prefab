@@ -138,7 +138,7 @@ MonoBehaviour:
   isPlayer: 0
   isGround: 0
   offset: 0.3
-  weaponType: 0
+  weaponType: 7
   shootPos: {fileID: 5743299078215040150}
   bulletData: {fileID: 11400000, guid: f637b07f324d46648b45d5cc7d04990f, type: 2}
   sr: {fileID: 0}
