@@ -227,6 +227,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
             hitEffect.SetPosition(isCenterPlay ? hitEntity.transform.position : transform.position);
             hitEffect.Play();
+
+            GameManager.Instance.soundHandler.Play("EnemyHit");
         }
     }
 
