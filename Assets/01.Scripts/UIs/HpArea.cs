@@ -7,12 +7,40 @@ using DG.Tweening;
 
 public class HpArea : UIBase
 {
+    [SerializeField]
+    private Sprite emptySprite;
+    [SerializeField]
+    private Sprite heartSprite;
+    [SerializeField]
+    private Sprite extraSprite;
+
     private List<Image> hearts;
+
+    [SerializeField]
+    private int startingHeart = 3;
+    private int maxHeartCnt = 5;
+    private int maxExtraCnt = 2;
 
     public override void Init()
     {
         mydataType = UIDataType.Hp;
         hearts = GetComponentsInChildren<Image>().ToList();
+
+        for (int i = 0; i < maxHeartCnt; i++)
+        {
+            hearts[i].sprite = emptySprite;
+        }
+
+        for (int i = maxHeartCnt; i < maxHeartCnt + maxExtraCnt; i++)
+        {
+            hearts[i].sprite = extraSprite;
+            hearts[i].color = new Color(1, 1, 1, 0);
+        }
+
+        for (int i = 0; i < startingHeart; i++)
+        {
+            hearts[i].sprite = heartSprite;
+        }
 
         foreach(var heart in hearts)
         {
@@ -22,14 +50,33 @@ public class HpArea : UIBase
 
     public override void SetData(string data)
     {
-        foreach(var hp in hearts)
+        HeartInfo heartInfo = JsonUtility.FromJson<HeartInfo>(data);
+
+        for (int i = 0; i < maxHeartCnt; i++)
         {
-            hp.gameObject.SetActive(false);
+            hearts[i].sprite = emptySprite;
+            hearts[i].color = new Color(1, 1, 1, 0);
         }
 
-        for (int i = 0; i < int.Parse(data.Trim()); i++)
+        for (int i = 0; i < heartInfo.maxHeartCnt; i++)
         {
-            hearts[i].gameObject.SetActive(true);
+            hearts[i].color = new Color(1, 1, 1, 1);
+        }
+
+        for (int i = maxHeartCnt; i < maxHeartCnt + heartInfo.maxExtraHeartCnt; i++)
+        {
+            hearts[i].sprite = extraSprite;
+            hearts[i].color = new Color(1, 1, 1, 0);
+        }
+
+        for (int i = 0; i < heartInfo.heart; i++)
+        {
+            hearts[i].sprite = heartSprite;
+        }
+
+        for (int i = maxHeartCnt; i < maxHeartCnt + heartInfo.extraHeart; i++)
+        {
+            hearts[i].color = new Color(1, 1, 1, 1);
         }
     }
 }

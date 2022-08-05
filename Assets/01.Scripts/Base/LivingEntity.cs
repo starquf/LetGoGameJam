@@ -7,7 +7,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 {
     [Header("기본 세팅")]
     public float maxHp;
-    public float curHp => hp; // 현재 체력에 쉴드 더한값
+    public virtual float curHp => hp; // 현재 체력에 쉴드 더한값
 
     [SerializeField] protected float hp;
     [SerializeField] protected float attackPower;
