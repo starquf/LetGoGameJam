@@ -17,7 +17,7 @@ public class PlayerTest : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         pa = GetComponentInChildren<PlayerAttack>();
         nearWeaponList = new List<Weapon>();
-        pa.Init(GameObjectPoolManager.Instance.GetGameObject(MP7_PATH, pa.transform).GetComponent<Weapon>());
+        pa.Init(GameObjectPoolManager.Instance.GetGameObject(M1911_PATH, pa.transform).GetComponent<Weapon>());
     }
  
     private void Update()
