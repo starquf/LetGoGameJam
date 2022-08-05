@@ -164,7 +164,7 @@ MonoBehaviour:
   identityColor1: {r: 0.49019608, g: 0.7058824, b: 0.8, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 7
-  avoidRange: 5
+  avoidRange: 4
   enterExpRange: {x: 0, y: 0}
   dropExpInfo:
     dropPersent: 90
@@ -278,8 +278,8 @@ MonoBehaviour:
   isWaitting: 0
   isFirst: 1
   attackDuration: 1
-  waitAttackDuration: 3
-  waitAttackDurationFirst: 1
+  waitAttackDuration: 4
+  waitAttackDurationFirst: 2
   targetPos: {fileID: 0}
 --- !u!1 &4338138238933047406
 GameObject:

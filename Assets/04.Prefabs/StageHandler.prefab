@@ -136,7 +136,7 @@ MonoBehaviour:
     - type: 7
       amount: 15
     - type: 4
-      amount: 0
+      amount: 3
   - maxEnemy: 230
     maxWeaponType:
     - type: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
     - type: 7
       amount: 20
     - type: 4
-      amount: 0
+      amount: 4
   spawnPositionTransformList:
   - {fileID: 0}
   - {fileID: 0}
