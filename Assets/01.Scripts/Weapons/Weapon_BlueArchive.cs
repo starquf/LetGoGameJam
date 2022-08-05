@@ -5,31 +5,84 @@ using UnityEngine;
 public class Weapon_BlueArchive : Weapon
 {
     private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_BlueArchive";
+    private readonly string EFFECT_PATH = "Prefabs/Effect/LaserEffect";
+
     private Bullet_BlueArchive bullet;
+    private GameObject effectObj;
+
+
+    public override void Despawned()
+    {
+        if (isPlayer)
+        {
+            if (bullet != null)
+            {
+                print(1);
+                bullet.SetDisable();
+                bullet = null;
+
+            }
+            if (effectObj != null)
+            {
+                print(2);
+                GameObjectPoolManager.Instance.UnusedGameObject(effectObj);
+                effectObj.SetActive(false);
+                effectObj = null;
+            }
+        }
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0) && bullet != null)
+        if (isPlayer)
         {
-            bullet.SetDisable();
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (bullet != null)
+                {
+                    print(3);
+                    bullet.SetDisable();
+                    bullet = null;
+
+                }
+                if (effectObj != null)
+                {
+                    print(4);
+                    GameObjectPoolManager.Instance.UnusedGameObject(effectObj);
+                    effectObj.SetActive(false);
+                    effectObj = null;
+                }
+            }
         }
     }
 
     public override void Shoot(Vector3 shootDir)
     {
-        if(bullet != null)
+        if (isPlayer)
         {
-            bullet.SetDisable();
+            if (bullet == null)
+            {
+                bullet = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null).GetComponent<Bullet_BlueArchive>();
+                bullet.bulletData = bulletData;
+
+            }
+
+            bullet.SetRenderer(shootPos.position);
+            bullet.SetOwner(!isPlayer);
+
+            if (effectObj == null)
+            {
+                effectObj = GameObjectPoolManager.Instance.GetGameObject(EFFECT_PATH, null);
+                effectObj.GetComponent<ParticleSystem>().Play();
+            }
+
+            effectObj.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+
+
+            GameManager.Instance.soundHandler.Play(shotSFXName);
         }
-        bullet = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null).GetComponent<Bullet_BlueArchive>();
-        bullet.bulletData = bulletData;
-        //bullet.transform.position = shootPos.position;
-
-        bullet.SetRenderer(shootPos.position);
-        bullet.SetOwner(!isPlayer);
-        
-
-
-        GameManager.Instance.soundHandler.Play(shotSFXName);
     }
+
+   
 }

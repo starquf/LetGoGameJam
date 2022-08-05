@@ -43,7 +43,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public abstract void Shoot(Vector3 shootDir);
 
-    public void Despawned()
+    public virtual void Despawned()
     {
     }
 

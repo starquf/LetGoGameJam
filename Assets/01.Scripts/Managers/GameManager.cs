@@ -59,9 +59,6 @@ public class GameManager : MonoBehaviour
     public int Score => score;
     private int score;
 
-    [HideInInspector]
-    public StageHandler stageHandler;
-
     public CinemachineVirtualCamera cmPerlinObject;
     public VirtualCameraScript vCamScript;
 
@@ -84,6 +81,9 @@ public class GameManager : MonoBehaviour
     public UpgradeHandler upgradeHandler;
     [HideInInspector]
     public UpgradeUIHandler upgradeUIHandler;
+    [HideInInspector]
+    public StageHandler stageHandler;
+
     #endregion
 
     // 씬 이동 시 반드시 해야하는 거

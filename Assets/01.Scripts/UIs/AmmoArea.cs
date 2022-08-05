@@ -20,19 +20,23 @@ public class AmmoArea : UIBase
 
     public override void SetData(string data)
     {
-        int bulletCount = int.Parse(data.Trim());
-
         if(data.Trim().Contains("inf"))
         {
             foreach (var bullet in bullets)
             {
                 bullet.gameObject.SetActive(true);
             }
+
+            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform);
+            particle.transform.localPosition = Vector3.zero;
+
             expendBulletsText.text = "inf.";
             return;
         }
 
-        if(bulletCount > 5)
+        int bulletCount = int.Parse(data.Trim());
+
+        if (bulletCount > 5)
         {
             foreach(var bullet in bullets)
             {
@@ -41,7 +45,6 @@ public class AmmoArea : UIBase
             expendBulletsText.text = (bulletCount - 5).ToString();
 
             GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform);
-
             particle.transform.localPosition = Vector3.zero;
         }
         else

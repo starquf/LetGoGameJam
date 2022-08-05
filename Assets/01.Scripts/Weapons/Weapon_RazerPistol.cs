@@ -5,9 +5,12 @@ using UnityEngine;
 public class Weapon_RazerPistol : Weapon
 {
     private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet";
+    
 
     public override void Shoot(Vector3 shootDir)
     {
+      
+
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 

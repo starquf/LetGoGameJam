@@ -7,9 +7,13 @@ public class UsedGun : MonoBehaviour, IPoolableComponent
 {
     private SpriteRenderer sr;
 
+    private Color usedColor;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+
+        usedColor = sr.color;
     }
 
     public void Despawned()
@@ -30,10 +34,13 @@ public class UsedGun : MonoBehaviour, IPoolableComponent
     public void SetSprite(Sprite sprite)
     {
         sr.sprite = sprite;
+        sr.color = Color.white;
     }
 
     public void ShowEffect(Vector2 startPos)
     {
+        sr.DOColor(usedColor, 1f).SetEase(Ease.Linear);
+
         StartCoroutine(ParabolaEffect(startPos));
     }
 

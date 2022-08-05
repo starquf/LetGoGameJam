@@ -191,7 +191,6 @@ public class StageHandler : MonoBehaviour
             rand = Random.Range(0, enemyInfos.Count);
             enemyInfo = enemyInfos[rand];
         } while (enemyInfo.enterMinScore > GameManager.Instance.Score || !CanSpawnEnemy(enemyInfo, ref enemy));
-
         amountEnemy++;
 
         return enemy;
@@ -227,5 +226,10 @@ public class StageHandler : MonoBehaviour
     public Vector3 GetSpawnPosition()
     {
         return spawnPosition;
+    }
+
+    public Vector3 GetRandomSpawnPosition()
+    {
+        return spawnPositionTransformList[Random.Range(0, spawnPositionTransformList.Count)].position;
     }
 }
