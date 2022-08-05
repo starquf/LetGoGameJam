@@ -210,6 +210,7 @@ MonoBehaviour:
   speed: 2
   attakMoveSpeed: 1.5
   isKnockBack: 0
+  isInvincible: 0
   maxHPForPlayerLevel: 0c0000001800000024000000
   identityColor1: {r: 0.49019608, g: 0.7058824, b: 0.8, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
@@ -225,7 +226,7 @@ MonoBehaviour:
   canHaveWeaponList:
   - type: 2
     dropPersent: 80
-  - type: 4
+  - type: 2
     dropPersent: 20
   dropGunPersent: 30
   enemyAttack: {fileID: 1176119642591867087}
@@ -325,9 +326,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
   isAttacking: 0
-  shootStartTime: 0
+  isWaitting: 0
+  isFirst: 1
   attackDuration: 1
   waitAttackDuration: 3
+  waitAttackDurationFirst: 1
   targetPos: {fileID: 0}
 --- !u!1 &4338138238933047406
 GameObject:

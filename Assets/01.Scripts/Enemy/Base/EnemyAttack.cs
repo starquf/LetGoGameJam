@@ -86,7 +86,6 @@ public class EnemyAttack : AttackBase
                     {
                         isWaitting = false;
                         timer = attackDuration;
-                        print(attackDir+"a1");
                     }
                 }
                 else
@@ -94,13 +93,11 @@ public class EnemyAttack : AttackBase
                     Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
                     if (blue != null)
                     {
-                        print(attackDir+"b2");
                         currentWeapon.Shoot(attackDir);
                         yield return new WaitForSeconds(0.005f);
                     }
                     else
                     {
-                        print(attackDir + "b2");
                         currentWeapon.Shoot(attackDir);
                         if (!currentWeapon.isNoShakeWeapon)
                         {
