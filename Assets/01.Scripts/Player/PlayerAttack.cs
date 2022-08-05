@@ -104,9 +104,6 @@ public class PlayerAttack : AttackBase
 
                     Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
                     if (blue != null)
-                    currentWeapon.Shoot(dir);
-
-                    if (!currentWeapon.isNoShakeWeapon)
                     {
                         currentWeapon.Shoot(dir);
                         yield return new WaitForSeconds(0.001f);
