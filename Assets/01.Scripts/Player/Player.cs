@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : LivingEntity
 {
-
     private const string RIP_PREFAB_PATH = "Prefabs/Object/RIP";
 
     [HideInInspector] public PlayerInput playerInput;
@@ -51,6 +50,8 @@ public class Player : LivingEntity
         
         isHitted = true;
         lastHitTime = Time.time;
+
+        GameManager.Instance.soundHandler.Play("PlayerHit");
 
         hp -= 1f;
         StartCoroutine(Blinking());
@@ -103,6 +104,7 @@ public class Player : LivingEntity
         base.Die();
         //GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
         //gameObject.SetActive(false);
+        GameManager.Instance.soundHandler.Play("PlayerDead");
         StartCoroutine(DieRoutine());
 
         playerInput.isDie = true;
