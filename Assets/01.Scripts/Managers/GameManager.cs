@@ -73,7 +73,10 @@ public class GameManager : MonoBehaviour
     public InGameUIHandler inGameUIHandler;
     [HideInInspector]
     public OptionHandler optionHandler;
-
+    [HideInInspector]
+    public UpgradeHandler upgradeHandler;
+    [HideInInspector]
+    public UpgradeUIHandler upgradeUIHandler;
     #endregion
 
     // 씬 이동 시 반드시 해야하는 거

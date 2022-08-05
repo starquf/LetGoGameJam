@@ -23,9 +23,9 @@ public class ExpBar : UIBase
         DOTween.Kill(expSlider);
         DOTween.Kill(realFill);
 
-        expSlider.DOValue(float.Parse(data.Trim()),.2f).OnComplete(()=>
+        expSlider.DOValue(float.Parse(data.Trim()),.2f).SetUpdate(true).OnComplete(()=>
         {
-            realFill.DOSizeDelta(new Vector2(fill.rect.width, realFill.rect.height), .5f).SetEase(Ease.InQuart);
+            realFill.DOSizeDelta(new Vector2(fill.rect.width, realFill.rect.height), .2f).SetEase(Ease.InQuart).SetUpdate(true);
         });
     }
 }
