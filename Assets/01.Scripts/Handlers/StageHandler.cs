@@ -162,7 +162,6 @@ public class StageHandler : MonoBehaviour
     }
     public bool CanGetWeapon(WeaponType weaponType)
     {
-        print(weaponType);
         for (int i = 0; i < maxWeaponType.Count; i++)
         {
             AmountWeapon maxAmountWeapon = maxWeaponType[i];
