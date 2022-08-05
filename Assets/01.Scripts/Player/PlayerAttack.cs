@@ -63,6 +63,10 @@ public class PlayerAttack : AttackBase
             return;
 
         currentWeapon.bulletIron = playerStat.bulletIronclad;
+
+        float curRate = currentWeapon.fireRate;
+        print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
+        weaponShootWait = new WaitForSeconds(curRate - ((playerStat.atkRate * curRate) / 100));
     }
 
     public override void LookDirection(Vector3 pos)
