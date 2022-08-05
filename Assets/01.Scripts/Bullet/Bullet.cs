@@ -184,7 +184,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 
-    protected virtual void Hit(LivingEntity hitEntity, Collider2D collision)
+    protected virtual void Hit(LivingEntity hitEntity)
     {
         hitEntity.GetDamage(bulletDamage);
         //hitEntity.KnockBack(bulletDir, 20f, 0.1f);
@@ -195,13 +195,13 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         if ((!isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("RIP") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
-            Hit(livingEntity, collision);
+            Hit(livingEntity);
         }
 
         if (isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
-            Hit(livingEntity, collision);
+            Hit(livingEntity);
         }
     }
 }
