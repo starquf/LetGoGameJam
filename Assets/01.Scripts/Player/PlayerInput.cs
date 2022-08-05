@@ -18,6 +18,9 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        if (Time.deltaTime <= 0)
+            return;
+
         if (isDie)
         {
             moveDir = Vector2.zero;
