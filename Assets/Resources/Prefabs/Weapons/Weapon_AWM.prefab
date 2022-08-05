@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: SniperCharge
   damage: 6
-  maxBullet: 10
+  maxBullet: 15
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 2
   collectionRate: 0
   isAuto: 0
@@ -110,6 +111,7 @@ MonoBehaviour:
   shootPos: {fileID: 1621244696751091155}
   bulletData: {fileID: 11400000, guid: 9daf623a0b26b3343b6ded74dd7b42dc, type: 2}
   sr: {fileID: 0}
+  isNoShakeWeapon: 0
 --- !u!61 &985691537616212242
 BoxCollider2D:
   m_ObjectHideFlags: 0
