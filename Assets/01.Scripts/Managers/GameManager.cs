@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
 
     public CinemachineVirtualCamera cmPerlinObject;
 
-
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
     {

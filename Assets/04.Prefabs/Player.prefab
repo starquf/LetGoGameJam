@@ -321,6 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
   playerInput: {fileID: 8225595503229918655}
+  playerStat: {fileID: 8225595503229918649}
 --- !u!1 &8225595502402984270
 GameObject:
   m_ObjectHideFlags: 0

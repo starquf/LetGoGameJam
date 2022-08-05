@@ -8,7 +8,7 @@ public class Weapon_M870 : Weapon
 
     public override void Shoot(Vector3 shootDir)
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 7; i++)
         {
             GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
 

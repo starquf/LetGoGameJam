@@ -129,7 +129,8 @@ MonoBehaviour:
   shotSFXName: ShotGunShot
   damage: 1
   maxBullet: 5
-  fireRate: 2
+  bulletIron: 0
+  fireRate: 1
   collectionRate: 50
   isAuto: 0
   isPlayer: 0
