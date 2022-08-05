@@ -71,7 +71,7 @@ public class Enemy : LivingEntity, IPoolableComponent
             weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
                 canHaveWeaponList[idx].type.ToString(),
                 enemyAttack.transform).GetComponent<Weapon>();
-            print(canHaveWeaponList[idx].type.ToString());
+            //print(canHaveWeaponList[idx].type.ToString());
             weapon.transform.SetParent(enemyAttack.transform);
             weapon.transform.localPosition = Vector3.right;
 
@@ -133,8 +133,19 @@ public class Enemy : LivingEntity, IPoolableComponent
             }
         }
         GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
-
         if(enemyAttackType.Equals(enemyAttackType.RANGED))
+        {
+            if (!weapon.weaponType.Equals(WeaponType.M1911))
+            {
+                if(Random.Range(0,100)< dropGunPersent)
+                {
+                    //GameObjectPoolManager.Instance.GetGameObject()
+                    Debug.Log(weapon.weaponType.ToString() + "드롭됨");
+                }
+            }
+        }
+
+        if (enemyAttackType.Equals(enemyAttackType.RANGED))
             GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
