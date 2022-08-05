@@ -475,6 +475,7 @@ MonoBehaviour:
     des: "\uCD1D\uC54C\uC774 \uC801\uC744 \uAD00\uD1B5\uD569\uB2C8\uB2E4."
     level: 0
   maxLevel: 5
+  isInfinityLevel: 0
   uh: {fileID: 0}
 --- !u!1 &92033088
 GameObject:
@@ -1086,6 +1087,7 @@ MonoBehaviour:
     des: "\uC774\uB3D9\uC18D\uB3C4\uAC00 \uAC10\uC18C\uD569\uB2C8\uB2E4."
     level: 0
   maxLevel: 5
+  isInfinityLevel: 0
   uh: {fileID: 0}
 --- !u!1 &189560454
 GameObject:
@@ -1964,6 +1966,7 @@ MonoBehaviour:
     des: "\uCD1D\uC758 \uCD5C\uB300 \uD0C4\uC218\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     level: 0
   maxLevel: 5
+  isInfinityLevel: 0
   uh: {fileID: 0}
 --- !u!1 &454290073
 GameObject:
@@ -2797,6 +2800,7 @@ MonoBehaviour:
   optionHandler: {fileID: 0}
   upgradeHandler: {fileID: 0}
   upgradeUIHandler: {fileID: 0}
+  stageHandler: {fileID: 0}
 --- !u!4 &779896001
 Transform:
   m_ObjectHideFlags: 0
@@ -2860,6 +2864,7 @@ MonoBehaviour:
     des: "\uC774\uB3D9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     level: 0
   maxLevel: 5
+  isInfinityLevel: 0
   uh: {fileID: 0}
 --- !u!1 &835383491
 GameObject:
@@ -4257,6 +4262,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1242711975
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8473219059654410742, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: isGround
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514840, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621244696532514842, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
+      propertyPath: m_Name
+      value: Weapon_MP7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c742ed44a721dd41a607af9dead37d7, type: 3}
 --- !u!1 &1284611998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5181,6 +5247,7 @@ MonoBehaviour:
     des: "\uCD5C\uB300 \uCCB4\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     level: 0
   maxLevel: 5
+  isInfinityLevel: 0
   uh: {fileID: 0}
 --- !u!1 &1709663306
 GameObject:
@@ -6282,7 +6349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947046533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.3398438, y: -2.1, z: -10}
+  m_LocalPosition: {x: 4.333331, y: -2.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1635583133}

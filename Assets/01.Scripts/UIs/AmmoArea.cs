@@ -27,8 +27,9 @@ public class AmmoArea : UIBase
                 bullet.gameObject.SetActive(true);
             }
 
-            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform);
+            Effect particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform).GetComponent<Effect>();
             particle.transform.localPosition = Vector3.zero;
+            particle.Play();
 
             expendBulletsText.text = "inf.";
             return;
@@ -44,8 +45,9 @@ public class AmmoArea : UIBase
             }
             expendBulletsText.text = (bulletCount - 5).ToString();
 
-            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform);
+            Effect particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform).GetComponent<Effect>();
             particle.transform.localPosition = Vector3.zero;
+            particle.Play();
         }
         else
         {
@@ -60,10 +62,10 @@ public class AmmoArea : UIBase
             }
 
             int idx = Mathf.Clamp(bulletCount - 1, 0, 4);
-
-            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[idx].transform);
-
+            
+            Effect particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[idx].transform).GetComponent<Effect>();
             particle.transform.localPosition = Vector3.zero;
+            particle.Play();
 
             expendBulletsText.text = "";
         }

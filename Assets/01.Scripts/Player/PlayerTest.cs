@@ -7,6 +7,8 @@ public class PlayerTest : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerAttack pa;
 
+    private readonly string MP7_PATH = "Prefabs/Weapons/Weapon_BlueArchive";
+    private readonly string M870_PATH = "Prefabs/Weapons/Weapon_AK47";
     private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_M1911";
 
     private List<Weapon> nearWeaponList = new List<Weapon>();
@@ -16,7 +18,7 @@ public class PlayerTest : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         pa = GetComponentInChildren<PlayerAttack>();
         nearWeaponList = new List<Weapon>();
-        pa.Init(GameObjectPoolManager.Instance.GetGameObject(M1911_PATH, pa.transform).GetComponent<Weapon>());
+        pa.Init(GameObjectPoolManager.Instance.GetGameObject(M870_PATH, pa.transform).GetComponent<Weapon>());
     }
  
     private void Update()
