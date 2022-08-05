@@ -13,6 +13,7 @@ public class PlayerAttack : AttackBase
     public PlayerStat playerStat;
 
     private readonly string BASE_WEAPON = "Prefabs/Weapons/Weapon_M1911";
+    private readonly string USED_EFFECT = "Prefabs/Effect/UsedGun";
 
     private void Start()
     {
@@ -34,6 +35,8 @@ public class PlayerAttack : AttackBase
 
     public override void ChangeWeapon(Weapon weapon)
     {
+        CreateUsedEffect(currentWeapon);
+
         base.ChangeWeapon(weapon);
 
         weapon.isPlayer = true;
@@ -43,6 +46,15 @@ public class PlayerAttack : AttackBase
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
 
         SetPlayerStat();
+    }
+
+    private void CreateUsedEffect(Weapon weapon)
+    {
+        UsedGun effect = GameObjectPoolManager.Instance.GetGameObject(USED_EFFECT, null).GetComponent<UsedGun>();
+
+        effect.transform.localScale = weapon.transform.localScale;
+        effect.SetSprite(weapon.sr.sprite);
+        effect.ShowEffect(weapon.transform.position);
     }
 
     public void SetPlayerStat()
