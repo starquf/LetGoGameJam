@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: BulletData_MP7
   m_EditorClassIdentifier: 
   damage: 1
+  shakeAmount: 2
+  shakeTime: 0.5
   knockBackPower: 3
   knockBackTime: 0.1

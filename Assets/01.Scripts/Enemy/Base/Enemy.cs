@@ -150,4 +150,9 @@ public class Enemy : LivingEntity, IPoolableComponent
             GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
+    protected override void Die()
+    {
+        base.Die();
+        Debug.Log("나죽음");
+    }
 }

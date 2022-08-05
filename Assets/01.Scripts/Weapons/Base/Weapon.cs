@@ -27,6 +27,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public SpriteRenderer sr;
 
+
+
     protected virtual void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -44,6 +46,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
         bulletIron = 0;
     }
+
 
     public void SetDisable()
     {

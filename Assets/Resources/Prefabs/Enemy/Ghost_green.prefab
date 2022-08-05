@@ -294,8 +294,8 @@ MonoBehaviour:
   isKnockBack: 0
   identityColor1: {r: 0.58431375, g: 0.7490196, b: 0.4509804, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
-  attackRange: 8
-  avoidRange: 5
+  attackRange: 6
+  avoidRange: 4
   enterExpRange: {x: 0, y: 0}
   dropExpInfo:
     dropPersent: 40
@@ -308,6 +308,7 @@ MonoBehaviour:
     dropPersent: 90
   - type: 6
     dropPersent: 10
+  dropGunPersent: 25
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}
   sr: {fileID: 0}

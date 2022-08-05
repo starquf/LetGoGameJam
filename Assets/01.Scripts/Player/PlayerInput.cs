@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
     public bool isSwitchWeapon;
     public bool isDie;
     public bool isKnockBack;
+    public bool isParrying;
 
     private void Update()
     {
@@ -35,6 +36,7 @@ public class PlayerInput : MonoBehaviour
                 moveDir.y = Input.GetAxisRaw("Vertical");
                 isSwitchWeapon = Input.GetButtonDown("Switching");
                 isAttack = Input.GetButton("Fire1");
+                isParrying = Input.GetButton("Fire2");
                 break;
             case PlayerState.Die:
                 break;
