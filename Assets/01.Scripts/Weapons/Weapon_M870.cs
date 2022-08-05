@@ -26,6 +26,9 @@ public class Weapon_M870 : Weapon
 
             bullet.ChangeSpeed(Random.Range(13f, 15f));
             bullet.ChangeDir(dir);
+            bullet.SetOwner(!isPlayer);
+            bullet.AddBulletIron(bulletIron);
+
             bullet.bulletData = bulletData;
         }
 
