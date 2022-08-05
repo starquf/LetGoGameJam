@@ -53,13 +53,28 @@ public class Player : LivingEntity
         lastHitTime = Time.time;
 
         hp -= 1f;
-
         StartCoroutine(Blinking());
         if (hp <= 0)
         {
             Die();
         }
         SetHPUI();
+    }
+
+    public override void KnockBack(Vector2 direction, float power, float duration)
+    {
+        if (isDie) //이미 죽었거나 무적 상태라면
+        {
+            return;
+        }
+        base.KnockBack(direction, power, duration);
+        playerInput.isKnockBack = isKnockBack;
+    }
+
+    protected override void ResetKnockBackParam()
+    {
+        base.ResetKnockBackParam();
+        playerInput.isKnockBack = isKnockBack;
     }
 
     private IEnumerator Blinking()

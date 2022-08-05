@@ -23,7 +23,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (playerInput.isDie)
+        if (playerInput.isDie || playerInput.isKnockBack)
         {
             return;
         }
