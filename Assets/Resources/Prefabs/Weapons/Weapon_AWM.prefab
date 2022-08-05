@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1621244696532514840}
   - component: {fileID: 1621244696532514839}
   - component: {fileID: 649132397024266091}
+  - component: {fileID: 985691537616212242}
   m_Layer: 0
   m_Name: Weapon_AWM
   m_TagString: Untagged
@@ -97,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSFXName: SniperCharge
-  damage: 10
-  maxBullet: 5
+  damage: 6
+  maxBullet: 10
+  bulletIron: 0
   fireRate: 2
   collectionRate: 0
   isAuto: 0
@@ -108,6 +110,32 @@ MonoBehaviour:
   shootPos: {fileID: 1621244696751091155}
   bulletData: {fileID: 11400000, guid: 9daf623a0b26b3343b6ded74dd7b42dc, type: 2}
   sr: {fileID: 0}
+--- !u!61 &985691537616212242
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621244696532514842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05, y: 0.05}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.952381, y: 1}
+    newSize: {x: 1.75, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6, y: 0.42}
+  m_EdgeRadius: 0
 --- !u!1 &1621244696751091156
 GameObject:
   m_ObjectHideFlags: 0

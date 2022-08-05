@@ -1,40 +1,25 @@
 fileFormatVersion: 2
-guid: 76f23cd8043447c4fb9e6aa97c6a3294
+guid: 68a58434f422a4f4b82459e1b1b6a629
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3837292206575998723
-    second: Dust_Effect_06_0
+      213: 2359167797099805661
+    second: Parrying_0
   - first:
-      213: -920541258431081018
-    second: Dust_Effect_06_1
+      213: 7486322722536367640
+    second: Parrying_1
   - first:
-      213: 1485012361594762389
-    second: Dust_Effect_06_2
+      213: -8907292231601463792
+    second: Parrying_2
   - first:
-      213: -828577658639973222
-    second: Dust_Effect_06_3
+      213: 6102448030011531554
+    second: Parrying_3
   - first:
-      213: -7627482169121496282
-    second: Dust_Effect_06_4
+      213: -7020141065324935667
+    second: Parrying_4
   - first:
-      213: -3803567655678595457
-    second: Dust_Effect_06_5
-  - first:
-      213: 8743958462585154464
-    second: Dust_Effect_06_6
-  - first:
-      213: 8269636456281385497
-    second: Dust_Effect_06_7
-  - first:
-      213: -6595089466394515329
-    second: Dust_Effect_06_8
-  - first:
-      213: -771796757174030951
-    second: Dust_Effect_06_9
-  - first:
-      213: 2085393629009568825
-    second: Dust_Effect_06_10
+      213: 6494626713024955181
+    second: Parrying_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -79,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,181 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dust_Effect_06_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30756585eecc04530800000000000000
-      internalID: 3837292206575998723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_1
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 128
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c5df1a4a949933f0800000000000000
-      internalID: -920541258431081018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_2
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 128
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5947bebffd2db9410800000000000000
-      internalID: 1485012361594762389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_3
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 128
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9480fb620d4084f0800000000000000
-      internalID: -828577658639973222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62323ea116db52690800000000000000
-      internalID: -7627482169121496282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_5
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 64
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7eac1c8e53073bc0800000000000000
-      internalID: -3803567655678595457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 64
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0aba82de4e7c85970800000000000000
-      internalID: 8743958462585154464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_7
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 64
-        width: 144
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91aa546ea86a3c270800000000000000
-      internalID: 8269636456281385497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dust_Effect_06_8
+      name: Parrying_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 144
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +135,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7862a592198974a0800000000000000
-      internalID: -6595089466394515329
+      spriteID: ddbbcafac927db020800000000000000
+      internalID: 2359167797099805661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dust_Effect_06_9
+      name: Parrying_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81627b61ad2c4e760800000000000000
+      internalID: 7486322722536367640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parrying_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e5cc088e0f26480800000000000000
+      internalID: -8907292231601463792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parrying_3
       rect:
         serializedVersion: 2
         x: 144
         y: 0
-        width: 144
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +198,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99de7d140f60a45f0800000000000000
-      internalID: -771796757174030951
+      spriteID: 221ae11b62040b450800000000000000
+      internalID: 6102448030011531554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dust_Effect_06_10
+      name: Parrying_4
       rect:
         serializedVersion: 2
-        x: 288
+        x: 192
         y: 0
-        width: 144
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,8 +219,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9346af9e47ec0fc10800000000000000
-      internalID: 2085393629009568825
+      spriteID: d06cc2835e2739e90800000000000000
+      internalID: -7020141065324935667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parrying_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d238d92e59c812a50800000000000000
+      internalID: 6494626713024955181
       vertices: []
       indices: 
       edges: []

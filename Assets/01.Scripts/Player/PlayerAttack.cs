@@ -12,17 +12,22 @@ public class PlayerAttack : AttackBase
     public PlayerInput playerInput;
     public PlayerStat playerStat;
 
+    private readonly string BASE_WEAPON = "Prefabs/Weapons/Weapon_M1911";
+
     private void Start()
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
     }
 
-    private Tween camTween = null;
-
     public override void Init(Weapon baseWeapon)
     {
         base.Init(baseWeapon);
         baseWeapon.isPlayer = true;
+        baseWeapon.sr.color = Color.white;
+
+        currentBullet = Mathf.RoundToInt(baseWeapon.maxBullet * (1f + playerStat.bulletCapacity));
+
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
 
         SetPlayerStat();
     }
@@ -32,6 +37,11 @@ public class PlayerAttack : AttackBase
         base.ChangeWeapon(weapon);
 
         weapon.isPlayer = true;
+        currentBullet = Mathf.RoundToInt(weapon.maxBullet * (1f + playerStat.bulletCapacity));
+        weapon.sr.color = Color.white;
+
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+
         SetPlayerStat();
     }
 
@@ -81,7 +91,13 @@ public class PlayerAttack : AttackBase
                     Vector3 dir = playerInput.mousePos - transform.position;
 
                     currentWeapon.Shoot(dir);
-                    Shake(currentWeapon.bulletData);
+
+                    if (!currentWeapon.isNoShakeWeapon)
+                    {
+                        GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                    }
+
+                    UseBullet();
 
                     //print("오또");
                     yield return weaponShootWait;
@@ -94,7 +110,13 @@ public class PlayerAttack : AttackBase
 
                     //print("원스");
                     currentWeapon.Shoot(dir);
-                    Shake(currentWeapon.bulletData);
+
+                    if (!currentWeapon.isNoShakeWeapon)
+                    {
+                        GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                    }
+
+                    UseBullet();
 
                     yield return weaponShootWait;
                 }
@@ -106,23 +128,20 @@ public class PlayerAttack : AttackBase
         }
     }
 
-    public void Shake(BulletSO bulletData)
+    protected void UseBullet()
     {
-        if (camTween != null)
-            camTween.Kill();
+        if (currentWeapon.isInfiniteBullet)
+            return;
 
-        CinemachineBasicMultiChannelPerlin perlin = GameManager.Instance.cmPerlinObject.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        if (perlin != null)
+        currentBullet--;
+
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+
+        // 총알 다 쓰면
+        if (currentBullet <= 0)
         {
-            perlin.m_AmplitudeGain = bulletData.shakeAmount;
-
-            camTween = DOTween.To(() => perlin.m_AmplitudeGain, value => perlin.m_AmplitudeGain = value, 0, bulletData.shakeTime);
+            Weapon weapon = GameObjectPoolManager.Instance.GetGameObject(BASE_WEAPON, transform).GetComponent<Weapon>();
+            ChangeWeapon(weapon);
         }
     }
-
-    public void KillShake()
-    {
-        camTween.Kill();
-    }
-
 }

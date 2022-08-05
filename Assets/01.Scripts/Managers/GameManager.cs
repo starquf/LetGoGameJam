@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     private int score;
 
     public CinemachineVirtualCamera cmPerlinObject;
+    public VirtualCameraScript vCamScript;
 
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()

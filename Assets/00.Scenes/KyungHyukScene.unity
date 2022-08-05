@@ -1707,6 +1707,7 @@ MonoBehaviour:
   isSwitchWeapon: 0
   isDie: 0
   isKnockBack: 0
+  isParrying: 0
 --- !u!58 &409571246
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1833,7 +1834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5890f0ed8f529d84a9a971be7d2d991b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 0
+  maxHp: 3
   hp: 0
   attackPower: 0
   rigid: {fileID: 0}
@@ -5046,6 +5047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrm: {fileID: 0}
+  cmPerlinObject: {fileID: 0}
   soundHandler: {fileID: 0}
   inGameUIHandler: {fileID: 0}
   optionHandler: {fileID: 0}
@@ -8160,6 +8162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
   playerInput: {fileID: 409571245}
+  playerStat: {fileID: 0}
 --- !u!1 &2099724680
 GameObject:
   m_ObjectHideFlags: 0
