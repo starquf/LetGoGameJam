@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         //print("tlqkaaaaaa");
         isEnemyBullet = isEnemy;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
-        curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
+        curSpeed = isEnemyBullet ? curSpeed * 0.5f : curSpeed;
         if(tr != null)
         {
             alphaKey[0].alpha = isEnemyBullet ? 0.7f : 1f;
