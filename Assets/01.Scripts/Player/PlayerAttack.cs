@@ -140,6 +140,8 @@ public class PlayerAttack : AttackBase
         // 총알 다 쓰면
         if (currentBullet <= 0)
         {
+            GameManager.Instance.soundHandler.Play("DropWeapon");
+
             Weapon weapon = GameObjectPoolManager.Instance.GetGameObject(BASE_WEAPON, transform).GetComponent<Weapon>();
             ChangeWeapon(weapon);
         }

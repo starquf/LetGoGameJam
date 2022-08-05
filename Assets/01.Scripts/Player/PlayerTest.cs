@@ -56,6 +56,9 @@ public class PlayerTest : MonoBehaviour
                     curDist = dist;
                 }
             }
+
+            GameManager.Instance.soundHandler.Play("GetWeapon");
+
             return nearWeapon;
         }
         else
