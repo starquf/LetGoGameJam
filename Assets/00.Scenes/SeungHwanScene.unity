@@ -3119,16 +3119,26 @@ MonoBehaviour:
   choices:
   - merit: {fileID: 1956701200}
     demerit: {fileID: 1705114219}
+  - merit: {fileID: 1956701200}
+    demerit: {fileID: 1302638365}
   - merit: {fileID: 649205832}
     demerit: {fileID: 1302638365}
   - merit: {fileID: 366974381}
     demerit: {fileID: 857778441}
+  - merit: {fileID: 366974381}
+    demerit: {fileID: 1302638365}
   - merit: {fileID: 1482755558}
     demerit: {fileID: 1705114219}
+  - merit: {fileID: 1482755558}
+    demerit: {fileID: 279474140}
   - merit: {fileID: 1955393788}
     demerit: {fileID: 1705114219}
+  - merit: {fileID: 1955393788}
+    demerit: {fileID: 279474140}
   - merit: {fileID: 1429691903}
     demerit: {fileID: 279474140}
+  - merit: {fileID: 1429691903}
+    demerit: {fileID: 857778441}
   playerStat: {fileID: 0}
 --- !u!1 &1705114217
 GameObject:
