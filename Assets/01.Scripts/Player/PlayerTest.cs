@@ -9,7 +9,7 @@ public class PlayerTest : MonoBehaviour
 
     private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_M1911";
 
-    public List<Weapon> nearWeaponList = new List<Weapon>();
+    private List<Weapon> nearWeaponList = new List<Weapon>();
 
     private void Start()
     {
