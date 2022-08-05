@@ -13,11 +13,12 @@ public class PlayerParrying : MonoBehaviour
     [SerializeField]
     private Animator effectAnimator;
 
-
     private PlayerInput playerInput;
     private Collider2D parryingCol;
     private bool isCoolTime;
     private bool isEffectStart = false;
+
+    private bool canParrying = true;
 
     public void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerParrying : MonoBehaviour
         StartCoroutine(Parrying());
         StartCoroutine(CoolTimeTimer());
         parryingCol.transform.DORotate(new Vector3(0,0,-10), 1f).SetLoops(-1,LoopType.Incremental).SetEase(Ease.Linear);
+
+        EventManager<string>.AddEvent("LevelUp",() => SetCanParrying(true));
     }
 
     public void StartParryingEffect()
@@ -43,6 +46,11 @@ public class PlayerParrying : MonoBehaviour
             yield return new WaitForSeconds(.5f);
             effectAnimator.SetBool("IsParrying", false);
         }
+    }
+
+    public void SetCanParrying(bool canParrying)
+    {
+        this.canParrying = canParrying;
     }
 
     private IEnumerator CoolTimeTimer()
@@ -69,7 +77,7 @@ public class PlayerParrying : MonoBehaviour
         {
             if(playerInput.isParrying)
             {
-                if(isCoolTime)
+                if(isCoolTime || !canParrying)
                 {
                     yield return null;
                 }
