@@ -25,7 +25,7 @@ public class PlayerTest : MonoBehaviour
         if(weapon != null)
         {
             weapon.SetSwichAnim(true);
-            if(playerInput.isSwitchWeapon)
+            if(Input.GetKeyDown(KeyCode.F))
             {
                 nearWeaponList.Remove(weapon);
                 weapon.SetSwichAnim(false);

@@ -101,6 +101,7 @@ MonoBehaviour:
   damage: 1
   maxBullet: 0
   bulletIron: 0
+  isInfiniteBullet: 1
   fireRate: 0.5
   collectionRate: 15
   isAuto: 1
