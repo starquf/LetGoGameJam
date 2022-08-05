@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadEffect : Effect
+public class ColorEffect : Effect
 {
     public void SetColor(Color color1, Color color2)
     {

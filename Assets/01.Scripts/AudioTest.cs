@@ -15,7 +15,7 @@ public class AudioTest : MonoBehaviour
     {
         GameObject obj = GameObjectPoolManager.Instance.GetGameObject(path, null);
 
-        DeadEffect deadEffect = obj.GetComponent<DeadEffect>();
+        ColorEffect deadEffect = obj.GetComponent<ColorEffect>();
 
         deadEffect.SetColor(Color.red, Color.blue);
         deadEffect.Play();

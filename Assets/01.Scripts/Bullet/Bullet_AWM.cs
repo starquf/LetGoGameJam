@@ -54,5 +54,12 @@ public class Bullet_AWM : Bullet
         GameManager.Instance.soundHandler.Play(Shot_SFX_NAME);
     }
 
+    protected override void Hit(LivingEntity hitEntity)
+    {
+        PlayHitEffect(hitEntity, true);
 
+        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
+        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+    }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IPoolableComponent
 {
+    private const string HIT_EFFECT_PATH = "Prefabs/Effect/HitEffect";
+
     protected Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
 
@@ -189,10 +191,27 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected virtual void Hit(LivingEntity hitEntity)
     {
+        PlayHitEffect(hitEntity);
+
         hitEntity.GetDamage(bulletData.damage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
+
+    protected void PlayHitEffect(LivingEntity hitEntity, bool isCenterPlay = false)
+    {
+        if (hitEntity is Enemy)
+        {
+            Enemy enemy = hitEntity as Enemy;
+
+            ColorEffect hitEffect = GameObjectPoolManager.Instance.GetGameObject(HIT_EFFECT_PATH, null).GetComponent<ColorEffect>();
+            hitEffect.SetColor(enemy.identityColor1, enemy.identityColor2);
+
+            hitEffect.SetPosition(isCenterPlay ? hitEntity.transform.position : transform.position);
+            hitEffect.Play();
+        }
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if ((!isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("RIP") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
