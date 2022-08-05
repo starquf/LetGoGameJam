@@ -210,7 +210,7 @@ MonoBehaviour:
   speed: 2
   attakMoveSpeed: 1.5
   isKnockBack: 0
-  maxHPForPlayerLevel: 04000000080000000c000000
+  maxHPForPlayerLevel: 010000000200000003000000
   identityColor1: {r: 0.53333336, g: 0.20784314, b: 0.19215687, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 6

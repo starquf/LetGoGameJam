@@ -27,6 +27,7 @@ public class PlayerTest : MonoBehaviour
             weapon.SetSwichAnim(true);
             if(Input.GetKeyDown(KeyCode.F))
             {
+                weapon.isGround = false;
                 nearWeaponList.Remove(weapon);
                 weapon.SetSwichAnim(false);
                 GameManager.Instance.soundHandler.Play("GetWeapon");
