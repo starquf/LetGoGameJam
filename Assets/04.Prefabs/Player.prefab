@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8919605847988250929}
   - component: {fileID: 3304434902841564772}
   - component: {fileID: 5977350814553084330}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: ParingJudge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.015187502, y: 0.012332392}
