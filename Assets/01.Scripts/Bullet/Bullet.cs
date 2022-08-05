@@ -220,6 +220,13 @@ public class Bullet : MonoBehaviour, IPoolableComponent
             Hit(livingEntity);
         }
 
+        if(isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Parrying")))
+        {
+            GameManager.Instance.soundHandler.Play("MeleeAttackHit");
+            GameManager.Instance.soundHandler.Play("Parring");
+            SetDisable();
+        }
+
         if (isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
