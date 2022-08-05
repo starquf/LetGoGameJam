@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if(isActive)
+        if(isActive && !myLivingEntity.isKnockBack)
             curState = this.curState.Process();
     }
 

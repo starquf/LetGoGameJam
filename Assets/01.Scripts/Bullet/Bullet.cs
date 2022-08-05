@@ -21,6 +21,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public float lifeTime = 3f;
 
+    public Vector3 bulletDir;
+
     // 적의 총알인가?
     public bool isEnemyBullet = true;
 
@@ -108,6 +110,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     #region ChangeDirections
     public virtual void ChangeDir(Vector3 dir)      // dir방향으로 회전
     {
+        bulletDir = dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
@@ -181,9 +184,10 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 
-    protected virtual void Hit(LivingEntity hitEntity)
+    protected virtual void Hit(LivingEntity hitEntity, Collider2D collision)
     {
         hitEntity.GetDamage(bulletDamage);
+        //hitEntity.KnockBack(bulletDir, 20f, 0.1f);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -191,13 +195,13 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         if ((!isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("RIP") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
-            Hit(livingEntity);
+            Hit(livingEntity, collision);
         }
 
         if (isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
-            Hit(livingEntity);
+            Hit(livingEntity, collision);
         }
     }
 }
