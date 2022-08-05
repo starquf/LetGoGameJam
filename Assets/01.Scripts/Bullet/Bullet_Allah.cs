@@ -43,6 +43,7 @@ public class Bullet_Allah : Bullet
     protected override void Hit(LivingEntity hitEntity)
     {
         isHit = true;
+        GameManager.Instance.vCamScript.Shake(bulletData);
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, explosionRange, isEnemyBullet ? 1 << 6 | 1 << 12 : 1 << 7 | 1 << 12);
         for (int i = 0; i < collider2Ds.Length; i++)
         {
