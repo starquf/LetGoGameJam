@@ -13,7 +13,12 @@ public class Effect : MonoBehaviour, IPoolableComponent
 
     public void SetPosition(Vector2 pos)
     {
-        transform.position = new Vector3(pos.x, pos.y, -10);
+        transform.position = new Vector3(pos.x, pos.y, -5);
+    }
+
+    public void SetRotation(Vector3 rot)
+    {
+        transform.rotation = Quaternion.Euler(rot);
     }
 
     public void Play()

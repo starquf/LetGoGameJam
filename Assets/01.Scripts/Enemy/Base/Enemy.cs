@@ -90,6 +90,7 @@ public class Enemy : LivingEntity, IPoolableComponent
         DeadEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<DeadEffect>();
 
         effect.SetPosition(transform.position);
+        effect.SetRotation(new Vector3(-90f, 0, 0));
         effect.SetColor(identityColor1, identityColor2);
 
         effect.Play();
