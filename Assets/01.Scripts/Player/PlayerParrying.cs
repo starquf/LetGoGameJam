@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerParrying : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerParrying : MonoBehaviour
         parryingCol.enabled = false;
         StartCoroutine(Parrying());
         StartCoroutine(CoolTimeTimer());
+        parryingCol.transform.DORotate(new Vector3(0,0,-10), 1f).SetLoops(-1,LoopType.Incremental).SetEase(Ease.Linear);
     }
 
     public void StartParryingEffect()
@@ -52,6 +54,7 @@ public class PlayerParrying : MonoBehaviour
                 yield return new WaitForSeconds(coolTime);
                 isCoolTime = false;
                 isEffectStart = false;
+                parryingCol.GetComponent<SpriteRenderer>().DOFade(.3f, .3f);
             }
             else
             {
@@ -75,7 +78,11 @@ public class PlayerParrying : MonoBehaviour
                     GameManager.Instance.soundHandler.Play("MeleeAttack");
                     isCoolTime = true;
                     parryingCol.enabled = true;
+                    parryingCol.GetComponent<SpriteRenderer>().DOFade(1, .2f);
+                    parryingCol.transform.DORotate(new Vector3(0, 0, parryingCol.transform.rotation.z + 180), .2f);
                     yield return new WaitForSeconds(parryingTime);
+                    parryingCol.transform.DORotate(new Vector3(0, 0, 0), .2f);
+                    parryingCol.GetComponent<SpriteRenderer>().DOFade(0f, .2f);
                     parryingCol.enabled = false;
 
                 }
