@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: EnemyDead
   audioType: 2
-  clip: {fileID: 8300000, guid: a63a9d248affd1b41aac027c84840fcb, type: 3}
+  clip: {fileID: 8300000, guid: 28341371dd0a8c64db94ba7e508d87a0, type: 3}

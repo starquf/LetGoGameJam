@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: MP7Shot
   damage: 1
-  maxBullet: 40
+  maxBullet: 80
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 0.05
   collectionRate: 20
   isAuto: 1

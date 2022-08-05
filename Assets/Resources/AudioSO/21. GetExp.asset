@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: GetExp
   audioType: 2
-  clip: {fileID: 8300000, guid: 1830a751f65b1d34ca926d8fa057224d, type: 3}
+  clip: {fileID: 8300000, guid: acfeb36e00fdc8f4694d2c39a2285735, type: 3}

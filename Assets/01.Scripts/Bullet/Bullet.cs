@@ -242,6 +242,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         {
             GameManager.Instance.soundHandler.Play("MeleeAttackHit");
             GameManager.Instance.soundHandler.Play("Parring");
+            GameManager.Instance.playerTrm.GetComponentInChildren<PlayerParrying>().StartParryingEffect();
             SetDisable();
         }
 

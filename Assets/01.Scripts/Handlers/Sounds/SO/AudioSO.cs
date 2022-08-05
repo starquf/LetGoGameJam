@@ -8,6 +8,7 @@ public enum AudioType
     BGM,
     SFX,
     LOOPSFX,
+    GUN,
     MaxCount
 }
 

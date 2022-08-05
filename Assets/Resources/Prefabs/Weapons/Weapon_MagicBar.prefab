@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: RPGShot
   damage: 9
-  maxBullet: 5
+  maxBullet: 6
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 2
   collectionRate: 0
   isAuto: 0

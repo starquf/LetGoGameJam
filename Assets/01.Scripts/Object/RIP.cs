@@ -96,6 +96,7 @@ public class RIP : LivingEntity, IPoolableComponent
             //Debug.Log(dropWeaponType.ToString() + "드롭됨");
         }
 
+        GameManager.Instance.soundHandler.Play("RIPDestroy");
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
 

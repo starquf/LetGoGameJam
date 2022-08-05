@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: PlayerDead
   audioType: 2
-  clip: {fileID: 8300000, guid: 1acb1f6672620e740b0156ea21266ca4, type: 3}
+  clip: {fileID: 8300000, guid: e49e462a3cf325b45b4185342fe71b56, type: 3}

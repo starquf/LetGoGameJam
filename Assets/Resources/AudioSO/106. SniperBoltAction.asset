@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 106. SniperBoltAction
   m_EditorClassIdentifier: 
   audioName: SniperBoltAction
-  audioType: 2
-  clip: {fileID: 8300000, guid: a0f0f01baa4c77947b2ccc2c06e00dea, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: 3acf5856c4f673e4f9fb39f0877936b9, type: 3}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: DropWeapon
   audioType: 2
-  clip: {fileID: 8300000, guid: 6b30769b138d45b418e98720c3387219, type: 3}
+  clip: {fileID: 8300000, guid: 1116ddeffd4ad234ab4936e68032e540, type: 3}

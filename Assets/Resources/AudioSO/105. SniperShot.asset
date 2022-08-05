@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 105. SniperShot
   m_EditorClassIdentifier: 
   audioName: SniperShot
-  audioType: 2
-  clip: {fileID: 8300000, guid: 1d99c5f20428ed643b5c48308da57b72, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: 7871b0bc70d9a4e4d97d6fe73929d438, type: 3}

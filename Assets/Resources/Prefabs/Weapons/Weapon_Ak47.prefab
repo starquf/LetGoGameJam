@@ -129,8 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: AKShot
   damage: 2
-  maxBullet: 40
+  maxBullet: 80
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 0.1
   collectionRate: 10
   isAuto: 1
