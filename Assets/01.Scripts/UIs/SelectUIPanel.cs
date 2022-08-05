@@ -21,12 +21,12 @@ public class SelectUIPanel : MonoBehaviour
         meritPanel.icon.sprite = merit.icon;
         meritPanel.name.text = merit.name;
         meritPanel.des.text = merit.des;
-        meritPanel.level.text = merit.level.ToString();
+        meritPanel.level.text = $"레벨 : {merit.level.ToString()}";
 
         demeritPanel.icon.sprite = demerit.icon;
         demeritPanel.name.text = demerit.name;
         demeritPanel.des.text = demerit.des;
-        demeritPanel.level.text = demerit.level.ToString();
+        demeritPanel.level.text = $"레벨 : {demerit.level.ToString()}";
     }
 }
 

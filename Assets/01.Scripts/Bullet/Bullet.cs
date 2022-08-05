@@ -21,6 +21,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public float lifeTime = 3f;
 
+    public BulletSO bulletData;
+
     public Vector3 bulletDir;
 
     // 적의 총알인가?
@@ -41,6 +43,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
         curSpeed = isEnemyBullet ? curSpeed * 0.7f : curSpeed;
         ChangeState(BulletState.MoveForward);
+        
     }
 
     public virtual void Despawned()
@@ -51,7 +54,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public virtual void Spawned()
     {
         curSpeed = bulletSpeed;
-
+        
         StartCoroutine(BulletLifetime());
     }
 
@@ -186,8 +189,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected virtual void Hit(LivingEntity hitEntity)
     {
-        hitEntity.GetDamage(bulletDamage);
-        //hitEntity.KnockBack(bulletDir, 20f, 0.1f);
+        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)

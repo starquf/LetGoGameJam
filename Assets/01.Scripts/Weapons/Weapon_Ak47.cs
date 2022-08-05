@@ -10,7 +10,7 @@ public class Weapon_Ak47 : Weapon
     {
         GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
-
+        bullet.bulletData = bulletData;
         bulletObj.transform.position = shootPos.position;
         bullet.ChangeDir(shootDir.normalized);
         float coll = collectionRate / 2f;

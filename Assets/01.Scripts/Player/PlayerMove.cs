@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerInput playerInput;
+    private PlayerStat playerStat;
+
     public Vector2 playerAxis;
     private Rigidbody2D rigid;
 
@@ -19,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        playerStat = GetComponent<PlayerStat>();
     }
 
     private void FixedUpdate()
@@ -49,6 +52,6 @@ public class PlayerMove : MonoBehaviour
 
     public void OnMove(Vector2 dir, float speed)
     {
-        rigid.velocity = dir * speed;
+        rigid.velocity = dir * Mathf.Clamp(speed + playerStat.moveSpeed, 0.1f, float.MaxValue);
     }
 }

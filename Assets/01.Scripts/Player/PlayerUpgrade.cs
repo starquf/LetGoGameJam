@@ -13,6 +13,8 @@ public class PlayerUpgrade : MonoBehaviour
 
     private int currentLevel = 0;
 
+    private UpgradeUIHandler uuh = null;
+
     private void Awake()
     {
         maxLevel = needExpToUpgrade.Count;
@@ -20,6 +22,8 @@ public class PlayerUpgrade : MonoBehaviour
 
     private void Start()
     {
+        uuh = GameManager.Instance.upgradeUIHandler;
+
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, "0");
     }
 
@@ -52,8 +56,6 @@ public class PlayerUpgrade : MonoBehaviour
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, (currentExp / (float)needExpToUpgrade[currentLevel]).ToString());
 
-        print($"점수 먹음 !! {exp}");
-
         // 레벨업
         if (currentExp >= needExpToUpgrade[currentLevel])
         {
@@ -65,8 +67,10 @@ public class PlayerUpgrade : MonoBehaviour
             GameManager.Instance.inGameUIHandler.SendData(UIDataType.Level, (currentLevel + 1).ToString());
 
             // TODO : 업그레이드 선택
-
-
+            uuh.ShowUpgrade(() => 
+            {
+                AddExp(0);
+            });
         }
     }
 }
