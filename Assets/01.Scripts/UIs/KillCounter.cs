@@ -7,6 +7,7 @@ public class KillCounter : UIBase
 {
     [SerializeField]
     private Text killCounterText;
+    private int killCount = 0;
 
     public override void Init()
     {
@@ -15,7 +16,8 @@ public class KillCounter : UIBase
 
     public override void SetData(string data)
     {
-        killCounterText.text = data;
+        killCount += int.Parse(data.Trim());
+        killCounterText.text = "" + killCount;
     }
 
 }
