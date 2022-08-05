@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class Weapon_BlueArchive : Weapon
 {
-    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet";
+    private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_BlueArchive";
+    private Bullet_BlueArchive bullet;
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0) && bullet != null)
+        {
+            bullet.SetDisable();
+        }
+    }
 
     public override void Shoot(Vector3 shootDir)
     {
-        GameObject bulletObj = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null);
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        if(bullet != null)
+        {
+            bullet.SetDisable();
+        }
+        bullet = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null).GetComponent<Bullet_BlueArchive>();
         bullet.bulletData = bulletData;
-        bulletObj.transform.position = shootPos.position;
+        //bullet.transform.position = shootPos.position;
 
-        bullet.ChangeDir(shootDir.normalized);
-        float coll = collectionRate / 2f;
-
-        bullet.ChangeDir(shootDir.normalized);
-        bullet.RotateAngle(Random.Range(-coll, coll));
-        bullet.ChangeSpeed(Random.Range(13f, 15f));
+        bullet.SetRenderer(shootPos.position);
         bullet.SetOwner(!isPlayer);
-        bullet.AddBulletIron(bulletIron);
+        
 
-        print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
     }

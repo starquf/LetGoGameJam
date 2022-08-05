@@ -80,14 +80,24 @@ public class PlayerAttack : AttackBase
                 {
                     Vector3 dir = playerInput.mousePos - transform.position;
 
-                    currentWeapon.Shoot(dir);
-                    if (!currentWeapon.isNoShakeWeapon)
+                    Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
+                    if (blue != null)
                     {
-                        GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                        currentWeapon.Shoot(dir);
+                        yield return new WaitForSeconds(0.001f);
+                    }
+                    else
+                    {
+                        currentWeapon.Shoot(dir);
+                        if (!currentWeapon.isNoShakeWeapon)
+                        {
+                            GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                            yield return weaponShootWait;
+                        }
                     }
 
                     //print("오또");
-                    yield return weaponShootWait;
+                    
                 }
                 else if(isShootOnce)
                 {

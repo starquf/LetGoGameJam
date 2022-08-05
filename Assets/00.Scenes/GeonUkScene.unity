@@ -4137,6 +4137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTrm: {fileID: 0}
   cmPerlinObject: {fileID: 0}
+  vCamScript: {fileID: 0}
   soundHandler: {fileID: 0}
   inGameUIHandler: {fileID: 0}
   optionHandler: {fileID: 0}
