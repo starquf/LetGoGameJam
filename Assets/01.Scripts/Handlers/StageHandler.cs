@@ -121,7 +121,7 @@ public class StageHandler : MonoBehaviour
         {
             rand = Random.Range(0, enemyInfos.Count);
             enemyInfo = enemyInfos[rand];
-        } while (enemyInfo.enterMinScore > GameManager.Instance.Score || enemyInfo.enterMaxScore < GameManager.Instance.Score);
+        } while (enemyInfo.enterMinScore > GameManager.Instance.Score);
 
         GameObject go = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/"+enemyInfos[rand].enemyList[Random.Range(0, enemyInfos[rand].enemyList.Count)].ToString(), transform);
 

@@ -11,6 +11,7 @@ public class PlayerUpgrade : MonoBehaviour
     public List<int> needExpToUpgrade = new List<int>();
     private int maxLevel = 0;
 
+    public int CurrentLevel => currentLevel;
     private int currentLevel = 0;
 
     private UpgradeUIHandler uuh = null;

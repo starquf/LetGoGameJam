@@ -32,38 +32,6 @@ public class PlayerTest : MonoBehaviour
                 ChangeWeapon(weapon);
             }
         }
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    ChangeWeapon(AWM_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    ChangeWeapon(MP7_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    ChangeWeapon(AK47_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    ChangeWeapon(M1911_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha5))
-        //{
-        //    ChangeWeapon(MAGICBAR_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha6))
-        //{
-        //    ChangeWeapon(BLUEARCHIVE_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha7))
-        //{
-        //    ChangeWeapon(RAZERPISTOL_PATH);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha8))
-        //{
-        //    ChangeWeapon(M870_PATH);
-        //}
     }
 
 
