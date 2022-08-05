@@ -29,6 +29,7 @@ public class PlayerTest : MonoBehaviour
             {
                 nearWeaponList.Remove(weapon);
                 weapon.SetSwichAnim(false);
+                GameManager.Instance.soundHandler.Play("GetWeapon");
                 ChangeWeapon(weapon);
             }
         }
@@ -56,8 +57,6 @@ public class PlayerTest : MonoBehaviour
                     curDist = dist;
                 }
             }
-
-            GameManager.Instance.soundHandler.Play("GetWeapon");
 
             return nearWeapon;
         }
