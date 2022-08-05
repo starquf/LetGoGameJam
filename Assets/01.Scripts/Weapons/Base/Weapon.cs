@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,15 +37,26 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     private Effect switchEffect = null;
 
+    public GameObject muzzleFlashEffect;
+
+    public float muzzleFlashTime = 0.07f;
+    private WaitForSeconds muzzleWait = new WaitForSeconds(0.07f);
+    private Coroutine muzzleCor = null;
+
     protected virtual void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+
+        muzzleFlashEffect.SetActive(false);
+
+        muzzleWait = new WaitForSeconds(muzzleFlashTime);
     }
 
     public abstract void Shoot(Vector3 shootDir);
 
     public virtual void Despawned()
     {
+        muzzleFlashEffect.SetActive(false);
     }
 
     public void Spawned()
@@ -84,5 +96,19 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         Effect effect = GameObjectPoolManager.Instance.GetGameObject(MUZZLE_EFFECT_PATH, null).GetComponent<Effect>();
         effect.SetPosition(shootPos.position);
         effect.Play();
+
+        if (muzzleCor != null)
+        {
+            StopCoroutine(muzzleCor);
+        }
+
+        muzzleCor = StartCoroutine(MuzzleFlashEffect());
+    }
+
+    private IEnumerator MuzzleFlashEffect()
+    {
+        muzzleFlashEffect.SetActive(true);
+        yield return muzzleWait;
+        muzzleFlashEffect.SetActive(false);
     }
 }
