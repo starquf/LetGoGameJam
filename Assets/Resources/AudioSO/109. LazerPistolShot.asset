@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 109. LazerPistolShot
   m_EditorClassIdentifier: 
   audioName: LazerPistolShot
-  audioType: 2
-  clip: {fileID: 8300000, guid: 074979f97dee7844d82aee7d0fb29816, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: 5e681d6b3da97314383302df9fee5f95, type: 3}

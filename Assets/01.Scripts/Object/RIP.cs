@@ -85,6 +85,7 @@ public class RIP : LivingEntity, IPoolableComponent
         ripExplosionEffect.SetPosition(new Vector2(transform.position.x, transform.position.y));
         ripExplosionEffect.SetRotation(new Vector3(-90f, 0, 0));
         ripExplosionEffect.Play();
+        GameManager.Instance.soundHandler.Play("RIPDestroy");
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
 

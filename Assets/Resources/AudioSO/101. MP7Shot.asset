@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 101. MP7Shot
   m_EditorClassIdentifier: 
   audioName: MP7Shot
-  audioType: 2
-  clip: {fileID: 8300000, guid: cfa7dc30fc8a2f8449e096473435cd7c, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: 04b7765bd31a6114b8b210c6c8d70690, type: 3}

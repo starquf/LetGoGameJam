@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: MeleeAttack
   audioType: 2
-  clip: {fileID: 8300000, guid: 6277089bff15af3448f97c30cfce9aed, type: 3}
+  clip: {fileID: 8300000, guid: 2f9b03535f7b145408c2e73b5f50eb0e, type: 3}

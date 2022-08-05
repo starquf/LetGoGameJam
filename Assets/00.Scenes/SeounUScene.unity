@@ -1169,6 +1169,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8225595502099565570, guid: 62e2f00092c473645bd9aee3648fea77, type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: -6111769800938166488, guid: 937fb92943548e243a67e04743ec33a5, type: 3}
     - target: {fileID: 8225595503229918653, guid: 62e2f00092c473645bd9aee3648fea77, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5353,6 +5357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrm: {fileID: 0}
+  cmPerlinObject: {fileID: 0}
   soundHandler: {fileID: 0}
   inGameUIHandler: {fileID: 0}
   optionHandler: {fileID: 0}

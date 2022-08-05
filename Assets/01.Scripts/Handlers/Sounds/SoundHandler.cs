@@ -9,6 +9,7 @@ public class SoundHandler : Handler
     private const string MASTER_NAME = "Master";
     private const string BGM_NAME = "BGM";
     private const string SFX_NAME = "SFX";
+    private const string GUN_NAME = "GUN";
 
     private const string AUDIOMIXER_PATH = "AudioMixer/AudioMixer";
     private const string AUDIOSO_PATH = "AudioSO";
@@ -28,6 +29,7 @@ public class SoundHandler : Handler
     private AudioMixer _audioMixer;
     private AudioMixerGroup _bgmMixer; //bgmMixerGroup
     private AudioMixerGroup _sfxMixer; //sfxMixerGroup
+    private AudioMixerGroup _gunMixer; //gunMixerGruop
 
     public override void OnAwake()
     {
@@ -42,6 +44,7 @@ public class SoundHandler : Handler
 
         _bgmMixer = audioMixerGroups[1]; //0번은 마스터
         _sfxMixer = audioMixerGroups[2];
+        _gunMixer = audioMixerGroups[3];
 
         _audioSOList = Resources.LoadAll<AudioSO>(AUDIOSO_PATH).ToList(); //음원 에셋 로드
 
@@ -76,7 +79,16 @@ public class SoundHandler : Handler
     {
         if(_audioDic.TryGetValue(audioName, out AudioSO audioSO)) //만약 일치하는 음원이 있다면
         {
-            if (audioSO.audioType == AudioType.SFX) //sfx라면
+            if (audioSO.audioType == AudioType.GUN)
+            {
+                AudioSource sfxSource = FindEmptySFXSource();
+                sfxSource.outputAudioMixerGroup = _gunMixer;
+
+                sfxSource.loop = false;
+                sfxSource.clip = audioSO.clip;
+                sfxSource.Play();
+            }
+            else if (audioSO.audioType == AudioType.SFX) //sfx라면
             {
                 AudioSource sfxSource = FindEmptySFXSource();
 
@@ -88,10 +100,6 @@ public class SoundHandler : Handler
             {
                 _bgmSource.clip = audioSO.clip;
                 _bgmSource.Play();
-            }
-            else if (audioSO.audioType == AudioType.LOOPSFX) //루프 되는 놈이면
-            {
-                
             }
             else
             {
