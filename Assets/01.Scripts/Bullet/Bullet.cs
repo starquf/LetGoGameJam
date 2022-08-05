@@ -94,6 +94,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         currentState = state;
     }
 
+
     protected virtual void CheckState()
     {
         switch (currentState)

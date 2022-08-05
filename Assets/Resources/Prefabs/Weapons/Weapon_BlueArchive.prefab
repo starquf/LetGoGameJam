@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: LazerGunShot
   damage: 5
-  maxBullet: 5
+  maxBullet: 10000
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 0.25
   collectionRate: 5
   isAuto: 1

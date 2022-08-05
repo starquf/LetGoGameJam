@@ -26,6 +26,7 @@ public class Bullet_BlueArchive : Bullet
         m_Points = new List<Vector2>();
     }
 
+
     public override void SetOwner(bool isEnemy)
     {
         isEnemyBullet = isEnemy;
@@ -40,10 +41,8 @@ public class Bullet_BlueArchive : Bullet
 
     public override void Spawned()
     {
-        curSpeed = bulletSpeed;
         transform.position = Vector3.zero;
         m_LineRenderer = GetComponent<LineRenderer>();
-        StartCoroutine(BulletLifetime());
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -98,6 +97,19 @@ public class Bullet_BlueArchive : Bullet
 
     }
 
-   
+
+    protected override void BulletMove()
+    {
+
+    }
+
+    protected override void Hit(LivingEntity hitEntity)
+    {
+        PlayHitEffect(hitEntity);
+
+        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
+    }
+
 
 }
