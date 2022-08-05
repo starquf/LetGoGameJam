@@ -9,11 +9,14 @@ public class PlayerParrying : MonoBehaviour
     private float coolTime;
     [SerializeField]
     private float parryingTime;
+    [SerializeField]
+    private Animator effectAnimator;
 
 
     private PlayerInput playerInput;
     private Collider2D parryingCol;
     private bool isCoolTime;
+    private bool isEffectStart = false;
 
     public void Start()
     {
@@ -24,6 +27,22 @@ public class PlayerParrying : MonoBehaviour
         StartCoroutine(CoolTimeTimer());
     }
 
+    public void StartParryingEffect()
+    {
+        if(!isEffectStart)
+        {
+            StartCoroutine(StartAnimation());
+        }
+
+        IEnumerator StartAnimation()
+        {
+            isEffectStart = true;
+            effectAnimator.SetBool("IsParrying", true);
+            yield return new WaitForSeconds(.5f);
+            effectAnimator.SetBool("IsParrying", false);
+        }
+    }
+
     private IEnumerator CoolTimeTimer()
     {
         while(true)
@@ -32,6 +51,7 @@ public class PlayerParrying : MonoBehaviour
             {
                 yield return new WaitForSeconds(coolTime);
                 isCoolTime = false;
+                isEffectStart = false;
             }
             else
             {
