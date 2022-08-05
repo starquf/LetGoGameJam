@@ -36,6 +36,7 @@ public class PlayerParrying : MonoBehaviour
     {
         if(!isEffectStart)
         {
+            GameManager.Instance.soundHandler.Play("Parring");
             StartCoroutine(StartAnimation());
         }
 
