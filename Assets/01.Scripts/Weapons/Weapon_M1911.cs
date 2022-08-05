@@ -14,7 +14,7 @@ public class Weapon_M1911 : Weapon
         bulletObj.transform.position = shootPos.position;
 
         float coll = collectionRate / 2f;
-
+        bullet.bulletData = bulletData;
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));

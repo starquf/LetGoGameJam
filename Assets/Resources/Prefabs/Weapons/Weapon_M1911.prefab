@@ -106,6 +106,7 @@ MonoBehaviour:
   offset: 0.7
   weaponType: 0
   shootPos: {fileID: 1621244696751091155}
+  bulletData: {fileID: 11400000, guid: 7932c9aef5efda946849c02210a74b4b, type: 2}
   sr: {fileID: 0}
 --- !u!1 &1621244696751091156
 GameObject:
