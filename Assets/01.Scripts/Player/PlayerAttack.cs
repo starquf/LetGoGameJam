@@ -1,17 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using Cinemachine;
+
 
 public class PlayerAttack : AttackBase
 {
     protected int currentBullet;
 
     public PlayerInput playerInput;
+    public PlayerStat playerStat;
+
+    private void Start()
+    {
+        EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
+    }
+
+    private Tween camTween = null;
 
     public override void Init(Weapon baseWeapon)
     {
         base.Init(baseWeapon);
         baseWeapon.isPlayer = true;
+
+        SetPlayerStat();
     }
 
     public override void ChangeWeapon(Weapon weapon)
@@ -19,6 +32,15 @@ public class PlayerAttack : AttackBase
         base.ChangeWeapon(weapon);
 
         weapon.isPlayer = true;
+        SetPlayerStat();
+    }
+
+    public void SetPlayerStat()
+    {
+        if (currentWeapon == null)
+            return;
+
+        currentWeapon.bulletIron = playerStat.bulletIronclad;
     }
 
     public override void LookDirection(Vector3 pos)
@@ -28,6 +50,9 @@ public class PlayerAttack : AttackBase
 
     private void Update()
     {
+        if (Time.timeScale <= 0)
+            return;
+
         if (playerInput.isDie)
         {
             gameObject.SetActive(false);
@@ -43,6 +68,9 @@ public class PlayerAttack : AttackBase
         {
             yield return null;
 
+            if (Time.timeScale <= 0)
+                continue;
+
             if (currentWeapon == null)
                 continue;
 
@@ -53,6 +81,7 @@ public class PlayerAttack : AttackBase
                     Vector3 dir = playerInput.mousePos - transform.position;
 
                     currentWeapon.Shoot(dir);
+                    Shake(currentWeapon.bulletData);
 
                     //print("오또");
                     yield return weaponShootWait;
@@ -65,6 +94,7 @@ public class PlayerAttack : AttackBase
 
                     //print("원스");
                     currentWeapon.Shoot(dir);
+                    Shake(currentWeapon.bulletData);
 
                     yield return weaponShootWait;
                 }
@@ -75,4 +105,24 @@ public class PlayerAttack : AttackBase
             }
         }
     }
+
+    public void Shake(BulletSO bulletData)
+    {
+        if (camTween != null)
+            camTween.Kill();
+
+        CinemachineBasicMultiChannelPerlin perlin = GameManager.Instance.cmPerlinObject.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        if (perlin != null)
+        {
+            perlin.m_AmplitudeGain = bulletData.shakeAmount;
+
+            camTween = DOTween.To(() => perlin.m_AmplitudeGain, value => perlin.m_AmplitudeGain = value, 0, bulletData.shakeTime);
+        }
+    }
+
+    public void KillShake()
+    {
+        camTween.Kill();
+    }
+
 }

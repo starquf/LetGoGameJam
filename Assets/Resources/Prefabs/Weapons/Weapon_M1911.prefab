@@ -99,7 +99,8 @@ MonoBehaviour:
   shotSFXName: PistolShot
   damage: 5
   maxBullet: 0
-  fireRate: 1
+  bulletIron: 0
+  fireRate: 0.5
   collectionRate: 0
   isAuto: 1
   isPlayer: 1

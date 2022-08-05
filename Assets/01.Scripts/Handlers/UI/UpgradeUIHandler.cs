@@ -23,6 +23,8 @@ public class UpgradeUIHandler : MonoBehaviour
 
         cvs = GetComponent<CanvasGroup>();
         //ShowUpgrade(null);
+
+        ShowPanel(false);
     }
 
     public void ShowUpgrade(Action onEndUpgrade = null)
@@ -50,6 +52,7 @@ public class UpgradeUIHandler : MonoBehaviour
                 ChoiceInfo demerit = choices[a].demerit;
 
                 panels[a].SetPanel(merit.choiceData, demerit.choiceData);
+                panels[a].ShowHighligt();
 
                 panels[a].btn.onClick.AddListener(() =>
                 {

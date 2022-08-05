@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: BulletData_RazerPistol
   m_EditorClassIdentifier: 
   damage: 1
+  shakeAmount: 2
+  shakeTime: 0.5
   knockBackPower: 6
   knockBackTime: 0.1

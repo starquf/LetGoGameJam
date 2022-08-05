@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: BulletData_AWM
   m_EditorClassIdentifier: 
   damage: 15
+  shakeAmount: 2
+  shakeTime: 0.5
   knockBackPower: 10
   knockBackTime: 0.1
