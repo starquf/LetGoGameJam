@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Serializable]
+public class AmountWeapon
+{
+    public WeaponType type;
+    public int amount;
+}
+
 public class StageHandler : MonoBehaviour
 {
     //public Action OnWaveNumberChanged;  // 퀴즈?
@@ -31,6 +38,14 @@ public class StageHandler : MonoBehaviour
 
     public List<enemyInfo> enemyInfos = new List<enemyInfo>();
 
+    [HideInInspector]
+    public int amountEnemy = 0;
+    [HideInInspector]
+    public Dictionary<WeaponType, int> amountWeaponType = new Dictionary<WeaponType, int>();
+
+    public int maxEnemy = 0;
+    public List<AmountWeapon> maxWeaponType = new List<AmountWeapon>();
+
     // 3 스폰 지점을 리스트로 생성
     //[SerializeField] private Transform spawnPositionTransform;
     [SerializeField] private List<Transform> spawnPositionTransformList;
@@ -42,6 +57,12 @@ public class StageHandler : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.stageHandler = this;
+        amountWeaponType = new Dictionary<WeaponType, int>();
+        for (int i = 0; i < maxWeaponType.Count; i++)
+        {
+            amountWeaponType.Add(maxWeaponType[i].type, 0);
+        }
         //// 자식으로 적 스폰 위치가 존재한다면 리스트에 넣어줌
         //if (spawnPositionTransformList != null && spawnPositionTransformList.Count > 0)
         //    spawnPositionTransformList.Clear();
@@ -51,12 +72,11 @@ public class StageHandler : MonoBehaviour
         //{
         //    spawnPositionTransformList.Add(this.transform.GetChild(i));
         //}
-
-        GameManager.Instance.stageHandler = this;
     }
 
     private void Start()
     {
+        print(CanGetWeapon(WeaponType.M1911));
         // 최소 스폰 시작 전 세팅
         state = eWaveState.WaitingToSpawnNextWave;
 
@@ -87,7 +107,7 @@ public class StageHandler : MonoBehaviour
                 if (remainingEnemySpawnAmount > 0)
                 {
                     nextEnemySpawnTimer -= Time.deltaTime;
-                    if (nextEnemySpawnTimer < 0f)
+                    if (nextEnemySpawnTimer < 0f && maxEnemy > amountEnemy)
                     {
                         nextEnemySpawnTimer = UnityEngine.Random.Range(0f, .2f);
 
@@ -115,19 +135,65 @@ public class StageHandler : MonoBehaviour
         }
     }
 
+    private bool CanSpawnEnemy(enemyInfo enemyInfo, ref Enemy enemy)
+    {
+        for (int i = 0; i < enemyInfo.enemyList.Count; i++)
+        {
+            enemyType eType = enemyInfo.enemyList[i];
+            enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eType.ToString(), transform).GetComponent<Enemy>();
+
+            for (int j = 0; j < enemy.canHaveWeaponList.Count; j++)
+            {
+                WeaponType weaponType = enemy.canHaveWeaponList[j].type;
+                for (int k = 0; k < maxWeaponType.Count; k++)
+                {
+                    if(maxWeaponType[k].type == weaponType)
+                    {
+                        //print(weaponType.ToString());
+                        if(maxWeaponType[k].amount > amountWeaponType[weaponType])
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    public bool CanGetWeapon(WeaponType weaponType)
+    {
+        print(weaponType);
+        for (int i = 0; i < maxWeaponType.Count; i++)
+        {
+            AmountWeapon maxAmountWeapon = maxWeaponType[i];
+            if (maxAmountWeapon.type == weaponType)
+            {
+                if (maxAmountWeapon.amount > amountWeaponType[weaponType])
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
     private Enemy GetRandomEnemy()
     {
+        Enemy enemy = null;
         int rand = 0;
         enemyInfo enemyInfo = null;
         do
         {
             rand = Random.Range(0, enemyInfos.Count);
             enemyInfo = enemyInfos[rand];
-        } while (enemyInfo.enterMinScore > GameManager.Instance.Score);
+        } while (enemyInfo.enterMinScore > GameManager.Instance.Score || !CanSpawnEnemy(enemyInfo, ref enemy));
+        amountEnemy++;
 
-        GameObject go = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + enemyInfos[rand].enemyList[Random.Range(0, enemyInfos[rand].enemyList.Count)].ToString(), transform);
-
-        return go.GetComponent<Enemy>();
+        return enemy;
     }
 
     private void SpawnWave()
