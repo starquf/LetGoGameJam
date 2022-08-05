@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSFXName: RPGShot
-  damage: 9
+  damage: 15
   maxBullet: 6
   bulletIron: 0
   isInfiniteBullet: 0

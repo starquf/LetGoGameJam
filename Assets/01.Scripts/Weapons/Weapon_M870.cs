@@ -10,6 +10,11 @@ public class Weapon_M870 : Weapon
     {
         int count = 4;
 
+        if (isPlayer)
+        {
+            count = 7;
+        }
+
         float a = collectionRate;
         float rotate = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
         float angle = collectionRate / count;
@@ -26,6 +31,10 @@ public class Weapon_M870 : Weapon
 
             bullet.ChangeSpeed(Random.Range(13f, 15f));
             bullet.ChangeDir(dir);
+            bullet.SetOwner(!isPlayer);
+            bullet.AddBulletIron(bulletIron);
+            bullet.SetDamage(damage);
+
             bullet.bulletData = bulletData;
         }
 

@@ -6,7 +6,7 @@ public class Choice_Exercise : ChoiceInfo
 {
     public override void SetChoice()
     {
-        uh.playerStat.GetComponent<Player>().maxHp += 1f;
+        uh.playerStat.GetComponent<Player>().AddMaxHp();
 
         choiceData.level++;
     }
