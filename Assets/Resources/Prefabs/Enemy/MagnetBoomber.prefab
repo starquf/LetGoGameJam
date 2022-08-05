@@ -206,20 +206,28 @@ MonoBehaviour:
   maxHp: 2
   hp: 0
   attackPower: 1
+  rigid: {fileID: 0}
   speed: 2
   attakMoveSpeed: 1.5
+  isKnockBack: 0
   identityColor1: {r: 0.49019608, g: 0.7058824, b: 0.8, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 8
   avoidRange: 5
   enterExpRange: {x: 0, y: 0}
   dropExpInfo:
+    dropPersent: 50
     amount: 1
     type: 0
-  canHaveWeaponList: 00000000
+  enemyAttackType: 1
+  rushSpeed: 10
+  canHaveWeaponList:
+  - type: 2
+    dropPersent: 80
+  - type: 2
+    dropPersent: 20
   enemyAttack: {fileID: 1176119642591867087}
   playerTrm: {fileID: 0}
-  rigid: {fileID: 0}
   sr: {fileID: 0}
 --- !u!114 &1176119642298675025
 MonoBehaviour:
