@@ -15,6 +15,8 @@ public class EffectHandler : Handler
 
     public override void OnStart()
     {
+        DOTween.SetTweensCapacity(2000, 10);
+
         sequence = DOTween.Sequence();
     }
 
