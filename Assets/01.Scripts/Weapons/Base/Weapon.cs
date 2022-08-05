@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour, IPoolableComponent
 {
+    private readonly string MUZZLE_EFFECT_PATH = "Prefabs/Effect/MuzzleEffect";
+
     public string shotSFXName;
 
     public float damage = 1f;
@@ -75,5 +77,12 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
                 switchEffect.SetDisable();
             switchEffect = null;
         }
+    }
+
+    protected void PlayMuzzleEffect()
+    {
+        Effect effect = GameObjectPoolManager.Instance.GetGameObject(MUZZLE_EFFECT_PATH, null).GetComponent<Effect>();
+        effect.SetPosition(shootPos.position);
+        effect.Play();
     }
 }

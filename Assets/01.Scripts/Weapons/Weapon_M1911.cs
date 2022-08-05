@@ -23,5 +23,7 @@ public class Weapon_M1911 : Weapon
         bullet.AddBulletIron(bulletIron);
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
+
+        PlayMuzzleEffect();
     }
 }
