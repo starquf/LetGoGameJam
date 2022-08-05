@@ -92,7 +92,7 @@ public class RIP : LivingEntity, IPoolableComponent
     {
         if(collision.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
-            SetDisable();
+            Die();
         }
     }
 }
