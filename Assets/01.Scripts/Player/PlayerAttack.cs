@@ -102,14 +102,11 @@ public class PlayerAttack : AttackBase
                 {
                     Vector3 dir = playerInput.mousePos - transform.position;
 
-<<<<<<< HEAD
                     Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
                     if (blue != null)
-=======
                     currentWeapon.Shoot(dir);
 
                     if (!currentWeapon.isNoShakeWeapon)
->>>>>>> c13a2966cee157ab595c867e967111d467713a37
                     {
                         currentWeapon.Shoot(dir);
                         yield return new WaitForSeconds(0.001f);

@@ -29,10 +29,6 @@ public class Weapon_BlueArchive : Weapon
         bullet.SetOwner(!isPlayer);
         
 
-<<<<<<< HEAD
-=======
-        //print($"총알 발싸 히히히히히 데미지 : {damage} ");
->>>>>>> c13a2966cee157ab595c867e967111d467713a37
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
     }
