@@ -114,7 +114,7 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
-        DeadEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<DeadEffect>();
+        ColorEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<ColorEffect>();
 
         effect.SetPosition(transform.position);
         effect.SetRotation(new Vector3(-90f, 0, 0));
