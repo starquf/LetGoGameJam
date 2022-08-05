@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a53378a3921bd409c8c5564358532d, type: 3}
   m_Name: BulletData_RazerPistol
   m_EditorClassIdentifier: 
-  knockBackPower: 5
+  damage: 1
+  knockBackPower: 6
   knockBackTime: 0.1

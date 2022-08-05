@@ -1356,6 +1356,8 @@ MonoBehaviour:
   soundHandler: {fileID: 0}
   inGameUIHandler: {fileID: 0}
   optionHandler: {fileID: 0}
+  upgradeHandler: {fileID: 0}
+  upgradeUIHandler: {fileID: 0}
 --- !u!114 &1272592880
 MonoBehaviour:
   m_ObjectHideFlags: 0
