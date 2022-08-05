@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,6 +58,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int Score => score;
     private int score;
+
+    public CinemachineVirtualCamera cmPerlinObject;
+
 
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
