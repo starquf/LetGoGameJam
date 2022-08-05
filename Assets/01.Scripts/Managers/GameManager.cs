@@ -89,6 +89,12 @@ public class GameManager : MonoBehaviour
         ResetEvents();
     }
 
+    public void SetScore(int _score)
+    {
+        score += _score;
+        inGameUIHandler.SendData(UIDataType.Score, score.ToString());
+    }
+
     private void ResetEvents()
     {
         EventManager<string>.RemoveAllEvents();

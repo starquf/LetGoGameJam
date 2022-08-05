@@ -41,7 +41,7 @@ public class Effect : MonoBehaviour, IPoolableComponent
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 
-    private void OnParticleSystemStopped()
+    protected virtual void OnParticleSystemStopped()
     {
         SetDisable();
     }
