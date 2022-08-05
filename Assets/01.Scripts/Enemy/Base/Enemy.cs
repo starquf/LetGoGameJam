@@ -66,17 +66,22 @@ public class Enemy : LivingEntity, IPoolableComponent
         enemyAttack.targetPos = playerTrm;
         if(enemyAttackType.Equals(enemyAttackType.RANGED))
         {
+            StageHandler stageHandler = GameManager.Instance.stageHandler;
             int idx = 0;
-            int rand = Random.Range(0, 100);
-            for (int i = 0; i < canHaveWeaponList.Count; i++)
+            do
             {
-                idx += canHaveWeaponList[i].dropPersent;
-                if (rand < idx)
+                int rand = Random.Range(0, 100);
+                for (int i = 0; i < canHaveWeaponList.Count; i++)
                 {
-                    idx = i;
-                    break;
+                    idx += canHaveWeaponList[i].dropPersent;
+                    if (rand < idx)
+                    {
+                        idx = i;
+                        break;
+                    }
                 }
-            }
+            } while (!stageHandler.CanGetWeapon(canHaveWeaponList[idx].type));
+            stageHandler.amountWeaponType[canHaveWeaponList[idx].type]++;
             weapon = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" +
                 canHaveWeaponList[idx].type.ToString(),
                 enemyAttack.transform).GetComponent<Weapon>();
@@ -156,8 +161,13 @@ public class Enemy : LivingEntity, IPoolableComponent
         
         GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetDreopWeapon(weaponType).SetPosition(transform.position);
 
+        GameManager.Instance.stageHandler.amountEnemy--;
+
         if (enemyAttackType.Equals(enemyAttackType.RANGED))
+        {
+            GameManager.Instance.stageHandler.amountWeaponType[weapon.weaponType]--;
             GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+        }
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected override void Die()
