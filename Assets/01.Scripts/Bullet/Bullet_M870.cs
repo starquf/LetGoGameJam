@@ -24,11 +24,12 @@ public class Bullet_M870 : Bullet
 
         StartCoroutine(BulletLifetime());
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            print("AWM 충돌");
+            print("샷건 충돌");
         }
     }
 
