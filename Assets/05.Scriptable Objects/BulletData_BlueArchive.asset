@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletData_BlueArchive
   m_EditorClassIdentifier: 
   damage: 8
-  shakeAmount: 2
-  shakeTime: 0.5
+  shakeAmount: 0
+  shakeTime: 0
   knockBackPower: 8
   knockBackTime: 0.1
