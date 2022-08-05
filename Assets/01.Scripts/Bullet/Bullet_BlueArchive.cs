@@ -98,6 +98,14 @@ public class Bullet_BlueArchive : Bullet
 
     }
 
-   
+
+    protected override void Hit(LivingEntity hitEntity)
+    {
+        PlayHitEffect(hitEntity);
+
+        hitEntity.GetDamage(bulletData.damage);
+        hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
+    }
+
 
 }
