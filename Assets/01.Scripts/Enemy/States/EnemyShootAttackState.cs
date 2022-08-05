@@ -68,7 +68,8 @@ public class EnemyShootAttackState : EnemyState
             }
             moveStartTime = Time.time;
         }
-        myLivingEntity.rigid.velocity = dir * myLivingEntity.speed;
+        if (CanMove())
+            myLivingEntity.rigid.velocity = dir * myLivingEntity.speed;
 
         myLivingEntity.sr.flipX = playerTrm.position.x - myObj.transform.position.x < 0;
         //Debug.LogWarning("움직임 구현좀");
@@ -76,7 +77,8 @@ public class EnemyShootAttackState : EnemyState
 
     public override void Exit()
     {
-        myLivingEntity.rigid.velocity = Vector2.zero;
+        if (CanMove())
+            myLivingEntity.rigid.velocity = Vector2.zero;
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         myLivingEntity.AttackStop();

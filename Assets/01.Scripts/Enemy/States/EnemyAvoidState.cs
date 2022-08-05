@@ -41,7 +41,8 @@ public class EnemyAvoidState : EnemyState
             else
             {
                 Vector2 dir = (myObj.transform.position - playerTrm.position).normalized;
-                myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+                if (CanMove())
+                    myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
 
                 myLivingEntity.sr.flipX = dir.x > 0;
             }
@@ -49,7 +50,8 @@ public class EnemyAvoidState : EnemyState
     }
     public override void Exit()
     {
-        myLivingEntity.rigid.velocity = Vector2.zero;
+        if (CanMove())
+            myLivingEntity.rigid.velocity = Vector2.zero;
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         base.Exit();

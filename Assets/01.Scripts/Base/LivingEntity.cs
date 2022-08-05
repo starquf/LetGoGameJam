@@ -46,7 +46,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     public virtual void SetHp(int hp)
     {
-        if (IsDie)
+        if (isDie)
         {
             return;
         }
@@ -106,8 +106,19 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     protected IEnumerator KnockBackCoroutine(Vector2 direction, float power, float duration)
     {
-        rigid.velocity = direction.normalized * power;
-        yield return new WaitForSeconds(duration);
+        float startTime = Time.time;
+        float curTime = Time.time;
+        while (duration > curTime - startTime)
+        {
+            if (isDie)
+            {
+                ResetKnockBackParam();
+                yield break;
+            }
+            rigid.velocity = direction.normalized * power;
+            yield return null;
+            curTime = Time.time;
+        }
         ResetKnockBackParam();
     }
 
