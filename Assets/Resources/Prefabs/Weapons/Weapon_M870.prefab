@@ -128,8 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: ShotGunShot
   damage: 1
-  maxBullet: 5
+  maxBullet: 8
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 1
   collectionRate: 50
   isAuto: 0
@@ -139,3 +140,4 @@ MonoBehaviour:
   shootPos: {fileID: 5743299078215040150}
   bulletData: {fileID: 11400000, guid: f637b07f324d46648b45d5cc7d04990f, type: 2}
   sr: {fileID: 0}
+  isNoShakeWeapon: 0

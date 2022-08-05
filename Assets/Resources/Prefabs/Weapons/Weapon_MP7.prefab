@@ -98,7 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: MP7Shot
   damage: 5
-  maxBullet: 5
+  maxBullet: 40
+  bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 0.05
   collectionRate: 25
   isAuto: 1
@@ -108,6 +110,7 @@ MonoBehaviour:
   shootPos: {fileID: 1621244696751091155}
   bulletData: {fileID: 11400000, guid: d713e347a4171d7499975b0852cd45d0, type: 2}
   sr: {fileID: 0}
+  isNoShakeWeapon: 0
 --- !u!1 &1621244696751091156
 GameObject:
   m_ObjectHideFlags: 0

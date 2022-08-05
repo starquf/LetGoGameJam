@@ -98,8 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: SniperCharge
   damage: 10
-  maxBullet: 5
+  maxBullet: 10
   bulletIron: 0
+  isInfiniteBullet: 0
   fireRate: 2
   collectionRate: 0
   isAuto: 0
