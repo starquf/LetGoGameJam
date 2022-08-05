@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a53378a3921bd409c8c5564358532d, type: 3}
-  m_Name: BulletData_M870
+  m_Script: {fileID: 11500000, guid: 0aef36e4abc666749ac327be972a8df1, type: 3}
+  m_Name: 52. PlayerWalk
   m_EditorClassIdentifier: 
-  damage: 2
-  shakeAmount: 14
-  shakeTime: 1.2
-  knockBackPower: 10
-  knockBackTime: 0.1
+  audioName: PlayerWalk
+  audioType: 3
+  clip: {fileID: 8300000, guid: dc9a65c43cfc924419c9eb37296f473a, type: 3}

@@ -44,5 +44,14 @@ public class PlayerInput : MonoBehaviour
             case PlayerState.Die:
                 break;
         }
+
+        if(moveDir != Vector2.zero)
+        {
+            GameManager.Instance.soundHandler.PlayLoopSFX("PlayerWalk", "PlayerWalk");
+        }
+        else
+        {
+            GameManager.Instance.soundHandler.StopLoopSFX("PlayerWalk");
+        }
     }
 }

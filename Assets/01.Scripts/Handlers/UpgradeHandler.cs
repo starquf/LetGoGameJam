@@ -34,7 +34,10 @@ public class UpgradeHandler : MonoBehaviour
 
             for (int i = 0; i < choices.Count; i++)
             {
-                list.Add(choices[i]);
+                if (choices[i].merit.CanChoice() && choices[i].demerit.CanChoice())
+                {
+                    list.Add(choices[i]);
+                }
             }
 
             for (int i = 0; i < count; i++)
