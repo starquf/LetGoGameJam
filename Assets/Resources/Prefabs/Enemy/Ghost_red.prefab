@@ -224,9 +224,7 @@ MonoBehaviour:
   rushSpeed: 10
   canHaveWeaponList:
   - type: 0
-    dropPersent: 90
-  - type: 6
-    dropPersent: 10
+    dropPersent: 100
   dropGunPersent: 25
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}

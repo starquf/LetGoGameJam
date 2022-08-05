@@ -225,7 +225,7 @@ MonoBehaviour:
   canHaveWeaponList:
   - type: 2
     dropPersent: 80
-  - type: 2
+  - type: 4
     dropPersent: 20
   dropGunPersent: 25
   enemyAttack: {fileID: 1176119642591867087}

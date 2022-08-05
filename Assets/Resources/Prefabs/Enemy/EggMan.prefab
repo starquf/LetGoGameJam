@@ -354,7 +354,7 @@ MonoBehaviour:
   enemyAttackType: 1
   rushSpeed: 10
   canHaveWeaponList:
-  - type: 4
+  - type: 7
     dropPersent: 60
   - type: 5
     dropPersent: 30
