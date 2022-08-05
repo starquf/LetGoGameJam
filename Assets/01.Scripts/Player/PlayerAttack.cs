@@ -106,7 +106,7 @@ public class PlayerAttack : AttackBase
                     if (blue != null)
                     {
                         currentWeapon.Shoot(dir);
-                        yield return new WaitForSeconds(0.001f);
+                        yield return new WaitForSeconds(0.005f);
                     }
                     else
                     {
