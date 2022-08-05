@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ScoreUi : UIBase
 {
     private Text scoreText;
-    private int scoreint = 0;
 
     public override void Init()
     {
@@ -23,7 +22,6 @@ public class ScoreUi : UIBase
             scoreText.transform.DOScale(new Vector3(1f, 1f, 0), .4f).SetEase(Ease.OutQuart);
         });
 
-        scoreint += int.Parse(data.Trim());
-        scoreText.DOText(scoreint.ToString(), .8f,true,ScrambleMode.Numerals);
+        scoreText.DOText(data, .8f,true,ScrambleMode.Numerals);
     }
 }

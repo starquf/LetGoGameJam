@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
         ResetEvents();
     }
 
+    public void SetScore(int _score)
+    {
+        score += _score;
+    }
+
     private void ResetEvents()
     {
         EventManager<string>.RemoveAllEvents();
