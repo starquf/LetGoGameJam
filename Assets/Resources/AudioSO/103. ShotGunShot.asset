@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 103. ShotGunShot
   m_EditorClassIdentifier: 
   audioName: ShotGunShot
-  audioType: 2
-  clip: {fileID: 8300000, guid: af122265bbf2c0840ba1dd8acaa5d142, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: b71c8ee2355bb1a47ae1d660ec5e5776, type: 3}

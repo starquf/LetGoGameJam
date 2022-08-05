@@ -13,6 +13,7 @@ public class WeaponInfo
 
 public class Enemy : LivingEntity, IPoolableComponent
 {
+    public List<int> maxHPForPlayerLevel = new List<int>();
 
     private const string DEAD_EFFECT_PATH = "Prefabs/Effect/DeadEffect";
     private const string RIP_PREFAB_PATH = "Prefabs/Object/RIP";
@@ -44,6 +45,14 @@ public class Enemy : LivingEntity, IPoolableComponent
     public void Despawned()
     {
         enemyAI.SetActive(false);
+    }
+    public override void Init()
+    {
+        isDie = false;
+
+        hp = maxHPForPlayerLevel[GameManager.Instance.playerTrm.GetComponent<PlayerUpgrade>().CurrentLevel / 10];
+
+        SetHPUI();
     }
 
     public virtual void Spawned()
@@ -133,18 +142,19 @@ public class Enemy : LivingEntity, IPoolableComponent
                 expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
             }
         }
-        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
-        if(enemyAttackType.Equals(enemyAttackType.RANGED))
+        WeaponType weaponType = WeaponType.M1911;
+        if (enemyAttackType.Equals(enemyAttackType.RANGED))
         {
             if (!weapon.weaponType.Equals(WeaponType.M1911))
             {
-                if(Random.Range(0,100)< dropGunPersent)
+                if (Random.Range(0, 100) < dropGunPersent)
                 {
-                    //GameObjectPoolManager.Instance.GetGameObject()
-                    Debug.Log(weapon.weaponType.ToString() + "드롭됨");
+                    weaponType = weapon.weaponType;
                 }
             }
         }
+        
+        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetDreopWeapon(weaponType).SetPosition(transform.position);
 
         if (enemyAttackType.Equals(enemyAttackType.RANGED))
             GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
@@ -153,6 +163,6 @@ public class Enemy : LivingEntity, IPoolableComponent
     protected override void Die()
     {
         base.Die();
-        Debug.Log("나죽음");
+        //Debug.Log("나죽음");
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 102. AKShot
   m_EditorClassIdentifier: 
   audioName: AKShot
-  audioType: 2
-  clip: {fileID: 8300000, guid: 7695de6eac98db243abbc6e7bb45ee35, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: 741f8c0dd299ac044acace095799dbdc, type: 3}

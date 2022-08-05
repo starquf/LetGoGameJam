@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: RPGExplosion
   audioType: 2
-  clip: {fileID: 8300000, guid: 1e0ee6c656c150a4cb3667694acede5a, type: 3}
+  clip: {fileID: 8300000, guid: 37d9d7a1dd8f50d45be3f744e16521cd, type: 3}

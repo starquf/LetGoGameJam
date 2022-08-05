@@ -334,13 +334,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a46bfc4f1ac8a419995d2c82079e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 2
+  maxHp: 9
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
   speed: 2
   attakMoveSpeed: 1.5
   isKnockBack: 0
+  maxHPForPlayerLevel: 09000000120000001b000000
   identityColor1: {r: 1, g: 0.4, b: 0.13333334, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 8
@@ -353,7 +354,7 @@ MonoBehaviour:
   enemyAttackType: 1
   rushSpeed: 10
   canHaveWeaponList:
-  - type: 3
+  - type: 4
     dropPersent: 60
   - type: 3
     dropPersent: 40

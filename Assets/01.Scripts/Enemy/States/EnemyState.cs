@@ -139,7 +139,7 @@ public class Dead : EnemyState
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         base.Exit();
-        Debug.Log("나진짜죽음");
+        //Debug.Log("나진짜죽음");
         myLivingEntity.SetDisable();
     }
 }

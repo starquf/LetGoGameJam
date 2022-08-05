@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: Parring
   audioType: 2
-  clip: {fileID: 8300000, guid: 8e0ac883b41b8b94280647dde570a266, type: 3}
+  clip: {fileID: 8300000, guid: ed75c1dbc231428439bd4c7a5864f61e, type: 3}

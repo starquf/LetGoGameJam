@@ -210,6 +210,7 @@ MonoBehaviour:
   speed: 2
   attakMoveSpeed: 1.5
   isKnockBack: 0
+  maxHPForPlayerLevel: 020000000400000006000000
   identityColor1: {r: 0.92156863, g: 0.58431375, b: 0.59607846, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 6
@@ -223,9 +224,11 @@ MonoBehaviour:
   rushSpeed: 10
   canHaveWeaponList:
   - type: 0
-    dropPersent: 90
+    dropPersent: 20
+  - type: 7
+    dropPersent: 60
   - type: 6
-    dropPersent: 10
+    dropPersent: 20
   dropGunPersent: 25
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}

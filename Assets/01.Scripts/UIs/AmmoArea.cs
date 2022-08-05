@@ -22,6 +22,16 @@ public class AmmoArea : UIBase
     {
         int bulletCount = int.Parse(data.Trim());
 
+        if(data.Trim().Contains("inf"))
+        {
+            foreach (var bullet in bullets)
+            {
+                bullet.gameObject.SetActive(true);
+            }
+            expendBulletsText.text = "inf.";
+            return;
+        }
+
         if(bulletCount > 5)
         {
             foreach(var bullet in bullets)
@@ -30,10 +40,9 @@ public class AmmoArea : UIBase
             }
             expendBulletsText.text = (bulletCount - 5).ToString();
 
-            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, null);
-            Vector2 pos = bullets[bullets.Count - 1].transform.position;
+            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform);
 
-            particle.transform.position = pos;
+            particle.transform.localPosition = Vector3.zero;
         }
         else
         {
@@ -47,13 +56,11 @@ public class AmmoArea : UIBase
                 bullets[i].gameObject.SetActive(true);
             }
 
-            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, null);
-
             int idx = Mathf.Clamp(bulletCount - 1, 0, 4);
 
-            Vector2 pos = bullets[idx].transform.position;
+            GameObject particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[idx].transform);
 
-            particle.transform.position = pos;
+            particle.transform.localPosition = Vector3.zero;
 
             expendBulletsText.text = "";
         }

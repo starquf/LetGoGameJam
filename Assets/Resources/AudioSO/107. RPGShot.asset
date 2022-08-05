@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 107. RPGShot
   m_EditorClassIdentifier: 
   audioName: RPGShot
-  audioType: 2
-  clip: {fileID: 8300000, guid: 6cd34241eb52a744c96a064a6f61f6f9, type: 3}
+  audioType: 4
+  clip: {fileID: 8300000, guid: 97203ce3e16ae914c803ab39d4f6d5a3, type: 3}

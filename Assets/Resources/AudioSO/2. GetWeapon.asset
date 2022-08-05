@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioName: GetWeapon
   audioType: 2
-  clip: {fileID: 8300000, guid: cf1fe840a086dde43b705568c1f7459f, type: 3}
+  clip: {fileID: 8300000, guid: 107263cdd8aba0049a8b1d08c884111e, type: 3}

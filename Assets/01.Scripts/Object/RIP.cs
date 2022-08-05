@@ -22,6 +22,7 @@ public class RIP : LivingEntity, IPoolableComponent
 
     private Collider2D coll;
 
+    private WeaponType dropWeaponType = WeaponType.M1911;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -85,7 +86,25 @@ public class RIP : LivingEntity, IPoolableComponent
         ripExplosionEffect.SetPosition(new Vector2(transform.position.x, transform.position.y));
         ripExplosionEffect.SetRotation(new Vector3(-90f, 0, 0));
         ripExplosionEffect.Play();
+
+
+        if (!dropWeaponType.Equals(WeaponType.M1911))
+        {
+            Weapon wp = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" + dropWeaponType.ToString(), null).GetComponent<Weapon>();
+            wp.transform.position = transform.position;
+            wp.isGround = true;
+            //Debug.Log(dropWeaponType.ToString() + "드롭됨");
+        }
+
+        GameManager.Instance.soundHandler.Play("RIPDestroy");
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
+    }
+
+    public RIP SetDreopWeapon(WeaponType weaponType)
+    {
+        dropWeaponType = weaponType;
+
+        return this;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
