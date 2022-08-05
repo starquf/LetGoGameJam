@@ -11,7 +11,7 @@ public class UsedGun : MonoBehaviour, IPoolableComponent
 
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
 
         usedColor = sr.color;
     }

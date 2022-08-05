@@ -27,7 +27,7 @@ public class PlayerParrying : MonoBehaviour
         parryingCol.enabled = false;
         StartCoroutine(Parrying());
         StartCoroutine(CoolTimeTimer());
-        parryingCol.transform.DORotate(new Vector3(0,0,-10), 1f).SetLoops(-1,LoopType.Incremental).SetEase(Ease.Linear);
+        parryingCol.transform.DORotate(new Vector3(0,0,-20), 1f).SetLoops(-1,LoopType.Incremental).SetEase(Ease.Linear);
 
         EventManager<string>.AddEvent("LevelUp",() => SetCanParrying(true));
     }
