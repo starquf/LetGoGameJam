@@ -59,14 +59,16 @@ public class EnemyRushAttackState : EnemyState
             if (2f > curTime - rushStartTime)
             {
                 //Debug.Log("돌진중" + dir);
-                myLivingEntity.rigid.velocity = dir * myLivingEntity.rushSpeed;
+                if (CanMove())
+                    myLivingEntity.rigid.velocity = dir * myLivingEntity.rushSpeed;
                 myLivingEntity.sr.flipX = dir.x < 0;
                 rushDelayStartTime = Time.time;
             }
             else
             {
                 //Debug.Log("돌진멈춰!");
-                myLivingEntity.rigid.velocity = Vector2.zero;
+                if (CanMove())
+                    myLivingEntity.rigid.velocity = Vector2.zero;
                 isRushDelay = true;
                 isTimer = true;
 
@@ -87,7 +89,8 @@ public class EnemyRushAttackState : EnemyState
 
     public override void Exit()
     {
-        myLivingEntity.rigid.velocity = Vector2.zero;
+        if (CanMove())
+            myLivingEntity.rigid.velocity = Vector2.zero;
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         myLivingEntity.AttackStop();

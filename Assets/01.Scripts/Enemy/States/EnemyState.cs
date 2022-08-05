@@ -58,6 +58,15 @@ public class EnemyState
         return this;
     }
 
+    public bool CanMove()
+    {
+        if(myLivingEntity.isKnockBack)
+        {
+            return false;
+        }
+        return true;
+    }
+
     // 공격 범위 체크 로직
     public bool CanAttackPlayer()
     {
@@ -130,6 +139,7 @@ public class Dead : EnemyState
         //myAnim.ResetTrigger("isShooting");
         //shootEff.Stop();
         base.Exit();
+        Debug.Log("나진짜죽음");
         myLivingEntity.SetDisable();
     }
 }
