@@ -39,7 +39,6 @@ public class Player : LivingEntity
 
     public override void SetHPUI()
     {
-        print(hp);
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Hp, hp.ToString());
     }
 
@@ -87,12 +86,40 @@ public class Player : LivingEntity
     protected override void Die()
     {
         base.Die();
-        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
-        gameObject.SetActive(false);
+        //GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetPosition(transform.position);
+        //gameObject.SetActive(false);
+        StartCoroutine(DieRoutine());
 
-
-        //playerInput.isDie = true;
+        playerInput.isDie = true;
     }
 
-   
+
+    IEnumerator DieRoutine()
+    {
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        rigid.velocity = !sr.flipX ? new Vector2(-2f, 2f) : new Vector2(2f, 2f);
+        yield return new WaitForSeconds(0.5f);
+        rigid.velocity = !sr.flipX ? Vector2.left * 1f: Vector2.right * 1f;
+        yield return new WaitForSeconds(0.5f);
+        rigid.velocity = !sr.flipX ? Vector2.left * 0.5f: Vector2.right * 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        rigid.velocity = Vector2.zero;
+
+        float a = 1f;
+        while (true)
+        {
+            if(a <= 0f)
+            {
+                break;
+            }
+            a -= 0.01f;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, a);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+    }
+
+
+
 }

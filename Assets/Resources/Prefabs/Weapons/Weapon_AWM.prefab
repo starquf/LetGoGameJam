@@ -97,12 +97,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSFXName: SniperCharge
-  damage: 5
+  damage: 10
   maxBullet: 5
   fireRate: 2
   collectionRate: 0
   isAuto: 0
-  isPlayer: 1
+  isPlayer: 0
   offset: 0.5
   weaponType: 3
   shootPos: {fileID: 1621244696751091155}

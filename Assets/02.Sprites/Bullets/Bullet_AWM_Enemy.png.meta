@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: af7c323556b8e964aa113a510287f0bc
+guid: d246fb9f09ea3014c803f17e424cffd4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8169529120277813083
-    second: Bullet_AWM_0
+      213: 8333314622062575115
+    second: Bullet_AWM_Enemy_0
   - first:
-      213: -7495962596951105693
-    second: Bullet_AWM_1
+      213: 1217546319541866759
+    second: Bullet_AWM_Enemy_1
   - first:
-      213: 4336788475928878714
-    second: Bullet_AWM_2
+      213: -1982853959382138909
+    second: Bullet_AWM_Enemy_2
   - first:
-      213: -2045822480681739877
-    second: Bullet_AWM_3
+      213: -6934493043290144241
+    second: Bullet_AWM_Enemy_3
   - first:
-      213: 4667430311234546945
-    second: Bullet_AWM_4
+      213: -5625361539643991756
+    second: Bullet_AWM_Enemy_4
   - first:
-      213: 5504991654232741554
-    second: Bullet_AWM_5
+      213: 3798170134616998535
+    second: Bullet_AWM_Enemy_5
   - first:
-      213: -4552508697217438181
-    second: Bullet_AWM_6
+      213: 8276344232628844966
+    second: Bullet_AWM_Enemy_6
   - first:
-      213: 832125505558403358
-    second: Bullet_AWM_7
+      213: -5990340077224863789
+    second: Bullet_AWM_Enemy_7
   - first:
-      213: -1801766493502476896
-    second: Bullet_AWM_8
+      213: -1069091468248795038
+    second: Bullet_AWM_Enemy_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -71,8 +71,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 4
-  spritePivot: {x: 0, y: 0.5}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -130,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bullet_AWM_0
+      name: Bullet_AWM_Enemy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b575e5c637fff5170800000000000000
-      internalID: 8169529120277813083
+      spriteID: b0ebb993f71e5a370800000000000000
+      internalID: 8333314622062575115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_1
+      name: Bullet_AWM_Enemy_1
       rect:
         serializedVersion: 2
         x: 375
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36f5d1fbbbdf8f790800000000000000
-      internalID: -7495962596951105693
+      spriteID: 70190e14de795e010800000000000000
+      internalID: 1217546319541866759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_2
+      name: Bullet_AWM_Enemy_2
       rect:
         serializedVersion: 2
         x: 750
@@ -186,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7e9fbd342e5f2c30800000000000000
-      internalID: 4336788475928878714
+      spriteID: 3effc8d54dc7b74e0800000000000000
+      internalID: -1982853959382138909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_3
+      name: Bullet_AWM_Enemy_3
       rect:
         serializedVersion: 2
         x: 0
@@ -207,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b99d4750b47cb93e0800000000000000
-      internalID: -2045822480681739877
+      spriteID: f020641515bb3cf90800000000000000
+      internalID: -6934493043290144241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_4
+      name: Bullet_AWM_Enemy_4
       rect:
         serializedVersion: 2
         x: 375
@@ -228,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10da603932b06c040800000000000000
-      internalID: 4667430311234546945
+      spriteID: 4391060fb73bee1b0800000000000000
+      internalID: -5625361539643991756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_5
+      name: Bullet_AWM_Enemy_5
       rect:
         serializedVersion: 2
         x: 750
@@ -249,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b6580a2eb8a56c40800000000000000
-      internalID: 5504991654232741554
+      spriteID: 78208562d9fc5b430800000000000000
+      internalID: 3798170134616998535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_6
+      name: Bullet_AWM_Enemy_6
       rect:
         serializedVersion: 2
         x: 0
@@ -270,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1e6a79c57d32d0c0800000000000000
-      internalID: -4552508697217438181
+      spriteID: 6a9f1b8ca3b7bd270800000000000000
+      internalID: 8276344232628844966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_7
+      name: Bullet_AWM_Enemy_7
       rect:
         serializedVersion: 2
         x: 375
@@ -291,14 +291,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e19d95f0dbd4c8b00800000000000000
-      internalID: 832125505558403358
+      spriteID: 3d7d93d10790edca0800000000000000
+      internalID: -5990340077224863789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet_AWM_8
+      name: Bullet_AWM_Enemy_8
       rect:
         serializedVersion: 2
         x: 750
@@ -312,8 +312,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ad659a9be6def6e0800000000000000
-      internalID: -1801766493502476896
+      spriteID: 26831a259f2d921f0800000000000000
+      internalID: -1069091468248795038
       vertices: []
       indices: 
       edges: []

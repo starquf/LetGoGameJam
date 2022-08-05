@@ -28,6 +28,10 @@ public class PlayerAttack : AttackBase
 
     private void Update()
     {
+        if (playerInput.isDie)
+        {
+            gameObject.SetActive(false);
+        }
         LookDirection(playerInput.mousePos);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IPoolableComponent
 {
-    private Rigidbody2D rb = null;
+    protected Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
 
     private BulletState currentState = BulletState.MoveForward;
@@ -184,7 +184,6 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     protected virtual void Hit(LivingEntity hitEntity)
     {
         hitEntity.GetDamage(bulletDamage);
-        print(rb.velocity);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
