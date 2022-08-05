@@ -199,17 +199,20 @@ public class StageHandler : MonoBehaviour
                 }
             }
         }
+        GameObjectPoolManager.Instance.UnusedGameObject(enemy.weapon.gameObject);
         GameObjectPoolManager.Instance.UnusedGameObject(enemy.gameObject);
         enemy = null;
         return false;
     }
     public bool CanGetWeapon(WeaponType weaponType)
     {
-        for (int i = 0; i < maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType.Count; i++)
+        int playerLevel = GetLimitIdxForPlayerLevel();
+        for (int i = 0; i < maxLimit[playerLevel].maxWeaponType.Count; i++)
         {
-            AmountWeapon maxAmountWeapon = maxLimit[GetLimitIdxForPlayerLevel()].maxWeaponType[i];
+            AmountWeapon maxAmountWeapon = maxLimit[playerLevel].maxWeaponType[i];
             if (maxAmountWeapon.type == weaponType)
             {
+                //print("이게 안되노" + maxAmountWeapon.amount + ", " + amountWeaponType[weaponType]+ weaponType.ToString());
                 if (maxAmountWeapon.amount > amountWeaponType[weaponType])
                 {
                     return true;
@@ -229,14 +232,20 @@ public class StageHandler : MonoBehaviour
         int rand = 0;
         enemyInfo enemyInfo = null;
         bool isRoop = false;
+        List<int> canRand = new List<int>();
+        for (int i = 0; i < enemyInfos.Count; i++)
+        {
+            canRand.Add(i);
+        }
         do
         {
-            rand = Random.Range(0, enemyInfos.Count);
+            rand = canRand[Random.Range(0, canRand.Count)];
+            canRand.Remove(rand);
             enemyInfo = enemyInfos[rand];
             isRoop = enemyInfo.enterMinScore > GameManager.Instance.Score || !CanSpawnEnemy(enemyInfo, ref enemy);
-            print(isRoop+"이말이ㅑ");
         } while (isRoop);
         amountEnemy++;
+        amountWeaponType[enemy.weapon.weaponType]++;
 
         return enemy;
     }
