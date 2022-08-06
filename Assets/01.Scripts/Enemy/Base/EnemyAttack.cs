@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyAttack : AttackBase
 {
@@ -12,13 +13,17 @@ public class EnemyAttack : AttackBase
     [HideInInspector]
     public bool isFirst = true;
     
+
     public float attackDuration = 5f;
     public float waitAttackDuration = 10f;
     public float waitAttackDurationFirst = 5f;
+    private CircularSectorMeshRenderer cr;
 
     private Vector3 attackDir = Vector3.zero;
     private bool isBlue = false;
+    private bool isOnceCalled = false;
     private WaitForSeconds enemyShootWait = new WaitForSeconds(1f);
+    
     [HideInInspector]public Transform targetPos = null;
 
     private void Update()
@@ -30,6 +35,8 @@ public class EnemyAttack : AttackBase
     public override void Init(Weapon baseWeapon)
     {
         enemyShootWait = new WaitForSeconds(waitAttackDuration);
+        cr = GetComponentInChildren<CircularSectorMeshRenderer>();
+        cr.gameObject.SetActive(false);
         base.Init(baseWeapon);
 
         Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
@@ -54,7 +61,7 @@ public class EnemyAttack : AttackBase
     public override void LookDirection(Vector3 pos)
     {
         Vector3 dir = attackDir.normalized;
-
+        
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         lookAngle = angle;
 
@@ -84,13 +91,33 @@ public class EnemyAttack : AttackBase
             if (isAttacking)
             {
                 weaponRenderer.color = Color.white;
+                cr.gameObject.SetActive(true);
                 if (isWaitting)
                 {
-                    attackDir = targetPos.position - transform.position;
+                    if(!isOnceCalled)
+                    {
+
+                        MeshRenderer crMesh = cr.GetComponent<MeshRenderer>();
+
+                        cr.degree = 60f;
+                        cr.beginOffsetDegree = -30f;
+                        crMesh.material.SetColor("_BoomingColor", new Color(1.72f, 1.46f, 0.23f, 0f));
+
+
+                        DOTween.To(() => crMesh.material.GetColor("_BoomingColor"), c => crMesh.material.SetColor("_BoomingColor", c), new Color(1f, 0.04f, 0.04f, 0f), attackDuration);
+                        DOTween.To(() => cr.degree, x => cr.degree = x, 0, attackDuration);
+                        DOTween.To(() => cr.degree, x => cr.degree = x, 0, attackDuration);
+                        DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, attackDuration);
+                        attackDir = targetPos.position - transform.position;
+                        isOnceCalled = true;
+                    }
+
+
                     timer -= Time.deltaTime;
                     if (timer < 0f)
                     {
                         isWaitting = false;
+                        isOnceCalled = false;
                         timer = attackDuration;
                     }
                 }
@@ -126,6 +153,7 @@ public class EnemyAttack : AttackBase
                     blue.EnemyShootStop();
                 }
                 weaponRenderer.color = Color.clear;
+                cr.gameObject.SetActive(false);
             }
         }
     }
