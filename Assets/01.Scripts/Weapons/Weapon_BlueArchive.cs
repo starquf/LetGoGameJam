@@ -121,7 +121,7 @@ public class Weapon_BlueArchive : Weapon
                 effectObj.GetComponent<ParticleSystem>().Play();
             }
 
-            effectObj.transform.position = mousePos;
+            effectObj.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
             if (afterEffectObj == null)
             {
@@ -129,7 +129,7 @@ public class Weapon_BlueArchive : Weapon
                 afterEffectObj.GetComponent<ParticleSystem>().Play();
             }
 
-            afterEffectObj.transform.position = mousePos;
+            effectObj.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
 
 
