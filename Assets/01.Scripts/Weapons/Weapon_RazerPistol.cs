@@ -34,6 +34,7 @@ public class Weapon_RazerPistol : Weapon
         }
 
         bullet.bulletData = bulletData;
+        bullet.transform.localScale *= defaultlossyScale.x / defaultScale.x;
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));

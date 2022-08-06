@@ -24,8 +24,9 @@ public class AmountWeapon
 public class EliteWave
 {
     public enemyType elite;
-    public int waveIdx;
+    public int enterScore;
     public int resetWaveEnemyAcount;
+    public bool isEnter = false;
 }
 
 public class StageHandler : MonoBehaviour
@@ -253,6 +254,23 @@ public class StageHandler : MonoBehaviour
         return enemy;
     }
 
+    public Tuple<enemyType, int> CanSpawnElite()
+    {
+        enemyType eType = enemyType.NONE;
+        for (int i = 0; i < eliteWaves.Count; i++)
+        {
+            EliteWave eliteWave = eliteWaves[i];
+            if(!eliteWave.isEnter)
+            {
+                if (eliteWave.enterScore <= GameManager.Instance.Score)
+                {
+                    return new Tuple<enemyType, int>(eliteWaves[i].elite, i);
+                }
+            }
+        }
+        return new Tuple<enemyType, int>(eType, 0);
+    }
+
     private void SpawnWave()
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
@@ -260,22 +278,23 @@ public class StageHandler : MonoBehaviour
         {
             remainingEnemySpawnAmount = eliteWaves[eliteWaves.Count - 1].resetWaveEnemyAcount;
         }
-        else
+        remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber;     // 이런값들은 외부시트로 관리
+        print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
+
+        Tuple<enemyType, int> eliteInfo = CanSpawnElite();
+
+        if (!eliteInfo.Item1.Equals(enemyType.NONE))
         {
-            remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * (waveNumber > 8 ? (waveNumber - 5) % 4 : waveNumber);     // 이런값들은 외부시트로 관리
+            print("엘리트 출격");
+            Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteInfo.Item1, transform).GetComponent<Enemy>();
+            enemy.SetElite();
+            enemy.transform.position = spawnPosition;
 
-            print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
-            if ((waveNumber - 4) % 4 == 0 && waveNumber > 4)
-            {
-                int eliteWaveIdx = (waveNumber - 4) / 4 -1;
-                print("엘리트 출격"+ eliteWaveIdx);
-                Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteWaves[eliteWaveIdx].elite.ToString(), transform).GetComponent<Enemy>();
-                enemy.transform.position = spawnPosition;
+            amountEnemy += 5;
 
-                amountEnemy += 5;
-
-                defaultwaveEnemyAmount = eliteWaves[eliteWaveIdx].resetWaveEnemyAcount;
-            }
+            defaultwaveEnemyAmount = eliteWaves[eliteInfo.Item2].resetWaveEnemyAcount;
+            eliteWaves[eliteInfo.Item2].isEnter = true;
+            waveNumber = 0;
         }
 
         state = eWaveState.SpawningWave;
