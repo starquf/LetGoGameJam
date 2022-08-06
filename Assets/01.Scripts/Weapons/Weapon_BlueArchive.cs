@@ -113,7 +113,7 @@ public class Weapon_BlueArchive : Weapon
 
             bullet.SetOwner(!isPlayer);
             bullet.SetTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            bullet.SetRenderer(shootPos.position, defaultlossyScale.x / defaultScale.x/2);
+            bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x / 2);
 
             if (effectObj == null)
             {
@@ -148,7 +148,7 @@ public class Weapon_BlueArchive : Weapon
 
             bullet.SetOwner(!isPlayer);
             bullet.SetTarget(transform.position+ shootDir);
-            bullet.SetRenderer(shootPos.position, defaultlossyScale.x / defaultScale.x);
+            bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x);
 
 
             if (effectObj == null)

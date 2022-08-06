@@ -31,7 +31,8 @@ public class Weapon_M870 : Weapon
         {
             Bullet bullet = GameObjectPoolManager.Instance.GetGameObject(BULLET_PATH, null).GetComponent<Bullet>();
             bullet.transform.position = shootPos.transform.position;
-            bullet.transform.localScale *= defaultlossyScale.x / defaultScale.x;
+            bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
+            print(transform.lossyScale.x / transform.localScale.x);
 
             dir.x = Mathf.Cos((angle * i + rotate + angle / 2 - a / 2) * Mathf.Deg2Rad);
             dir.y = Mathf.Sin((angle * i + rotate + angle / 2 - a / 2) * Mathf.Deg2Rad);

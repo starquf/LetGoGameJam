@@ -17,11 +17,12 @@ public class Dialog : MonoBehaviour, IPoolableComponent
 
     public void Spawned()
     {
-        transform.localScale = Vector3.one;
+
     }
 
-    public void SetPosition()
+    public void SetPosition(float size)
     {
+        transform.localScale = Vector3.one * size;
         textPostionRoutine = StartCoroutine(PositionRoutine());
     }
 
