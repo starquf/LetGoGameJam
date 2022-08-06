@@ -120,6 +120,7 @@ public class RIP : LivingEntity, IPoolableComponent
         dropWeaponType = weaponType;
         if(isElite)
         {
+            hp = 4;
             transform.localScale *= 2;
             hasEliteWeapon = true;
         }
