@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BloomMat
+  m_Name: BulletBloomMat
   m_Shader: {fileID: -6465566751694194690, guid: d55dee1911af5c34496cd3c41ee472bc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -50,7 +50,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _BoomingColor: {r: 2.297397, g: 2.297397, b: 2.297397, a: 0}
+    - _BoomingColor: {r: 3.9790576, g: 3.9790576, b: 3.9790576, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
