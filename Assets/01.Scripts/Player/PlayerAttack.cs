@@ -183,7 +183,7 @@ public class PlayerAttack : AttackBase
 
                     Vector3 dir = playerInput.mousePos - transform.position;
 
-                    //print("원스");
+                    GameManager.Instance.addUsedWeaponInfo(currentWeapon.weaponType, 1);
                     currentWeapon.Shoot(dir);
 
                     if (!currentWeapon.isNoShakeWeapon)
