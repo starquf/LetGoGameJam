@@ -70,6 +70,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         sr.color = Color.white;
         sr.flipY = false;
         bulletIron = 0;
+        fadeVal = 100;
+        destoryTimer = 100;
     }
 
 
@@ -117,18 +119,19 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected virtual void Update()
     {
-        if(isGround)
+
+        if (isGround)
         {
             destoryTimer -= Time.deltaTime;
             if (destoryTimer < 0f)
             {
                 SetDisable();
             }
-            else if(destoryTimer < 5)
+            else if (destoryTimer < 5)
             {
-                float speed = destoryTimer / 5 * 3;
+                float speed = Mathf.Clamp((50 / destoryTimer), 10, 50);
                 fadeVal += Time.deltaTime * speed;
-                sr.color = new Color(1,1,1, Mathf.Sin(fadeVal));
+                sr.color = new Color(1, 1, 1, Mathf.Cos(fadeVal));
             }
         }
     }
@@ -136,6 +139,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     public void SetDestoryTimer(float time)
     {
         defaultDestroyTimer = time;
+        destoryTimer = defaultDestroyTimer;
         fadeVal = 0;
     }
 
