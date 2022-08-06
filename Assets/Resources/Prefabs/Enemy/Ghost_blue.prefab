@@ -336,11 +336,11 @@ MonoBehaviour:
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
-  speed: 2
-  attakMoveSpeed: 1.5
+  speed: 2.5
+  attakMoveSpeed: 2
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 010000000200000003000000
+  maxHPForPlayerLevel: 010000000100000002000000
   identityColor1: {r: 0.42352942, g: 0.7137255, b: 0.8117647, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 6
