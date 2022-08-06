@@ -147,6 +147,8 @@ MonoBehaviour:
   isNoShakeWeapon: 0
   muzzleFlashEffect: {fileID: 8468100640228583095}
   muzzleFlashTime: 0.05
+  reloadedSprite: {fileID: 21300000, guid: f8a01fff54ec39d42bf1480677b617b4, type: 3}
+  firedSprite: {fileID: 21300000, guid: b35f9dfef055cde4ab5fcf536030f1f0, type: 3}
 --- !u!61 &6167803305822638830
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -99,6 +99,15 @@ public class PlayerParrying : MonoBehaviour
 
     public void SetCanParrying(bool canParrying)
     {
+        if (canParrying)
+        {
+            parryingCol.GetComponent<SpriteRenderer>().DOFade(.3f, .5f);
+        }
+        else
+        {
+            parryingCol.GetComponent<SpriteRenderer>().DOFade(.0f, .5f);
+        }
+
         this.canParrying = canParrying;
     }
 
