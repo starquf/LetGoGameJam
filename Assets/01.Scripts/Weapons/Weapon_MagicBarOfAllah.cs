@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Weapon_MagicBarOfAllah : Weapon
 {
     private readonly string BULLET_PATH = "Prefabs/Bullets/Bullet_Allah";
+
+    [SerializeField]
+    private Sprite reloadedSprite;
+    [SerializeField]
+    private Sprite firedSprite;
 
     public override void Shoot(Vector3 shootDir)
     {
@@ -22,5 +28,13 @@ public class Weapon_MagicBarOfAllah : Weapon
 
         PlayMuzzleEffect();
         PlayBounceEffect();
+        StartCoroutine(FireSpriteChange());
+    }
+
+    public IEnumerator FireSpriteChange()
+    {
+        sr.sprite = firedSprite;
+        yield return new WaitForSeconds(fireRate);
+        sr.sprite = reloadedSprite;
     }
 }

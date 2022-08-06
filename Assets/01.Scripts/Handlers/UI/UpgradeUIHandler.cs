@@ -60,6 +60,7 @@ public class UpgradeUIHandler : MonoBehaviour
                     demerit.SetChoice();
 
                     Time.timeScale = 1f;
+
                     ShowPanel(false);
 
                     onEndUpgrade?.Invoke();
