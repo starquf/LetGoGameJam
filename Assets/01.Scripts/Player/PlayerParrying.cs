@@ -21,7 +21,7 @@ public class PlayerParrying : MonoBehaviour
     private bool isCoolTime;
     private bool isEffectStart = false;
 
-    private bool canParrying = true;
+    private bool isStaticCoolTime = false;
 
     public bool isReflectMode = false;
 
@@ -43,7 +43,7 @@ public class PlayerParrying : MonoBehaviour
             timeStopTween.Kill();
             //print("트윈 없어짐");
 
-            SetCanParrying(true);
+            SetStaticParryingCool(false);
         });
     }
 
@@ -98,18 +98,9 @@ public class PlayerParrying : MonoBehaviour
         }
     }
 
-    public void SetCanParrying(bool canParrying)
+    public void SetStaticParryingCool(bool canParrying)
     {
-        if (canParrying)
-        {
-            parryingCol.GetComponent<SpriteRenderer>().DOFade(.3f, .5f);
-        }
-        else
-        {
-            parryingCol.GetComponent<SpriteRenderer>().DOFade(.0f, .5f);
-        }
-
-        this.canParrying = canParrying;
+        this.isStaticCoolTime = canParrying;
     }
 
     private IEnumerator CoolTimeTimer()
@@ -118,7 +109,7 @@ public class PlayerParrying : MonoBehaviour
         {
             if(isCoolTime)
             {
-                yield return new WaitForSeconds(coolTime - (coolTime * playerStat.parryingCoolDown));
+                yield return new WaitForSeconds(isStaticCoolTime ? 4.5f : coolTime - (coolTime * playerStat.parryingCoolDown));
                 isCoolTime = false;
                 isEffectStart = false;
                 parryingCol.GetComponent<SpriteRenderer>().DOFade(.3f, .3f);
@@ -136,7 +127,7 @@ public class PlayerParrying : MonoBehaviour
         {
             if(playerInput.isParrying)
             {
-                if(isCoolTime || !canParrying)
+                if(isCoolTime)
                 {
                     yield return null;
                 }
