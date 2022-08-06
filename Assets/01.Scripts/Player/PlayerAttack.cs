@@ -110,6 +110,10 @@ public class PlayerAttack : AttackBase
                     if (blue != null)
                     {
                         currentWeapon.Shoot(dir);
+                        if (!currentWeapon.isNoShakeWeapon)
+                        {
+                            GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                        }
                         yield return new WaitForSeconds(0.005f);
                     }
                     else
