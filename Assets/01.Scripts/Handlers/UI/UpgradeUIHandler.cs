@@ -79,6 +79,7 @@ public class UpgradeUIHandler : MonoBehaviour
 
                         ShowPanel(false);
 
+                        GameManager.Instance.soundHandler.Play("ChoiceButtonClick");
                         GameManager.Instance.soundHandler.Play("InGameBGM");
 
                         onEndUpgrade?.Invoke();
