@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
-
+using UnityEngine.UI;
 
 public class PlayerAttack : AttackBase
 {
@@ -15,10 +15,19 @@ public class PlayerAttack : AttackBase
     private readonly string BASE_WEAPON = "Prefabs/Weapons/Weapon_M1911";
     private readonly string USED_EFFECT = "Prefabs/Effect/UsedGun";
 
+    public bool isIllusion = false;
+    public int maxillusionCount = 60;
+
+    private int illusionCount = 0;
+
+    public Image illusionIcon;
+    public Text illusionText;
+
     private void Start()
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
     }
+
     public void AddBullet(int count)
     {
         currentBullet = Mathf.Clamp(currentBullet + count, 0, currentWeapon.maxBullet);
@@ -43,6 +52,19 @@ public class PlayerAttack : AttackBase
         CreateUsedEffect(currentWeapon);
 
         base.ChangeWeapon(weapon);
+
+        if (isIllusion)
+        {
+            illusionCount++;
+
+            if (illusionCount >= maxillusionCount)
+            {
+                weapon = GameObjectPoolManager.Instance.GetGameObject(BASE_WEAPON, transform).GetComponent<Weapon>();
+                base.ChangeWeapon(weapon);
+
+                illusionCount = 0;
+            }
+        }
 
         weapon.isPlayer = true;
         currentBullet = Mathf.RoundToInt(weapon.maxBullet * (1f + playerStat.bulletCapacity));
@@ -90,6 +112,12 @@ public class PlayerAttack : AttackBase
             gameObject.SetActive(false);
         }
         LookDirection(playerInput.mousePos);
+    }
+
+    public void SetIllusion()
+    {
+        illusionIcon.gameObject.SetActive(true);
+        isIllusion = true;
     }
 
     protected override IEnumerator Shooting()
