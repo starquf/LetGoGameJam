@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a46bfc4f1ac8a419995d2c82079e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 2
+  maxHp: 20
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
@@ -408,7 +408,7 @@ MonoBehaviour:
   dialogTrm: {fileID: 4135253493074934301}
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 020000000200000002000000
+  maxHPForPlayerLevel: 140000001400000014000000
   identityColor1: {r: 0.7921569, g: 0.57254905, b: 0.38039216, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 6
