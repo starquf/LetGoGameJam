@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,8 @@ public class ResultHandler : Handler
     {
         scoreCountTxt.text = GameManager.Instance.Score.ToString();
         levelTxt.text = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel.ToString();
-        timeTxt.text = (Time.time - GameManager.Instance.StartTime).ToString();
+
+        timeTxt.text = TimeSpan.FromSeconds(Time.time - GameManager.Instance.StartTime).ToString("hh':'mm':'ss");
         killEnemyCountTxt.text = GameManager.Instance.KillEnemyCount.ToString();
 
         List<WeaponType> weaponTypes = GameManager.Instance.UseWeaponInfoDic.Keys.ToList();
@@ -56,7 +58,7 @@ public class ResultHandler : Handler
         {
             UsedWeaponInfo usedWeaponInfo = GameManager.Instance.UseWeaponInfoDic[weaponTypes[i]];
             WeaponUseInfo weaponUseInfo = GameObjectPoolManager.Instance.GetGameObject(WeaponUseInfoPrefabPath, contentTrm).GetComponent<WeaponUseInfo>();
-            weaponUseInfo.SetUI(weaponTypes[i], usedWeaponInfo.damageAmount.ToString("HH:mm:ss"), usedWeaponInfo.useCount.ToString());
+            weaponUseInfo.SetUI(weaponTypes[i], usedWeaponInfo.damageAmount.ToString(), usedWeaponInfo.useCount.ToString());
         }
     }
 }

@@ -142,6 +142,10 @@ public class GameManager : MonoBehaviour
     {
         startTime = time;
     }
+    public void AddKillEnemyCount(int count)
+    {
+        killEnemyCount += count;
+    }
     public void addUsedWeaponDamageInfo(WeaponType weaponType, float addDamage)
     {
         if (!useWeaponInfoDic.ContainsKey(weaponType))
