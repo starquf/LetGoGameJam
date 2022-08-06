@@ -32,6 +32,7 @@ public class Weapon_M1911 : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayCatridgeEffect();
         PlayBounceEffect();
     }
 }

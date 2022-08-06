@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1621244696751091155}
+  - {fileID: 1370701387778779969}
   - {fileID: 7258706376530643549}
   m_Father: {fileID: 1621244696532514840}
   m_RootOrder: 0
@@ -157,6 +158,7 @@ MonoBehaviour:
   offset: 0.5
   weaponType: 3
   shootPos: {fileID: 1621244696751091155}
+  catridgeTrm: {fileID: 1370701387778779969}
   bulletData: {fileID: 11400000, guid: 9daf623a0b26b3343b6ded74dd7b42dc, type: 2}
   sr: {fileID: 2451079086957706483}
   isNoShakeWeapon: 0
@@ -247,7 +249,7 @@ Transform:
   m_LocalScale: {x: 0.48013, y: 0.48013, z: 0.48013}
   m_Children: []
   m_Father: {fileID: 2846828918679736310}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &90297716465121226
 MonoBehaviour:
@@ -290,3 +292,33 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &8873401960142720567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1370701387778779969}
+  m_Layer: 0
+  m_Name: CatridgeTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1370701387778779969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873401960142720567}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2324711, w: 0.9726034}
+  m_LocalPosition: {x: 1.245, y: 0.137, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2846828918679736310}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 26.885}
