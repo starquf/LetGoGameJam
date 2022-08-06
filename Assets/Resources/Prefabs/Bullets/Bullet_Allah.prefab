@@ -113,7 +113,7 @@ MonoBehaviour:
   isEnemyBullet: 0
   bulletBloomColor: {r: 0.68235296, g: 0.7490196, b: 0.5568628, a: 1}
   enemyBulletBloomColor: {r: 0.63529414, g: 0.42352945, b: 0.37254903, a: 1}
-  explosionRange: 3
+  explosionRange: 6
 --- !u!50 &2141344756290157540
 Rigidbody2D:
   serializedVersion: 4
