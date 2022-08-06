@@ -7,6 +7,8 @@ public class Choice_Wise_Choice : ChoiceInfo
     public override void SetChoice()
     {
         GameManager.Instance.upgradeUIHandler.showPanelCount++;
+
+        choiceData.level++;
     }
 
     public override bool CanChoice()
