@@ -72,6 +72,7 @@ public class StageHandler : MonoBehaviour
     // 다음 생성될 위치를 이미지로 표시
     [SerializeField] private Transform nextWaveSpawnPositionTransform;
 
+    public List<Enemy> allEnemyList = new List<Enemy>();
 
     private void Awake()
     {
@@ -140,6 +141,7 @@ public class StageHandler : MonoBehaviour
                         // 실제 적 생성 후 remainingEnemySpawnAmount 하나씩 감소
                         SetRandomSpawnPos();
                         Enemy enemy = GetRandomEnemy();
+                        allEnemyList.Add(enemy);
                         enemy.transform.position = spawnPosition;
                         //Enemy.Create(spawnPosition + UtilClass.GetRandomDir() * UnityEngine.Random.Range(0f, 10f));
                         remainingEnemySpawnAmount--;
@@ -285,8 +287,9 @@ public class StageHandler : MonoBehaviour
             Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteInfo.Item1, transform).GetComponent<Enemy>();
             enemy.SetElite();
             enemy.transform.position = spawnPosition;
+            allEnemyList.Add(enemy);
 
-            amountEnemy += 5;
+            amountEnemy += 10;
 
             defaultwaveEnemyAmount = eliteWaves[eliteInfo.Item2].resetWaveEnemyAcount;
             eliteWaves[eliteInfo.Item2].isEnter = true;
