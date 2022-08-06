@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class InputHandler : Handler
 {
@@ -10,6 +11,7 @@ public class InputHandler : Handler
     private InGameUIHandler uIHandler;
     private PopUpInfoHandler popUpInfoHandler;
     private GameObject minimap;
+    private PlayableDirector director;
 
     public override void OnAwake()
     {
@@ -19,7 +21,7 @@ public class InputHandler : Handler
     {
         if(isTitle)
         {
-
+            director = Camera.main.GetComponent<PlayableDirector>();
         }
         else
         {
@@ -27,7 +29,7 @@ public class InputHandler : Handler
             uIHandler = GameManager.Instance.inGameUIHandler;
             popUpInfoHandler = GameManager.Instance.popUpInfoHandler;
             minimap = GameObject.Find("MiniMap");
-            optionHandler.gameObject.SetActive(false);
+            optionHandler.background.SetActive(false);
             minimap.SetActive(false);
             popUpInfoHandler.gameObject.SetActive(false);
         }
@@ -37,7 +39,15 @@ public class InputHandler : Handler
     {
         if(isTitle)
         {
+            if(Input.GetMouseButtonDown(0) && director.time < 11)
+            {
+                director.time = 11f;
+            }
 
+            if(director.time >= 15)
+            {
+                director.Stop();
+            }
         }
         else
         {
@@ -48,13 +58,13 @@ public class InputHandler : Handler
                     popUpInfoHandler.gameObject.SetActive(false);
                 }
                 else */
-                if (optionHandler.gameObject.activeInHierarchy)
+                if (optionHandler.background.activeInHierarchy)
                 {
-                    optionHandler.gameObject.SetActive(false);
+                    optionHandler.background.SetActive(false);
                 }
                 else
                 {
-                    optionHandler.gameObject.SetActive(true);
+                    optionHandler.background.SetActive(true);
                 }
             }
 

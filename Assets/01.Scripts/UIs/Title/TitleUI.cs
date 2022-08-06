@@ -14,10 +14,14 @@ public class TitleUI : MonoBehaviour
     private RectTransform Button;
 
     [SerializeField]
-    private List<Button> buttons;
+    private Image bg;
+
+    [SerializeField]
+    private GameObject option;
 
     public void OnEnable()
     {
+        bg.DOFade(.5f, 1f);
         titleImage.DOAnchorPos3DY(-414f, 1.5f).SetEase(Ease.OutBounce).OnComplete(() =>
         {
             Button.DOAnchorPos3DY(125, 1f);
@@ -32,7 +36,7 @@ public class TitleUI : MonoBehaviour
 
     public void OpenOption()
     {
-
+        option.SetActive(true);
     }
 
     public void StartCradit()
