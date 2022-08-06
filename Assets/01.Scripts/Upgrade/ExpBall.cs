@@ -21,6 +21,7 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
 
     public void Spawned()
     {
+        GameManager.Instance.allItemListAdd(this);
         sr.material.SetInt("_IsActive", 1);
         isFollowPlayer = false;
         followAcc = 0f;
@@ -28,7 +29,7 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
 
     public void Despawned()
     {
-
+        GameManager.Instance.allItemListRemove(this);
     }
 
     private void FixedUpdate()
@@ -52,8 +53,7 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
 
     public void SetDisable()
     {
+        GameManager.Instance.allItemListRemove(this);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
-
-        gameObject.SetActive(false);
     }
 }

@@ -163,6 +163,15 @@ public class StageHandler : MonoBehaviour
         }
     }
 
+    public void AllDieEnemy()
+    {
+        for (int i = 0; i < allEnemyList.Count; i++)
+        {
+            GameObjectPoolManager.Instance.UnusedGameObject(allEnemyList[i].gameObject);
+        }
+        allEnemyList.Clear();
+    }
+
     private int GetLimitIdxForPlayerLevel()
     {
         int level = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel;
@@ -277,7 +286,7 @@ public class StageHandler : MonoBehaviour
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
         remainingEnemySpawnAmount = Mathf.Clamp(defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber, 1, 15);     // 이런값들은 외부시트로 관리
-        print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
+        //print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
 
         Tuple<enemyType, int> eliteInfo = CanSpawnElite();
 
@@ -285,12 +294,11 @@ public class StageHandler : MonoBehaviour
         {
             print("엘리트 출격");
             Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteInfo.Item1, transform).GetComponent<Enemy>();
+            allEnemyList.Add(enemy);
             enemy.SetElite();
             enemy.transform.position = spawnPosition;
-            allEnemyList.Add(enemy);
 
             amountEnemy += 10;
-
             defaultwaveEnemyAmount = eliteWaves[eliteInfo.Item2].resetWaveEnemyAcount;
             eliteWaves[eliteInfo.Item2].isEnter = true;
             waveNumber = 0;
@@ -336,7 +344,7 @@ public class StageHandler : MonoBehaviour
             }
             else
             {
-                print("난 지능이 상승했다 히히");
+                //print("난 지능이 상승했다 히히");
             }
         }
 

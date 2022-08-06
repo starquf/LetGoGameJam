@@ -28,11 +28,12 @@ public class Ammo : MonoBehaviour, IPoolableComponent
 
     public void Despawned()
     {
-
+        GameManager.Instance.allItemListRemove(this);
     }
 
     public void Spawned()
     {
+        GameManager.Instance.allItemListAdd(this);
         fadeVal = 100;
         destoryTimer = 100;
         isTimer = false;
@@ -48,9 +49,8 @@ public class Ammo : MonoBehaviour, IPoolableComponent
 
     public void SetDisable()
     {
+        GameManager.Instance.allItemListRemove(this);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
-
-        gameObject.SetActive(false);
     }
 
     private void Update()
