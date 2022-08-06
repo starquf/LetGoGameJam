@@ -15,6 +15,8 @@ public class PlayerParrying : MonoBehaviour
     private Animator effectAnimator;
 
     private PlayerInput playerInput;
+    private PlayerStat playerStat;
+
     private Collider2D parryingCol;
     private bool isCoolTime;
     private bool isEffectStart = false;
@@ -23,16 +25,26 @@ public class PlayerParrying : MonoBehaviour
 
     public bool isReflectMode = false;
 
+    private Tween timeStopTween = null;
+
     public void Start()
     {
         playerInput = GetComponentInParent<PlayerInput>();
+        playerStat = GetComponentInParent<PlayerStat>();
+
         parryingCol = GetComponent<CircleCollider2D>();
         parryingCol.enabled = false;
         StartCoroutine(Parrying());
         StartCoroutine(CoolTimeTimer());
         parryingCol.transform.DORotate(new Vector3(0,0,-20), 1f).SetLoops(-1,LoopType.Incremental).SetEase(Ease.Linear);
 
-        EventManager<string>.AddEvent("LevelUp",() => SetCanParrying(true));
+        EventManager<string>.AddEvent("LevelUp",() =>
+        {
+            timeStopTween.Kill();
+            print("트윈 없어짐");
+
+            SetCanParrying(true);
+        });
     }
 
     public void StartParryingEffect(Bullet bullet)
@@ -42,10 +54,14 @@ public class PlayerParrying : MonoBehaviour
             GameManager.Instance.soundHandler.Play("Parring");
             StartCoroutine(StartAnimation());
 
-            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .3f, .1f).SetEase(Ease.InQuint).OnComplete(()=>
+            if (GameManager.Instance.timeScale > 0f)
             {
-                DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, .5f);
-            });
+                timeStopTween = DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .4f, .1f).SetEase(Ease.InQuint).OnComplete(() =>
+                {
+                    DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, .5f).SetUpdate(true);
+                }).SetUpdate(true);
+            }
+
 
             if (isReflectMode)
             {
@@ -101,7 +117,7 @@ public class PlayerParrying : MonoBehaviour
         {
             if(isCoolTime)
             {
-                yield return new WaitForSeconds(coolTime);
+                yield return new WaitForSeconds(coolTime - (coolTime * playerStat.parryingCoolDown));
                 isCoolTime = false;
                 isEffectStart = false;
                 parryingCol.GetComponent<SpriteRenderer>().DOFade(.3f, .3f);

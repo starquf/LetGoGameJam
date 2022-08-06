@@ -23,6 +23,8 @@ public class Player : LivingEntity
 
     private void Start()
     {
+        heartInfo = new HeartInfo();
+
         Init();
 
         if (rigid == null)
@@ -168,4 +170,19 @@ public class Player : LivingEntity
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Heart heart = collision.GetComponent<Heart>();
+
+        // 경험치에 닿았을 때
+        if (heart != null)
+        {
+            heart.SetDisable();
+
+            AddHP();
+
+            GameManager.Instance.soundHandler.Play("GetExp");
+        }
+    }
 }

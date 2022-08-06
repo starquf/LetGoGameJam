@@ -7,7 +7,7 @@ public class PlayerTest : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerAttack pa;
 
-    private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_MagicBar";
+    private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_M1911";
 
     private List<Weapon> nearWeaponList = new List<Weapon>();
 
@@ -35,7 +35,6 @@ public class PlayerTest : MonoBehaviour
             }
         }
     }
-
 
     public void ChangeWeapon(Weapon weapon)
     {
@@ -79,6 +78,17 @@ public class PlayerTest : MonoBehaviour
                 if(!nearWeaponList.Contains(wp))
                     nearWeaponList.Add(wp);
             }
+        }
+        Ammo ammo = collision.GetComponent<Ammo>();
+
+        // 경험치에 닿았을 때
+        if (ammo != null)
+        {
+            ammo.SetDisable();
+
+            pa.AddBullet((int)(pa.currentWeapon.maxBullet*0.5f));
+
+            GameManager.Instance.soundHandler.Play("GetExp");
         }
     }
 

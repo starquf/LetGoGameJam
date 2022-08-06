@@ -29,7 +29,7 @@ public class UpgradeUIHandler : MonoBehaviour
 
     public void ShowUpgrade(Action onEndUpgrade = null)
     {
-        Time.timeScale = 0f;
+        GameManager.Instance.timeScale = 0f;
 
         List<ChoiceSet> choices = uh.GetRandomChoices(showPanelCount);
 
@@ -59,7 +59,8 @@ public class UpgradeUIHandler : MonoBehaviour
                     merit.SetChoice();
                     demerit.SetChoice();
 
-                    Time.timeScale = 1f;
+                    GameManager.Instance.timeScale = 1f;
+
                     ShowPanel(false);
 
                     onEndUpgrade?.Invoke();

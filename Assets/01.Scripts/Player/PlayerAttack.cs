@@ -19,6 +19,10 @@ public class PlayerAttack : AttackBase
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
     }
+    public void AddBullet(int count)
+    {
+        currentBullet = Mathf.Clamp(currentBullet + count, 0, currentWeapon.maxBullet);
+    }
 
     public override void Init(Weapon baseWeapon)
     {
@@ -76,7 +80,7 @@ public class PlayerAttack : AttackBase
 
     private void Update()
     {
-        if (Time.timeScale <= 0)
+        if (GameManager.Instance.timeScale <= 0f)
             return;
 
         if (playerInput.isDie)
@@ -94,7 +98,7 @@ public class PlayerAttack : AttackBase
         {
             yield return null;
 
-            if (Time.timeScale <= 0)
+            if (GameManager.Instance.timeScale <= 0)
                 continue;
 
             if (currentWeapon == null)
@@ -110,6 +114,10 @@ public class PlayerAttack : AttackBase
                     if (blue != null)
                     {
                         currentWeapon.Shoot(dir);
+                        if (!currentWeapon.isNoShakeWeapon)
+                        {
+                            GameManager.Instance.vCamScript.Shake(currentWeapon.bulletData);
+                        }
                         yield return new WaitForSeconds(0.005f);
                     }
                     else

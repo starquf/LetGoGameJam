@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     public int Score => score;
     private int score;
 
+    public float timeScale = 1f;
+
     public CinemachineVirtualCamera cmPerlinObject;
     public VirtualCameraScript vCamScript;
 

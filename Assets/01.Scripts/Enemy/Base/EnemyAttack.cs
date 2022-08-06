@@ -78,6 +78,11 @@ public class EnemyAttack : AttackBase
         {
             yield return null;
 
+            if (GameManager.Instance.timeScale <= 0f)
+            {
+                continue;
+            }
+
             if (currentWeapon == null)
                 continue;
 
