@@ -6,20 +6,17 @@ using UnityEngine;
 public class Bullet_Allah : Bullet
 {
     public float explosionRange;
-    private float spawnedTime = 0f;
     private bool isHit = false;
 
     public override void Spawned()
     {
         base.Spawned();
 
-        spawnedTime = Time.time;
     }
 
     public override void Despawned()
     {
         base.Despawned();
-        spawnedTime = 0f;
         rb.velocity = Vector3.zero;
         isHit = false;
     }
