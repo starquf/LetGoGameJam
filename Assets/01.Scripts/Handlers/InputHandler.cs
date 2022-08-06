@@ -114,6 +114,8 @@ public class InputHandler : Handler
                 {
                     resultHandler.SetUI();
                     resultHandler.gameObject.SetActive(true);
+
+                    GameManager.Instance.soundHandler.Play("GameOverBGM");
                 }
             }
         }
