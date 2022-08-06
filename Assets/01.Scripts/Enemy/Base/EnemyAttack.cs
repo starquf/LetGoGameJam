@@ -101,15 +101,22 @@ public class EnemyAttack : AttackBase
                 {
                     if(!isOnceCalled)
                     {
-
+                        float intensity,factor;
                         MeshRenderer crMesh = cr.GetComponent<MeshRenderer>();
 
                         cr.degree = 60f;
                         cr.beginOffsetDegree = -30f;
-                        crMesh.material.SetColor("_BoomingColor", new Color(1.72f, 1.46f, 0.23f, 0f));
 
+                        intensity = (1.72f + 1.46f + 0.23f) / 3;
+                        factor = 7f / intensity;
 
-                        DOTween.To(() => crMesh.material.GetColor("_BoomingColor"), c => crMesh.material.SetColor("_BoomingColor", c), new Color(1f, 0.04f, 0.04f, 0f), attackDuration);
+                        crMesh.material.SetColor("_BoomingColor", new Color(1.72f * factor, 1.46f * factor, 0.23f * factor));
+                        crMesh.material.SetFloat("_Alpha", .5f);
+
+                        intensity = (1f + 0.04f + 0.04f) / 3;
+                        factor = 15f / intensity;
+
+                        DOTween.To(() => crMesh.material.GetColor("_BoomingColor"), c => crMesh.material.SetColor("_BoomingColor", c), new Color(1f * factor, 0.04f * factor, 0.04f * factor), attackDuration);
                         DOTween.To(() => cr.degree, x => cr.degree = x, 0, attackDuration);
                         DOTween.To(() => cr.degree, x => cr.degree = x, 0, attackDuration);
                         DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, attackDuration);
