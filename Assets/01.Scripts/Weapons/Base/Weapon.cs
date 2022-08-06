@@ -50,8 +50,11 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     private Tween weaponUpTween;
 
+    private Vector3 defaultScale;
+
     protected virtual void Awake()
     {
+        defaultScale = transform.localScale;
        // sr = GetComponent<SpriteRenderer>();
 
         muzzleFlashEffect.SetActive(false);
@@ -68,6 +71,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public void Spawned()
     {
+        transform.localScale = defaultScale;
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
         sr.material.SetInt("_IsActive", 0);
         sr.color = Color.white;

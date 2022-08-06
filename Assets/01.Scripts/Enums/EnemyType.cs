@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 public enum enemyType
 {
+    NONE,
     Ghost_blue,
     Ghost_pink,
     Ghost_red,

@@ -183,6 +183,7 @@ MonoBehaviour:
   playerTrm: {fileID: 0}
   sr: {fileID: 6229115154471737930}
   weapon: {fileID: 0}
+  isElite: 0
 --- !u!114 &7608200981193411229
 MonoBehaviour:
   m_ObjectHideFlags: 0
