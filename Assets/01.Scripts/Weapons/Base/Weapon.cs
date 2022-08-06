@@ -48,6 +48,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     private float destoryTimer = 0;
     private float fadeVal = 0;
 
+    private Tween weaponUpTween;
+
     protected virtual void Awake()
     {
        // sr = GetComponent<SpriteRenderer>();
@@ -120,6 +122,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected virtual void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f) 
+            return;
 
         if (isGround)
         {

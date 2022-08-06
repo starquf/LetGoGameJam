@@ -40,7 +40,10 @@ public class Ammo : MonoBehaviour, IPoolableComponent
     }
     private void Update()
     {
-        if(isTimer)
+        if (GameManager.Instance.timeScale <= 0f)
+            return;
+
+        if (isTimer)
         {
             destoryTimer -= Time.deltaTime;
             if (destoryTimer < 0f)

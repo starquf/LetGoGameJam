@@ -40,6 +40,9 @@ public class Heart : MonoBehaviour, IPoolableComponent
     }
     private void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f)
+            return;
+
         if (isTimer)
         {
             destoryTimer -= Time.deltaTime;
