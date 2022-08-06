@@ -41,6 +41,8 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public SpriteRenderer sr;
 
+    public bool isPrintDialog;
+
     private EnemyAI enemyAI = null;
     [HideInInspector] public Weapon weapon = null;
 
@@ -49,6 +51,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     public void Despawned()
     {
         enemyAI.SetActive(false);
+        isPrintDialog = false;
     }
     public override void Init()
     {
@@ -64,7 +67,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         Init();
         playerTrm = GameManager.Instance.playerTrm;
-        ShowDialog(0.6f);
+     
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
         /*if (sr == null)

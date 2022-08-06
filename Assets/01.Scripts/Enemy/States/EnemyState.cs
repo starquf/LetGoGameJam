@@ -73,6 +73,24 @@ public class EnemyState
         float dist = Vector2.Distance(playerTrm.position, myObj.transform.position);
         if (dist < myLivingEntity.attackRange)
         {
+            if (!myLivingEntity.isPrintDialog)
+            {
+                myLivingEntity.isPrintDialog = true;
+                int rand = Random.Range(0, 100);
+                if (rand >= 95)
+                {
+                    myLivingEntity.ShowDialog(0.6f, 2);
+                }
+                else if (rand < 95 && rand >= 89)
+                {
+                    myLivingEntity.ShowDialog(0.6f, 1);
+                }
+                else if (rand < 89 && rand >= 85)
+                {
+                    myLivingEntity.ShowDialog(0.6f, 0);
+                }
+            }
+         
             return true;
         }
 

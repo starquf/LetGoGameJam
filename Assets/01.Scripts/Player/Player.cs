@@ -42,7 +42,7 @@ public class Player : LivingEntity
         heartInfo.maxExtraHeartCnt = 2;
         heartInfo.extraHeart = 0;
         base.Init();
-        ShowDialog(1f);
+        //ShowDialog(1f);
         GetComponent<Collider2D>().enabled = true;
     }
 
