@@ -36,7 +36,6 @@ public class PlayerTest : MonoBehaviour
         }
     }
 
-
     public void ChangeWeapon(Weapon weapon)
     {
         weapon.transform.position = transform.position;
@@ -79,6 +78,20 @@ public class PlayerTest : MonoBehaviour
                 if(!nearWeaponList.Contains(wp))
                     nearWeaponList.Add(wp);
             }
+        }
+        Ammo ammo = collision.GetComponent<Ammo>();
+
+        // 경험치에 닿았을 때
+        if (ammo != null)
+        {
+            ammo.SetDisable();
+
+            float count = pa.currentWeapon.maxBullet * (ammo.addAmmoPersent / 100f);
+            int rCont = Mathf.Clamp(Mathf.FloorToInt(count), 1, 10000);
+            pa.AddBullet(rCont);
+            //print(rCont +","+ count + "총알 추가됨");
+
+            GameManager.Instance.soundHandler.Play("GetExp");
         }
     }
 

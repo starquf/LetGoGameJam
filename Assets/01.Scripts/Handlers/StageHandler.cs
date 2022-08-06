@@ -106,6 +106,9 @@ public class StageHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f)
+            return;
+
         switch (state)
         {
             case eWaveState.WaitingToSpawnNextWave:

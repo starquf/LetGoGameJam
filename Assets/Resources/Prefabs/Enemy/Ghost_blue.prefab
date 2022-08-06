@@ -356,6 +356,8 @@ MonoBehaviour:
   - type: 0
     dropPersent: 100
   dropGunPersent: 30
+  dropHearPersent: 3
+  dropAmmoPersent: 10
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}
   sr: {fileID: 1614360757309037664}
@@ -459,7 +461,7 @@ MonoBehaviour:
   isFirst: 1
   attackDuration: 1
   waitAttackDuration: 3
-  waitAttackDurationFirst: 5
+  waitAttackDurationFirst: 1
   targetPos: {fileID: 0}
 --- !u!1 &8555903372357867930
 GameObject:

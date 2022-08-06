@@ -24,6 +24,12 @@ public class EnemyShootAttackState : EnemyState
 
     public override void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f)
+        {
+            myLivingEntity.rigid.velocity = Vector2.zero;
+            return;
+        }
+
         if (myLivingEntity.IsDie)
         {
             nextState = new Dead(myObj, myLivingEntity, myAnim, playerTrm);

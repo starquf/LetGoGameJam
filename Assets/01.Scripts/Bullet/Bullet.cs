@@ -136,7 +136,17 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected IEnumerator BulletLifetime()
     {
-        yield return new WaitForSeconds(lifeTime);
+        float t = 0;
+
+        while (true)
+        {
+            t += Time.deltaTime * GameManager.Instance.timeScale;
+
+            yield return null;
+
+            if (t > lifeTime)
+                break;
+        }
 
         SetDisable();
     }
