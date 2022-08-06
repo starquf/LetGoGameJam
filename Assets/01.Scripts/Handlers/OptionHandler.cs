@@ -161,9 +161,11 @@ public class OptionHandler : Handler
         masterSoundSlider.value = minusVolume;
         bgmSlider.value = minusVolume;
         sfxSlider.value = minusVolume;
+        gunSlider.value = minusVolume;
         GameManager.Instance.soundHandler.VolumeControl(AudioType.MASTER, minusVolume);
         GameManager.Instance.soundHandler.VolumeControl(AudioType.BGM, minusVolume);
         GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, minusVolume);
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.GUN, minusVolume);
     }
 
 
