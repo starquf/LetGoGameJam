@@ -137,7 +137,14 @@ public class Weapon_BlueArchive : Weapon
 
             bullet.SetOwner(!isPlayer, weaponType);
             bullet.SetTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x / 2);
+            if (isPlayer)
+            {
+                bullet.SetRenderer(shootPos.position, transform.lossyScale.x / 2);
+            }
+            else
+            {
+                bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x / 2);
+            }
 
             if (effectObj == null)
             {
