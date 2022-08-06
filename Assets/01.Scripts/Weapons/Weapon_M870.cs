@@ -9,15 +9,16 @@ public class Weapon_M870 : Weapon
     public override void Shoot(Vector3 shootDir)
     {
         int count = 4;
+        float a = collectionRate;
 
         if (isPlayer)
         {
             count = 7;
+            a = a - 10f;
         }
 
-        float a = collectionRate;
         float rotate = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
-        float angle = collectionRate / count;
+        float angle = a / count;
 
         Vector2 dir = Vector2.zero;
 
@@ -38,7 +39,7 @@ public class Weapon_M870 : Weapon
             bullet.bulletData = bulletData;
         }
 
-        print($"총알 발싸 히히히히히 데미지 : {damage} ");
+        //print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
