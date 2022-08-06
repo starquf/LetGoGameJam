@@ -65,9 +65,9 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
-    protected void ShowDialog()
+    protected void ShowDialog(float size)
     {
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Dialog, JsonUtility.ToJson(new DialogInfo() { teller = transform, text = dialogData.dialogList[Random.Range(0, dialogData.dialogList.Count - 1)] }));
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Dialog, JsonUtility.ToJson(new DialogInfo() { teller = transform, text = dialogData.dialogList[Random.Range(0, dialogData.dialogList.Count - 1)], size = size }));
     }
 
     public virtual void UpgradeHP(int value) //레벨업 보상에 쓸예정
