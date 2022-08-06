@@ -68,7 +68,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     {
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
         sr.color = Color.white;
-        sr.GetComponent<SpriteOutline>().outlineSize = 0;
+        sr.GetComponentInChildren<SpriteOutline>().outlineSize = 0;
         sr.flipY = false;
         bulletIron = 0;
         fadeVal = 100;

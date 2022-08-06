@@ -36,7 +36,7 @@ public class EnemyAttack : AttackBase
     {
         enemyShootWait = new WaitForSeconds(waitAttackDuration);
         cr = GetComponentInChildren<CircularSectorMeshRenderer>();
-        cr.gameObject.SetActive(false);
+        cr.GetComponent<MeshRenderer>().material.SetColor("_BoomingColor", Color.clear);
         base.Init(baseWeapon);
 
         Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
@@ -96,7 +96,7 @@ public class EnemyAttack : AttackBase
             if (isAttacking)
             {
                 weaponRenderer.color = Color.white;
-                cr.gameObject.SetActive(true);
+                cr.GetComponent<MeshRenderer>().material.SetColor("_BoomingColor", Color.white);
                 if (isWaitting)
                 {
                     if(!isOnceCalled)
@@ -165,7 +165,7 @@ public class EnemyAttack : AttackBase
                     blue.EnemyShootStop();
                 }
                 weaponRenderer.color = Color.clear;
-                cr.gameObject.SetActive(false);
+                cr.GetComponent<MeshRenderer>().material.SetColor("_BoomingColor", Color.clear);
             }
         }
     }
