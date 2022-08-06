@@ -424,8 +424,8 @@ MonoBehaviour:
   - type: 5
     dropPersent: 100
   dropGunPersent: 100
-  dropHearPersent: 5
-  dropAmmoPersent: 10
+  dropHearPersent: 0
+  dropAmmoPersent: 0
   enemyAttack: {fileID: 2081929116133075885}
   playerTrm: {fileID: 0}
   sr: {fileID: 680785528263168314}
