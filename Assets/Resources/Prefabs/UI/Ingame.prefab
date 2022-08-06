@@ -170,6 +170,8 @@ MonoBehaviour:
   - {fileID: 2290883289820220718}
   - {fileID: 5751776277670360168}
   - {fileID: 7622733880257848240}
+  upgradeParticles: []
+  selectText: {fileID: 0}
   showPanelCount: 2
 --- !u!225 &3811707988478512163
 CanvasGroup:

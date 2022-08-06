@@ -23,6 +23,8 @@ public class EnemyAttack : AttackBase
     private bool isBlue = false;
     private bool isOnceCalled = false;
     private WaitForSeconds enemyShootWait = new WaitForSeconds(1f);
+
+    Sequence sequence = null;
     
     [HideInInspector]public Transform targetPos = null;
 
@@ -47,8 +49,9 @@ public class EnemyAttack : AttackBase
         isWaitting = true;
         timer = waitAttackDurationFirst;
         isAttacking = true;
+        isOnceCalled = false;
 
-        if(!isBlue)
+        if (!isBlue)
         {
             Vector3 dir = attackDir.normalized;
 
@@ -101,7 +104,12 @@ public class EnemyAttack : AttackBase
                 {
                     if(!isOnceCalled)
                     {
-                        float intensity,factor;
+                        if (isBlue)
+                        {
+                            Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
+                            blue.EnemyShootStop();
+                        }
+                        float intensity, factor;
                         MeshRenderer crMesh = cr.GetComponent<MeshRenderer>();
 
                         cr.degree = 60f;
@@ -116,16 +124,14 @@ public class EnemyAttack : AttackBase
 
                         intensity = (1f + 0.04f + 0.04f) / 3;
                         //factor = 15f / intensity;
-
-                        DOTween.To(() => crMesh.material.GetColor("_BoomingColor"), c => crMesh.material.SetColor("_BoomingColor", c), new Color(1f * factor, 0.04f * factor, 0.04f * factor), attackDuration);
-                        DOTween.To(() => cr.degree, x => cr.degree = x, 0, attackDuration);
-                        DOTween.To(() => cr.degree, x => cr.degree = x, 0, attackDuration);
-                        DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, attackDuration);
-                        attackDir = targetPos.position - transform.position;
+                        sequence = DOTween.Sequence()
+                            .Append(DOTween.To(() => crMesh.material.GetColor("_BoomingColor"), c => crMesh.material.SetColor("_BoomingColor", c), new Color(1f * factor, 0.04f * factor, 0.04f * factor), attackDuration))
+                            .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
+                            .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
+                            .Join(DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, timer));
                         isOnceCalled = true;
                     }
-
-
+                    attackDir = targetPos.position - transform.position;
                     timer -= Time.deltaTime;
                     if (timer < 0f)
                     {
@@ -139,7 +145,7 @@ public class EnemyAttack : AttackBase
                     if (isBlue)
                     {
                         currentWeapon.Shoot(transform.right*attackDir.magnitude);
-                        yield return new WaitForSeconds(0.005f);
+                        yield return weaponShootWait;
                     }
                     else
                     {
@@ -167,6 +173,7 @@ public class EnemyAttack : AttackBase
                 }
                 weaponRenderer.color = Color.clear;
                 cr.GetComponent<MeshRenderer>().material.SetFloat("_Alpha", 0f);
+                sequence.Kill();
             }
         }
     }
