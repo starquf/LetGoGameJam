@@ -130,12 +130,15 @@ MonoBehaviour:
   offset: 0.9
   weaponType: 6
   shootPos: {fileID: 1621244696751091155}
+  catridgeTrm: {fileID: 0}
   bulletData: {fileID: 11400000, guid: eec48639b39031a45af77ee3f3250121, type: 2}
   sr: {fileID: 6552539062098846256}
   isNoShakeWeapon: 0
   muzzleFlashEffect: {fileID: 699515936470188018}
   muzzleFlashTime: 0.07
   curIndex: 0
+  playerBulletSize: {x: 1, y: 0.75, z: 1}
+  enemyBulletSize: {x: 0.7, y: 0.5, z: 1}
 --- !u!61 &-6644993816362239579
 BoxCollider2D:
   m_ObjectHideFlags: 0
