@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aef36e4abc666749ac327be972a8df1, type: 3}
-  m_Name: 112
+  m_Name: 112. RPGReload
   m_EditorClassIdentifier: 
-  audioName: SniperCharge
+  audioName: RPGReload
   audioType: 4
-  clip: {fileID: 8300000, guid: 3bc04ad18348b984cb3953a20f0ebb39, type: 3}
+  clip: {fileID: 8300000, guid: a54888d6bb9a60344b0e2acff685baff, type: 3}
