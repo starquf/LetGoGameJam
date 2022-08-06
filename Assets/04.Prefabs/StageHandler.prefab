@@ -46,26 +46,23 @@ MonoBehaviour:
   wavePlusEnemyAmount: 1
   defaultwaveEnemyAmount: 2
   waveTimer: 10
-  spawnWaitTimerRange: {x: 0.1, y: 0.3}
+  spawnWaitTimerRange: {x: 0.3, y: 0.5}
   eliteWaves:
-  - elite: 5
-    waveIdx: 11
+  - elite: 9
+    waveIdx: 8
+    resetWaveEnemyAcount: 9
+  - elite: 12
+    waveIdx: 12
+    resetWaveEnemyAcount: 11
+  - elite: 10
+    waveIdx: 16
+    resetWaveEnemyAcount: 13
+  - elite: 11
+    waveIdx: 20
     resetWaveEnemyAcount: 15
-  - elite: 5
-    waveIdx: 18
-    resetWaveEnemyAcount: 17
-  - elite: 5
-    waveIdx: 25
-    resetWaveEnemyAcount: 19
-  - elite: 5
-    waveIdx: 32
-    resetWaveEnemyAcount: 19
-  - elite: 5
-    waveIdx: 39
-    resetWaveEnemyAcount: 21
-  - elite: 5
-    waveIdx: 46
-    resetWaveEnemyAcount: 33
+  - elite: 13
+    waveIdx: 24
+    resetWaveEnemyAcount: 18
   enemyInfos:
   - enterMinScore: 0
     enemyList: 0000000002000000

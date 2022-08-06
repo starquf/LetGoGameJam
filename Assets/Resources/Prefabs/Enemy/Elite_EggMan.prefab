@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.90588236, g: 0.43137255, b: 0.43137255, a: 1}
+  m_Color: {r: 0.90588236, g: 0.14901961, b: 0.14901961, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -318,7 +318,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 396421747281245719, guid: aaf50ce6c6e6db94a811fe75207560d9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.8352941, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 5945489448282485946}
   - component: {fileID: 7802335114767032453}
   m_Layer: 7
-  m_Name: EggMan
+  m_Name: Elite_EggMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 7802335114767032450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 3515526429839331536}
   - {fileID: 5328689915082320660}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a46bfc4f1ac8a419995d2c82079e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
+  maxHp: 26
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
@@ -408,25 +408,21 @@ MonoBehaviour:
   dialogTrm: {fileID: 455904988902582838}
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 030000000300000003000000
+  maxHPForPlayerLevel: 1a0000001a0000001a000000
   identityColor1: {r: 0.68235296, g: 0.39215687, b: 0.34117648, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 7
   avoidRange: 5
   dropExpInfo:
-    dropPersent: 75
-    amount: 1
-    type: 0
+    dropPersent: 100
+    amount: 3
+    type: 1
   enemyAttackType: 1
   rushSpeed: 10
   canHaveWeaponList:
-  - type: 7
-    dropPersent: 60
   - type: 5
-    dropPersent: 30
-  - type: 1
-    dropPersent: 10
-  dropGunPersent: 30
+    dropPersent: 100
+  dropGunPersent: 100
   dropHearPersent: 5
   dropAmmoPersent: 10
   enemyAttack: {fileID: 2081929116133075885}

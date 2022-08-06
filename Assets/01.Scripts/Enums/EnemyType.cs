@@ -11,6 +11,11 @@ public enum enemyType
     MagnetBoomber,
     WaddleDee,
     AirShip,
+    Elite_Ghost,
+    Elite_EggMan,
+    Elite_AirShip,
+    Elite_Poo,
+    Elite_WaddleDee,
 }
 public enum enemyAttackType   // 적 종류 근접, 원거리 같은거
 {

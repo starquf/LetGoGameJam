@@ -24,8 +24,6 @@ public class Enemy : LivingEntity, IPoolableComponent
     public float attackRange = 10f;
     public float avoidRange = 3f;
 
-    public Vector2 enterExpRange = Vector2.zero;
-
     public ExpInfo dropExpInfo = null;
     public enemyAttackType enemyAttackType = enemyAttackType.RANGED;
 
