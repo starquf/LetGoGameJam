@@ -10,6 +10,11 @@ public class AmmoArea : UIBase
     [SerializeField]
     private Text expendBulletsText;
 
+    [SerializeField]
+    private Sprite bulletSprite;
+    [SerializeField]
+    private Sprite emptySprite;
+
     private readonly string AMMO_PARTICLE = "Prefabs/Effect/AmmoEffect";
 
     public override void Init()
@@ -24,7 +29,7 @@ public class AmmoArea : UIBase
         {
             foreach (var bullet in bullets)
             {
-                bullet.gameObject.SetActive(true);
+                bullet.sprite = bulletSprite;
             }
 
             Effect particle = GameObjectPoolManager.Instance.GetGameObject(AMMO_PARTICLE, bullets[bullets.Count - 1].transform).GetComponent<Effect>();
@@ -41,7 +46,7 @@ public class AmmoArea : UIBase
         {
             foreach(var bullet in bullets)
             {
-                bullet.gameObject.SetActive(true);
+                bullet.sprite = bulletSprite;
             }
             expendBulletsText.text = (bulletCount - 5).ToString();
 
@@ -53,12 +58,12 @@ public class AmmoArea : UIBase
         {
             foreach (var bullet in bullets)
             {
-                bullet.gameObject.SetActive(false);
+                bullet.sprite = emptySprite;
             }
 
             for (int i = 0; i < bulletCount; i++)
             {
-                bullets[i].gameObject.SetActive(true);
+                bullets[i].sprite = bulletSprite;
             }
 
             int idx = Mathf.Clamp(bulletCount - 1, 0, 4);
