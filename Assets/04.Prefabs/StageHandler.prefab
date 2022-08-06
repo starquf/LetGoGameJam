@@ -46,7 +46,7 @@ MonoBehaviour:
   wavePlusEnemyAmount: 1
   defaultwaveEnemyAmount: 2
   waveTimer: 10
-  spawnWaitTimerRange: {x: 0.1, y: 0.3}
+  spawnWaitTimerRange: {x: 0.3, y: 0.5}
   eliteWaves:
   - elite: 9
     waveIdx: 8
