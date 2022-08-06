@@ -92,6 +92,7 @@ public class RIP : LivingEntity, IPoolableComponent
         {
             Weapon wp = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" + dropWeaponType.ToString(), null).GetComponent<Weapon>();
             wp.transform.position = transform.position;
+            wp.SetDestoryTimer(30);
             wp.isGround = true;
             //Debug.Log(dropWeaponType.ToString() + "드롭됨");
         }
