@@ -178,9 +178,12 @@ MonoBehaviour:
   - type: 4
     dropPersent: 20
   dropGunPersent: 30
+  dropHearPersent: 8
+  dropAmmoPersent: 10
   enemyAttack: {fileID: 1176119642591867087}
   playerTrm: {fileID: 0}
   sr: {fileID: 5161099026461917315}
+  weapon: {fileID: 0}
 --- !u!114 &1176119642298675025
 MonoBehaviour:
   m_ObjectHideFlags: 0
