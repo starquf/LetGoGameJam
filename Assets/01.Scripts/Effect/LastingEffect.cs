@@ -11,12 +11,22 @@ public class LastingEffect : Effect
     {
         var main = _particleSystem.main;
         main.simulationSpeed = 0f;
+
+        var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.sortingLayerName = "Default";
+        renderer.sortingOrder = -1;
     }
 
     public override void Play()
     {
         if (_particleSystem == null)
             _particleSystem = GetComponent<ParticleSystem>();
+
+        var main = _particleSystem.main;
+        main.simulationSpeed = 1f;
+
+        var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.sortingLayerName = "Effect";
 
         Invoke("StopMove", stopMoveTime);
 
