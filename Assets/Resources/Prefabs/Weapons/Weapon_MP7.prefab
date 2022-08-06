@@ -244,7 +244,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4e3dd93a932e434f8b64b375fa65fbb, type: 2}
+  - {fileID: 2100000, guid: 008bf2c99998a774fa671b70fa534844, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -289,4 +289,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8213985, b: 1, a: 1}
-  outlineSize: 1
+  outlineSize: 0
