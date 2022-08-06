@@ -274,11 +274,7 @@ public class StageHandler : MonoBehaviour
     private void SpawnWave()
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
-        if(waveNumber > 4 + eliteWaves.Count * 4)
-        {
-            remainingEnemySpawnAmount = eliteWaves[eliteWaves.Count - 1].resetWaveEnemyAcount;
-        }
-        remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber;     // 이런값들은 외부시트로 관리
+        remainingEnemySpawnAmount = Mathf.Clamp(defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber, 1, 15);     // 이런값들은 외부시트로 관리
         print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
 
         Tuple<enemyType, int> eliteInfo = CanSpawnElite();

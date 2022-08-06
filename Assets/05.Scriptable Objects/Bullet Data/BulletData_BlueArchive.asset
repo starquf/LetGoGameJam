@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a53378a3921bd409c8c5564358532d, type: 3}
   m_Name: BulletData_BlueArchive
   m_EditorClassIdentifier: 
-  shakeAmount: 5
+  shakeAmount: 1
   shakeTime: 0.01
   knockBackPower: 5
   knockBackTime: 0.01

@@ -47,10 +47,10 @@ public class ResultHandler : Handler
 
     public void SetUI()
     {
-        scoreCountTxt.text = GameManager.Instance.Score.ToString();
-        levelTxt.text = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel.ToString();
+        scoreCountTxt.text = GameManager.Instance.Score.ToString() + " ";
+        levelTxt.text = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel.ToString() + " ";
 
-        timeTxt.text = TimeSpan.FromSeconds(Time.time - GameManager.Instance.StartTime).ToString("hh':'mm':'ss");
+        timeTxt.text = TimeSpan.FromSeconds(Time.time - GameManager.Instance.StartTime).ToString("hh':'mm':'ss") + " ";
         killEnemyCountTxt.text = GameManager.Instance.KillEnemyCount.ToString();
 
         List<WeaponType> weaponTypes = GameManager.Instance.UseWeaponInfoDic.Keys.ToList();
