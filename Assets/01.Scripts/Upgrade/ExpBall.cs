@@ -8,6 +8,8 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
     private Rigidbody2D rb = null;
 
     public bool isFollowPlayer = false;
+
+    private float followAcc = 0f;
     public float followSpeed = 2f;
 
     private void Awake()
@@ -18,6 +20,7 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
     public void Spawned()
     {
         isFollowPlayer = false;
+        followAcc = 0f;
     }
 
     public void Despawned()
@@ -40,7 +43,9 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
     {
         Vector3 dir = (GameManager.Instance.playerTrm.position - transform.position).normalized;
 
-        rb.velocity = dir * followSpeed;
+        rb.velocity = dir * followSpeed * followAcc;
+        followAcc += Time.deltaTime;
+
     }
 
     public void SetDisable()

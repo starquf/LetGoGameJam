@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healVal: 1
   isFollowPlayer: 0
-  followSpeed: 2
+  followSpeed: 8
 --- !u!114 &5905705327710200341
 MonoBehaviour:
   m_ObjectHideFlags: 0

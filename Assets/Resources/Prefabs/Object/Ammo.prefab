@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addAmmoPersent: 5
   isFollowPlayer: 0
-  followSpeed: 2
+  followSpeed: 8
 --- !u!114 &8782248322778311529
 MonoBehaviour:
   m_ObjectHideFlags: 0
