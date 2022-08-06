@@ -24,6 +24,9 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f)
+            return;
+
         if(isActive)
         {
             curState = this.curState.Process();

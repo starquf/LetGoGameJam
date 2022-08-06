@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Time.deltaTime <= 0)
+        if (GameManager.Instance.timeScale <= 0f)
             return;
 
         if (isDie)

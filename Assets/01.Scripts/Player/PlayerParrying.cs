@@ -54,7 +54,7 @@ public class PlayerParrying : MonoBehaviour
             GameManager.Instance.soundHandler.Play("Parring");
             StartCoroutine(StartAnimation());
 
-            if (Time.timeScale > 0f)
+            if (GameManager.Instance.timeScale > 0f)
             {
                 timeStopTween = DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .4f, .1f).SetEase(Ease.InQuint).OnComplete(() =>
                 {
