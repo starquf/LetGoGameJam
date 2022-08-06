@@ -96,7 +96,7 @@ public class EnemyAttack : AttackBase
             if (isAttacking)
             {
                 weaponRenderer.color = Color.white;
-                cr.GetComponent<MeshRenderer>().material.SetColor("_BoomingColor", Color.white);
+                cr.GetComponent<MeshRenderer>().material.SetFloat("_Alpha",.5f);
                 if (isWaitting)
                 {
                     if(!isOnceCalled)
@@ -165,7 +165,7 @@ public class EnemyAttack : AttackBase
                     blue.EnemyShootStop();
                 }
                 weaponRenderer.color = Color.clear;
-                cr.GetComponent<MeshRenderer>().material.SetColor("_BoomingColor", Color.clear);
+                cr.GetComponent<MeshRenderer>().material.SetFloat("_Alpha", 0f);
             }
         }
     }
