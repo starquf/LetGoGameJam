@@ -65,6 +65,7 @@ public class PlayerUpgrade : MonoBehaviour
 
             //print("업그레이드 함!!");
             EventManager<string>.Invoke("LevelUp");
+            GameManager.Instance.soundHandler.Play("LevelUp");
 
             currentLevel++;
             GameManager.Instance.inGameUIHandler.SendData(UIDataType.Level, (currentLevel + 1).ToString());
