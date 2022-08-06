@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
     public int Score => score;
     private int score;
 
+    [HideInInspector]
+    public float StartTime => startTime;
+    private float startTime;
+
     public float timeScale = 1f;
 
     public float doubleSpeed = 0f;

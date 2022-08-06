@@ -7,5 +7,6 @@ public enum WeaponType
     BlueArchive,
     MP7,
     RazerPistol,
-    M870
+    M870,
+    Parrying,
 }

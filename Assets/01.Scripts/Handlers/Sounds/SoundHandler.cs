@@ -22,6 +22,9 @@ public class SoundHandler : Handler
 
     private Dictionary<string, AudioSource> _loopSFXSourceDic; //반복되는 SFX를 위한 Dictionary (루프되는 효과음은 한 종류만 실행될 수 있게)
 
+    private int maxOneAudioCount = 10; //종류별 최대 동시 재생 횟수
+    private Dictionary<string, int> _audioCountDic; //특정 음원의 재생횟수를 담아놓는 Dicrionary
+
     [SerializeField]
     [Header("초기 SFX재생기 갯수")]
     private int _sfxSourceCount;
@@ -38,6 +41,7 @@ public class SoundHandler : Handler
         _sfxSourceList = new List<AudioSource>(); //메모리 할당
         _audioDic = new Dictionary<string, AudioSO>();
         _loopSFXSourceDic = new Dictionary<string, AudioSource>();
+        _audioCountDic = new Dictionary<string, int>();
 
         _audioMixer = Resources.Load<AudioMixer>(AUDIOMIXER_PATH); //믹서 로드해주고
         AudioMixerGroup[] audioMixerGroups = _audioMixer.FindMatchingGroups(MASTER_NAME); //믹서 그룹 배열로 가져온다
@@ -79,6 +83,22 @@ public class SoundHandler : Handler
     {
         if(_audioDic.TryGetValue(audioName, out AudioSO audioSO)) //만약 일치하는 음원이 있다면
         {
+            if(_audioCountDic.TryGetValue(audioName, out int cnt))
+            {
+                if(cnt >= maxOneAudioCount)
+                {
+                    return;
+                }
+
+                _audioCountDic[audioName]++;
+            }
+            else
+            {
+                _audioCountDic.Add(audioName, 1);
+            }
+
+            StartCoroutine(DelayEvent(audioName, audioSO.clip.length));
+
             if (audioSO.audioType == AudioType.GUN)
             {
                 AudioSource sfxSource = FindEmptySFXSource();
@@ -276,5 +296,12 @@ public class SoundHandler : Handler
         }
 
         return sfxSource;
+    }
+
+    private IEnumerator DelayEvent(string key, float audioDuration)
+    {
+        yield return new WaitForSeconds(audioDuration);
+
+        if (_audioCountDic.ContainsKey(key)) _audioCountDic[key]--;
     }
 }
