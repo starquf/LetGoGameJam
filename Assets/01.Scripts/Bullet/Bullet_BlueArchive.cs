@@ -29,8 +29,9 @@ public class Bullet_BlueArchive : Bullet
     }
 
 
-    public override void SetOwner(bool isEnemy)
+    public override void SetOwner(bool isEnemy, WeaponType weaponType)
     {
+        shotWeaponType = weaponType;
         isEnemyBullet = isEnemy;
         curSpeed = isEnemyBullet ? curSpeed * 0.5f : curSpeed;
         ChangeState(BulletState.MoveForward);
@@ -80,9 +81,11 @@ public class Bullet_BlueArchive : Bullet
 
         if (m_PolygonCollider2D != null && m_AddCollider && m_Points.Count > 1)
         {
+
             List<Vector2> edges1 = new List<Vector2>();
             List<Vector2> edges2 = new List<Vector2>();
-           
+            m_PolygonCollider2D.SetPath(0, edges1);
+
             Vector2 pos = m_LineRenderer.GetPosition(0); 
             Vector2 pos1 = new Vector3(pos.x + m_LineRenderer.startWidth, pos.y + m_LineRenderer.startWidth);
             Vector2 pos2 = new Vector3(pos.x - m_LineRenderer.startWidth, pos.y - m_LineRenderer.startWidth);

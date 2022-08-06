@@ -143,6 +143,7 @@ public class PlayerAttack : AttackBase
                     Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
                     if (blue != null)
                     {
+                        GameManager.Instance.addUsedWeaponInfo(currentWeapon.weaponType, 1);
                         currentWeapon.Shoot(dir);
                         if (!currentWeapon.isNoShakeWeapon)
                         {
@@ -152,6 +153,7 @@ public class PlayerAttack : AttackBase
                     }
                     else
                     {
+                        GameManager.Instance.addUsedWeaponInfo(currentWeapon.weaponType, 1);
                         currentWeapon.Shoot(dir);
                         if (!currentWeapon.isNoShakeWeapon)
                         {

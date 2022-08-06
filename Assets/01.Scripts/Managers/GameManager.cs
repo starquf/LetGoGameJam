@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 
+[System.Serializable]
+public class UsedWeaponInfo
+{
+    public Sprite weaponSpr;
+    public float damageAmount;
+    public int useCount;
+}
+
+
 public class GameManager : MonoBehaviour
 {
     // 싱글톤 (실질적인 Awake 함수 안에 있음)
@@ -59,6 +68,19 @@ public class GameManager : MonoBehaviour
     public int Score => score;
     private int score;
 
+    [HideInInspector]
+    public float KillEnemyCount => killEnemyCount;
+    private float killEnemyCount;
+
+    [HideInInspector]
+    public float StartTime => startTime;
+    private float startTime;
+
+
+    [HideInInspector]
+    public Dictionary<WeaponType, UsedWeaponInfo> UseWeaponInfoDic => useWeaponInfoDic;
+    private Dictionary<WeaponType, UsedWeaponInfo> useWeaponInfoDic;
+
     public float timeScale = 1f;
 
     public float doubleSpeed = 0f;
@@ -75,7 +97,7 @@ public class GameManager : MonoBehaviour
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
     {
-
+        useWeaponInfoDic = new Dictionary<WeaponType, UsedWeaponInfo>();
     }
 
     // 여기에는 다른곳에서 참조해야되는 핸들러들 넣기
@@ -97,6 +119,8 @@ public class GameManager : MonoBehaviour
     public UpgradeUIHandler upgradeUIHandler;
     [HideInInspector]
     public StageHandler stageHandler;
+    [HideInInspector]
+    internal ResultHandler resultHandler;
 
     #endregion
 
@@ -110,6 +134,23 @@ public class GameManager : MonoBehaviour
     {
         score += _score;
         inGameUIHandler.SendData(UIDataType.Score, _score.ToString());
+    }
+
+    public void SetStartTime(float time)
+    {
+        startTime = time;
+    }
+    public void addUsedWeaponDamageInfo(WeaponType weaponType, float addDamage)
+    {
+        if (!useWeaponInfoDic.ContainsKey(weaponType))
+            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { useCount = 0, damageAmount = 0 });
+        useWeaponInfoDic[weaponType].damageAmount += addDamage;
+    }
+    public void addUsedWeaponInfo(WeaponType weaponType, int useGunCount)
+    {
+        if (!useWeaponInfoDic.ContainsKey(weaponType))
+            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { useCount = 0, damageAmount = 0 });
+        useWeaponInfoDic[weaponType].useCount += useGunCount;
     }
 
     private void ResetEvents()
