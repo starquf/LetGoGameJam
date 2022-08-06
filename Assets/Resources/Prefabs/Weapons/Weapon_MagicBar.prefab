@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5090656209763698987}
   - component: {fileID: 1137534412980838956}
+  - component: {fileID: 571119737962448538}
   m_Layer: 0
   m_Name: Weapon_Image
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e4e3dd93a932e434f8b64b375fa65fbb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &571119737962448538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873265480875351212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2a503454bb6cb498fcb3b6d4fcac57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0.81960785, b: 1, a: 1}
+  outlineSize: 1
 --- !u!1 &1621244696532514842
 GameObject:
   m_ObjectHideFlags: 0

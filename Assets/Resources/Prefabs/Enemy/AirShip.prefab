@@ -142,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90f931a8050d20b4bbebe762a8a71923, type: 2}
+  - {fileID: 2100000, guid: a0792bf7531b21e4f9186224fa63bab4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a46bfc4f1ac8a419995d2c82079e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 7
+  maxHp: 6
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
@@ -394,7 +394,7 @@ MonoBehaviour:
   dialogTrm: {fileID: 3022950050893128138}
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 070000000e00000015000000
+  maxHPForPlayerLevel: 060000000600000007000000
   identityColor1: {r: 0.45490196, g: 0.6039216, b: 0.45882353, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 8

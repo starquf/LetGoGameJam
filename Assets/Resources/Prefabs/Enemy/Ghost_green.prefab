@@ -82,36 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1395538848531137145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9183074698064725646}
-  m_Layer: 0
-  m_Name: Dialog Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9183074698064725646
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395538848531137145}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4126387410553631649}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3154089719144357985
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +282,6 @@ Transform:
   - {fileID: 2087390049485174836}
   - {fileID: 917941240811631043}
   - {fileID: 1936427555962553217}
-  - {fileID: 9183074698064725646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -351,12 +320,11 @@ MonoBehaviour:
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
-  speed: 2
-  attakMoveSpeed: 1.5
-  dialogTrm: {fileID: 9183074698064725646}
+  speed: 2.5
+  attakMoveSpeed: 2
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 020000000400000006000000
+  maxHPForPlayerLevel: 020000000200000002000000
   identityColor1: {r: 0.58431375, g: 0.7490196, b: 0.4509804, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 6
@@ -543,7 +511,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90f931a8050d20b4bbebe762a8a71923, type: 2}
+  - {fileID: 2100000, guid: a0792bf7531b21e4f9186224fa63bab4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

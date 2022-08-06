@@ -48,6 +48,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     private float destoryTimer = 0;
     private float fadeVal = 0;
 
+    private Tween weaponUpTween;
+
     protected virtual void Awake()
     {
        // sr = GetComponent<SpriteRenderer>();
@@ -68,6 +70,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     {
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
         sr.color = Color.white;
+        sr.GetComponentInChildren<SpriteOutline>().outlineSize = 0;
         sr.flipY = false;
         bulletIron = 0;
         fadeVal = 100;
@@ -119,6 +122,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected virtual void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f) 
+            return;
 
         if (isGround)
         {
@@ -129,7 +134,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
             }
             else if (destoryTimer < 5)
             {
-                float speed = Mathf.Clamp((50 / destoryTimer), 10, 50);
+                float speed = Mathf.Clamp((50 / destoryTimer), 10, 30);
                 fadeVal += Time.deltaTime * speed;
                 sr.color = new Color(1, 1, 1, Mathf.Cos(fadeVal));
             }
@@ -138,6 +143,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public void SetDestoryTimer(float time)
     {
+        sr.GetComponentInChildren<SpriteOutline>().outlineSize = 1;
+
         defaultDestroyTimer = time;
         destoryTimer = defaultDestroyTimer;
         fadeVal = 0;

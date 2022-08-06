@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,7 @@ public class SelectUIPanel : MonoBehaviour
         demeritPanel.level.text = $"레벨 : {demerit.level.ToString()}";
     }
 
-    public void ShowHighligt()
+    public void ShowHighlight(Action onEndHighlight = null)
     {
         highlightTween.Kill();
         bounceTween.Kill();
@@ -42,6 +43,7 @@ public class SelectUIPanel : MonoBehaviour
             .OnComplete(() => 
             {
                 bounceTween = transform.DOScale(Vector3.one * 1.04f, 0.7f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetUpdate(true);
+                onEndHighlight?.Invoke();
             })
             .SetEase(Ease.OutBack)
             .SetUpdate(true);

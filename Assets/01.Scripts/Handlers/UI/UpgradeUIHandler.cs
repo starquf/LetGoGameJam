@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeUIHandler : MonoBehaviour
 {
@@ -9,8 +11,12 @@ public class UpgradeUIHandler : MonoBehaviour
     private UpgradeHandler uh;
 
     public List<SelectUIPanel> panels = new List<SelectUIPanel>();
+    public List<ParticleSystem> upgradeParticles = new List<ParticleSystem>();
+    public Text selectText;
 
     public int showPanelCount = 2;
+
+    private Tween selectTextTween;
 
     private void Awake()
     {
@@ -39,6 +45,11 @@ public class UpgradeUIHandler : MonoBehaviour
 
     private void ShowSelectPanel(List<ChoiceSet> choices, Action onEndUpgrade)
     {
+        selectText.transform.localScale = Vector3.one;
+
+        selectTextTween.Kill();
+        selectTextTween = selectText.transform.DOScale(Vector3.one * 1.1f, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+
         for (int i = 0; i < panels.Count; i++)
         {
             panels[i].btn.onClick.RemoveAllListeners();
@@ -52,18 +63,19 @@ public class UpgradeUIHandler : MonoBehaviour
                 ChoiceInfo demerit = choices[a].demerit;
 
                 panels[a].SetPanel(merit.choiceData, demerit.choiceData);
-                panels[a].ShowHighligt();
-
-                panels[a].btn.onClick.AddListener(() =>
+                panels[a].ShowHighlight(() => 
                 {
-                    merit.SetChoice();
-                    demerit.SetChoice();
+                    panels[a].btn.onClick.AddListener(() =>
+                    {
+                        merit.SetChoice();
+                        demerit.SetChoice();
 
-                    GameManager.Instance.timeScale = 1f;
+                        GameManager.Instance.timeScale = 1f;
 
-                    ShowPanel(false);
+                        ShowPanel(false);
 
-                    onEndUpgrade?.Invoke();
+                        onEndUpgrade?.Invoke();
+                    });
                 });
             }
         }
@@ -74,5 +86,17 @@ public class UpgradeUIHandler : MonoBehaviour
         cvs.alpha = enable ? 1f : 0f;
         cvs.interactable = enable;
         cvs.blocksRaycasts = enable;
+
+        for (int i = 0; i < upgradeParticles.Count; i++)
+        {
+            if (enable)
+            {
+                upgradeParticles[i].Play();
+            }
+            else 
+            {
+                upgradeParticles[i].Stop();
+            }
+        }
     }
 }

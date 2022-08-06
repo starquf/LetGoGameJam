@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90f931a8050d20b4bbebe762a8a71923, type: 2}
+  - {fileID: 2100000, guid: a0792bf7531b21e4f9186224fa63bab4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -262,36 +262,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &3710717738336367024
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2664146984346417653}
-  m_Layer: 0
-  m_Name: Dialog Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2664146984346417653
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3710717738336367024}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5778209891132143880}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5146824792157973076
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +393,7 @@ MonoBehaviour:
   isWaitting: 0
   isFirst: 1
   attackDuration: 1
-  waitAttackDuration: 0
+  waitAttackDuration: 3
   waitAttackDurationFirst: 3
   targetPos: {fileID: 0}
 --- !u!1 &5778209891132143873
@@ -462,7 +432,6 @@ Transform:
   - {fileID: 5778209890832976754}
   - {fileID: 3854653728872644480}
   - {fileID: 2629332340062368379}
-  - {fileID: 2664146984346417653}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -497,16 +466,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a46bfc4f1ac8a419995d2c82079e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 9
+  maxHp: 7
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
-  speed: 2
-  attakMoveSpeed: 1.5
-  dialogTrm: {fileID: 2664146984346417653}
+  speed: 2.5
+  attakMoveSpeed: 2
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 09000000120000001b000000
+  maxHPForPlayerLevel: 070000000700000007000000
   identityColor1: {r: 1, g: 0.4, b: 0.13333334, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 8
