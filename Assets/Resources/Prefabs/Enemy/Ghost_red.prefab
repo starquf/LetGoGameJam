@@ -118,6 +118,7 @@ Transform:
   - {fileID: 2087390049485174836}
   - {fileID: 77251270535195362}
   - {fileID: 7734429357881765819}
+  - {fileID: 612815537888734818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -158,6 +159,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   speed: 2
   attakMoveSpeed: 1.5
+  dialogTrm: {fileID: 612815537888734818}
   isKnockBack: 0
   isInvincible: 0
   maxHPForPlayerLevel: 010000000200000003000000
@@ -231,6 +233,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!1 &4838329311470605666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 612815537888734818}
+  m_Layer: 0
+  m_Name: Dialog Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &612815537888734818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838329311470605666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4126387410553631649}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5336923154872435386
 GameObject:
   m_ObjectHideFlags: 0

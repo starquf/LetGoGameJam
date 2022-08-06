@@ -232,6 +232,36 @@ MonoBehaviour:
   waitAttackDuration: 3
   waitAttackDurationFirst: 1
   targetPos: {fileID: 0}
+--- !u!1 &2391961368139586884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455904988902582838}
+  m_Layer: 0
+  m_Name: Dialog Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455904988902582838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391961368139586884}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7802335114767032449}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3827483090732379927
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +462,7 @@ Transform:
   - {fileID: 5328689915082320660}
   - {fileID: 6394027437846549927}
   - {fileID: 2348539923948918509}
+  - {fileID: 455904988902582838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -472,6 +503,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   speed: 2
   attakMoveSpeed: 1.5
+  dialogTrm: {fileID: 455904988902582838}
   isKnockBack: 0
   isInvincible: 0
   maxHPForPlayerLevel: 050000000a0000000f000000
