@@ -44,6 +44,10 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     private WaitForSeconds muzzleWait = new WaitForSeconds(0.07f);
     private Coroutine muzzleCor = null;
 
+    private float defaultDestroyTimer = 30f;
+    private float destoryTimer = 0;
+    private float fadeVal = 0;
+
     protected virtual void Awake()
     {
        // sr = GetComponent<SpriteRenderer>();
@@ -109,6 +113,30 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         }
 
         muzzleCor = StartCoroutine(MuzzleFlashEffect());
+    }
+
+    protected virtual void Update()
+    {
+        if(isGround)
+        {
+            destoryTimer -= Time.deltaTime;
+            if (destoryTimer < 0f)
+            {
+                SetDisable();
+            }
+            else if(destoryTimer < 5)
+            {
+                float speed = destoryTimer / 5 * 3;
+                fadeVal += Time.deltaTime * speed;
+                sr.color = new Color(1,1,1, Mathf.Sin(fadeVal));
+            }
+        }
+    }
+
+    public void SetDestoryTimer(float time)
+    {
+        defaultDestroyTimer = time;
+        fadeVal = 0;
     }
 
     private IEnumerator MuzzleFlashEffect()
