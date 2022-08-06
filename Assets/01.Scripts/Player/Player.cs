@@ -42,6 +42,7 @@ public class Player : LivingEntity
         heartInfo.maxExtraHeartCnt = 2;
         heartInfo.extraHeart = 0;
         base.Init();
+        ShowDialog();
     }
 
     private void Update()

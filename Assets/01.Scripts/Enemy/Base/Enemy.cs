@@ -61,6 +61,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         Init();
         playerTrm = GameManager.Instance.playerTrm;
+        ShowDialog();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
         /*if (sr == null)
