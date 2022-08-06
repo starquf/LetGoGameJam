@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Bullet : MonoBehaviour, IPoolableComponent
 {
@@ -45,6 +46,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected Vector2 defaultScale;
     protected WeaponType shotWeaponType;
+    protected int hallucinationPercent = 0;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,6 +60,10 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     public virtual void SetOwner(bool isEnemy, WeaponType weaponType)
     {
         //print("tlqkaaaaaa");
+        if(!isEnemy)
+        {
+            hallucinationPercent = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerAttack>().GetHallucination();
+        }
         isEnemyBullet = isEnemy;
         shotWeaponType = weaponType;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
@@ -89,7 +95,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         transform.localScale = defaultScale;
         curSpeed = bulletSpeed;
         bulletIron = originBulletIron;
-        
+        hallucinationPercent = 0;
+
         StartCoroutine(BulletLifetime());
     }
 
@@ -248,6 +255,14 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         PlayHitEffect(hitEntity);
 
         hitEntity.GetDamage(bulletDamage);
+        if(!isEnemyBullet)
+        {
+            if(Random.Range(0, 100) < hallucinationPercent && hitEntity.GetComponent<Enemy>() != null)
+            {
+                hitEntity.MoveRandomPos();
+            }
+            GameManager.Instance.addUsedWeaponDamageInfo(shotWeaponType, bulletDamage);
+        }
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
 
         if (bulletIron <= 0)
@@ -284,7 +299,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
 
-            print("적 떄리는 중!!");
+            //print("적 떄리는 중!!");
             Hit(livingEntity);
         }
 

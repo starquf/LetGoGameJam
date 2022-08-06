@@ -24,6 +24,7 @@ public class InputHandler : Handler
         if(isTitle)
         {
             director = Camera.main.GetComponent<PlayableDirector>();
+            optionHandler = GameManager.Instance.optionHandler;
         }
         else
         {
@@ -35,7 +36,6 @@ public class InputHandler : Handler
             minimap = GameObject.Find("MiniMap");
 
             resultHandler.gameObject.SetActive(false);
-            optionHandler.gameObject.SetActive(false);
             optionHandler.background.SetActive(false);
             minimap.SetActive(false);
             popUpInfoHandler.gameObject.SetActive(false);
@@ -55,23 +55,34 @@ public class InputHandler : Handler
             {
                 director.Stop();
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (optionHandler.background.activeInHierarchy)
+                {
+                    optionHandler.background.SetActive(false);
+                    Time.timeScale = 1f;
+                }
+                else
+                {
+                    optionHandler.background.SetActive(true);
+                    Time.timeScale = 0f;
+                }
+            }
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                /*if(popUpInfoHandler.gameObject.activeInHierarchy)
-                {
-                    popUpInfoHandler.gameObject.SetActive(false);
-                }
-                else */
                 if (optionHandler.background.activeInHierarchy)
                 {
                     optionHandler.background.SetActive(false);
+                    Time.timeScale = 1f;
                 }
                 else
                 {
                     optionHandler.background.SetActive(true);
+                    Time.timeScale = 0f;
                 }
             }
 
@@ -99,8 +110,11 @@ public class InputHandler : Handler
 
             if(GameManager.Instance.playerTrm.GetComponent<PlayerInput>().isDie)
             {
-                resultHandler.SetUI();
-                resultHandler.gameObject.SetActive(true);
+                if (!resultHandler.gameObject.activeInHierarchy)
+                {
+                    resultHandler.SetUI();
+                    resultHandler.gameObject.SetActive(true);
+                }
             }
         }
     }

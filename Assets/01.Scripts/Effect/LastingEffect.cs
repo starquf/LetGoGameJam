@@ -7,29 +7,50 @@ public class LastingEffect : Effect
     [SerializeField]
     private float stopMoveTime = 0.2f;
 
-    private void StopMove()
+    private WaitForSeconds ws_Drop;
+    private WaitForSeconds ws_Disable;
+
+    private Coroutine co;
+
+    protected override void Awake()
     {
+        ws_Drop = new WaitForSeconds(stopMoveTime);
+        base.Awake();
+    }
+
+    public override void Play()
+    {
+        var main = _particleSystem.main;
+        main.simulationSpeed = 1f;
+
+        ws_Disable = new WaitForSeconds(main.startLifetime.constantMax);
+
+        var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.sortingLayerName = "Effect";
+
+        _particleSystem.Play();
+
+        if (co != null)
+        {
+            StopCoroutine(co);
+        }
+
+        co = StartCoroutine(DisableTimer());
+    }
+
+    private IEnumerator DisableTimer()
+    {
+        yield return ws_Drop;
+
         var main = _particleSystem.main;
         main.simulationSpeed = 0f;
 
         var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
         renderer.sortingLayerName = "Default";
         renderer.sortingOrder = -1;
-    }
 
-    public override void Play()
-    {
-        if (_particleSystem == null)
-            _particleSystem = GetComponent<ParticleSystem>();
+        yield return ws_Disable;
 
-        var main = _particleSystem.main;
-        main.simulationSpeed = 1f;
-
-        var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
-        renderer.sortingLayerName = "Effect";
-
-        Invoke("StopMove", stopMoveTime);
-
-        _particleSystem.Play();
+        OnParticleSystemStopped();
     }
 }

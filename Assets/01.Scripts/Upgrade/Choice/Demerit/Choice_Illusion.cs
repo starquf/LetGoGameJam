@@ -8,9 +8,11 @@ public class Choice_Illusion : ChoiceInfo
     {
         PlayerAttack pa = uh.playerStat.GetComponentInChildren<PlayerAttack>();
 
+        pa.maxillusionCount -= 10;
+
         pa.SetIllusion();
 
-        pa.maxillusionCount -= 10;
+        choiceData.des = $"총을 {pa.maxillusionCount - 10f}번 획득할 때마다 무기가 M1911로 변경됩니다.";
 
         choiceData.level++;
     }

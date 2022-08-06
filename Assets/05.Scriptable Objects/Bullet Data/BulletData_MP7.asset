@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a53378a3921bd409c8c5564358532d, type: 3}
   m_Name: BulletData_MP7
   m_EditorClassIdentifier: 
-  damage: 1
   shakeAmount: 4
-  shakeTime: 0.5
+  shakeTime: 0.3
   knockBackPower: 3
   knockBackTime: 0.1

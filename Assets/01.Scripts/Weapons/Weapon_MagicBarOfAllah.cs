@@ -18,7 +18,14 @@ public class Weapon_MagicBarOfAllah : Weapon
         Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.SetOwner(!isPlayer, weaponType);
         bulletObj.transform.position = shootPos.position;
-        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
+        if (isPlayer)
+        {
+            bullet.transform.localScale *= transform.lossyScale.x;
+        }
+        else
+        {
+            bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
+        }
         bullet.bulletData = bulletData;
         bullet.ChangeDir(shootDir.normalized);
         bullet.SetDamage(damage);

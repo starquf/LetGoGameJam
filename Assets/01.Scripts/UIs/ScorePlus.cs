@@ -25,6 +25,7 @@ public class ScorePlus : MonoBehaviour , IPoolableComponent
 
         text.color = new Color(1, 1, 1, 0);
         rectTransform.anchoredPosition3D = new Vector3(315, 60, 0);
+        rectTransform.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SetText(string _text)
@@ -36,14 +37,14 @@ public class ScorePlus : MonoBehaviour , IPoolableComponent
         rectTransform.DOAnchorPos3DY(0, .2f).OnComplete(() =>
         {
             rectTransform.DOAnchorPos3DX(0, .2f).SetEase(Ease.InExpo).SetUpdate(true);
-        }).SetUpdate(true);
+        });
 
         text.DOFade(1f, .2f).OnComplete(() =>
         {
             text.DOFade(0, .2f).OnComplete(() =>
             {
                 SetDisable();
-            }).SetUpdate(true);
-        }).SetUpdate(true);
+            });
+        });
     }
 }

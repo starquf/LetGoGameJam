@@ -161,6 +161,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         ColorEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<ColorEffect>();
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Killcount, "1");
+        GameManager.Instance.AddKillEnemyCount(1);
 
         effect.SetPosition(transform.position);
         effect.SetRotation(new Vector3(-90f, 0, 0));

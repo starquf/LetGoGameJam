@@ -23,9 +23,19 @@ public class PlayerAttack : AttackBase
     public Image illusionIcon;
     public Text illusionText;
 
+    public int hallucinationPercent = 0;
+
     private void Start()
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
+
+        hallucinationPercent = 0;
+        illusionIcon.gameObject.SetActive(false);
+    }
+
+    public int GetHallucination()
+    {
+        return hallucinationPercent;
     }
 
     public void AddBullet(int count)
@@ -43,6 +53,7 @@ public class PlayerAttack : AttackBase
         currentBullet = Mathf.RoundToInt(baseWeapon.maxBullet * (1f + playerStat.bulletCapacity));
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Weapon, baseWeapon.weaponType.ToString());
 
         SetPlayerStat();
     }
@@ -53,17 +64,19 @@ public class PlayerAttack : AttackBase
 
         base.ChangeWeapon(weapon);
 
-        if (isIllusion)
+        if (isIllusion && !weapon.weaponType.Equals(WeaponType.M1911))
         {
-            illusionCount++;
+            illusionCount--;
 
-            if (illusionCount >= maxillusionCount)
+            if (illusionCount <= 0)
             {
                 weapon = GameObjectPoolManager.Instance.GetGameObject(BASE_WEAPON, transform).GetComponent<Weapon>();
                 base.ChangeWeapon(weapon);
 
-                illusionCount = 0;
+                illusionCount = maxillusionCount;
             }
+
+            illusionText.text = illusionCount.ToString();
         }
 
         weapon.isPlayer = true;
@@ -72,6 +85,7 @@ public class PlayerAttack : AttackBase
         weapon.sr.GetComponent<SpriteOutline>().outlineSize = 0;
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Weapon, weapon.weaponType.ToString());
 
         SetPlayerStat();
     }
@@ -93,7 +107,7 @@ public class PlayerAttack : AttackBase
         currentWeapon.bulletIron = playerStat.bulletIronclad;
 
         float curRate = currentWeapon.fireRate;
-        print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
+        //print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
         weaponShootWait = new WaitForSeconds(curRate - ((playerStat.atkRate * curRate) / 100));
     }
 
@@ -118,6 +132,10 @@ public class PlayerAttack : AttackBase
     {
         illusionIcon.gameObject.SetActive(true);
         isIllusion = true;
+
+        illusionCount = maxillusionCount;
+
+        illusionText.text = illusionCount.ToString();
     }
 
     protected override IEnumerator Shooting()
@@ -173,7 +191,7 @@ public class PlayerAttack : AttackBase
 
                     Vector3 dir = playerInput.mousePos - transform.position;
 
-                    //print("원스");
+                    GameManager.Instance.addUsedWeaponInfo(currentWeapon.weaponType, 1);
                     currentWeapon.Shoot(dir);
 
                     if (!currentWeapon.isNoShakeWeapon)

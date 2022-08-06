@@ -22,7 +22,14 @@ public class Weapon_MP7 : Weapon
         }
 
         bullet.bulletData = bulletData;
-        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
+        if (isPlayer)
+        {
+            bullet.transform.localScale *= transform.lossyScale.x;
+        }
+        else
+        {
+            bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
+        }
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));

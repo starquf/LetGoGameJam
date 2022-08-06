@@ -47,7 +47,6 @@ public class RIP : LivingEntity, IPoolableComponent
 
         Effect ripDustEffect = GameObjectPoolManager.Instance.GetGameObject(DUST_PATH, null).GetComponent<Effect>();
         ripDustEffect.SetPosition(pos);
-        ripDustEffect.SetScalse(2f);
         ripDustEffect.Play();
 
         if (seq != null)
@@ -121,6 +120,7 @@ public class RIP : LivingEntity, IPoolableComponent
         dropWeaponType = weaponType;
         if(isElite)
         {
+            hp = 4;
             transform.localScale *= 2;
             hasEliteWeapon = true;
         }

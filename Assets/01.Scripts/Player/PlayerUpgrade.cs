@@ -63,7 +63,7 @@ public class PlayerUpgrade : MonoBehaviour
         {
             currentExp -= needExpToUpgrade[currentLevel];
 
-            print("업그레이드 함!!");
+            //print("업그레이드 함!!");
             EventManager<string>.Invoke("LevelUp");
 
             currentLevel++;

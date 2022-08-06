@@ -25,6 +25,8 @@ public class PlayerInput : MonoBehaviour
     public bool isConfusion = false;
     private bool isReverse = false;
 
+    private Coroutine confusionRoutine;
+
     private void Awake()
     {
         confusionImg.transform.parent.gameObject.SetActive(false);
@@ -83,12 +85,22 @@ public class PlayerInput : MonoBehaviour
         if (!isConfusion)
         {
             confusionImg.transform.parent.gameObject.SetActive(true);
-            StartCoroutine(Confusion());
+            confusionRoutine = StartCoroutine(Confusion());
         }
 
         confusionRate = rate;
 
         isConfusion = true;
+    }
+
+    public void ClearConfusion()
+    {
+        if(confusionRoutine != null)
+        {
+            StopCoroutine(confusionRoutine);
+        }
+
+        isConfusion = false;
     }
 
     private IEnumerator Confusion()

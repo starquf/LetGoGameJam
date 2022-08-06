@@ -141,6 +141,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         {
             effect.SetRotation(new Vector3(0f, 0f, GameManager.Instance.playerTrm.Find("WeaponHolder").transform.rotation.eulerAngles.z));
         }
+
         effect.Play();
     }
 

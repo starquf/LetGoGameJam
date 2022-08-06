@@ -8,9 +8,7 @@ public class Choice_Confusion : ChoiceInfo
 
     public override void SetChoice()
     {
-        uh.playerStat.GetComponent<PlayerInput>().SetConfusion(confusion);
-
-        confusion -= 8f;
+        uh.playerStat.GetComponent<PlayerInput>().SetConfusion(confusion - (choiceData.level * 8f));
         choiceData.level++;
 
         choiceData.des = $"{confusion}초마다 1초 동안 이동 방향이 반대가 됩니다.";
