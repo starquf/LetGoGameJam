@@ -23,6 +23,8 @@ public class Player : LivingEntity
 
     private void Start()
     {
+        heartInfo = new HeartInfo();
+
         Init();
 
         if (rigid == null)

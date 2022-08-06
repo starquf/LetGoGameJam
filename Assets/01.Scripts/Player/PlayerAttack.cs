@@ -76,7 +76,7 @@ public class PlayerAttack : AttackBase
 
     private void Update()
     {
-        if (Time.timeScale <= 0)
+        if (GameManager.Instance.timeScale <= 0f)
             return;
 
         if (playerInput.isDie)
@@ -94,7 +94,7 @@ public class PlayerAttack : AttackBase
         {
             yield return null;
 
-            if (Time.timeScale <= 0)
+            if (GameManager.Instance.timeScale <= 0)
                 continue;
 
             if (currentWeapon == null)
