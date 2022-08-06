@@ -162,7 +162,7 @@ public class StageHandler : MonoBehaviour
 
     private int GetLimitIdxForPlayerLevel()
     {
-        int level = GameManager.Instance.playerTrm.GetComponent<PlayerUpgrade>().CurrentLevel;
+        int level = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel;
         if(level < 5)
         {
             return 0;

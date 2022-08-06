@@ -91,11 +91,13 @@ public class UpgradeUIHandler : MonoBehaviour
         {
             if (enable)
             {
+                upgradeParticles[i].gameObject.SetActive(true);
                 upgradeParticles[i].Play();
             }
             else 
             {
                 upgradeParticles[i].Stop();
+                upgradeParticles[i].gameObject.SetActive(false);
             }
         }
     }

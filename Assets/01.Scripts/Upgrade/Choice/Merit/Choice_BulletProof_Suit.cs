@@ -6,7 +6,7 @@ public class Choice_BulletProof_Suit : ChoiceInfo
 {
     public override void SetChoice()
     {
-        uh.playerStat.GetComponent<Player>().AddHP(true);
-        uh.playerStat.GetComponent<Player>().AddHP(true);
+        uh.playerStat.player.AddHP(true);
+        uh.playerStat.player.AddHP(true);
     }
 }

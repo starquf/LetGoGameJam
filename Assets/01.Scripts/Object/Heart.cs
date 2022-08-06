@@ -7,6 +7,10 @@ public class Heart : MonoBehaviour, IPoolableComponent
     public int healVal = 1;
 
     private SpriteRenderer sr = null;
+    private Rigidbody2D rb = null;
+
+    public bool isFollowPlayer = false;
+    public float followSpeed = 2f;
 
     private bool isTimer = false;
 
@@ -17,6 +21,7 @@ public class Heart : MonoBehaviour, IPoolableComponent
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Despawned()
@@ -30,6 +35,7 @@ public class Heart : MonoBehaviour, IPoolableComponent
         destoryTimer = 100;
         isTimer = false;
         sr.color = Color.white;
+        isFollowPlayer = false;
     }
 
     public void SetDisable()
@@ -58,6 +64,25 @@ public class Heart : MonoBehaviour, IPoolableComponent
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (GameManager.Instance.timeScale <= 0f)
+            return;
+
+        if (isFollowPlayer)
+        {
+            FollowPlayer();
+        }
+    }
+
+    private void FollowPlayer()
+    {
+        Vector3 dir = (GameManager.Instance.playerTrm.position - transform.position).normalized;
+
+        rb.velocity = dir * followSpeed;
+    }
+
     public void SetDestoryTimer(float time)
     {
         defaultDestroyTimer = time;

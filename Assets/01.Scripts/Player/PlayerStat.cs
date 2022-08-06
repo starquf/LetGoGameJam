@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
+    public Player player;
+
     public int atk;
     public float moveSpeed;
     public int bulletIronclad;
