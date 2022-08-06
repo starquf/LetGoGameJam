@@ -16,8 +16,6 @@ public class DialogUI : UIBase
 
     private const string TEXTPREFAB_PATH = "Prefabs/UI/Dialog";
 
-    public Camera main;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
@@ -38,21 +36,12 @@ public class DialogUI : UIBase
         DialogInfo dialogInfo = JsonUtility.FromJson<DialogInfo>(data);
 
         Dialog dialogTextObj = GameObjectPoolManager.Instance.GetGameObject(TEXTPREFAB_PATH, dialogInfo.teller).GetComponentInChildren<Dialog>();
-        Canvas cv = dialogTextObj.GetComponent<Canvas>();
-        if(cv != null)
-        {
-            cv.worldCamera = Camera.main;
-        }
-        else
-        {
-            print("씨발 지랄 ㄴ");
-        }
         Text dialogText = dialogTextObj.dialogText;
 
 
         dialogText.text = dialogInfo.text;
 
-        dialogTextObj.transform.position = dialogInfo.teller.GetComponent<LivingEntity>().dialogTrm.position;//.SetPosition(mainCam.WorldToScreenPoint(dialogInfo.position));
+        dialogTextObj.transform.position = dialogInfo.teller.GetComponentInChildren<LivingEntity>().dialogTrm.position;//.SetPosition(mainCam.WorldToScreenPoint(dialogInfo.position));
     }
 
 

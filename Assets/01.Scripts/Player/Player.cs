@@ -28,11 +28,11 @@ public class Player : LivingEntity
         Init();
 
         if (rigid == null)
-            rigid = GetComponent<Rigidbody2D>();
+            rigid = transform.parent.GetComponent<Rigidbody2D>();
         if (sr == null)
-            sr = GetComponent<SpriteRenderer>();
+            sr = transform.parent.GetComponent<SpriteRenderer>();
         if (playerInput == null)
-            playerInput = GetComponent<PlayerInput>();
+            playerInput = transform.parent.GetComponent<PlayerInput>();
     }
 
     public override void Init()

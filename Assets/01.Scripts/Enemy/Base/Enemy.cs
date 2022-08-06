@@ -54,7 +54,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         isDie = false;
 
-        hp = maxHPForPlayerLevel[GameManager.Instance.playerTrm.GetComponent<PlayerUpgrade>().CurrentLevel / 10];
+        hp = maxHPForPlayerLevel[GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel / 10];
 
         SetHPUI();
     }

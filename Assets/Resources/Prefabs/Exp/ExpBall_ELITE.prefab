@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expPoint: 10
+  isFollowPlayer: 0
+  followSpeed: 6
 --- !u!114 &3530305782920660398
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -326,7 +326,7 @@ MonoBehaviour:
   isFirst: 1
   attackDuration: 1
   waitAttackDuration: 3
-  waitAttackDurationFirst: 3
+  waitAttackDurationFirst: 1.5
   targetPos: {fileID: 0}
 --- !u!1 &5778209891132143873
 GameObject:
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a46bfc4f1ac8a419995d2c82079e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 7
+  maxHp: 4
   hp: 0
   attackPower: 1
   rigid: {fileID: 0}
@@ -408,7 +408,7 @@ MonoBehaviour:
   dialogTrm: {fileID: 5028135989901285642}
   isKnockBack: 0
   isInvincible: 0
-  maxHPForPlayerLevel: 070000000700000007000000
+  maxHPForPlayerLevel: 040000000400000004000000
   identityColor1: {r: 1, g: 0.4, b: 0.13333334, a: 1}
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 8

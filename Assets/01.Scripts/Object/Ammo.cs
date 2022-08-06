@@ -7,6 +7,7 @@ public class Ammo : MonoBehaviour, IPoolableComponent
     public float addAmmoPersent = 5f;
 
     private SpriteRenderer sr = null;
+    private Rigidbody2D rb = null;
 
     private bool isTimer = false;
 
@@ -14,9 +15,13 @@ public class Ammo : MonoBehaviour, IPoolableComponent
     private float destoryTimer = 0;
     private float fadeVal = 0;
 
+    public bool isFollowPlayer = false;
+    public float followSpeed = 2f;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Despawned()
@@ -30,6 +35,9 @@ public class Ammo : MonoBehaviour, IPoolableComponent
         destoryTimer = 100;
         isTimer = false;
         sr.color = Color.white;
+        isFollowPlayer = false;
+
+        rb.velocity = Vector3.zero;
     }
 
     public void SetDisable()
@@ -38,6 +46,7 @@ public class Ammo : MonoBehaviour, IPoolableComponent
 
         gameObject.SetActive(false);
     }
+
     private void Update()
     {
         if (GameManager.Instance.timeScale <= 0f)
@@ -58,6 +67,25 @@ public class Ammo : MonoBehaviour, IPoolableComponent
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (GameManager.Instance.timeScale <= 0f)
+            return;
+
+        if (isFollowPlayer)
+        {
+            FollowPlayer();
+        }
+    }
+
+    private void FollowPlayer()
+    {
+        Vector3 dir = (GameManager.Instance.playerTrm.position - transform.position).normalized;
+
+        rb.velocity = dir * followSpeed;
+    }
+
     public void SetDestoryTimer(float time)
     {
         defaultDestroyTimer = time;

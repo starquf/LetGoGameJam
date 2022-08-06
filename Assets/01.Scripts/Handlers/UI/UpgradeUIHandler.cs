@@ -70,6 +70,9 @@ public class UpgradeUIHandler : MonoBehaviour
                         merit.SetChoice();
                         demerit.SetChoice();
 
+                        GameManager.Instance.popUpInfoHandler.SendData(UIChoiceType.Merit, merit);
+                        GameManager.Instance.popUpInfoHandler.SendData(UIChoiceType.DeMerit, demerit);
+
                         GameManager.Instance.timeScale = 1f;
 
                         ShowPanel(false);
@@ -91,11 +94,13 @@ public class UpgradeUIHandler : MonoBehaviour
         {
             if (enable)
             {
+                upgradeParticles[i].gameObject.SetActive(true);
                 upgradeParticles[i].Play();
             }
             else 
             {
                 upgradeParticles[i].Stop();
+                upgradeParticles[i].gameObject.SetActive(false);
             }
         }
     }
