@@ -210,6 +210,8 @@ public class Enemy : LivingEntity, IPoolableComponent
 
         GameManager.Instance.stageHandler.amountEnemy--;
 
+        GameManager.Instance.stageHandler.allEnemyList.Add(this);
+
         if (enemyAttackType.Equals(enemyAttackType.RANGED))
         {
             GameManager.Instance.stageHandler.amountWeaponType[weapon.weaponType]--;
