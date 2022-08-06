@@ -6,7 +6,7 @@ public class MapScript : MonoBehaviour
 {
     private void Awake()
     {
-        GameManager.Instance.mapMin = transform.GetChild(0).transform.position;
-        GameManager.Instance.mapMax = transform.GetChild(1).transform.position;
+        GameManager.Instance.mapMin = transform.GetChild(0).transform;
+        GameManager.Instance.mapMax = transform.GetChild(1).transform;
     }
 }

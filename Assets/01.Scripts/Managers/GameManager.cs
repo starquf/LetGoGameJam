@@ -68,9 +68,9 @@ public class GameManager : MonoBehaviour
     public VirtualCameraScript vCamScript;
 
     [HideInInspector]
-    public Vector3 mapMin;
+    public Transform mapMin;
     [HideInInspector]
-    public Vector3 mapMax;
+    public Transform mapMax;
 
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
