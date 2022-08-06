@@ -30,12 +30,12 @@ public class PopUpInfoHandler : Handler
                 {
                     if (merit.sprite.sprite.Equals(data.choiceData.icon))
                     {
-                        merit.LevelUp(data.choiceData.level.ToString());
+                        merit.LevelUp(data.choiceData.level.ToString(),data.isInfinityLevel);
                         break;
                     }
                 }
                 a = GameObjectPoolManager.Instance.GetGameObject("Prefabs/UI/MeritInfo", uiItems[0].transform).GetComponent<ChoiceInfoScripts>();
-                a.SetData(data.choiceData.icon, data.choiceData.level.ToString());
+                a.SetData(data.choiceData.icon, data.choiceData.level.ToString(), data.isInfinityLevel);
                 merits.Add(a);
                 break;
             case UIChoiceType.DeMerit:
@@ -43,13 +43,13 @@ public class PopUpInfoHandler : Handler
                 {
                     if (demerit.sprite.sprite.Equals(data.choiceData.icon))
                     {
-                        demerit.LevelUp(data.choiceData.level.ToString());
+                        demerit.LevelUp(data.choiceData.level.ToString(), data.isInfinityLevel);
                         break;
                     }
                 }
 
                 a = GameObjectPoolManager.Instance.GetGameObject("Prefabs/UI/DemeritInfo", uiItems[1].transform).GetComponent<ChoiceInfoScripts>();
-                a.SetData(data.choiceData.icon, data.choiceData.level.ToString());
+                a.SetData(data.choiceData.icon, data.choiceData.level.ToString(), data.isInfinityLevel);
                 break;
         }
     }

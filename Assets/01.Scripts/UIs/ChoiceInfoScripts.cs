@@ -22,15 +22,29 @@ public class ChoiceInfoScripts : MonoBehaviour , IPoolableComponent
     }
 
 
-    public void SetData(Sprite _sprite, string level)
+    public void SetData(Sprite _sprite, string level , bool isinfinity)
     {
         sprite.sprite = _sprite;
-        text.text = "LV." + level;
+        if(isinfinity)
+        {
+            text.text = "X" + level;
+        }
+        else
+        {
+            text.text = "LV." + level;
+        }
     }
 
-    public void LevelUp(string level)
+    public void LevelUp(string level, bool isinfinity)
     {
-        text.text = "LV." + level;
+        if (isinfinity)
+        {
+            text.text = "X" + level;
+        }
+        else
+        {
+            text.text = "LV." + level;
+        }
     }
 
 }
