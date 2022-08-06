@@ -103,6 +103,8 @@ MonoBehaviour:
   rigid: {fileID: 0}
   speed: 0
   attakMoveSpeed: 0
+  dialogTrm: {fileID: 0}
+  dialogData: {fileID: 0}
   isKnockBack: 0
   isInvincible: 0
   dropSprite: {fileID: 21300000, guid: 56ff53d62a5483f439bccbfef6f1412c, type: 3}
@@ -127,7 +129,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3485595500379814571
 BoxCollider2D:
   m_ObjectHideFlags: 0

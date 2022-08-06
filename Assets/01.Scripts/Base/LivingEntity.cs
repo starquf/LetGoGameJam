@@ -11,7 +11,10 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     [SerializeField] protected float hp;
     [SerializeField] protected float attackPower;
-    [HideInInspector] public Rigidbody2D rigid;
+
+    [HideInInspector]
+    public Rigidbody2D rigid;
+
     public float speed;
     public float attakMoveSpeed;
 
@@ -38,6 +41,11 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     public bool IsDie => isDie;
     protected bool isDie = false;
+
+    protected virtual void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
     public virtual void Init()
     {
