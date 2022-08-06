@@ -46,9 +46,10 @@ public class InputHandler : Handler
     {
         if(isTitle)
         {
-            if(Input.GetMouseButtonDown(0) && director.time < 11)
+            if(Input.GetMouseButtonDown(0) && director.time < 11 && !(director.time <= 0))
             {
                 director.time = 11f;
+                GameManager.Instance.soundHandler.Stop();
             }
 
             if(director.time >= 15)
