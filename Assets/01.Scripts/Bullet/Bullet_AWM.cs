@@ -21,9 +21,9 @@ public class Bullet_AWM : Bullet
         
     }
 
-    public override void SetOwner(bool isEnemy)
+    public override void SetOwner(bool isEnemy, WeaponType weaponType)
     {
-        base.SetOwner(isEnemy);
+        base.SetOwner(isEnemy, weaponType);
         anim.SetBool("isEnemyBullet", isEnemyBullet);
     }
     public override void Despawned()

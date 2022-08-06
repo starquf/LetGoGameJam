@@ -111,7 +111,7 @@ public class Weapon_BlueArchive : Weapon
                 bullet.SetDamage(damage);
             }
 
-            bullet.SetOwner(!isPlayer);
+            bullet.SetOwner(!isPlayer, weaponType);
             bullet.SetTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x / 2);
 
@@ -121,7 +121,7 @@ public class Weapon_BlueArchive : Weapon
                 effectObj.GetComponent<ParticleSystem>().Play();
             }
 
-            effectObj.transform.position = mousePos;
+            effectObj.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
             if (afterEffectObj == null)
             {
@@ -129,7 +129,7 @@ public class Weapon_BlueArchive : Weapon
                 afterEffectObj.GetComponent<ParticleSystem>().Play();
             }
 
-            afterEffectObj.transform.position = mousePos;
+            effectObj.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
 
 
@@ -146,7 +146,7 @@ public class Weapon_BlueArchive : Weapon
 
             }
 
-            bullet.SetOwner(!isPlayer);
+            bullet.SetOwner(!isPlayer, weaponType);
             bullet.SetTarget(transform.position+ shootDir);
             bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x);
 

@@ -44,6 +44,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     private Color enemyBulletBloomColor;
 
     protected Vector2 defaultScale;
+    protected WeaponType shotWeaponType;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -54,10 +55,11 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         defaultScale = transform.localScale;
     }
 
-    public virtual void SetOwner(bool isEnemy)
+    public virtual void SetOwner(bool isEnemy, WeaponType weaponType)
     {
         //print("tlqkaaaaaa");
         isEnemyBullet = isEnemy;
+        shotWeaponType = weaponType;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
         curSpeed = isEnemyBullet ? curSpeed * 0.5f : curSpeed;
         sr.material.SetColor("_BoomingColor", isEnemy ? enemyBulletBloomColor : bulletBloomColor);

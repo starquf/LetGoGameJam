@@ -16,7 +16,7 @@ public class Weapon_AWM : Weapon
         
         bullet.bulletData = bulletData;
 
-        bullet.SetOwner(!isPlayer);
+        bullet.SetOwner(!isPlayer, weaponType);
         bulletObj.transform.position = shootPos.position;
 
         float coll = collectionRate / 2f;
