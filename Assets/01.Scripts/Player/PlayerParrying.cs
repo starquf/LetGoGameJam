@@ -41,7 +41,7 @@ public class PlayerParrying : MonoBehaviour
         EventManager<string>.AddEvent("LevelUp",() =>
         {
             timeStopTween.Kill();
-            print("트윈 없어짐");
+            //print("트윈 없어짐");
 
             SetCanParrying(true);
         });

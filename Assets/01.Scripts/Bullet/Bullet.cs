@@ -286,7 +286,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
 
-            print("적 떄리는 중!!");
+            //print("적 떄리는 중!!");
             Hit(livingEntity);
         }
 

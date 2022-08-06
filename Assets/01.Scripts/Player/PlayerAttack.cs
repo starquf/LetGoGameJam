@@ -97,7 +97,7 @@ public class PlayerAttack : AttackBase
         currentWeapon.bulletIron = playerStat.bulletIronclad;
 
         float curRate = currentWeapon.fireRate;
-        print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
+        //print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
         weaponShootWait = new WaitForSeconds(curRate - ((playerStat.atkRate * curRate) / 100));
     }
 
