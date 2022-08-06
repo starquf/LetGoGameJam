@@ -130,6 +130,8 @@ public class OptionHandler : Handler
         {
             if(isIngame)
             {
+
+                GameManager.Instance.ResetOnSceneChanged();
                 SceneManager.LoadScene("Title");
                 Time.timeScale = 1f;
             }

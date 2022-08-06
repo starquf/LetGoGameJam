@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using DG.Tweening;
 
 [System.Serializable]
 public class UsedWeaponInfo
@@ -146,6 +147,7 @@ public class GameManager : MonoBehaviour
     // 씬 이동 시 반드시 해야하는 거
     public void ResetOnSceneChanged()
     {
+        Debug.Log("Reset");
         ResetEvents();
         killEnemyCount = 0;
         score = 0;
@@ -202,5 +204,6 @@ public class GameManager : MonoBehaviour
     private void ResetEvents()
     {
         EventManager<string>.RemoveAllEvents();
+        DOTween.KillAll();
     }
 }
