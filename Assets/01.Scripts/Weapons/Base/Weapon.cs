@@ -130,7 +130,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
             }
             else if (destoryTimer < 5)
             {
-                float speed = Mathf.Clamp((50 / destoryTimer), 10, 50);
+                float speed = Mathf.Clamp((50 / destoryTimer), 10, 30);
                 fadeVal += Time.deltaTime * speed;
                 sr.color = new Color(1, 1, 1, Mathf.Cos(fadeVal));
             }
