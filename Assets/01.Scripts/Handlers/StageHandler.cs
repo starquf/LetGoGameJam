@@ -134,7 +134,7 @@ public class StageHandler : MonoBehaviour
                             nextWaveSpawnTimer = waveTimer;
                             return;
                         }
-                        nextEnemySpawnTimer = UnityEngine.Random.Range(0f, .2f);
+                        nextEnemySpawnTimer = UnityEngine.Random.Range(spawnWaitTimerRange.x, spawnWaitTimerRange.y);
 
                         // 실제 적 생성 후 remainingEnemySpawnAmount 하나씩 감소
                         Enemy enemy = GetRandomEnemy();
