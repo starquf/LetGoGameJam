@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResultHandler : Handler
@@ -32,11 +33,11 @@ public class ResultHandler : Handler
 
     private void OnRestartButton()
     {
-
+        SceneManager.LoadScene("Ingame");
     }
     private void OnConfirmButton()
     {
-
+        SceneManager.LoadScene("Title");
     }
 
     public override void OnStart()

@@ -128,6 +128,7 @@ public class OptionHandler : Handler
             if(isIngame)
             {
                 SceneManager.LoadScene("Title");
+                Time.timeScale = 1f;
             }
             else
             {
@@ -138,6 +139,7 @@ public class OptionHandler : Handler
         closeButton.onClick.AddListener(() =>
         {
             background.SetActive(false);
+            Time.timeScale = 1f;
         });
 
 
