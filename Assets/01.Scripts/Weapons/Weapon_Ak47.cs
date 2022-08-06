@@ -12,7 +12,7 @@ public class Weapon_Ak47 : Weapon
         Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.bulletData = bulletData;
         bulletObj.transform.position = shootPos.position;
-        bullet.transform.localScale *= defaultlossyScale.x / defaultScale.x;
+        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
         bullet.ChangeDir(shootDir.normalized);
 
         float coll = collectionRate / 2f;
