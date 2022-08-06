@@ -16,7 +16,7 @@ public class PlayerAttack : AttackBase
     private readonly string USED_EFFECT = "Prefabs/Effect/UsedGun";
 
     public bool isIllusion = false;
-    public int maxillusionCount = 60;
+    public int maxillusionCount = 25;
 
     private int illusionCount = 0;
 

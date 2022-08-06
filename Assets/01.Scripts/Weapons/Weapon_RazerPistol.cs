@@ -8,6 +8,9 @@ public class Weapon_RazerPistol : Weapon
     private readonly List<Color> colorList = new List<Color>() { new Color(1f, 0.25f, 0.21f), new Color(1f, 0.64f, 0.21f), new Color(1f, 0.96f, 0.21f), new Color(0.78f, 1f, 0.21f), new Color(0.21f, 0.85f, 1f), new Color(0.28f, 0.21f, 1f), new Color(0.61f, 0.21f, 1f) };
     public int curIndex = 0;
 
+    public Vector3 playerBulletSize;
+    public Vector3 enemyBulletSize;
+
     public override void Shoot(Vector3 shootDir)
     {
 
@@ -34,14 +37,15 @@ public class Weapon_RazerPistol : Weapon
         }
 
         bullet.bulletData = bulletData;
-        //if (isPlayer)
-        //{
-        //    bullet.transform.localScale *= transform.lossyScale.x;
-        //}
-        //else
-        //{
-        //    bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
-        //}
+        transform.localScale = isPlayer ? enemyBulletSize : playerBulletSize;
+        if (isPlayer)
+        {
+            bullet.transform.localScale *= transform.lossyScale.x;
+        }
+        else
+        {
+            bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
+        }
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));
