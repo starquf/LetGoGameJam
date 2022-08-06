@@ -52,7 +52,7 @@ public class DialogUI : UIBase
 
         dialogText.text = dialogInfo.text;
 
-        dialogTextObj.transform.position = dialogInfo.teller.GetComponent<LivingEntity>().dialogTrm.position;//.SetPosition(mainCam.WorldToScreenPoint(dialogInfo.position));
+        dialogTextObj.transform.position = dialogInfo.teller.GetComponentInChildren<LivingEntity>().dialogTrm.position;//.SetPosition(mainCam.WorldToScreenPoint(dialogInfo.position));
     }
 
 

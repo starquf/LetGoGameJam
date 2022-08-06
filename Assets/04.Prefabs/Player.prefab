@@ -82,6 +82,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1 &120735018661922892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489996156586426526}
+  m_Layer: 0
+  m_Name: Dialog Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1489996156586426526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120735018661922892}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.1172047, y: 1.9115074, z: 2.2618704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8225595503229918654}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &528349555905643582
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +349,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   speed: 0
   attakMoveSpeed: 0
+  dialogTrm: {fileID: 1489996156586426526}
   isKnockBack: 0
   isInvincible: 0
   playerInput: {fileID: 0}
@@ -789,6 +820,7 @@ Transform:
   - {fileID: 1956752469310799445}
   - {fileID: 235760801695382849}
   - {fileID: 410818396}
+  - {fileID: 1489996156586426526}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
