@@ -22,6 +22,7 @@ public class PlayerAttack : AttackBase
     public void AddBullet(int count)
     {
         currentBullet = Mathf.Clamp(currentBullet + count, 0, currentWeapon.maxBullet);
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
     }
 
     public override void Init(Weapon baseWeapon)

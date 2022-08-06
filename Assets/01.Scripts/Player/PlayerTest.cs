@@ -86,7 +86,10 @@ public class PlayerTest : MonoBehaviour
         {
             ammo.SetDisable();
 
-            pa.AddBullet((int)(pa.currentWeapon.maxBullet*0.5f));
+            float count = pa.currentWeapon.maxBullet * (ammo.addAmmoPersent / 100f);
+            int rCont = Mathf.Clamp(Mathf.FloorToInt(count), 1, 10000);
+            pa.AddBullet(rCont);
+            //print(rCont +","+ count + "총알 추가됨");
 
             GameManager.Instance.soundHandler.Play("GetExp");
         }
