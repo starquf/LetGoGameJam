@@ -23,11 +23,19 @@ public class PlayerAttack : AttackBase
     public Image illusionIcon;
     public Text illusionText;
 
+    public int hallucinationPercent = 0;
+
     private void Start()
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
 
+        hallucinationPercent = 0;
         illusionIcon.gameObject.SetActive(false);
+    }
+
+    public int GetHallucination()
+    {
+        return hallucinationPercent;
     }
 
     public void AddBullet(int count)

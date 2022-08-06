@@ -166,4 +166,9 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         isDie = true;
         StopAllCoroutines();
     }
+
+    public virtual void MoveRandomPos()
+    {
+        transform.position = new Vector2(Random.Range(GameManager.Instance.mapMin.position.x, GameManager.Instance.mapMax.position.x), Random.Range(GameManager.Instance.mapMin.position.y, GameManager.Instance.mapMax.position.y));  
+    }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Bullet_AWM : Bullet
 {
@@ -63,7 +64,13 @@ public class Bullet_AWM : Bullet
 
         hitEntity.GetDamage(bulletDamage);
         if (!isEnemyBullet)
+        {
+            if (Random.Range(0, 100) < hallucinationPercent && hitEntity.GetComponent<Enemy>() != null)
+            {
+                hitEntity.MoveRandomPos();
+            }
             GameManager.Instance.addUsedWeaponDamageInfo(shotWeaponType, bulletDamage);
+        }
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }

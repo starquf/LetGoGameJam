@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Bullet_Allah : Bullet
 {
@@ -34,7 +35,13 @@ public class Bullet_Allah : Bullet
             PlayHitEffect(collider2Ds[i].GetComponent<LivingEntity>(), true);
             collider2Ds[i].GetComponent<LivingEntity>().GetDamage(bulletDamage);
             if (!isEnemyBullet)
+            {
+                if (Random.Range(0, 100) < hallucinationPercent && hitEntity.GetComponent<Enemy>() != null)
+                {
+                    hitEntity.MoveRandomPos();
+                }
                 GameManager.Instance.addUsedWeaponDamageInfo(shotWeaponType, bulletDamage);
+            }
             collider2Ds[i].GetComponent<LivingEntity>().KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
         }
         Effect explosionEffect = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Effect/ExplosionEffect", null).GetComponent<Effect>();
