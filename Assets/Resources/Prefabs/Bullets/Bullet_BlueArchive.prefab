@@ -144,9 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805ba48b1fc2b0349a07da493c2c3318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  tr: {fileID: 0}
   playerBulletSpr: {fileID: 0}
   enemyBulletSpr: {fileID: 0}
-  bulletDamage: 5
   bulletSpeed: 30
   curSpeed: 0
   originBulletIron: 0
@@ -154,6 +155,8 @@ MonoBehaviour:
   bulletData: {fileID: 0}
   bulletDir: {x: 0, y: 0, z: 0}
   isEnemyBullet: 1
+  bulletBloomColor: {r: 0, g: 0, b: 0, a: 0}
+  enemyBulletBloomColor: {r: 0, g: 0, b: 0, a: 0}
   m_LineRenderer: {fileID: 3863557444416520291}
   m_AddCollider: 1
   m_PolygonCollider2D: {fileID: 2468679706940677745}
