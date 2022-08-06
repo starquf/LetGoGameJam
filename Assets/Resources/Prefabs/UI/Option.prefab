@@ -3681,6 +3681,7 @@ MonoBehaviour:
   exitButton: {fileID: 4311342990683890895}
   closeButton: {fileID: 3279772375843091239}
   background: {fileID: 4311342991024620926}
+  minusVolume: -10
 --- !u!1 &4311342991331939195
 GameObject:
   m_ObjectHideFlags: 0
