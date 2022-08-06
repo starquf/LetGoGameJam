@@ -139,7 +139,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public void SetDestoryTimer(float time)
     {
-        GetComponent<SpriteOutline>().outlineSize = 1;
+        sr.GetComponentInChildren<SpriteOutline>().outlineSize = 1;
 
         defaultDestroyTimer = time;
         destoryTimer = defaultDestroyTimer;
