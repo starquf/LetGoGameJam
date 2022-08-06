@@ -86,6 +86,7 @@ public class EnemyState
             {
                 myLivingEntity.ShowDialog(0.6f, 0);
             }
+         
             return true;
         }
 
