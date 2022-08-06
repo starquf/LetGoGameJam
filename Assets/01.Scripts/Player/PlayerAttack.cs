@@ -26,6 +26,8 @@ public class PlayerAttack : AttackBase
     private void Start()
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
+
+        illusionIcon.gameObject.SetActive(false);
     }
 
     public void AddBullet(int count)
@@ -53,17 +55,19 @@ public class PlayerAttack : AttackBase
 
         base.ChangeWeapon(weapon);
 
-        if (isIllusion)
+        if (isIllusion && !weapon.weaponType.Equals(WeaponType.M1911))
         {
-            illusionCount++;
+            illusionCount--;
 
-            if (illusionCount >= maxillusionCount)
+            if (illusionCount <= 0)
             {
                 weapon = GameObjectPoolManager.Instance.GetGameObject(BASE_WEAPON, transform).GetComponent<Weapon>();
                 base.ChangeWeapon(weapon);
 
-                illusionCount = 0;
+                illusionCount = maxillusionCount;
             }
+
+            illusionText.text = illusionCount.ToString();
         }
 
         weapon.isPlayer = true;
@@ -118,6 +122,10 @@ public class PlayerAttack : AttackBase
     {
         illusionIcon.gameObject.SetActive(true);
         isIllusion = true;
+
+        illusionCount = maxillusionCount;
+
+        illusionText.text = illusionCount.ToString();
     }
 
     protected override IEnumerator Shooting()
