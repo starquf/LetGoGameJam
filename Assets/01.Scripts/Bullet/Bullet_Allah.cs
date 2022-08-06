@@ -12,6 +12,7 @@ public class Bullet_Allah : Bullet
     public override void Spawned()
     {
         base.Spawned();
+
         spawnedTime = Time.time;
     }
 
@@ -25,19 +26,8 @@ public class Bullet_Allah : Bullet
 
     protected override void BulletMove()
     {
-        base.BulletMove();
-        StartCoroutine(MoveRoutine());
-    }
-
-    IEnumerator MoveRoutine()
-    {
-        while (true)
-        {
-            if (isHit)
-                break;
-            rb.velocity *= Time.time - spawnedTime + 0.05f;
-            yield return new WaitForSeconds(0.5f);
-        }
+        rb.velocity = transform.right * curSpeed * GameManager.Instance.timeScale;
+        curSpeed += (rb.velocity.magnitude * 0.8f * GameManager.Instance.timeScale * Time.deltaTime);
     }
 
     protected override void Hit(LivingEntity hitEntity)

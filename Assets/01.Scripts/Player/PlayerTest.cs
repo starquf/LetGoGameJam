@@ -7,7 +7,7 @@ public class PlayerTest : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerAttack pa;
 
-    private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_MagicBar";
+    private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_BlueArchive";
 
     private List<Weapon> nearWeaponList = new List<Weapon>();
 

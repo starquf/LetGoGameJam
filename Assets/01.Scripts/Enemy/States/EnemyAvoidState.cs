@@ -18,6 +18,12 @@ public class EnemyAvoidState : EnemyState
     }
     public override void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f)
+        {
+            myLivingEntity.rigid.velocity = Vector2.zero;
+            return;
+        }
+
         if (myLivingEntity.IsDie)
         {
             nextState = new Dead(myObj, myLivingEntity, myAnim, playerTrm);
@@ -42,7 +48,7 @@ public class EnemyAvoidState : EnemyState
             {
                 Vector2 dir = (myObj.transform.position - playerTrm.position).normalized;
                 if (CanMove())
-                    myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed;
+                    myLivingEntity.rigid.velocity = dir * myLivingEntity.attakMoveSpeed * GameManager.Instance.timeScale;
 
                 myLivingEntity.sr.flipX = dir.x > 0;
             }

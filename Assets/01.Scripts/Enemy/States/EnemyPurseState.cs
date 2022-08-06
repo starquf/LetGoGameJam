@@ -18,6 +18,12 @@ public class EnemyPurseState : EnemyState
 
     public override void Update()
     {
+        if (GameManager.Instance.timeScale <= 0f)
+        {
+            myLivingEntity.rigid.velocity = Vector2.zero;
+            return;
+        }
+
         if (myLivingEntity.IsDie)
         {
             nextState = new Dead(myObj, myLivingEntity, myAnim, playerTrm);
@@ -44,7 +50,7 @@ public class EnemyPurseState : EnemyState
     private void PurseMove()
     {
         Vector2 dir = (playerTrm.position - myObj.transform.position).normalized;
-        myLivingEntity.rigid.velocity = dir * myLivingEntity.speed;
+        myLivingEntity.rigid.velocity = dir * myLivingEntity.speed * GameManager.Instance.timeScale;
         myLivingEntity.sr.flipX = dir.x < 0;
 
         //Debug.LogWarning("움직임 구현좀");

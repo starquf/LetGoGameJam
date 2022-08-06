@@ -19,14 +19,12 @@ public class EnemyAI : MonoBehaviour
         myAnim = this.GetComponent<Animator>();
         playerTrm = myLivingEntity.playerTrm;
 
+
         curState = new EnemyPurseState(this.gameObject, myLivingEntity, myAnim, playerTrm);
     }
 
     private void Update()
     {
-        if (GameManager.Instance.timeScale <= 0f)
-            return;
-
         if(isActive)
         {
             curState = this.curState.Process();
