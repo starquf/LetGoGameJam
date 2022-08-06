@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class UpgradeHandler : MonoBehaviour
 {
-    public List<ChoiceSet> choices = new List<ChoiceSet>();
+    //public List<ChoiceSet> choices = new List<ChoiceSet>();
+
+    public Transform meritParent;
+    public Transform demeritParent;
+
+    private List<ChoiceInfo> merits = new List<ChoiceInfo>();
+    private List<ChoiceInfo> demerits = new List<ChoiceInfo>();
 
     public PlayerStat playerStat;
 
     private void Awake()
     {
         GameManager.Instance.upgradeHandler = this;
+
+        meritParent.GetComponentsInChildren(merits);
+        demeritParent.GetComponentsInChildren(demerits);
+
+        for (int i = 0; i < merits.Count; i++)
+        {
+            merits[i].uh = this;
+        }
+
+        for (int i = 0; i < demerits.Count; i++)
+        {
+            demerits[i].uh = this;
+        }
     }
 
     private void Start()
     {
         playerStat = GameManager.Instance.playerTrm.GetComponent<PlayerStat>();
-
-        for (int i = 0; i < choices.Count; i++)
-        {
-            choices[i].merit.uh = this;
-            choices[i].demerit.uh = this;
-        }
     }
 
     public List<ChoiceSet> GetRandomChoices(int count)
@@ -30,24 +43,36 @@ public class UpgradeHandler : MonoBehaviour
 
         if (count > 0)
         {
-            List<ChoiceSet> list = new List<ChoiceSet>();
+            List<ChoiceInfo> meritlist = new List<ChoiceInfo>();
 
-            for (int i = 0; i < choices.Count; i++)
+            for (int i = 0; i < merits.Count; i++)
             {
-                if (choices[i].merit.CanChoice() && choices[i].demerit.CanChoice())
+                if (merits[i].CanChoice())
                 {
-                    list.Add(choices[i]);
+                    meritlist.Add(merits[i]);
+                }
+            }
+
+            List<ChoiceInfo> demeritlist = new List<ChoiceInfo>();
+
+            for (int i = 0; i < demerits.Count; i++)
+            {
+                if (demerits[i].CanChoice())
+                {
+                    demeritlist.Add(demerits[i]);
                 }
             }
 
             for (int i = 0; i < count; i++)
             {
-                int randIdx = Random.Range(0, list.Count);
+                int randIdx_merit = Random.Range(0, meritlist.Count);
+                int randIdx_demerit = Random.Range(0, demeritlist.Count);
 
-                ChoiceSet choice = list[randIdx];
+                ChoiceSet choice = new ChoiceSet(meritlist[randIdx_merit], demeritlist[randIdx_demerit]);
                 result.Add(choice);
 
-                list.RemoveAt(randIdx);
+                meritlist.RemoveAt(randIdx_merit);
+                demeritlist.RemoveAt(randIdx_demerit);
             }
         }
 
