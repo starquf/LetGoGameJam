@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a53378a3921bd409c8c5564358532d, type: 3}
   m_Name: BulletData_Allah
   m_EditorClassIdentifier: 
-  damage: 10
-  shakeAmount: 20
+  shakeAmount: 14
   shakeTime: 0.6
   knockBackPower: 10
   knockBackTime: 0.1
