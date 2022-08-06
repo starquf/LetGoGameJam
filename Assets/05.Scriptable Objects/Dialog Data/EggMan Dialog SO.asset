@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75183a0e2a7b87448a83e1b440737b2, type: 3}
   m_Name: EggMan Dialog SO
   m_EditorClassIdentifier: 
-  dialogList: []
+  dialogList:
+  - "\uB0A0\uBA39 \uBA48\uCDB0!"
