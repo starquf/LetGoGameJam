@@ -14,4 +14,5 @@ public class PlayerStat : MonoBehaviour
     public int bonusExp;
     public int bonusScore;
     public float parryingCoolDown;
+    public float collectionRate;
 }
