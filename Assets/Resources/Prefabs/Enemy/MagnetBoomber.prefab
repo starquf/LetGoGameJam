@@ -285,7 +285,7 @@ MonoBehaviour:
   isFirst: 1
   attackDuration: 1
   waitAttackDuration: 4
-  waitAttackDurationFirst: 2
+  waitAttackDurationFirst: 1.5
   targetPos: {fileID: 0}
 --- !u!1 &4338138238933047406
 GameObject:
