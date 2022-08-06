@@ -58,6 +58,7 @@ MonoBehaviour:
   offset: 0.3
   weaponType: 5
   shootPos: {fileID: 1621244696751091155}
+  catridgeTrm: {fileID: 8209502635530710857}
   bulletData: {fileID: 11400000, guid: d713e347a4171d7499975b0852cd45d0, type: 2}
   sr: {fileID: 9206757282840270712}
   isNoShakeWeapon: 0
@@ -148,7 +149,7 @@ Transform:
   m_LocalScale: {x: 0.48013, y: 0.48013, z: 0.48013}
   m_Children: []
   m_Father: {fileID: 6570356295119474642}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2482396533270534768
 MonoBehaviour:
@@ -191,6 +192,36 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &5167743299298913379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8209502635530710857}
+  m_Layer: 0
+  m_Name: CatridgeTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8209502635530710857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5167743299298913379}
+  m_LocalRotation: {x: -0, y: -0, z: 0.24563695, w: 0.9693619}
+  m_LocalPosition: {x: 0.892, y: 0.221, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6570356295119474642}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.439}
 --- !u!1 &6179237575331251196
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1621244696751091155}
+  - {fileID: 8209502635530710857}
   - {fileID: 4845958893860644741}
   m_Father: {fileID: 1621244696532514840}
   m_RootOrder: 0
