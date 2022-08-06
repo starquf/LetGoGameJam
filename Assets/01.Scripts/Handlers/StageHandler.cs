@@ -256,18 +256,18 @@ public class StageHandler : MonoBehaviour
     private void SpawnWave()
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
-        if(waveNumber > 4 + eliteWaves.Count * 7)
+        if(waveNumber > 4 + eliteWaves.Count * 4)
         {
             remainingEnemySpawnAmount = eliteWaves[eliteWaves.Count - 1].resetWaveEnemyAcount;
         }
         else
         {
-            remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * (waveNumber > 11 ? (waveNumber - 5) % 7 : waveNumber);     // 이런값들은 외부시트로 관리
+            remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * (waveNumber > 8 ? (waveNumber - 5) % 4 : waveNumber);     // 이런값들은 외부시트로 관리
 
             print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
-            if ((waveNumber - 4) % 7 == 0 && waveNumber > 4)
+            if ((waveNumber - 4) % 4 == 0 && waveNumber > 4)
             {
-                int eliteWaveIdx = (waveNumber - 4) / 7 -1;
+                int eliteWaveIdx = (waveNumber - 4) / 4 -1;
                 print("엘리트 출격"+ eliteWaveIdx);
                 Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteWaves[eliteWaveIdx].elite.ToString(), transform).GetComponent<Enemy>();
                 enemy.transform.position = spawnPosition;
