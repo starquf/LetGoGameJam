@@ -122,7 +122,7 @@ MonoBehaviour:
   maxBullet: 10000
   bulletIron: 0
   isInfiniteBullet: 0
-  fireRate: 0.25
+  fireRate: 0.005
   collectionRate: 5
   isAuto: 1
   isPlayer: 1

@@ -393,7 +393,7 @@ MonoBehaviour:
   isWaitting: 0
   isFirst: 1
   attackDuration: 1
-  waitAttackDuration: 0
+  waitAttackDuration: 3
   waitAttackDurationFirst: 3
   targetPos: {fileID: 0}
 --- !u!1 &5778209891132143873
