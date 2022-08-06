@@ -304,7 +304,7 @@ public class StageHandler : MonoBehaviour
 
     private void SetRandomSpawnPos()
     {
-        spawnPosition = spawnPositionTransformList[Random.Range(0, spawnPositionTransformList.Count)].position;
+        spawnPosition = GetRandomSpawnPosition();
         nextWaveSpawnPositionTransform.position = spawnPosition;
     }
 
@@ -325,6 +325,35 @@ public class StageHandler : MonoBehaviour
 
     public Vector3 GetRandomSpawnPosition()
     {
-        return spawnPositionTransformList[Random.Range(0, spawnPositionTransformList.Count)].position;
+        List<Vector3> canSpawnList = new List<Vector3>();
+
+        for (int i = 0; i < spawnPositionTransformList.Count; i++)
+        {
+            Vector3 pos = spawnPositionTransformList[i].position;
+
+            if (IsInMap(pos))
+            {
+                canSpawnList.Add(pos);
+            }
+            else
+            {
+                print("난 지능이 상승했다 히히");
+            }
+        }
+
+        if (canSpawnList.Count > 0)
+        {
+            return canSpawnList[Random.Range(0, canSpawnList.Count)];
+        }
+
+        return Vector3.zero;
+    }
+
+    public bool IsInMap(Vector3 pos)
+    {
+        return pos.x < GameManager.Instance.mapMax.position.x &&
+               pos.x > GameManager.Instance.mapMin.position.x &&
+               pos.y < GameManager.Instance.mapMax.position.y &&
+               pos.y > GameManager.Instance.mapMin.position.y;
     }
 }

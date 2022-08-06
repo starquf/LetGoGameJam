@@ -12,6 +12,7 @@ public class KillCounter : UIBase
     public override void Init()
     {
         mydataType = UIDataType.Killcount;
+        killCounterText.text = "0";
     }
 
     public override void SetData(string data)
