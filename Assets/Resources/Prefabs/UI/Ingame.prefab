@@ -621,6 +621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mydataType: 3
   expendBulletsText: {fileID: 6696298315077074895}
+  bulletSprite: {fileID: 21300000, guid: 693b27539c71748b3a691418c5fb2d22, type: 3}
+  emptySprite: {fileID: 21300000, guid: f7de3089a356883429b53a961d0d4f60, type: 3}
 --- !u!1 &3996096402610798218
 GameObject:
   m_ObjectHideFlags: 0
