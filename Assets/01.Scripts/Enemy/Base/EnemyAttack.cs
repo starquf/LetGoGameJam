@@ -38,7 +38,7 @@ public class EnemyAttack : AttackBase
     {
         enemyShootWait = new WaitForSeconds(waitAttackDuration);
         cr = GetComponentInChildren<CircularSectorMeshRenderer>();
-        cr.GetComponent<MeshRenderer>().material.SetColor("_BoomingColor", Color.clear);
+        cr.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.clear);
         base.Init(baseWeapon);
 
         Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
@@ -109,23 +109,20 @@ public class EnemyAttack : AttackBase
                             Weapon_BlueArchive blue = currentWeapon.GetComponent<Weapon_BlueArchive>();
                             blue.EnemyShootStop();
                         }
-                        float intensity, factor;
+
                         MeshRenderer crMesh = cr.GetComponent<MeshRenderer>();
 
                         cr.degree = 60f;
                         cr.beginOffsetDegree = -30f;
 
-                        intensity = (1.72f + 1.46f + 0.23f) / 3;
-                        //factor = 7f / intensity;
-                        factor = 1f;
 
-                        crMesh.material.SetColor("_BoomingColor", new Color(1.72f * factor, 1.46f * factor, 0.23f * factor));
+                        //factor = 7f / intensity;
+                        crMesh.material.SetColor("_Color", new Color(1.72f, 1.46f , 0.23f));
                         crMesh.material.SetFloat("_Alpha", .5f);
 
-                        intensity = (1f + 0.04f + 0.04f) / 3;
                         //factor = 15f / intensity;
                         sequence = DOTween.Sequence()
-                            .Append(DOTween.To(() => crMesh.material.GetColor("_BoomingColor"), c => crMesh.material.SetColor("_BoomingColor", c), new Color(1f * factor, 0.04f * factor, 0.04f * factor), attackDuration))
+                            .Append(DOTween.To(() => crMesh.material.GetColor("_Color"), c => crMesh.material.SetColor("_Color", c), new Color(1f, 0.04f, 0.04f), attackDuration))
                             .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
                             .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
                             .Join(DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, timer));

@@ -1978,66 +1978,10 @@ PrefabInstance:
     - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
       propertyPath: nextWaveSpawnPositionTransform
       value: 
-      objectReference: {fileID: 405139059}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[0].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[1].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[2].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[3].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[4].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[5].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[6].amount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxWeaponType.Array.data[7].amount
-      value: 100
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1315059026}
     - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
       propertyPath: spawnPositionTransformList.Array.size
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: enemyInfos.Array.data[1].enterMinScore
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: enemyInfos.Array.data[2].enterMinScore
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: enemyInfos.Array.data[3].enterMinScore
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: enemyInfos.Array.data[4].enterMinScore
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: enemyInfos.Array.data[5].enterMinScore
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: enemyInfos.Array.data[6].enterMinScore
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
       propertyPath: spawnPositionTransformList.Array.data[0]
@@ -2087,18 +2031,6 @@ PrefabInstance:
       propertyPath: spawnPositionTransformList.Array.data[11]
       value: 
       objectReference: {fileID: 184930947}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxLimit.Array.data[0].maxWeaponType.Array.data[0].amount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxLimit.Array.data[0].maxWeaponType.Array.data[1].amount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
-      propertyPath: maxLimit.Array.data[0].maxWeaponType.Array.data[3].amount
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 7830741835640861915, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
       propertyPath: m_RootOrder
       value: 1
