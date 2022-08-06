@@ -90,7 +90,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     protected virtual void BulletMove()
     {
-        rb.velocity = transform.right * curSpeed;
+        rb.velocity = transform.right * curSpeed * GameManager.Instance.timeScale;
     }
 
     protected virtual void CheckTransform()     // 화면 밖으로 나갔는가?
