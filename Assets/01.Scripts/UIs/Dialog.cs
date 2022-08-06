@@ -12,37 +12,28 @@ public class Dialog : MonoBehaviour, IPoolableComponent
 
     public void Despawned()
     {
-        if (textPostionRoutine != null)
-        {
-            StopCoroutine(textPostionRoutine);
-        }
+        
     }
 
     public void Spawned()
     {
-        if(textPostionRoutine != null)
-        {
-            StopCoroutine(textPostionRoutine);
-        }
-      
+        transform.localScale = Vector3.one;
     }
 
-    public void SetPosition(Vector3 position)
+    public void SetPosition()
     {
-        //textPostionRoutine = StartCoroutine(PositionRoutine(position));
+        textPostionRoutine = StartCoroutine(PositionRoutine());
     }
 
-    private IEnumerator PositionRoutine(Vector3 position)
+    private IEnumerator PositionRoutine()
     {
-        while (true)
-        {
-            transform.position = position;
-            yield return new WaitForSeconds(0.001f);
-        }
+        yield return new WaitForSeconds(1f);
+        SetDisable();
     }
 
     public void SetDisable()
     {
-        throw new System.NotImplementedException();
+        GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

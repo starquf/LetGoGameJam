@@ -160,6 +160,7 @@ MonoBehaviour:
   speed: 2.5
   attakMoveSpeed: 2
   dialogTrm: {fileID: 2727949382082826616}
+  dialogData: {fileID: 11400000, guid: 066fa3c424ab95f47b541ea5b0d2de40, type: 2}
   isKnockBack: 0
   isInvincible: 0
   maxHPForPlayerLevel: 0c0000000c0000000c000000

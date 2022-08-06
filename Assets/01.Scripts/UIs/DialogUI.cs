@@ -36,11 +36,12 @@ public class DialogUI : UIBase
         DialogInfo dialogInfo = JsonUtility.FromJson<DialogInfo>(data);
 
         Dialog dialogTextObj = GameObjectPoolManager.Instance.GetGameObject(TEXTPREFAB_PATH, dialogInfo.teller).GetComponentInChildren<Dialog>();
+       
         Text dialogText = dialogTextObj.dialogText;
 
 
         dialogText.text = dialogInfo.text;
-
+        dialogTextObj.SetPosition();
         dialogTextObj.transform.position = dialogInfo.teller.GetComponentInChildren<LivingEntity>().dialogTrm.position;//.SetPosition(mainCam.WorldToScreenPoint(dialogInfo.position));
     }
 
