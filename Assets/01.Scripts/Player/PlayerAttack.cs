@@ -45,6 +45,7 @@ public class PlayerAttack : AttackBase
         currentBullet = Mathf.RoundToInt(baseWeapon.maxBullet * (1f + playerStat.bulletCapacity));
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Weapon, baseWeapon.weaponType.ToString());
 
         SetPlayerStat();
     }
@@ -76,6 +77,7 @@ public class PlayerAttack : AttackBase
         weapon.sr.GetComponent<SpriteOutline>().outlineSize = 0;
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Weapon, weapon.weaponType.ToString());
 
         SetPlayerStat();
     }
