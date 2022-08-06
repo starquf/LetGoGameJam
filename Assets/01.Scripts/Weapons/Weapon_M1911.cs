@@ -12,8 +12,7 @@ public class Weapon_M1911 : Weapon
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 
         bulletObj.transform.position = shootPos.position;
-        bullet.transform.localScale *= defaultlossyScale.x / defaultScale.x;
-        print(transform.lossyScale.x + "," + defaultlossyScale.x + ",dddddddd" + transform.lossyScale);
+        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
 
         float coll = collectionRate / 2f;
 
@@ -33,6 +32,7 @@ public class Weapon_M1911 : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayCatridgeEffect();
         PlayBounceEffect();
     }
 }

@@ -9,6 +9,7 @@ public class DialogInfo
 {
     public string text;
     public Transform teller;
+    public float size;
 }
 
 public class DialogUI : UIBase
@@ -41,7 +42,7 @@ public class DialogUI : UIBase
 
 
         dialogText.text = dialogInfo.text;
-        dialogTextObj.SetPosition();
+        dialogTextObj.SetPosition(dialogInfo.size);
         dialogTextObj.transform.position = dialogInfo.teller.GetComponentInChildren<LivingEntity>().dialogTrm.position;//.SetPosition(mainCam.WorldToScreenPoint(dialogInfo.position));
     }
 

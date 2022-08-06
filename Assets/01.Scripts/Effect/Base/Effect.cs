@@ -22,10 +22,10 @@ public class Effect : MonoBehaviour, IPoolableComponent
 
     public void SetRotation(Vector3 rot)
     {
-        transform.rotation = Quaternion.Euler(rot);
+        transform.localRotation = Quaternion.Euler(rot);
     }
 
-    public void Play()
+    public virtual void Play()
     {
         if(_particleSystem == null)
             _particleSystem = GetComponent<ParticleSystem>();
