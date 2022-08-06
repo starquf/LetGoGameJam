@@ -55,16 +55,14 @@ public class InputHandler : Handler
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKey(KeyCode.Tab))
         {
-            if(popUpInfoHandler.gameObject.activeInHierarchy)
-            {
-                popUpInfoHandler.gameObject.SetActive(false);
-            }
-            else
-            {
-                popUpInfoHandler.gameObject.SetActive(true);
-            }
+            popUpInfoHandler.gameObject.SetActive(true);
+        }
+
+        if(Input.GetKeyUp(KeyCode.Tab))
+        {
+            popUpInfoHandler.gameObject.SetActive(false);
         }
     }
 }

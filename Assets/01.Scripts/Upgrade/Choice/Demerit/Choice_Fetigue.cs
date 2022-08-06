@@ -7,5 +7,6 @@ public class Choice_Fetigue : ChoiceInfo
     public override void SetChoice()
     {
         GameManager.Instance.playerTrm.GetComponentInChildren<PlayerParrying>().SetCanParrying(false);
+        choiceData.level++;
     }
 }

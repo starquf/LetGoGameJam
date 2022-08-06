@@ -8,5 +8,6 @@ public class Choice_BulletProof_Suit : ChoiceInfo
     {
         uh.playerStat.player.AddHP(true);
         uh.playerStat.player.AddHP(true);
+        choiceData.level++;
     }
 }

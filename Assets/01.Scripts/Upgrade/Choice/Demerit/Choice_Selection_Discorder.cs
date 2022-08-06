@@ -7,6 +7,7 @@ public class Choice_Selection_Discorder : ChoiceInfo
     public override void SetChoice()
     {
         GameManager.Instance.upgradeUIHandler.showPanelCount--;
+        choiceData.level++;
     }
 
     public override bool CanChoice()

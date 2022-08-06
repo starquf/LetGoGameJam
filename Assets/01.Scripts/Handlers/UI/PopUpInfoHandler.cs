@@ -28,28 +28,31 @@ public class PopUpInfoHandler : Handler
             case UIChoiceType.Merit:
                 foreach (var merit in merits)
                 {
-                    if (merit.sprite.sprite.Equals(data.choiceData.icon))
+                    if (merit.name.Equals(data.choiceData.name))
                     {
                         merit.LevelUp(data.choiceData.level.ToString(),data.isInfinityLevel);
-                        break;
+                        return;
                     }
                 }
                 a = GameObjectPoolManager.Instance.GetGameObject("Prefabs/UI/MeritInfo", uiItems[0].transform).GetComponent<ChoiceInfoScripts>();
                 a.SetData(data.choiceData.icon, data.choiceData.level.ToString(), data.isInfinityLevel);
+                a.name = data.choiceData.name;
                 merits.Add(a);
                 break;
             case UIChoiceType.DeMerit:
                 foreach (var demerit in Demerits)
                 {
-                    if (demerit.sprite.sprite.Equals(data.choiceData.icon))
+                    if (demerit.name.Equals(data.choiceData.name))
                     {
                         demerit.LevelUp(data.choiceData.level.ToString(), data.isInfinityLevel);
-                        break;
+                        return;
                     }
                 }
 
                 a = GameObjectPoolManager.Instance.GetGameObject("Prefabs/UI/DemeritInfo", uiItems[1].transform).GetComponent<ChoiceInfoScripts>();
                 a.SetData(data.choiceData.icon, data.choiceData.level.ToString(), data.isInfinityLevel);
+                a.name = data.choiceData.name;
+                Demerits.Add(a);
                 break;
         }
     }

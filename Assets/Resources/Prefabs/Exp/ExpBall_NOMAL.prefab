@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: 2649501126511389778}
   - component: {fileID: -3165972489296790513}
   - component: {fileID: 1249371258645559360}
-  - component: {fileID: 1205855403119445954}
-  - component: {fileID: -1376825364964349561}
+  - component: {fileID: -1909404772952828299}
   m_Layer: 9
   m_Name: ExpBall_NOMAL
   m_TagString: Untagged
@@ -56,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4e3dd93a932e434f8b64b375fa65fbb, type: 2}
+  - {fileID: 2100000, guid: 008bf2c99998a774fa671b70fa534844, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expPoint: 5
   isFollowPlayer: 0
-  followSpeed: 6
+  followSpeed: 2
 --- !u!114 &-3165972489296790513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,23 +174,9 @@ MonoBehaviour:
   point2D: {fileID: 0}
   cycleTime: 1
   minIntensity: 0.3
-  maxIntensity: 1
+  maxIntensity: 0.5
   changeAmount: 0
---- !u!114 &1205855403119445954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2649501126511390639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2a503454bb6cb498fcb3b6d4fcac57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.81960785, b: 1, a: 1}
-  outlineSize: 1
---- !u!50 &-1376825364964349561
+--- !u!50 &-1909404772952828299
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -206,7 +191,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

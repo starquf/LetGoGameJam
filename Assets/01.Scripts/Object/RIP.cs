@@ -94,6 +94,9 @@ public class RIP : LivingEntity, IPoolableComponent
             wp.transform.position = transform.position;
             wp.SetDestoryTimer(30);
             wp.isGround = true;
+
+            wp.sr.material.SetInt("_IsActive", 1);
+
             //Debug.Log(dropWeaponType.ToString() + "드롭됨");
         }
 
