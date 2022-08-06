@@ -44,5 +44,6 @@ public enum UIDataType
     Weapon,
     Score,
     Killcount,
-    Enemy
+    Enemy,
+    Dialog
 }

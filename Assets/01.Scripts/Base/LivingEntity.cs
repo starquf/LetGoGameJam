@@ -15,6 +15,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
     public float speed;
     public float attakMoveSpeed;
 
+    public Transform dialogTrm;
 
     public bool isKnockBack = false;
 
