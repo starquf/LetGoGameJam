@@ -138,12 +138,12 @@ public class StageHandler : MonoBehaviour
                         nextEnemySpawnTimer = UnityEngine.Random.Range(spawnWaitTimerRange.x, spawnWaitTimerRange.y);
 
                         // 실제 적 생성 후 remainingEnemySpawnAmount 하나씩 감소
+                        SetRandomSpawnPos();
                         Enemy enemy = GetRandomEnemy();
                         enemy.transform.position = spawnPosition;
                         //Enemy.Create(spawnPosition + UtilClass.GetRandomDir() * UnityEngine.Random.Range(0f, 10f));
                         remainingEnemySpawnAmount--;
 
-                        SetRandomSpawnPos();
                         // 스폰 예정된 적을 모두 소진했다면 새로운 스폰위치를 랜덤으로 받고 다시 스폰 대기상태로...
                         if (remainingEnemySpawnAmount <= 0)
                         {

@@ -58,6 +58,8 @@ public class Weapon_M870 : Weapon
 
         PlayMuzzleEffect();
         PlayCatridgeEffect();
+        PlayCatridgeEffect();
+        PlayCatridgeEffect();
         PlayBounceEffect();
     }
 }
