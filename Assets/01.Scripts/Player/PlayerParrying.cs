@@ -41,7 +41,7 @@ public class PlayerParrying : MonoBehaviour
         EventManager<string>.AddEvent("LevelUp",() =>
         {
             timeStopTween.Kill();
-            print("트윈 없어짐");
+            //print("트윈 없어짐");
 
             SetCanParrying(true);
         });
@@ -89,7 +89,8 @@ public class PlayerParrying : MonoBehaviour
             Vector2 moveDir = bullet.rb.velocity.normalized;
 
             bullet.ChangeDir(-moveDir);
-            bullet.SetOwner(false, WeaponType.M1911);
+            bullet.SetOwner(false, WeaponType.Parrying);
+            GameManager.Instance.addUsedWeaponInfo(WeaponType.Parrying, 1);
         }
         else
         {

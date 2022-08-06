@@ -99,8 +99,11 @@ public class InputHandler : Handler
 
             if(GameManager.Instance.playerTrm.GetComponent<PlayerInput>().isDie)
             {
-                resultHandler.SetUI();
-                resultHandler.gameObject.SetActive(true);
+                if (!resultHandler.gameObject.activeInHierarchy)
+                {
+                    resultHandler.SetUI();
+                    resultHandler.gameObject.SetActive(true);
+                }
             }
         }
     }

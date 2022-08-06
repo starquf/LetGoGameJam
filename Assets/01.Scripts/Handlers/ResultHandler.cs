@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +24,6 @@ public class ResultHandler : Handler
     private Button confirmBtn;
     [SerializeField]
     private Button restartBtn;
-
 
     public override void OnAwake()
     {
@@ -48,13 +49,16 @@ public class ResultHandler : Handler
     {
         scoreCountTxt.text = GameManager.Instance.Score.ToString();
         levelTxt.text = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel.ToString();
-        timeTxt.text = (Time.time - GameManager.Instance.StartTime).ToString();
+
+        timeTxt.text = TimeSpan.FromSeconds(Time.time - GameManager.Instance.StartTime).ToString("hh':'mm':'ss");
         killEnemyCountTxt.text = GameManager.Instance.KillEnemyCount.ToString();
 
-        foreach (var item in GameManager.Instance.UseWeaponInfoDic)
+        List<WeaponType> weaponTypes = GameManager.Instance.UseWeaponInfoDic.Keys.ToList();
+        for (int i = 0; i < weaponTypes.Count; i++)
         {
+            UsedWeaponInfo usedWeaponInfo = GameManager.Instance.UseWeaponInfoDic[weaponTypes[i]];
             WeaponUseInfo weaponUseInfo = GameObjectPoolManager.Instance.GetGameObject(WeaponUseInfoPrefabPath, contentTrm).GetComponent<WeaponUseInfo>();
-            weaponUseInfo.SetUI(item.Value.weaponSpr, item.Value.damageAmount.ToString(), item.Value.useCount.ToString());
+            weaponUseInfo.SetUI(weaponTypes[i], usedWeaponInfo.damageAmount.ToString(), usedWeaponInfo.useCount.ToString());
         }
     }
 }

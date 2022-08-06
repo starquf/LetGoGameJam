@@ -248,6 +248,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         PlayHitEffect(hitEntity);
 
         hitEntity.GetDamage(bulletDamage);
+        if(!isEnemyBullet)
+            GameManager.Instance.addUsedWeaponDamageInfo(shotWeaponType, bulletDamage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
 
         if (bulletIron <= 0)
@@ -284,7 +286,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
 
-            print("적 떄리는 중!!");
+            //print("적 떄리는 중!!");
             Hit(livingEntity);
         }
 
