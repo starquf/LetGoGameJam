@@ -68,6 +68,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     {
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
         sr.color = Color.white;
+        sr.GetComponent<SpriteOutline>().outlineSize = 0;
         sr.flipY = false;
         bulletIron = 0;
         fadeVal = 100;
@@ -138,6 +139,8 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public void SetDestoryTimer(float time)
     {
+        GetComponent<SpriteOutline>().outlineSize = 1;
+
         defaultDestroyTimer = time;
         destoryTimer = defaultDestroyTimer;
         fadeVal = 0;

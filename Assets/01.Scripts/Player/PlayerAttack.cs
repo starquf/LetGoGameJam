@@ -47,6 +47,7 @@ public class PlayerAttack : AttackBase
         weapon.isPlayer = true;
         currentBullet = Mathf.RoundToInt(weapon.maxBullet * (1f + playerStat.bulletCapacity));
         weapon.sr.color = Color.white;
+        weapon.sr.GetComponent<SpriteOutline>().outlineSize = 0;
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
 
