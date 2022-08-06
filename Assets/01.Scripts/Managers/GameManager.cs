@@ -130,6 +130,9 @@ public class GameManager : MonoBehaviour
     public void ResetOnSceneChanged()
     {
         ResetEvents();
+        killEnemyCount = 0;
+        score = 0;
+        startTime = 0;
     }
 
     public void SetScore(int _score)
