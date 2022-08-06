@@ -33,6 +33,7 @@ public class ResultHandler : Handler
 
     private void OnRestartButton()
     {
+        GameManager.Instance.ResetOnSceneChanged();
         SceneManager.LoadScene("Ingame");
     }
     private void OnConfirmButton()
