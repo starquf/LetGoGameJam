@@ -38,6 +38,11 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     private GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
 
+    [SerializeField]
+    private Color bulletBloomColor;
+    [SerializeField]
+    private Color enemyBulletBloomColor;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +58,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         isEnemyBullet = isEnemy;
         sr.sprite = isEnemyBullet ? enemyBulletSpr : playerBulletSpr;
         curSpeed = isEnemyBullet ? curSpeed * 0.5f : curSpeed;
+        sr.material.SetColor("_BoomingColor", isEnemy ? enemyBulletBloomColor : bulletBloomColor);
         if(tr != null)
         {
             alphaKey[0].alpha = isEnemyBullet ? 0.7f : 1f;
