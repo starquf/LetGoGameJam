@@ -6,6 +6,7 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
 {
     public int expPoint;
     private Rigidbody2D rb = null;
+    private SpriteRenderer sr;
 
     public bool isFollowPlayer = false;
     public float followSpeed = 2f;
@@ -13,10 +14,12 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void Spawned()
     {
+        sr.material.SetInt("_IsActive", 1);
         isFollowPlayer = false;
     }
 
