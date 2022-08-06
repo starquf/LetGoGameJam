@@ -34,6 +34,7 @@ public abstract class AttackBase : MonoBehaviour
     {
         currentWeapon.SetDisable();
 
+        GameManager.Instance.allItemListRemove(weapon);
         currentWeapon = weapon;
 
         weapon.transform.SetParent(this.transform);

@@ -74,11 +74,11 @@ public class RIP : LivingEntity, IPoolableComponent
 
     public void Despawned()
     {
-
     }
 
     public void Spawned()
     {
+        GameManager.Instance.allItemListAdd(this);
         Init();
         transform.localScale = defaultScale;
 
@@ -88,6 +88,7 @@ public class RIP : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
+        GameManager.Instance.allItemListRemove(this);
         seq.Kill();
         Effect ripExplosionEffect = GameObjectPoolManager.Instance.GetGameObject(DESTROY_PATH, null).GetComponent<Effect>();
         ripExplosionEffect.SetPosition(new Vector2(transform.position.x, transform.position.y));
@@ -98,7 +99,8 @@ public class RIP : LivingEntity, IPoolableComponent
         if (!dropWeaponType.Equals(WeaponType.M1911))
         {
             Weapon wp = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" + dropWeaponType.ToString(), null).GetComponent<Weapon>();
-            if(hasEliteWeapon)
+            GameManager.Instance.allItemListAdd(wp);
+            if (hasEliteWeapon)
             {
                 wp.transform.localScale *= 2;
             }

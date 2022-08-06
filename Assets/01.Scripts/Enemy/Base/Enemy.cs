@@ -48,6 +48,12 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void Despawned()
     {
+        if (enemyAttackType.Equals(enemyAttackType.RANGED))
+        {
+            GameManager.Instance.stageHandler.amountWeaponType[weapon.weaponType]--;
+            GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+            weapon = null;
+        }
         enemyAI.SetActive(false);
     }
     public override void Init()
@@ -205,18 +211,21 @@ public class Enemy : LivingEntity, IPoolableComponent
                 }
             }
         }
-        
-        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetDreopWeapon(weaponType, isElite).SetPosition(transform.position);
 
-        GameManager.Instance.stageHandler.amountEnemy--;
+        RIP r = GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>();
+        r.SetDreopWeapon(weaponType, isElite).SetPosition(transform.position);
 
-        GameManager.Instance.stageHandler.allEnemyList.Add(this);
-
-        if (enemyAttackType.Equals(enemyAttackType.RANGED))
+        if (isElite)
         {
-            GameManager.Instance.stageHandler.amountWeaponType[weapon.weaponType]--;
-            GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+            GameManager.Instance.stageHandler.amountEnemy -= 10;
         }
+        else
+        {
+            GameManager.Instance.stageHandler.amountEnemy--;
+        }
+
+        GameManager.Instance.stageHandler.allEnemyList.Remove(this);
+
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected override void Die()

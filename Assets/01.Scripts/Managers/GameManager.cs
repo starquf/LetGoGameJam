@@ -94,10 +94,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Transform mapMax;
 
+    private List<IPoolableComponent> allItemList = new List<IPoolableComponent>();
+
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
     {
         useWeaponInfoDic = new Dictionary<WeaponType, UsedWeaponInfo>();
+        allItemList = new List<IPoolableComponent>();
     }
 
     // 여기에는 다른곳에서 참조해야되는 핸들러들 넣기
@@ -125,6 +128,20 @@ public class GameManager : MonoBehaviour
     public WeaponSpriteContainer weaponSpriteContainer;
 
     #endregion
+    public void DistroyAll()
+    {
+        DisableAllItem();
+        stageHandler.AllDieEnemy();
+    }
+
+    public void DisableAllItem()
+    {
+        for (int i = allItemList.Count-1; i >=0 ; i--)
+        {
+            allItemList[i].SetDisable();
+        }
+        allItemList.Clear();
+    }
 
     // 씬 이동 시 반드시 해야하는 거
     public void ResetOnSceneChanged()
@@ -134,6 +151,22 @@ public class GameManager : MonoBehaviour
         score = 0;
         startTime = 0;
     }
+
+    public void allItemListAdd(IPoolableComponent poolable)
+    {
+        if (!allItemList.Contains(poolable))
+        {
+            allItemList.Add(poolable);
+        }
+    }
+    public void allItemListRemove(IPoolableComponent poolable)
+    {
+        if(allItemList.Contains(poolable))
+        {
+            allItemList.Remove(poolable);
+        }
+    }
+
 
     public void SetScore(int _score)
     {
