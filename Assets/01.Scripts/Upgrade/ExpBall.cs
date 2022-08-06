@@ -47,8 +47,7 @@ public class ExpBall : MonoBehaviour, IPoolableComponent
         Vector3 dir = (GameManager.Instance.playerTrm.position - transform.position).normalized;
 
         rb.velocity = dir * followSpeed * followAcc;
-        followAcc += Time.deltaTime;
-
+        followAcc += Time.deltaTime * 2f;
     }
 
     public void SetDisable()

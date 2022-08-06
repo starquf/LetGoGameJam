@@ -10,6 +10,8 @@ public class Heart : MonoBehaviour, IPoolableComponent
     private Rigidbody2D rb = null;
 
     public bool isFollowPlayer = false;
+
+    private float followAcc = 0f;
     public float followSpeed = 2f;
 
     private bool isTimer = false;
@@ -35,6 +37,7 @@ public class Heart : MonoBehaviour, IPoolableComponent
         destoryTimer = 100;
         isTimer = false;
         sr.color = Color.white;
+        followAcc = 0f;
 
         sr.material.SetInt("_IsActive", 1);
 
@@ -84,7 +87,8 @@ public class Heart : MonoBehaviour, IPoolableComponent
     {
         Vector3 dir = (GameManager.Instance.playerTrm.position - transform.position).normalized;
 
-        rb.velocity = dir * followSpeed;
+        rb.velocity = dir * followSpeed * followAcc;
+        followAcc += Time.deltaTime;
     }
 
     public void SetDestoryTimer(float time)

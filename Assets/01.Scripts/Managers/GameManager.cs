@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
     private int score;
 
     public float timeScale = 1f;
+
     public float doubleSpeed = 0f;
+    public bool isShowRange = false;
 
     public CinemachineVirtualCamera cmPerlinObject;
     public VirtualCameraScript vCamScript;

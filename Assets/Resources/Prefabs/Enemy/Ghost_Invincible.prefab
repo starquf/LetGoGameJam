@@ -170,6 +170,7 @@ MonoBehaviour:
   speed: 1.5
   attakMoveSpeed: 1
   dialogTrm: {fileID: 390370528572492825}
+  dialogData: {fileID: 11400000, guid: 066fa3c424ab95f47b541ea5b0d2de40, type: 2}
   isKnockBack: 0
   isInvincible: 1
   maxHPForPlayerLevel: 010000000200000003000000
@@ -177,7 +178,6 @@ MonoBehaviour:
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 6
   avoidRange: 4
-  enterExpRange: {x: 0, y: 0}
   dropExpInfo:
     dropPersent: 40
     amount: 1

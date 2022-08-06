@@ -16,6 +16,8 @@ public class Ammo : MonoBehaviour, IPoolableComponent
     private float fadeVal = 0;
 
     public bool isFollowPlayer = false;
+
+    private float followAcc = 0f;
     public float followSpeed = 2f;
 
     private void Awake()
@@ -35,6 +37,7 @@ public class Ammo : MonoBehaviour, IPoolableComponent
         destoryTimer = 100;
         isTimer = false;
         sr.color = Color.white;
+        followAcc = 0f;
 
         sr.material.SetInt("_IsActive", 1);
 
@@ -86,7 +89,8 @@ public class Ammo : MonoBehaviour, IPoolableComponent
     {
         Vector3 dir = (GameManager.Instance.playerTrm.position - transform.position).normalized;
 
-        rb.velocity = dir * followSpeed;
+        rb.velocity = dir * followSpeed * followAcc;
+        followAcc += Time.deltaTime;
     }
 
     public void SetDestoryTimer(float time)

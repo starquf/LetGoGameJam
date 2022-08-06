@@ -21,6 +21,11 @@ public class Weapon_AWM : Weapon
 
         float coll = collectionRate / 2f;
 
+        if (isPlayer)
+        {
+            coll += GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate / 2f;
+        }
+
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.SetDamage(damage);

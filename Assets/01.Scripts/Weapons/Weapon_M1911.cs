@@ -12,8 +12,15 @@ public class Weapon_M1911 : Weapon
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 
         bulletObj.transform.position = shootPos.position;
+        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
 
         float coll = collectionRate / 2f;
+
+        if (isPlayer)
+        {
+            coll += GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate / 2f;
+        }
+
         bullet.bulletData = bulletData;
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));

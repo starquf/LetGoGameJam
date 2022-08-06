@@ -12,8 +12,15 @@ public class Weapon_Ak47 : Weapon
         Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.bulletData = bulletData;
         bulletObj.transform.position = shootPos.position;
+        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
         bullet.ChangeDir(shootDir.normalized);
+
         float coll = collectionRate / 2f;
+
+        if (isPlayer)
+        {
+            coll += GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate / 2f;
+        }
 
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));

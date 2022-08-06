@@ -99,7 +99,12 @@ public class EnemyAttack : AttackBase
             if (isAttacking)
             {
                 weaponRenderer.color = Color.white;
-                cr.GetComponent<MeshRenderer>().material.SetFloat("_Alpha",.5f);
+
+                if (GameManager.Instance.isShowRange)
+                {
+                    cr.GetComponent<MeshRenderer>().material.SetFloat("_Alpha",.5f);
+                }
+
                 if (isWaitting)
                 {
                     if(!isOnceCalled)
@@ -110,22 +115,11 @@ public class EnemyAttack : AttackBase
                             blue.EnemyShootStop();
                         }
 
-                        MeshRenderer crMesh = cr.GetComponent<MeshRenderer>();
+                        if (GameManager.Instance.isShowRange)
+                        {
+                            ShowRange();
+                        }
 
-                        cr.degree = 60f;
-                        cr.beginOffsetDegree = -30f;
-
-
-                        //factor = 7f / intensity;
-                        crMesh.material.SetColor("_Color", new Color(1.72f, 1.46f , 0.23f));
-                        crMesh.material.SetFloat("_Alpha", .5f);
-
-                        //factor = 15f / intensity;
-                        sequence = DOTween.Sequence()
-                            .Append(DOTween.To(() => crMesh.material.GetColor("_Color"), c => crMesh.material.SetColor("_Color", c), new Color(1f, 0.04f, 0.04f), attackDuration))
-                            .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
-                            .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
-                            .Join(DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, timer));
                         isOnceCalled = true;
                     }
                     attackDir = targetPos.position - transform.position;
@@ -173,5 +167,24 @@ public class EnemyAttack : AttackBase
                 sequence.Kill();
             }
         }
+    }
+
+    protected void ShowRange()
+    {
+        MeshRenderer crMesh = cr.GetComponent<MeshRenderer>();
+
+        cr.degree = 60f;
+        cr.beginOffsetDegree = -30f;
+
+        //factor = 7f / intensity;
+        crMesh.material.SetColor("_Color", new Color(1.72f, 1.46f, 0.23f));
+        crMesh.material.SetFloat("_Alpha", .5f);
+
+        //factor = 15f / intensity;
+        sequence = DOTween.Sequence()
+            .Append(DOTween.To(() => crMesh.material.GetColor("_Color"), c => crMesh.material.SetColor("_Color", c), new Color(1f, 0.04f, 0.04f), attackDuration))
+            .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
+            .Join(DOTween.To(() => cr.degree, x => cr.degree = x, 0, timer))
+            .Join(DOTween.To(() => cr.beginOffsetDegree, x => cr.beginOffsetDegree = x, 0, timer));
     }
 }

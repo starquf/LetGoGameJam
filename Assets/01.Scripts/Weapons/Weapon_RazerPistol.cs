@@ -25,8 +25,16 @@ public class Weapon_RazerPistol : Weapon
         }
 
         bullet.ChangeDir(shootDir.normalized);
+
         float coll = collectionRate / 2f;
+
+        if (isPlayer)
+        {
+            coll += GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate / 2f;
+        }
+
         bullet.bulletData = bulletData;
+        bullet.transform.localScale *= transform.lossyScale.x / transform.localScale.x;
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));

@@ -48,36 +48,41 @@ MonoBehaviour:
   waveTimer: 10
   spawnWaitTimerRange: {x: 0.3, y: 0.5}
   eliteWaves:
-  - elite: 9
-    waveIdx: 8
-    resetWaveEnemyAcount: 9
-  - elite: 12
-    waveIdx: 12
-    resetWaveEnemyAcount: 11
   - elite: 10
-    waveIdx: 16
-    resetWaveEnemyAcount: 13
-  - elite: 11
-    waveIdx: 20
-    resetWaveEnemyAcount: 15
+    enterScore: 14250
+    resetWaveEnemyAcount: 9
+    isEnter: 0
   - elite: 13
-    waveIdx: 24
+    enterScore: 51250
+    resetWaveEnemyAcount: 11
+    isEnter: 0
+  - elite: 11
+    enterScore: 86500
+    resetWaveEnemyAcount: 13
+    isEnter: 0
+  - elite: 9
+    enterScore: 130750
+    resetWaveEnemyAcount: 15
+    isEnter: 0
+  - elite: 14
+    enterScore: 184000
     resetWaveEnemyAcount: 18
+    isEnter: 0
   enemyInfos:
   - enterMinScore: 0
-    enemyList: 0000000002000000
-  - enterMinScore: 750
     enemyList: 0100000003000000
+  - enterMinScore: 750
+    enemyList: 0200000004000000
   - enterMinScore: 19250
-    enemyList: 04000000
-  - enterMinScore: 3750
     enemyList: 05000000
-  - enterMinScore: 165250
+  - enterMinScore: 3750
     enemyList: 06000000
-  - enterMinScore: 115000
+  - enterMinScore: 165250
     enemyList: 07000000
-  - enterMinScore: 62000
+  - enterMinScore: 115000
     enemyList: 08000000
+  - enterMinScore: 62000
+    enemyList: 09000000
   amountEnemy: 0
   maxLimit:
   - maxEnemy: 20

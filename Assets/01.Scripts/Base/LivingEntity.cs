@@ -16,6 +16,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
     public float attakMoveSpeed;
 
     public Transform dialogTrm;
+    public DialogSO dialogData;
 
     public bool isKnockBack = false;
 
@@ -62,6 +63,11 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }
+
+    protected void ShowDialog(float size)
+    {
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Dialog, JsonUtility.ToJson(new DialogInfo() { teller = transform, text = dialogData.dialogList[Random.Range(0, dialogData.dialogList.Count - 1)], size = size }));
     }
 
     public virtual void UpgradeHP(int value) //레벨업 보상에 쓸예정
