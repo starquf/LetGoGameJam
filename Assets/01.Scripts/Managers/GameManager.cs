@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public InGameUIHandler inGameUIHandler;
     [HideInInspector]
+    public PopUpInfoHandler popUpInfoHandler;
+    [HideInInspector]
     public EffectHandler effectHandler;
     [HideInInspector]
     public OptionHandler optionHandler;

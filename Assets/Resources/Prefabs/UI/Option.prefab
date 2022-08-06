@@ -3436,6 +3436,7 @@ MonoBehaviour:
   masterSoundSlider: {fileID: 4311342991465235697}
   bgmSlider: {fileID: 4311342991005224924}
   sfxSlider: {fileID: 4311342992260653241}
+  gunSlider: {fileID: 4475850729860409938}
   exitButton: {fileID: 4311342990683890895}
 --- !u!1 &4311342991331939195
 GameObject:
@@ -4254,7 +4255,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 10
+  m_Spacing: 0.86
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
