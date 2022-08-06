@@ -33,7 +33,7 @@ public class Weapon_RazerPistol : Weapon
         bullet.SetOwner(!isPlayer);
         bullet.AddBulletIron(bulletIron);
         bullet.SetDamage(damage);
-        print($"총알 발싸 히히히히히 데미지 : {damage} ");
+        //print($"총알 발싸 히히히히히 데미지 : {damage} ");
 
         curIndex++;
         GameManager.Instance.soundHandler.Play(shotSFXName);
