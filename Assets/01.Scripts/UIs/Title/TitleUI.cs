@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleUI : MonoBehaviour
 {
@@ -9,13 +11,32 @@ public class TitleUI : MonoBehaviour
     private RectTransform titleImage;
 
     [SerializeField]
-    private RectTransform Buttons;
+    private RectTransform Button;
+
+    [SerializeField]
+    private List<Button> buttons;
 
     public void OnEnable()
     {
         titleImage.DOAnchorPos3DY(-414f, 1.5f).SetEase(Ease.OutBounce).OnComplete(() =>
         {
-            Buttons.DOAnchorPos3DY(125, 1f);
+            Button.DOAnchorPos3DY(125, 1f);
         });
+    }
+
+    public void StartMain()
+    {
+        GameManager.Instance.ResetOnSceneChanged();
+        SceneManager.LoadScene("Ingame");
+    }
+
+    public void OpenOption()
+    {
+
+    }
+
+    public void StartCradit()
+    {
+
     }
 }
