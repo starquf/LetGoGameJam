@@ -50,11 +50,13 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     private Tween weaponUpTween;
 
-    private Vector3 defaultScale;
+    protected Vector2 defaultScale;
+    protected Vector2 defaultlossyScale;
 
     protected virtual void Awake()
     {
         defaultScale = transform.localScale;
+        defaultlossyScale = transform.lossyScale;
        // sr = GetComponent<SpriteRenderer>();
 
         muzzleFlashEffect.SetActive(false);

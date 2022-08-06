@@ -12,6 +12,8 @@ public class Weapon_M1911 : Weapon
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 
         bulletObj.transform.position = shootPos.position;
+        bullet.transform.localScale *= defaultlossyScale.x / defaultScale.x;
+        print(transform.lossyScale.x + "," + defaultlossyScale.x + ",dddddddd" + transform.lossyScale);
 
         float coll = collectionRate / 2f;
         bullet.bulletData = bulletData;
