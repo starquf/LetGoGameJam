@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera cmPerlinObject;
     public VirtualCameraScript vCamScript;
 
+    [HideInInspector]
+    public Vector3 mapMin;
+    [HideInInspector]
+    public Vector3 mapMax;
+
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
     {

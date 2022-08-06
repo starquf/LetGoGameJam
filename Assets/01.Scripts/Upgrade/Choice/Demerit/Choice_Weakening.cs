@@ -6,6 +6,7 @@ public class Choice_Weakening : ChoiceInfo
 {
     public override void SetChoice()
     {
-        uh.playerStat.collectionRate += 10f;
+        uh.playerStat.collectionRate += 0.1f;
+        choiceData.level++;
     }
 }
