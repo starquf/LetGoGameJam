@@ -56,9 +56,9 @@ public class PlayerParrying : MonoBehaviour
 
             if (GameManager.Instance.timeScale > 0f)
             {
-                timeStopTween = DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .4f, .1f).SetEase(Ease.InQuint).OnComplete(() =>
+                timeStopTween = DOTween.To(() => Time.timeScale, x => Time.timeScale = x, .4f + (1f * GameManager.Instance.doubleSpeed), .1f).SetEase(Ease.InQuint).OnComplete(() =>
                 {
-                    DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f, .5f).SetUpdate(true);
+                    DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1f + (1f * GameManager.Instance.doubleSpeed), .5f).SetUpdate(true);
                 }).SetUpdate(true);
             }
 

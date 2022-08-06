@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
     [SerializeField]
     private Color enemyBulletBloomColor;
 
+    protected Vector2 defaultScale;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,6 +51,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         tr = GetComponent<TrailRenderer>();
 
         //curSpeed = bulletSpeed;
+        defaultScale = transform.localScale;
     }
 
     public virtual void SetOwner(bool isEnemy)
@@ -82,6 +84,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
     public virtual void Spawned()
     {
+        transform.localScale = defaultScale;
         curSpeed = bulletSpeed;
         bulletIron = originBulletIron;
         

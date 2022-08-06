@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.9056604, g: 0.43147027, b: 0.43147027, a: 1}
+  m_Color: {r: 0.90588236, g: 0.43137255, b: 0.43137255, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   speed: 2
   attakMoveSpeed: 1.5
   dialogTrm: {fileID: 455904988902582838}
+  dialogData: {fileID: 11400000, guid: 71596273dab6f714d80e2bad08aa867b, type: 2}
   isKnockBack: 0
   isInvincible: 0
   maxHPForPlayerLevel: 030000000300000003000000
@@ -413,7 +414,6 @@ MonoBehaviour:
   identityColor2: {r: 1, g: 1, b: 1, a: 0.31764707}
   attackRange: 7
   avoidRange: 5
-  enterExpRange: {x: 0, y: 0}
   dropExpInfo:
     dropPersent: 75
     amount: 1

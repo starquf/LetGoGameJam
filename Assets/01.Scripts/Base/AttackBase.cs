@@ -23,6 +23,8 @@ public abstract class AttackBase : MonoBehaviour
         currentWeapon = baseWeapon;
 
         weaponRenderer = baseWeapon.sr;
+        weaponRenderer.material.SetInt("_IsActive", 0);
+
         weaponShootWait = new WaitForSeconds(baseWeapon.fireRate);
 
         StartCoroutine(Shooting());
@@ -42,6 +44,8 @@ public abstract class AttackBase : MonoBehaviour
         weapon.isGround = false;
 
         weaponRenderer = weapon.sr;
+        weaponRenderer.material.SetInt("_IsActive", 0);
+
         weaponShootWait = new WaitForSeconds(weapon.fireRate);
     }
 

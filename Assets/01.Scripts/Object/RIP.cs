@@ -23,10 +23,14 @@ public class RIP : LivingEntity, IPoolableComponent
     private Collider2D coll;
 
     private WeaponType dropWeaponType = WeaponType.M1911;
+
+    private bool hasEliteWeapon = false;
+    private Vector2 defaultScale;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
+        defaultScale = transform.localScale;
     }
 
     public override void SetHPUI()
@@ -42,6 +46,7 @@ public class RIP : LivingEntity, IPoolableComponent
 
         Effect ripDustEffect = GameObjectPoolManager.Instance.GetGameObject(DUST_PATH, null).GetComponent<Effect>();
         ripDustEffect.SetPosition(pos);
+        ripDustEffect.SetScalse(2f);
         ripDustEffect.Play();
 
         if (seq != null)
@@ -75,8 +80,10 @@ public class RIP : LivingEntity, IPoolableComponent
     public void Spawned()
     {
         Init();
+        transform.localScale = defaultScale;
 
         coll.enabled = false;
+        hasEliteWeapon = false;
     }
 
     public void SetDisable()
@@ -91,9 +98,16 @@ public class RIP : LivingEntity, IPoolableComponent
         if (!dropWeaponType.Equals(WeaponType.M1911))
         {
             Weapon wp = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" + dropWeaponType.ToString(), null).GetComponent<Weapon>();
+            if(hasEliteWeapon)
+            {
+                wp.transform.localScale *= 2;
+            }
             wp.transform.position = transform.position;
             wp.SetDestoryTimer(30);
             wp.isGround = true;
+
+            wp.sr.material.SetInt("_IsActive", 1);
+
             //Debug.Log(dropWeaponType.ToString() + "드롭됨");
         }
 
@@ -101,9 +115,14 @@ public class RIP : LivingEntity, IPoolableComponent
         GameObjectPoolManager.Instance.UnusedGameObject(gameObject);
     }
 
-    public RIP SetDreopWeapon(WeaponType weaponType)
+    public RIP SetDreopWeapon(WeaponType weaponType, bool isElite)
     {
         dropWeaponType = weaponType;
+        if(isElite)
+        {
+            transform.localScale *= 2;
+            hasEliteWeapon = true;
+        }
 
         return this;
     }

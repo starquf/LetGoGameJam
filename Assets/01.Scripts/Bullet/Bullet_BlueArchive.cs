@@ -57,9 +57,11 @@ public class Bullet_BlueArchive : Bullet
         targetPos = position;
     }
 
-    public void SetRenderer(Vector3 position)
+    public void SetRenderer(Vector3 position, float scale)
     {
         m_Points.Clear();
+        m_LineRenderer.startWidth = scale;
+        m_LineRenderer.endWidth = scale;
         m_LineRenderer.positionCount = 2;
 
         position.Set(position.x, position.y, 0);

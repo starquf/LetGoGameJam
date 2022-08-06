@@ -34,6 +34,7 @@ public class Bullet_AWM : Bullet
 
     public override void Spawned()
     {
+        base.Spawned();
         curSpeed = bulletSpeed;
       
       

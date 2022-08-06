@@ -35,6 +35,9 @@ public class Ammo : MonoBehaviour, IPoolableComponent
         destoryTimer = 100;
         isTimer = false;
         sr.color = Color.white;
+
+        sr.material.SetInt("_IsActive", 1);
+
         isFollowPlayer = false;
 
         rb.velocity = Vector3.zero;

@@ -6,7 +6,7 @@ public class PlayerTest : MonoBehaviour
 {
     private PlayerAttack pa;
 
-    private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_M1911";
+    private readonly string M1911_PATH = "Prefabs/Weapons/Weapon_BlueArchive";
 
     private void Start()
     {

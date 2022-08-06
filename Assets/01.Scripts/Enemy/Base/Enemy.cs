@@ -24,8 +24,6 @@ public class Enemy : LivingEntity, IPoolableComponent
     public float attackRange = 10f;
     public float avoidRange = 3f;
 
-    public Vector2 enterExpRange = Vector2.zero;
-
     public ExpInfo dropExpInfo = null;
     public enemyAttackType enemyAttackType = enemyAttackType.RANGED;
 
@@ -46,6 +44,8 @@ public class Enemy : LivingEntity, IPoolableComponent
     private EnemyAI enemyAI = null;
     [HideInInspector] public Weapon weapon = null;
 
+    private bool isElite = false;
+
     public void Despawned()
     {
         enemyAI.SetActive(false);
@@ -53,6 +53,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     public override void Init()
     {
         isDie = false;
+        isElite = false;
 
         hp = maxHPForPlayerLevel[GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel / 10];
 
@@ -63,6 +64,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         Init();
         playerTrm = GameManager.Instance.playerTrm;
+        ShowDialog();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
         /*if (sr == null)
@@ -128,6 +130,11 @@ public class Enemy : LivingEntity, IPoolableComponent
 
             enemyAttack.enabled = false;
         }
+    }
+
+    public void SetElite()
+    {
+        isElite = true;
     }
 
     public void SetWeapon(Weapon weapon)
@@ -198,7 +205,7 @@ public class Enemy : LivingEntity, IPoolableComponent
             }
         }
         
-        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetDreopWeapon(weaponType).SetPosition(transform.position);
+        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetDreopWeapon(weaponType, isElite).SetPosition(transform.position);
 
         GameManager.Instance.stageHandler.amountEnemy--;
 
