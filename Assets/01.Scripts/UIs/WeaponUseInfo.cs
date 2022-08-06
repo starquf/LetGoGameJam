@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponUseInfo : MonoBehaviour, IPoolableComponent
 {
-    [SerializeField]
-    private Image weaponIcon;
+    public Vector2 spawnPos = new Vector2(50, 0);
     [SerializeField]
     private Text damagedAmountTxt;
     [SerializeField]
@@ -17,16 +16,16 @@ public class WeaponUseInfo : MonoBehaviour, IPoolableComponent
 
     }
 
-    public void SetUI(Sprite sprite, string damagedAmount, string usedBulletAmount)
+    public void SetUI(WeaponType weaponType, string damagedAmount, string usedBulletAmount)
     {
-        weaponIcon.sprite = sprite;
+        GameObject go = GameObjectPoolManager.Instance.GetGameObject("Prefabs/UI/WeaponIcons/WeaponIcon_" + weaponType.ToString(), transform);
+        go.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         damagedAmountTxt.text = damagedAmount;
         usedBulletAmountTxt.text = usedBulletAmount;
     }
 
     public void Spawned()
     {
-        weaponIcon.sprite = null;
         damagedAmountTxt.text = "";
         usedBulletAmountTxt.text = "";
     }

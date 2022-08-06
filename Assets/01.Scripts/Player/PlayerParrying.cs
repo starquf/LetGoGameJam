@@ -89,7 +89,8 @@ public class PlayerParrying : MonoBehaviour
             Vector2 moveDir = bullet.rb.velocity.normalized;
 
             bullet.ChangeDir(-moveDir);
-            bullet.SetOwner(false, WeaponType.M1911);
+            bullet.SetOwner(false, WeaponType.Parrying);
+            GameManager.Instance.addUsedWeaponInfo(WeaponType.Parrying, 1);
         }
         else
         {

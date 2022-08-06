@@ -120,7 +120,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public StageHandler stageHandler;
     [HideInInspector]
-    internal ResultHandler resultHandler;
+    public ResultHandler resultHandler;
+    [HideInInspector]
+    public WeaponSpriteContainer weaponSpriteContainer;
 
     #endregion
 
@@ -143,13 +145,17 @@ public class GameManager : MonoBehaviour
     public void addUsedWeaponDamageInfo(WeaponType weaponType, float addDamage)
     {
         if (!useWeaponInfoDic.ContainsKey(weaponType))
-            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { useCount = 0, damageAmount = 0 });
+        {
+            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { weaponSpr = weaponSpriteContainer.weaponSpriteDic[weaponType], useCount = 0, damageAmount = 0 });
+        }
         useWeaponInfoDic[weaponType].damageAmount += addDamage;
     }
     public void addUsedWeaponInfo(WeaponType weaponType, int useGunCount)
     {
         if (!useWeaponInfoDic.ContainsKey(weaponType))
-            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { useCount = 0, damageAmount = 0 });
+        {
+            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { weaponSpr = weaponSpriteContainer.weaponSpriteDic[weaponType], useCount = 0, damageAmount = 0 });
+        }
         useWeaponInfoDic[weaponType].useCount += useGunCount;
     }
 

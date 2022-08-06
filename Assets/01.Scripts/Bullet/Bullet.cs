@@ -248,6 +248,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         PlayHitEffect(hitEntity);
 
         hitEntity.GetDamage(bulletDamage);
+        if(!isEnemyBullet)
+            GameManager.Instance.addUsedWeaponDamageInfo(shotWeaponType, bulletDamage);
         hitEntity.KnockBack(bulletDir, bulletData.knockBackPower, bulletData.knockBackTime);
 
         if (bulletIron <= 0)
