@@ -7,12 +7,9 @@ public class Effect : MonoBehaviour, IPoolableComponent
 {
     protected ParticleSystem _particleSystem;
 
-    protected Vector2 defaultScale;
-
     protected virtual void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
-        defaultScale = transform.localScale;
     }
 
     public void SetPosition(Vector2 pos)
@@ -27,9 +24,6 @@ public class Effect : MonoBehaviour, IPoolableComponent
 
     public virtual void Play()
     {
-        if(_particleSystem == null)
-            _particleSystem = GetComponent<ParticleSystem>();
-
         _particleSystem.Play();
     }
 
@@ -41,7 +35,6 @@ public class Effect : MonoBehaviour, IPoolableComponent
     public void Spawned()
     {
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
-        transform.localScale = defaultScale;
     }
 
     public void SetDisable()
@@ -52,10 +45,5 @@ public class Effect : MonoBehaviour, IPoolableComponent
     protected virtual void OnParticleSystemStopped()
     {
         SetDisable();
-    }
-
-    internal void SetScalse(float s)
-    {
-        transform.localScale *= s;
     }
 }

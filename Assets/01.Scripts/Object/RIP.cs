@@ -47,7 +47,6 @@ public class RIP : LivingEntity, IPoolableComponent
 
         Effect ripDustEffect = GameObjectPoolManager.Instance.GetGameObject(DUST_PATH, null).GetComponent<Effect>();
         ripDustEffect.SetPosition(pos);
-        ripDustEffect.SetScalse(2f);
         ripDustEffect.Play();
 
         if (seq != null)
