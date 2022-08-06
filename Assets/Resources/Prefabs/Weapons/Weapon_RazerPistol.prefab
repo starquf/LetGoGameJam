@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFXName: LazerPistolShot
   damage: 2
-  maxBullet: 21
+  maxBullet: 14
   bulletIron: 0
   isInfiniteBullet: 0
   fireRate: 0.2
