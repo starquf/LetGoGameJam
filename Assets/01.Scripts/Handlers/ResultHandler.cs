@@ -26,7 +26,7 @@ public class ResultHandler : Handler
 
     public override void OnAwake()
     {
-
+        GameManager.Instance.resultHandler = this;
     }
 
     private void OnRestartButton()
@@ -49,5 +49,12 @@ public class ResultHandler : Handler
         scoreCountTxt.text = GameManager.Instance.Score.ToString();
         levelTxt.text = GameManager.Instance.playerTrm.GetComponentInChildren<PlayerUpgrade>().CurrentLevel.ToString();
         timeTxt.text = (Time.time - GameManager.Instance.StartTime).ToString();
+        killEnemyCountTxt.text = GameManager.Instance.KillEnemyCount.ToString();
+
+        foreach (var item in GameManager.Instance.UseWeaponInfoDic)
+        {
+            WeaponUseInfo weaponUseInfo = GameObjectPoolManager.Instance.GetGameObject(WeaponUseInfoPrefabPath, contentTrm).GetComponent<WeaponUseInfo>();
+            weaponUseInfo.SetUI(item.Value.weaponSpr, item.Value.damageAmount.ToString(), item.Value.useCount.ToString());
+        }
     }
 }

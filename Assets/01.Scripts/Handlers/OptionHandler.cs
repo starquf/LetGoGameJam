@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionHandler : Handler
@@ -22,6 +23,10 @@ public class OptionHandler : Handler
     private Slider gunSlider;
     [SerializeField]
     private Button exitButton;
+    [SerializeField]
+    private Button closeButton;
+
+    public GameObject background;
 
 
     private float time;
@@ -122,12 +127,17 @@ public class OptionHandler : Handler
         {
             if(isIngame)
             {
-                //타이틀로
+                SceneManager.LoadScene("Title");
             }
             else
             {
                 Application.Quit();
             }
+        });
+
+        closeButton.onClick.AddListener(() =>
+        {
+            background.SetActive(false);
         });
 
 
