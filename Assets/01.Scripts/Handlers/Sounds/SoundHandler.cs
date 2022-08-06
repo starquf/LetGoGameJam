@@ -58,7 +58,7 @@ public class SoundHandler : Handler
 
     public override void OnStart()
     {
-        
+        Play("InGameBGM");
     }
 
     private void CreateAudioSource()

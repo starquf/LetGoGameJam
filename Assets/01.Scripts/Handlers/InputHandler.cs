@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputHandler : Handler
 {
+    public bool isTitle = false;
 
     private OptionHandler optionHandler;
     private InGameUIHandler uIHandler;
@@ -16,53 +17,68 @@ public class InputHandler : Handler
 
     public override void OnStart()
     {
-        optionHandler = GameManager.Instance.optionHandler;
-        uIHandler = GameManager.Instance.inGameUIHandler;
-        popUpInfoHandler = GameManager.Instance.popUpInfoHandler;
-        minimap = GameObject.Find("MiniMap");
-        optionHandler.gameObject.SetActive(false);
-        minimap.SetActive(false);
-        popUpInfoHandler.gameObject.SetActive(false);
+        if(isTitle)
+        {
+
+        }
+        else
+        {
+            optionHandler = GameManager.Instance.optionHandler;
+            uIHandler = GameManager.Instance.inGameUIHandler;
+            popUpInfoHandler = GameManager.Instance.popUpInfoHandler;
+            minimap = GameObject.Find("MiniMap");
+            optionHandler.gameObject.SetActive(false);
+            minimap.SetActive(false);
+            popUpInfoHandler.gameObject.SetActive(false);
+        }
     }
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(isTitle)
         {
-            /*if(popUpInfoHandler.gameObject.activeInHierarchy)
+
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                /*if(popUpInfoHandler.gameObject.activeInHierarchy)
+                {
+                    popUpInfoHandler.gameObject.SetActive(false);
+                }
+                else */
+                if (optionHandler.gameObject.activeInHierarchy)
+                {
+                    optionHandler.gameObject.SetActive(false);
+                }
+                else
+                {
+                    optionHandler.gameObject.SetActive(true);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                if (minimap.activeInHierarchy)
+                {
+                    minimap.SetActive(false);
+                }
+                else
+                {
+                    minimap.SetActive(true);
+                }
+            }
+
+            if (Input.GetKey(KeyCode.Tab))
+            {
+                popUpInfoHandler.gameObject.SetActive(true);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Tab))
             {
                 popUpInfoHandler.gameObject.SetActive(false);
             }
-            else */if(optionHandler.gameObject.activeInHierarchy)
-            {
-                optionHandler.gameObject.SetActive(false);
-            }
-            else
-            {
-                optionHandler.gameObject.SetActive(true);
-            }
-        }
-
-        if(Input.GetKeyDown(KeyCode.M))
-        {
-            if(minimap.activeInHierarchy)
-            {
-                minimap.SetActive(false);
-            }
-            else
-            {
-                minimap.SetActive(true);
-            }
-        }
-
-        if(Input.GetKey(KeyCode.Tab))
-        {
-            popUpInfoHandler.gameObject.SetActive(true);
-        }
-
-        if(Input.GetKeyUp(KeyCode.Tab))
-        {
-            popUpInfoHandler.gameObject.SetActive(false);
         }
     }
 }

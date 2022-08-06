@@ -7,6 +7,7 @@ using DG.Tweening;
 public abstract class Weapon : MonoBehaviour, IPoolableComponent
 {
     private readonly string MUZZLE_EFFECT_PATH = "Prefabs/Effect/MuzzleEffect";
+    private readonly string CATRIDGE_EFFECT_PATH = "Prefabs/Effect/CatridgeEffect";
 
     public string shotSFXName;
 
@@ -29,6 +30,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     public WeaponType weaponType;
 
     public Transform shootPos;
+    public Transform catridgeTrm;
 
     public BulletSO bulletData;
 
@@ -125,6 +127,21 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         }
 
         muzzleCor = StartCoroutine(MuzzleFlashEffect());
+    }
+
+    protected void PlayCatridgeEffect()
+    {
+        Effect effect = GameObjectPoolManager.Instance.GetGameObject(CATRIDGE_EFFECT_PATH, null).GetComponent<Effect>();
+        effect.SetPosition(catridgeTrm.position);
+        if(sr.flipY)
+        {
+            effect.SetRotation(new Vector3(0f, 0f, GameManager.Instance.playerTrm.Find("WeaponHolder").transform.rotation.eulerAngles.z - 180));
+        }
+        else
+        {
+            effect.SetRotation(new Vector3(0f, 0f, GameManager.Instance.playerTrm.Find("WeaponHolder").transform.rotation.eulerAngles.z));
+        }
+        effect.Play();
     }
 
     protected virtual void Update()

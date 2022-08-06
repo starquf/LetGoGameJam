@@ -283,6 +283,8 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         if ((!isEnemyBullet && (collision.gameObject.layer == LayerMask.NameToLayer("RIP") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))))// || (isEnemyBullet &&collision.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             LivingEntity livingEntity = collision.GetComponent<LivingEntity>();
+
+            print("적 떄리는 중!!");
             Hit(livingEntity);
         }
 

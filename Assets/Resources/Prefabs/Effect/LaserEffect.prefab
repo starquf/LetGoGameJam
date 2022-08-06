@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7776691447310072686}
   - component: {fileID: 7776691447310072687}
   - component: {fileID: 7776691447310072680}
-  - component: {fileID: 8847623824106215899}
+  - component: {fileID: -5751534735983771246}
   m_Layer: 0
   m_Name: LaserEffect
   m_TagString: Untagged
@@ -4805,7 +4805,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8847623824106215899
+--- !u!114 &-5751534735983771246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

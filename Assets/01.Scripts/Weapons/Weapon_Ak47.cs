@@ -19,7 +19,7 @@ public class Weapon_Ak47 : Weapon
 
         if (isPlayer)
         {
-            coll += GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate / 2f;
+            coll += coll * GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate;
         }
 
         bullet.ChangeDir(shootDir.normalized);
@@ -34,6 +34,7 @@ public class Weapon_Ak47 : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayCatridgeEffect();
         PlayBounceEffect();
     }
 }

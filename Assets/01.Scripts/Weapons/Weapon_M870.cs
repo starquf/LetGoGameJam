@@ -13,7 +13,7 @@ public class Weapon_M870 : Weapon
 
         if (isPlayer)
         {
-            a += GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate / 2f;
+            a += a * GameManager.Instance.playerTrm.GetComponent<PlayerStat>().collectionRate;
         }
 
         if (isPlayer)
@@ -51,6 +51,7 @@ public class Weapon_M870 : Weapon
         GameManager.Instance.soundHandler.Play(shotSFXName);
 
         PlayMuzzleEffect();
+        PlayCatridgeEffect();
         PlayBounceEffect();
     }
 }

@@ -26,8 +26,9 @@ public class RIP : LivingEntity, IPoolableComponent
 
     private bool hasEliteWeapon = false;
     private Vector2 defaultScale;
-    private void Awake()
+    protected override void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
         defaultScale = transform.localScale;
