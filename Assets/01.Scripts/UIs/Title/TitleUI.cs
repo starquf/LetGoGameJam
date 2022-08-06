@@ -19,6 +19,11 @@ public class TitleUI : MonoBehaviour
     [SerializeField]
     private GameObject option;
 
+    [SerializeField]
+    private GameObject cradits;
+
+
+
     public void OnEnable()
     {
         bg.DOFade(.5f, 1f);
@@ -41,6 +46,6 @@ public class TitleUI : MonoBehaviour
 
     public void StartCradit()
     {
-
+        cradits.SetActive(true);
     }
 }
