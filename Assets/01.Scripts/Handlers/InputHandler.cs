@@ -10,6 +10,8 @@ public class InputHandler : Handler
     private InGameUIHandler uIHandler;
     private PopUpInfoHandler popUpInfoHandler;
     private GameObject minimap;
+    private ResultHandler resultHandler;
+    private PlayerInput playerInput;
 
     public override void OnAwake()
     {
@@ -23,10 +25,13 @@ public class InputHandler : Handler
         }
         else
         {
+            resultHandler = GameManager.Instance.resultHandler;
             optionHandler = GameManager.Instance.optionHandler;
             uIHandler = GameManager.Instance.inGameUIHandler;
             popUpInfoHandler = GameManager.Instance.popUpInfoHandler;
+            playerInput = GameManager.Instance.playerTrm.GetComponent<PlayerInput>();
             minimap = GameObject.Find("MiniMap");
+            resultHandler.gameObject.SetActive(false);
             optionHandler.gameObject.SetActive(false);
             minimap.SetActive(false);
             popUpInfoHandler.gameObject.SetActive(false);
@@ -78,6 +83,12 @@ public class InputHandler : Handler
             if (Input.GetKeyUp(KeyCode.Tab))
             {
                 popUpInfoHandler.gameObject.SetActive(false);
+            }
+
+            if(GameManager.Instance.playerTrm.GetComponent<PlayerInput>().isDie)
+            {
+                resultHandler.SetUI();
+                resultHandler.gameObject.SetActive(true);
             }
         }
     }
