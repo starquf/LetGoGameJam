@@ -89,7 +89,7 @@ public class PlayerParrying : MonoBehaviour
             Vector2 moveDir = bullet.rb.velocity.normalized;
 
             bullet.ChangeDir(-moveDir);
-            bullet.SetOwner(false);
+            bullet.SetOwner(false, WeaponType.M1911);
         }
         else
         {

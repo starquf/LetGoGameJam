@@ -29,8 +29,9 @@ public class Bullet_BlueArchive : Bullet
     }
 
 
-    public override void SetOwner(bool isEnemy)
+    public override void SetOwner(bool isEnemy, WeaponType weaponType)
     {
+        shotWeaponType = weaponType;
         isEnemyBullet = isEnemy;
         curSpeed = isEnemyBullet ? curSpeed * 0.5f : curSpeed;
         ChangeState(BulletState.MoveForward);

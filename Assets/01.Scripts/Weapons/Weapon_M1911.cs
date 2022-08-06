@@ -25,7 +25,7 @@ public class Weapon_M1911 : Weapon
         bullet.ChangeDir(shootDir.normalized);
         bullet.RotateAngle(Random.Range(-coll, coll));
         bullet.ChangeSpeed(Random.Range(13f, 15f));
-        bullet.SetOwner(!isPlayer);
+        bullet.SetOwner(!isPlayer, weaponType);
         //print($"총알 발싸 히히히히히 데미지 : {damage} ");
         bullet.AddBulletIron(bulletIron);
 
