@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af024d0b26330d4d8453e80545d3764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavePlusEnemyAmount: 2
-  defaultwaveEnemyAmount: 3
+  wavePlusEnemyAmount: 1
+  defaultwaveEnemyAmount: 2
   waveTimer: 10
   spawnWaitTimerRange: {x: 0.1, y: 0.3}
   eliteWaves:
