@@ -34,6 +34,8 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public List<WeaponInfo> canHaveWeaponList = new List<WeaponInfo>();
     public float dropGunPersent = 25f;
+    public float dropHearPersent = 3f;
+    public float dropAmmoPersent = 10f;
 
     public EnemyAttack enemyAttack;
     [HideInInspector] public Transform playerTrm;
@@ -169,6 +171,21 @@ public class Enemy : LivingEntity, IPoolableComponent
                 expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
             }
         }
+
+        if (dropHearPersent > Random.Range(0, 100))
+        {
+            Heart h = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Object/Heart", null).GetComponent<Heart>();
+            h.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+            h.SetDestoryTimer(30f);
+        }
+
+        if (dropAmmoPersent > Random.Range(0, 100))
+        {
+            Ammo ammo = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Object/Ammo", null).GetComponent<Ammo>();
+            ammo.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+            ammo.SetDestoryTimer(30f);
+        }
+
         WeaponType weaponType = WeaponType.M1911;
         if (enemyAttackType.Equals(enemyAttackType.RANGED))
         {

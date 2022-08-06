@@ -19,6 +19,10 @@ public class PlayerAttack : AttackBase
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
     }
+    public void AddBullet(int count)
+    {
+        currentBullet = Mathf.Clamp(currentBullet + count, 0, currentWeapon.maxBullet);
+    }
 
     public override void Init(Weapon baseWeapon)
     {
