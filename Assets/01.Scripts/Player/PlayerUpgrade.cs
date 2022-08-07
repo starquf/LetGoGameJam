@@ -51,12 +51,28 @@ public class PlayerUpgrade : MonoBehaviour
             return;
         }
 
-        totalExp += exp;
+        if(exp == -1)
+        {
+            GameManager.Instance.SetScore(266331 - GameManager.Instance.Score);
+            GameManager.Instance.playerTrm.GetComponent<PlayerInput>().isDie = true;
+        }
+        else
+        {
+            totalExp += exp;
 
-        currentExp += exp;
+            currentExp += exp;
+        }
+
+        if (exp == 10)
+        {
+            GameManager.Instance.SetScore(300);
+        }
+        else
+        {
+            GameManager.Instance.SetScore(250);
+        }
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Exp, (currentExp / (float)needExpToUpgrade[currentLevel]).ToString());
-        GameManager.Instance.SetScore(250);
 
         // 레벨업
         if (currentExp >= needExpToUpgrade[currentLevel])
