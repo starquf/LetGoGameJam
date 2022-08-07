@@ -10,9 +10,18 @@ public class Boss : LivingEntity, IPoolableComponent
     public float weaponDropRange;
     public float weaponDropCorrectionY;
 
+    private void Start()
+    {
+        isDie = false;
+
+        hp = maxHp;
+
+        SetHPUI();
+    }
+
     protected override void Die()
     {
-        base.Die();
+        SetDisable();
     }
 
     public override void SetHPUI()
@@ -88,7 +97,7 @@ public class Boss : LivingEntity, IPoolableComponent
         Weapon wp = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Weapons/Weapon_" + weapon.ToString(), null).GetComponent<Weapon>();
         GameManager.Instance.allItemListAdd(wp);
 
-        wp.transform.position = new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad) * weaponDropRange, Mathf.Sin(degree * Mathf.Deg2Rad) * weaponDropRange + weaponDropCorrectionY);
+        wp.transform.position = new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad) * weaponDropRange + transform.position.x, Mathf.Sin(degree * Mathf.Deg2Rad) * weaponDropRange + transform.position.y + weaponDropCorrectionY);
         wp.SetDestoryTimer(30);
         wp.isGround = true;
 
@@ -97,14 +106,19 @@ public class Boss : LivingEntity, IPoolableComponent
 
     public void Spawned()
     {
+        isDie = false;
+
+        hp = maxHp;
+
+        SetHPUI();
+
         GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce, sr);
         GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang, sr);
     }
 
     public void SetDisable()
     {
-        ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_ELITE", null).GetComponent<ExpBall>();
-        expBall.expPoint = -1;
+        ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_BOSS", null).GetComponent<ExpBall>();
         expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
 
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
