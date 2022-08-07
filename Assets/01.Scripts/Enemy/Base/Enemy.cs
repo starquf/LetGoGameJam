@@ -48,6 +48,12 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public void Despawned()
     {
+        if (enemyAttackType.Equals(enemyAttackType.RANGED))
+        {
+            GameManager.Instance.stageHandler.amountWeaponType[weapon.weaponType]--;
+            GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+            weapon = null;
+        }
         enemyAI.SetActive(false);
     }
     public override void Init()
@@ -64,7 +70,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         Init();
         playerTrm = GameManager.Instance.playerTrm;
-        ShowDialog(0.6f);
+     
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
         /*if (sr == null)
@@ -132,6 +138,13 @@ public class Enemy : LivingEntity, IPoolableComponent
         }
     }
 
+    public override void GetDamage(float damage)
+    {
+        base.GetDamage(damage);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyHit, sr);
+
+    }
+
     public void SetElite()
     {
         isElite = true;
@@ -161,6 +174,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     {
         ColorEffect effect = GameObjectPoolManager.Instance.GetGameObject(DEAD_EFFECT_PATH, null).GetComponent<ColorEffect>();
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Killcount, "1");
+        GameManager.Instance.AddKillEnemyCount(1);
 
         effect.SetPosition(transform.position);
         effect.SetRotation(new Vector3(-90f, 0, 0));
@@ -204,16 +218,21 @@ public class Enemy : LivingEntity, IPoolableComponent
                 }
             }
         }
-        
-        GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>().SetDreopWeapon(weaponType, isElite).SetPosition(transform.position);
 
-        GameManager.Instance.stageHandler.amountEnemy--;
+        RIP r = GameObjectPoolManager.Instance.GetGameObject(RIP_PREFAB_PATH, null).GetComponent<RIP>();
+        r.SetDreopWeapon(weaponType, isElite).SetPosition(transform.position);
 
-        if (enemyAttackType.Equals(enemyAttackType.RANGED))
+        if (isElite)
         {
-            GameManager.Instance.stageHandler.amountWeaponType[weapon.weaponType]--;
-            GameObjectPoolManager.Instance.UnusedGameObject(weapon.gameObject);
+            GameManager.Instance.stageHandler.amountEnemy -= 10;
         }
+        else
+        {
+            GameManager.Instance.stageHandler.amountEnemy--;
+        }
+
+        GameManager.Instance.stageHandler.allEnemyList.Remove(this);
+
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
     protected override void Die()

@@ -42,7 +42,8 @@ public class Player : LivingEntity
         heartInfo.maxExtraHeartCnt = 2;
         heartInfo.extraHeart = 0;
         base.Init();
-        ShowDialog(1f);
+        //ShowDialog(1f);
+        GetComponent<Collider2D>().enabled = true;
     }
 
     private void Update()
@@ -143,6 +144,7 @@ public class Player : LivingEntity
         //gameObject.SetActive(false);
         GameManager.Instance.soundHandler.Play("PlayerDead");
         StartCoroutine(DieRoutine());
+        GetComponent<Collider2D>().enabled = false;
 
         playerInput.isDie = true;
     }
@@ -182,6 +184,7 @@ public class Player : LivingEntity
             heart.SetDisable();
 
             AddHP();
+            GameManager.Instance.soundHandler.Play("Heal");
 
             GameManager.Instance.soundHandler.Play("GetExp");
         }

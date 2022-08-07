@@ -41,6 +41,8 @@ public class UpgradeUIHandler : MonoBehaviour
 
         ShowPanel(true);
         ShowSelectPanel(choices, onEndUpgrade);
+
+        GameManager.Instance.soundHandler.Play("SelectMeritBGM");
     }
 
     private void ShowSelectPanel(List<ChoiceSet> choices, Action onEndUpgrade)
@@ -76,6 +78,9 @@ public class UpgradeUIHandler : MonoBehaviour
                         GameManager.Instance.timeScale = 1f;
 
                         ShowPanel(false);
+
+                        GameManager.Instance.soundHandler.Play("ChoiceButtonClick");
+                        GameManager.Instance.soundHandler.Play("InGameBGM");
 
                         onEndUpgrade?.Invoke();
                     });

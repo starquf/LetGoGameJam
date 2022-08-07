@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using DG.Tweening;
 
 [System.Serializable]
 public class UsedWeaponInfo
@@ -94,10 +95,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Transform mapMax;
 
+    private List<IPoolableComponent> allItemList = new List<IPoolableComponent>();
+
     // 어웨이크 대신 이거 쓰셈
     private void OnAwake()
     {
         useWeaponInfoDic = new Dictionary<WeaponType, UsedWeaponInfo>();
+        allItemList = new List<IPoolableComponent>();
     }
 
     // 여기에는 다른곳에서 참조해야되는 핸들러들 넣기
@@ -120,15 +124,51 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public StageHandler stageHandler;
     [HideInInspector]
-    internal ResultHandler resultHandler;
+    public ResultHandler resultHandler;
+    [HideInInspector]
+    public WeaponSpriteContainer weaponSpriteContainer;
 
     #endregion
+    public void DistroyAll()
+    {
+        DisableAllItem();
+        stageHandler.AllDieEnemy();
+    }
+
+    public void DisableAllItem()
+    {
+        for (int i = allItemList.Count-1; i >=0 ; i--)
+        {
+            allItemList[i].SetDisable();
+        }
+        allItemList.Clear();
+    }
 
     // 씬 이동 시 반드시 해야하는 거
     public void ResetOnSceneChanged()
     {
+        Debug.Log("Reset");
         ResetEvents();
+        killEnemyCount = 0;
+        score = 0;
+        startTime = 0;
     }
+
+    public void allItemListAdd(IPoolableComponent poolable)
+    {
+        if (!allItemList.Contains(poolable))
+        {
+            allItemList.Add(poolable);
+        }
+    }
+    public void allItemListRemove(IPoolableComponent poolable)
+    {
+        if(allItemList.Contains(poolable))
+        {
+            allItemList.Remove(poolable);
+        }
+    }
+
 
     public void SetScore(int _score)
     {
@@ -140,21 +180,30 @@ public class GameManager : MonoBehaviour
     {
         startTime = time;
     }
+    public void AddKillEnemyCount(int count)
+    {
+        killEnemyCount += count;
+    }
     public void addUsedWeaponDamageInfo(WeaponType weaponType, float addDamage)
     {
         if (!useWeaponInfoDic.ContainsKey(weaponType))
-            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { useCount = 0, damageAmount = 0 });
+        {
+            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { weaponSpr = weaponSpriteContainer.weaponSpriteDic[weaponType], useCount = 0, damageAmount = 0 });
+        }
         useWeaponInfoDic[weaponType].damageAmount += addDamage;
     }
     public void addUsedWeaponInfo(WeaponType weaponType, int useGunCount)
     {
         if (!useWeaponInfoDic.ContainsKey(weaponType))
-            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { useCount = 0, damageAmount = 0 });
+        {
+            useWeaponInfoDic.Add(weaponType, new UsedWeaponInfo() { weaponSpr = weaponSpriteContainer.weaponSpriteDic[weaponType], useCount = 0, damageAmount = 0 });
+        }
         useWeaponInfoDic[weaponType].useCount += useGunCount;
     }
 
     private void ResetEvents()
     {
         EventManager<string>.RemoveAllEvents();
+        DOTween.KillAll();
     }
 }

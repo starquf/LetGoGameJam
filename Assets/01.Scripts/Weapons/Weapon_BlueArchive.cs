@@ -39,6 +39,30 @@ public class Weapon_BlueArchive : Weapon
                 afterEffectObj = null;
             }
         }
+        else
+        {
+            if (bullet != null)
+            {
+                print(1);
+                bullet.SetDisable();
+                bullet = null;
+
+            }
+            if (effectObj != null)
+            {
+                print(2);
+                GameObjectPoolManager.Instance.UnusedGameObject(effectObj);
+                effectObj.SetActive(false);
+                effectObj = null;
+            }
+            if (afterEffectObj != null)
+            {
+                //print(4);
+                GameObjectPoolManager.Instance.UnusedGameObject(afterEffectObj);
+                afterEffectObj.SetActive(false);
+                afterEffectObj = null;
+            }
+        }
     }
 
     protected override void Update()
@@ -113,7 +137,14 @@ public class Weapon_BlueArchive : Weapon
 
             bullet.SetOwner(!isPlayer, weaponType);
             bullet.SetTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x / 2);
+            if (isPlayer)
+            {
+                bullet.SetRenderer(shootPos.position, transform.lossyScale.x / 2);
+            }
+            else
+            {
+                bullet.SetRenderer(shootPos.position, transform.lossyScale.x / transform.localScale.x / 2);
+            }
 
             if (effectObj == null)
             {
@@ -129,7 +160,7 @@ public class Weapon_BlueArchive : Weapon
                 afterEffectObj.GetComponent<ParticleSystem>().Play();
             }
 
-            effectObj.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+            afterEffectObj.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
 
 
@@ -159,6 +190,13 @@ public class Weapon_BlueArchive : Weapon
 
             effectObj.transform.position = transform.position+ shootDir;
 
+            if (afterEffectObj == null)
+            {
+                afterEffectObj = GameObjectPoolManager.Instance.GetGameObject(AFTER_EFFECT_PATH, null);
+                afterEffectObj.GetComponent<ParticleSystem>().Play();
+            }
+
+            afterEffectObj.transform.position = transform.position + shootDir;
 
 
             GameManager.Instance.soundHandler.Play(shotSFXName);

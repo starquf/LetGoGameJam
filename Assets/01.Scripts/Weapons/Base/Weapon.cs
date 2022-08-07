@@ -59,7 +59,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     {
         defaultScale = transform.localScale;
         defaultlossyScale = transform.lossyScale;
-       // sr = GetComponent<SpriteRenderer>();
+        // sr = GetComponent<SpriteRenderer>();
 
         muzzleFlashEffect.SetActive(false);
 
@@ -89,12 +89,13 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     public void SetDisable()
     {
+        GameManager.Instance.allItemListRemove(this);
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 
     public void SetSwichAnim(bool enable)
     {
-        if(enable)
+        if (enable)
         {
             if (switchEffect != null)
                 return;
@@ -104,7 +105,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         }
         else
         {
-            if(switchEffect != null)
+            if (switchEffect != null)
                 switchEffect.SetDisable();
             switchEffect = null;
         }
@@ -112,7 +113,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected void PlayBounceEffect()
     {
-        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal,sr,isPlayer);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal, sr, isPlayer);
     }
 
     protected void PlayMuzzleEffect()
@@ -133,7 +134,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
     {
         Effect effect = GameObjectPoolManager.Instance.GetGameObject(CATRIDGE_EFFECT_PATH, null).GetComponent<Effect>();
         effect.SetPosition(catridgeTrm.position);
-        if(sr.flipY)
+        if (sr.flipY)
         {
             effect.SetRotation(new Vector3(0f, 0f, GameManager.Instance.playerTrm.Find("WeaponHolder").transform.rotation.eulerAngles.z - 180));
         }
@@ -141,12 +142,13 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
         {
             effect.SetRotation(new Vector3(0f, 0f, GameManager.Instance.playerTrm.Find("WeaponHolder").transform.rotation.eulerAngles.z));
         }
+
         effect.Play();
     }
 
     protected virtual void Update()
     {
-        if (GameManager.Instance.timeScale <= 0f) 
+        if (GameManager.Instance.timeScale <= 0f)
             return;
 
         if (isGround)

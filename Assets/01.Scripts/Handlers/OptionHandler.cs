@@ -33,6 +33,9 @@ public class OptionHandler : Handler
 
     private bool isIngame = true;
 
+    [SerializeField]
+    [Header("초기 볼륨 조절")]
+    private float minusVolume;
 
     public override void OnAwake()
     {
@@ -127,7 +130,10 @@ public class OptionHandler : Handler
         {
             if(isIngame)
             {
+
+                GameManager.Instance.ResetOnSceneChanged();
                 SceneManager.LoadScene("Title");
+                Time.timeScale = 1f;
             }
             else
             {
@@ -138,6 +144,7 @@ public class OptionHandler : Handler
         closeButton.onClick.AddListener(() =>
         {
             background.SetActive(false);
+            Time.timeScale = 1f;
         });
 
 
@@ -153,12 +160,14 @@ public class OptionHandler : Handler
 
         Application.targetFrameRate = 60;
 
-        masterSoundSlider.value = -20f;
-        bgmSlider.value = -20f;
-        sfxSlider.value = -20f;
-        GameManager.Instance.soundHandler.VolumeControl(AudioType.MASTER, -20f);
-        GameManager.Instance.soundHandler.VolumeControl(AudioType.BGM, -20f);
-        GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, -20f);
+        masterSoundSlider.value = minusVolume;
+        bgmSlider.value = minusVolume;
+        sfxSlider.value = minusVolume;
+        gunSlider.value = minusVolume;
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.MASTER, minusVolume);
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.BGM, minusVolume);
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.SFX, minusVolume);
+        GameManager.Instance.soundHandler.VolumeControl(AudioType.GUN, minusVolume);
     }
 
 

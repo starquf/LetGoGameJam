@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a53378a3921bd409c8c5564358532d, type: 3}
   m_Name: BulletData_M1911
   m_EditorClassIdentifier: 
-  damage: 2
   shakeAmount: 6
-  shakeTime: 0.6
+  shakeTime: 0.3
   knockBackPower: 5
   knockBackTime: 0.1

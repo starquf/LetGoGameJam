@@ -16,18 +16,26 @@ public class PlayerAttack : AttackBase
     private readonly string USED_EFFECT = "Prefabs/Effect/UsedGun";
 
     public bool isIllusion = false;
-    public int maxillusionCount = 60;
+    public int maxillusionCount = 25;
 
     private int illusionCount = 0;
 
     public Image illusionIcon;
     public Text illusionText;
 
+    public int hallucinationPercent = 0;
+
     private void Start()
     {
         EventManager<string>.AddEvent("OnUpgrade", SetPlayerStat);
 
+        hallucinationPercent = 0;
         illusionIcon.gameObject.SetActive(false);
+    }
+
+    public int GetHallucination()
+    {
+        return hallucinationPercent;
     }
 
     public void AddBullet(int count)
@@ -45,6 +53,7 @@ public class PlayerAttack : AttackBase
         currentBullet = Mathf.RoundToInt(baseWeapon.maxBullet * (1f + playerStat.bulletCapacity));
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Weapon, baseWeapon.weaponType.ToString());
 
         SetPlayerStat();
     }
@@ -76,6 +85,7 @@ public class PlayerAttack : AttackBase
         weapon.sr.GetComponent<SpriteOutline>().outlineSize = 0;
 
         GameManager.Instance.inGameUIHandler.SendData(UIDataType.Ammo, currentBullet.ToString());
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Weapon, weapon.weaponType.ToString());
 
         SetPlayerStat();
     }
@@ -97,7 +107,7 @@ public class PlayerAttack : AttackBase
         currentWeapon.bulletIron = playerStat.bulletIronclad;
 
         float curRate = currentWeapon.fireRate;
-        print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
+        //print(curRate + ", " + (curRate - ((playerStat.atkRate * curRate) / 100)));
         weaponShootWait = new WaitForSeconds(curRate - ((playerStat.atkRate * curRate) / 100));
     }
 
@@ -181,7 +191,7 @@ public class PlayerAttack : AttackBase
 
                     Vector3 dir = playerInput.mousePos - transform.position;
 
-                    //print("원스");
+                    GameManager.Instance.addUsedWeaponInfo(currentWeapon.weaponType, 1);
                     currentWeapon.Shoot(dir);
 
                     if (!currentWeapon.isNoShakeWeapon)

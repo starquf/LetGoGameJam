@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd65b8eae4f00b4db645645bd4d72f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addAmmoPersent: 5
+  addAmmoPersent: 50
   isFollowPlayer: 0
   followSpeed: 10
 --- !u!114 &8782248322778311529

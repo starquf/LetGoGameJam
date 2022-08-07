@@ -73,9 +73,10 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
-    protected void ShowDialog(float size)
+    public void ShowDialog(float size,int dialogIndex)
     {
-        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Dialog, JsonUtility.ToJson(new DialogInfo() { teller = transform, text = dialogData.dialogList[Random.Range(0, dialogData.dialogList.Count - 1)], size = size }));
+        string json = JsonUtility.ToJson(new DialogInfo() { teller = transform, text = dialogData.dialogList[dialogIndex], size = size });
+        GameManager.Instance.inGameUIHandler.SendData(UIDataType.Dialog, json);
     }
 
     public virtual void UpgradeHP(int value) //레벨업 보상에 쓸예정
@@ -165,5 +166,10 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         hp = 0;
         isDie = true;
         StopAllCoroutines();
+    }
+
+    public virtual void MoveRandomPos()
+    {
+        transform.position = new Vector2(Random.Range(GameManager.Instance.mapMin.position.x, GameManager.Instance.mapMax.position.x), Random.Range(GameManager.Instance.mapMin.position.y, GameManager.Instance.mapMax.position.y));  
     }
 }

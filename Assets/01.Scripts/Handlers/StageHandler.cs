@@ -72,6 +72,7 @@ public class StageHandler : MonoBehaviour
     // 다음 생성될 위치를 이미지로 표시
     [SerializeField] private Transform nextWaveSpawnPositionTransform;
 
+    public List<Enemy> allEnemyList = new List<Enemy>();
 
     private void Awake()
     {
@@ -138,12 +139,13 @@ public class StageHandler : MonoBehaviour
                         nextEnemySpawnTimer = UnityEngine.Random.Range(spawnWaitTimerRange.x, spawnWaitTimerRange.y);
 
                         // 실제 적 생성 후 remainingEnemySpawnAmount 하나씩 감소
+                        SetRandomSpawnPos();
                         Enemy enemy = GetRandomEnemy();
+                        allEnemyList.Add(enemy);
                         enemy.transform.position = spawnPosition;
                         //Enemy.Create(spawnPosition + UtilClass.GetRandomDir() * UnityEngine.Random.Range(0f, 10f));
                         remainingEnemySpawnAmount--;
 
-                        SetRandomSpawnPos();
                         // 스폰 예정된 적을 모두 소진했다면 새로운 스폰위치를 랜덤으로 받고 다시 스폰 대기상태로...
                         if (remainingEnemySpawnAmount <= 0)
                         {
@@ -159,6 +161,15 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void AllDieEnemy()
+    {
+        for (int i = 0; i < allEnemyList.Count; i++)
+        {
+            GameObjectPoolManager.Instance.UnusedGameObject(allEnemyList[i].gameObject);
+        }
+        allEnemyList.Clear();
     }
 
     private int GetLimitIdxForPlayerLevel()
@@ -274,12 +285,8 @@ public class StageHandler : MonoBehaviour
     private void SpawnWave()
     {
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
-        if(waveNumber > 4 + eliteWaves.Count * 4)
-        {
-            remainingEnemySpawnAmount = eliteWaves[eliteWaves.Count - 1].resetWaveEnemyAcount;
-        }
-        remainingEnemySpawnAmount = defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber;     // 이런값들은 외부시트로 관리
-        print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
+        remainingEnemySpawnAmount = Mathf.Clamp(defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber, 1, 15);     // 이런값들은 외부시트로 관리
+        //print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");
 
         Tuple<enemyType, int> eliteInfo = CanSpawnElite();
 
@@ -287,11 +294,11 @@ public class StageHandler : MonoBehaviour
         {
             print("엘리트 출격");
             Enemy enemy = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Enemy/" + eliteInfo.Item1, transform).GetComponent<Enemy>();
+            allEnemyList.Add(enemy);
             enemy.SetElite();
             enemy.transform.position = spawnPosition;
 
-            amountEnemy += 5;
-
+            amountEnemy += 10;
             defaultwaveEnemyAmount = eliteWaves[eliteInfo.Item2].resetWaveEnemyAcount;
             eliteWaves[eliteInfo.Item2].isEnter = true;
             waveNumber = 0;
@@ -337,7 +344,7 @@ public class StageHandler : MonoBehaviour
             }
             else
             {
-                print("난 지능이 상승했다 히히");
+                //print("난 지능이 상승했다 히히");
             }
         }
 

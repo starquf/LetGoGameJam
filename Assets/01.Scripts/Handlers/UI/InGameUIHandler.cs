@@ -18,8 +18,8 @@ public class InGameUIHandler : Handler
     }
 
     public override void OnStart()
-    { 
-
+    {
+        GameManager.Instance.soundHandler.Play("InGameBGM");
     }
 
     public void SendData(UIDataType dataType, string data)

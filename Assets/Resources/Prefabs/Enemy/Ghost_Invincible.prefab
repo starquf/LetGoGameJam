@@ -170,7 +170,7 @@ MonoBehaviour:
   speed: 1.5
   attakMoveSpeed: 1
   dialogTrm: {fileID: 390370528572492825}
-  dialogData: {fileID: 11400000, guid: 066fa3c424ab95f47b541ea5b0d2de40, type: 2}
+  dialogData: {fileID: 11400000, guid: 40da26f46298c3a488f829100c0d91ee, type: 2}
   isKnockBack: 0
   isInvincible: 1
   maxHPForPlayerLevel: 010000000200000003000000
@@ -189,7 +189,7 @@ MonoBehaviour:
     dropPersent: 100
   dropGunPersent: 25
   dropHearPersent: 3
-  dropAmmoPersent: 10
+  dropAmmoPersent: 5
   enemyAttack: {fileID: 5323490665515464845}
   playerTrm: {fileID: 0}
   sr: {fileID: 2450300560294854405}

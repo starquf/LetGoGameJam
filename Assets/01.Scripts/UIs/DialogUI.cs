@@ -33,7 +33,7 @@ public class DialogUI : UIBase
 
     public override void SetData(string data)
     {
-        print(data);
+        //print(data);
         DialogInfo dialogInfo = JsonUtility.FromJson<DialogInfo>(data);
 
         Dialog dialogTextObj = GameObjectPoolManager.Instance.GetGameObject(TEXTPREFAB_PATH, dialogInfo.teller).GetComponentInChildren<Dialog>();
