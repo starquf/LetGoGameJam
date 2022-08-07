@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GGM : Friends'
+  m_Text: 'Fucking : Jin-Woo Park'
 --- !u!1 &8272867215026422937
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +658,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Thumbs up : C#'
+  m_Text: 'Cheer! : C#'
 --- !u!1 &8272867215858187618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1651,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Thumbs up : Ryu-Shibuya'
+  m_Text: 'Cheer! : Ryu-Shibuya'
 --- !u!1 &8272867216791638188
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class TitleUI : MonoBehaviour
     [SerializeField]
     private GameObject cradits;
 
+    [SerializeField]
+    private GameObject tutorial;
+
 
 
     public void OnEnable()
@@ -47,5 +50,15 @@ public class TitleUI : MonoBehaviour
     public void StartCradit()
     {
         cradits.SetActive(true);
+    }
+
+    public void OpenHowToDo()
+    {
+        tutorial.SetActive(true);
+    }
+
+    public void CloseHowToDo()
+    {
+        tutorial.SetActive(false);
     }
 }

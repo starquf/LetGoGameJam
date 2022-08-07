@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
         killEnemyCount = 0;
         score = 0;
         startTime = 0;
+        isShowRange = false;
     }
 
     public void allItemListAdd(IPoolableComponent poolable)
