@@ -37,7 +37,7 @@ public class Weapon_RazerPistol : Weapon
         }
 
         bullet.bulletData = bulletData;
-        transform.localScale = isPlayer ? enemyBulletSize : playerBulletSize;
+        bullet.transform.localScale = isPlayer ? enemyBulletSize : playerBulletSize;
         if (isPlayer)
         {
             bullet.transform.localScale *= transform.lossyScale.x;
