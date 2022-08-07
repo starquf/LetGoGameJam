@@ -138,6 +138,13 @@ public class Enemy : LivingEntity, IPoolableComponent
         }
     }
 
+    public override void GetDamage(float damage)
+    {
+        base.GetDamage(damage);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyHit, sr);
+
+    }
+
     public void SetElite()
     {
         isElite = true;

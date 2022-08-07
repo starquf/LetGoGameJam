@@ -38,6 +38,7 @@ public class ResultHandler : Handler
     }
     private void OnConfirmButton()
     {
+        GameManager.Instance.ResetOnSceneChanged();
         SceneManager.LoadScene("Title");
     }
 
