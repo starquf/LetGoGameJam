@@ -184,6 +184,7 @@ public class Player : LivingEntity
             heart.SetDisable();
 
             AddHP();
+            GameManager.Instance.soundHandler.Play("Heal");
 
             GameManager.Instance.soundHandler.Play("GetExp");
         }
