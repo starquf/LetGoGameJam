@@ -42,29 +42,21 @@ public class Boss : LivingEntity, IPoolableComponent
         {
             SpawnWeapon(WeaponType.MagicBar);
         }
-        else if(rand >= 87 && rand < 89)
+        else if(rand >= 87 && rand < 90)
         {
             SpawnWeapon(WeaponType.MP7);
         }
-        else if(rand >= 89 && rand < 92)
+        else if(rand >= 90 && rand < 93)
         {
             SpawnWeapon(WeaponType.AWM);
         }
-        else if(rand >= 92 && rand < 94)
+        else if(rand >= 93 && rand < 95)
         {
             SpawnWeapon(WeaponType.RazerPistol);
         }
-        else if(rand >= 94 && rand < 96)
+        else if(rand >= 95 && rand < 97)
         {
             SpawnWeapon(WeaponType.M870);
-        }
-        else if(rand >= 96 && rand <= 97)
-        {
-            int degree = Random.Range(0, 361);
-
-            Ammo ammo = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Object/Ammo", null).GetComponent<Ammo>();
-            ammo.transform.position = new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad) * weaponDropRange, Mathf.Sin(degree * Mathf.Deg2Rad) * weaponDropRange + weaponDropCorrectionY);
-            ammo.SetDestoryTimer(30f);
         }
         else
         {
