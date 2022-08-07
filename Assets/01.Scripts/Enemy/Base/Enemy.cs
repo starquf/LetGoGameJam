@@ -41,10 +41,19 @@ public class Enemy : LivingEntity, IPoolableComponent
 
     public SpriteRenderer sr;
 
+    private Color originColor;
+
     private EnemyAI enemyAI = null;
     [HideInInspector] public Weapon weapon = null;
 
     private bool isElite = false;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        originColor = sr.color;
+    }
 
     public void Despawned()
     {
@@ -69,6 +78,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     public virtual void Spawned()
     {
         Init();
+
         playerTrm = GameManager.Instance.playerTrm;
      
         if (rigid == null)
@@ -124,8 +134,8 @@ public class Enemy : LivingEntity, IPoolableComponent
             enemyAI.InitAI(this);
 
             SetWeapon(weapon);
-            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce, sr);
-            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang, sr);
+            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce, sr, originColor);
+            GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang, sr, originColor);
             AttackStop();
         }
         else
@@ -141,7 +151,7 @@ public class Enemy : LivingEntity, IPoolableComponent
     public override void GetDamage(float damage)
     {
         base.GetDamage(damage);
-        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyHit, sr);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyHit, sr, originColor);
 
     }
 

@@ -46,6 +46,8 @@ public class StageHandler : MonoBehaviour
     public float waveTimer = 10f;
     public Vector2 spawnWaitTimerRange = new Vector2(0.1f, 0.3f);
 
+    public MapScript map;
+
 
     // 2 웨이브 넘버에 따른 관련 변수들
     private int waveNumber; // 웨이브 숫자는 시간이 갈 수록 증가함
@@ -73,6 +75,10 @@ public class StageHandler : MonoBehaviour
     [SerializeField] private Transform nextWaveSpawnPositionTransform;
 
     public List<Enemy> allEnemyList = new List<Enemy>();
+
+    private bool isBossSpawned = false;
+
+    private string BOSS_PATH = "Prefabs/Enemy/BestMan";
 
     private void Awake()
     {
@@ -284,6 +290,28 @@ public class StageHandler : MonoBehaviour
 
     private void SpawnWave()
     {
+
+
+        if (GameManager.Instance.Score > 201400)
+        {
+            // 보스 소환
+            if (!isBossSpawned)
+            {
+                GameManager.Instance.DistroyAll();
+
+                GameManager.Instance.map.SetMapScale(40f, () =>
+                {
+
+                    GameObject boss = GameObjectPoolManager.Instance.GetGameObject(BOSS_PATH, null);
+                    boss.transform.position = Vector3.zero;
+                });
+
+                isBossSpawned = true;
+            }
+
+            return;
+        }
+
         // 웨이브 숫자가 늘어날수록 스폰하는 적의 숫자로 같이 늘려줌
         remainingEnemySpawnAmount = Mathf.Clamp(defaultwaveEnemyAmount + wavePlusEnemyAmount * waveNumber, 1, 15);     // 이런값들은 외부시트로 관리
         //print(waveNumber + 1 + "웨이브, " + remainingEnemySpawnAmount + "명 소환");

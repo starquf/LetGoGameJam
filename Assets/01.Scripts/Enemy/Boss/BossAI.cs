@@ -58,4 +58,12 @@ public class BossAI : MonoBehaviour
     {
         return states[Random.Range(0, states.Count)];
     }
+
+    public void SetDie()
+    {
+        for (int i = 0; i < states.Count; i++)
+        {
+            states[i].StopAllCoroutines();
+        }
+    }
 }

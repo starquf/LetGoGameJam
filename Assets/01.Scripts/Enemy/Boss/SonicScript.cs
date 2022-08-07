@@ -46,6 +46,7 @@ public class SonicScript : MonoBehaviour, IPoolableComponent
         anim.SetBool(isAttack, true);
 
         coll.enabled = true;
+        GameManager.Instance.soundHandler.Play("SonicDrill");
 
         yield return pFiveSecWait;
 

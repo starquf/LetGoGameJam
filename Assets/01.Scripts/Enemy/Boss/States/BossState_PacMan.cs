@@ -52,6 +52,8 @@ public class BossState_PacMan : BossState
         yield return oneSecWait;
         yield return oneSecWait;
 
+        GameManager.Instance.soundHandler.PlayLoopSFX("PacmanMove", "PacmanMove");
+
         moveCor = StartCoroutine(Move());
 
         for (int i = 0; i < 15; i++)
@@ -59,6 +61,7 @@ public class BossState_PacMan : BossState
             yield return oneSecWait;
         }
 
+        GameManager.Instance.soundHandler.StopLoopSFX("PacmanMove");
         StopMove();
 
         onEndState?.Invoke();

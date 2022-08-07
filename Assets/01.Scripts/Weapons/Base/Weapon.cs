@@ -113,7 +113,7 @@ public abstract class Weapon : MonoBehaviour, IPoolableComponent
 
     protected void PlayBounceEffect()
     {
-        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal, sr, isPlayer);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.BounceHorizontal, sr, Color.white, isPlayer);
     }
 
     protected void PlayMuzzleEffect()
