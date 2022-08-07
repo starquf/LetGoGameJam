@@ -103,6 +103,10 @@ public class Boss : LivingEntity, IPoolableComponent
 
     public void SetDisable()
     {
+        ExpBall expBall = GameObjectPoolManager.Instance.GetGameObject("Prefabs/Exp/ExpBall_ELITE", null).GetComponent<ExpBall>();
+        expBall.expPoint = -1;
+        expBall.transform.position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+
         GameObjectPoolManager.Instance.UnusedGameObject(this.gameObject);
     }
 
