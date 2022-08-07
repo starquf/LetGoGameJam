@@ -28,6 +28,9 @@ public class EffectHandler : Handler
             case EffectType.BounceHorizontal:
                 EffectHorizontal(sprite, isPlayer);
                 break;
+            case EffectType.EnemyHit:
+                EnemyHIt(sprite);
+                break;
             case EffectType.EnemyBounce:
                 EffectEnemy(sprite);
                 break;
@@ -68,6 +71,24 @@ public class EffectHandler : Handler
 
     }
 
+    private void EnemyHIt(SpriteRenderer sprite)
+    {
+        sprite.DOColor(Color.red, .25f).OnComplete(() =>
+        {
+            sprite.DOColor(Color.white, .25f);
+        });
+
+        sprite.transform.DOScaleX(.7f, .25f).OnComplete(() =>
+        {
+            sprite.transform.DOScaleX(1f, .25f);
+        });
+
+        sprite.transform.DOScaleY(1.4f, .25f).OnComplete(() =>
+        {
+            sprite.transform.DOScaleY(1f, .25f);
+        });
+    }
+
     private void EffectEnemy(SpriteRenderer sprite)
     {
         sprite.transform.DOScaleX(.75f, .25f).OnComplete(() =>
@@ -89,7 +110,7 @@ public class EffectHandler : Handler
 public enum EffectType
 {
     BounceHorizontal,
-    BounceVertical,
+    EnemyHit,
     EnemyBounce,
     EnemySallangSallang
 }
