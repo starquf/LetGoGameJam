@@ -89,6 +89,7 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         transform.localScale = defaultScale;
         curSpeed = bulletSpeed;
         bulletIron = originBulletIron;
+        lifeTime = 3f;
         
         StartCoroutine(BulletLifetime());
     }
@@ -154,6 +155,21 @@ public class Bullet : MonoBehaviour, IPoolableComponent
         }
 
         SetDisable();
+    }
+
+    public void SetLifeTime(float lifetime)
+    {
+        this.lifeTime = lifetime;
+    }
+
+    public void SetScale(float percent)
+    {
+        transform.localScale *= percent;
+    }
+
+    public void SetScale(Vector3 scale)
+    {
+        transform.localScale = scale;
     }
 
     public void AddBulletIron(int value)
@@ -276,6 +292,17 @@ public class Bullet : MonoBehaviour, IPoolableComponent
 
             GameManager.Instance.soundHandler.Play("EnemyHit");
         }
+        else if (hitEntity is Boss)
+        {
+            ColorEffect hitEffect = GameObjectPoolManager.Instance.GetGameObject(HIT_EFFECT_PATH, null).GetComponent<ColorEffect>();
+            hitEffect.SetColor(Color.yellow, Color.white);
+
+            hitEffect.SetPosition(isCenterPlay ? hitEntity.transform.position : transform.position);
+            hitEffect.Play();
+
+            GameManager.Instance.soundHandler.Play("EnemyHit");
+        }
+
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
