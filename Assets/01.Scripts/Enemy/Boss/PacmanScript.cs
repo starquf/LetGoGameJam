@@ -26,6 +26,8 @@ public class PacmanScript : MonoBehaviour, IPoolableComponent
     public void SetPacMan(Vector3 startDir, float startOffset = 0f)
     {
         startTween.Kill();
+
+        GameManager.Instance.soundHandler.Play("PacmanAppear");
         startTween = sr.DOFade(0.2f, 1f).SetEase(Ease.Linear).From(0f).OnComplete(() =>
         {
             if (pacmanCor != null)

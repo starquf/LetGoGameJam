@@ -20,7 +20,7 @@ public class EffectHandler : Handler
         sequence = DOTween.Sequence();
     }
 
-    public void SetEffect(EffectType type, SpriteRenderer sprite, bool isPlayer = true)
+    public void SetEffect(EffectType type, SpriteRenderer sprite, Color originColor, bool isPlayer = true)
     {
 
         switch (type)
@@ -29,7 +29,7 @@ public class EffectHandler : Handler
                 EffectHorizontal(sprite, isPlayer);
                 break;
             case EffectType.EnemyHit:
-                EnemyHIt(sprite);
+                EnemyHIt(sprite, originColor);
                 break;
             case EffectType.EnemyBounce:
                 EffectEnemy(sprite);
@@ -71,11 +71,11 @@ public class EffectHandler : Handler
 
     }
 
-    private void EnemyHIt(SpriteRenderer sprite)
+    private void EnemyHIt(SpriteRenderer sprite, Color originColor)
     {
         sprite.DOColor(Color.red, .25f).OnComplete(() =>
         {
-            sprite.DOColor(Color.white, .25f);
+            sprite.DOColor(originColor, .25f);
         });
 
         sprite.transform.DOScaleX(.7f, .25f).OnComplete(() =>

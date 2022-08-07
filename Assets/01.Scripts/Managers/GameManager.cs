@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     public Transform playerTrm;
     [HideInInspector]
     public int Score => score;
+    [SerializeField]
     private int score;
 
     [HideInInspector]
@@ -89,6 +90,8 @@ public class GameManager : MonoBehaviour
 
     public CinemachineVirtualCamera cmPerlinObject;
     public VirtualCameraScript vCamScript;
+
+    public MapScript map;
 
     [HideInInspector]
     public Transform mapMin;

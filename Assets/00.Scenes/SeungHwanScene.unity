@@ -842,6 +842,10 @@ PrefabInstance:
       value: StageHandler
       objectReference: {fileID: 0}
     - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 41834983}
+    - target: {fileID: 7830741835640861914, guid: 4ebbadc4bc3ef224ea97919c9225a8fd, type: 3}
       propertyPath: nextWaveSpawnPositionTransform
       value: 
       objectReference: {fileID: 1729210797}
@@ -4168,11 +4172,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrm: {fileID: 0}
+  score: 0
   timeScale: 1
   doubleSpeed: 0
   isShowRange: 0
   cmPerlinObject: {fileID: 0}
   vCamScript: {fileID: 0}
+  map: {fileID: 0}
   mapMin: {fileID: 0}
   mapMax: {fileID: 0}
   soundHandler: {fileID: 0}

@@ -10,17 +10,10 @@ public class Boss : LivingEntity, IPoolableComponent
     public float weaponDropRange;
     public float weaponDropCorrectionY;
 
-    private void Start()
-    {
-        isDie = false;
-
-        hp = maxHp;
-
-        SetHPUI();
-    }
-
     protected override void Die()
     {
+        GetComponent<BossAI>().SetDie();
+
         SetDisable();
     }
 
@@ -33,41 +26,39 @@ public class Boss : LivingEntity, IPoolableComponent
     {
         base.GetDamage(damage);
 
+        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyHit, sr, Color.white);
+
         int rand = Random.Range(0, 100);
 
-        if(rand >=0 && rand < 60)
+        if(rand >=0 && rand < 80)
         {
             
         }
-        else if(rand >= 60 && rand < 70)
+        else if(rand >= 80 && rand < 84)
         {
             SpawnWeapon(WeaponType.Ak47);
         }
-        else if(rand >= 70 && rand < 75)
+        else if(rand >= 84 && rand < 87)
         {
             SpawnWeapon(WeaponType.MagicBar);
         }
-        else if(rand >= 75 && rand < 79)
+        else if(rand >= 87 && rand < 89)
         {
             SpawnWeapon(WeaponType.MP7);
         }
-        else if(rand >= 79 && rand < 84)
+        else if(rand >= 89 && rand < 92)
         {
             SpawnWeapon(WeaponType.AWM);
         }
-        else if(rand >= 84 && rand < 85)
-        {
-            SpawnWeapon(WeaponType.BlueArchive);
-        }
-        else if(rand >= 85 && rand < 87)
+        else if(rand >= 92 && rand < 94)
         {
             SpawnWeapon(WeaponType.RazerPistol);
         }
-        else if(rand >= 87 && rand < 93)
+        else if(rand >= 94 && rand < 96)
         {
             SpawnWeapon(WeaponType.M870);
         }
-        else if(rand >= 93 && rand <= 96)
+        else if(rand >= 96 && rand <= 97)
         {
             int degree = Random.Range(0, 361);
 
@@ -112,8 +103,8 @@ public class Boss : LivingEntity, IPoolableComponent
 
         SetHPUI();
 
-        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce, sr);
-        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang, sr);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemyBounce, sr, Color.white);
+        GameManager.Instance.effectHandler.SetEffect(EffectType.EnemySallangSallang, sr, Color.white);
     }
 
     public void SetDisable()
