@@ -1086,11 +1086,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrm: {fileID: 0}
+  score: 0
   timeScale: 1
   doubleSpeed: 0
   isShowRange: 0
   cmPerlinObject: {fileID: 0}
   vCamScript: {fileID: 0}
+  map: {fileID: 0}
   mapMin: {fileID: 0}
   mapMax: {fileID: 0}
   soundHandler: {fileID: 0}
@@ -5026,7 +5028,7 @@ MonoBehaviour:
     name: "\uC6B4\uB3D9"
     des: "\uCD5C\uB300 \uCCB4\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     level: 0
-  maxLevel: 5
+  maxLevel: 2
   isInfinityLevel: 0
   uh: {fileID: 0}
 --- !u!1 &2007849133
