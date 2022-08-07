@@ -79,6 +79,7 @@ public class StageHandler : MonoBehaviour
     private bool isBossSpawned = false;
 
     private string BOSS_PATH = "Prefabs/Enemy/BestMan";
+    private string BASE_PATH = "Prefabs/Weapons/Weapon_M1911";
 
     private void Awake()
     {
@@ -298,6 +299,8 @@ public class StageHandler : MonoBehaviour
             if (!isBossSpawned)
             {
                 GameManager.Instance.DistroyAll();
+                GameManager.Instance.playerTrm.GetComponentInChildren<PlayerAttack>()
+                    .ChangeWeapon(GameObjectPoolManager.Instance.GetGameObject(BASE_PATH, null).GetComponent<Weapon>());
 
                 GameManager.Instance.map.SetMapScale(40f, () =>
                 {
