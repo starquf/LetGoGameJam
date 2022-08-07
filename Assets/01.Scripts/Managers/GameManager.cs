@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Reset");
         ResetEvents();
+        DOTween.KillAll();
         killEnemyCount = 0;
         score = 0;
         startTime = 0;
