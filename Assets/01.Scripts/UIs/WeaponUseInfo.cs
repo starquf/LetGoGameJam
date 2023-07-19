@@ -19,6 +19,8 @@ public class WeaponUseInfo : MonoBehaviour, IPoolableComponent
     public void SetUI(WeaponType weaponType, string damagedAmount, string usedBulletAmount)
     {
         GameObject go = GameObjectPoolManager.Instance.GetGameObject("Prefabs/UI/WeaponIcons/WeaponIcon_" + weaponType.ToString(), transform);
+        go.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0.5f);
+        go.GetComponent<RectTransform>().anchorMax = new Vector2(0, 0.5f);
         go.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         damagedAmountTxt.text = damagedAmount;
         usedBulletAmountTxt.text = usedBulletAmount;

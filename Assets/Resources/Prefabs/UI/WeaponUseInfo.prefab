@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a8bcc0442db294786faa2ded25df96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 50, y: 0}
+  spawnPos: {x: 100, y: 0}
   damagedAmountTxt: {fileID: 8118581163477603885}
   usedBulletAmountTxt: {fileID: 5127323976292428675}
 --- !u!1 &5355936020486468309
